@@ -4,9 +4,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-host": "ng serve --host 0.0.0.0 --port 4200",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "build:local": "ng build --configuration production --base-href ./",
+    "build:gh-pages": "ng build --configuration production --base-href /guia-comparativa-racket-y-ocaml/",
+    "electron": "electron .",
+    "electron:build": "npm run build:local && electron .",
+    "electron:dist": "npm run build:local && electron-builder --config electron-builder.yml --win",
+    "electron:installer": "npm run build:local && electron-builder --config electron-builder.yml --win nsis --publish=never",
+    "preview:local": "npm run build:local && npm run serve:build",
+    "deploy:gh-pages": "npm run build:gh-pages && npx angular-cli-ghpages --dir=dist/guia-comparativa-racket-y-ocaml --repo=https://github.com/Napssters/guia-comparativa-racket-y-ocaml",
     "serve:ssr:guia-comparativa-racket-y-ocaml": "node dist/guia-comparativa-racket-y-ocaml/server/server.mjs"
   },
   "private": true,
@@ -20,6 +29,10 @@
     "@angular/platform-server": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.3",
+    "@tailwindcss/postcss": "^4.1.13",
+    "angular-cli-ghpages": "^2.0.3",
+    "electron": "^38.1.2",
+    "electron-builder": "^26.0.12",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -32,12 +45,31 @@
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
+    "autoprefixer": "^10.4.21",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
     "typescript": "~5.7.2"
+  },
+  "build": {
+    "appId": "com.guia-comparativa-racket-y-ocaml.electron",
+    "productName": "guia-comparativa-racket-y-ocaml",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/guia-comparativa-racket-y-ocaml/**/*",
+      "main.js",
+      "icon.ico"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    }
   }
 }

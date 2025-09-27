@@ -1,0 +1,28 @@
+directories:
+  output: dist_electron
+
+files:
+  - dist/guia-comparativa-racket-y-ocaml/**/*
+  - main.js
+  - loading.html
+  - icono.ico
+
+appId: com.guia-comparativa-racket-y-ocaml.electron
+productName: "Guia Comparativa Racket y OCaml"
+
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: icono.ico
+  artifactName: "${productName}-Setup-${version}.${ext}"
+
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+
+nodeGypRebuild: false
+npmRebuild: false
