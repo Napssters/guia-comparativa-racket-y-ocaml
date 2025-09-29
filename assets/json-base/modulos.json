@@ -1,98 +1,98 @@
 [
   {
-    "title": "1. Expresiones",
-    "description": "Explora operaciones lógicas y aritméticas de forma sencilla en OCaml, utilizando conceptos previos de Racket.",
+    "title": "1. Introducción al paradigma funcional",
+    "description": "Explora los fundamentos del paradigma funcional en Racket y OCaml, comprendiendo conceptos clave como funciones puras, expresiones e inmutabilidad, y sus diferencias con otros paradigmas de programación.",
+    "img": "paradigma-funcional.jpg",
+    "page": "paradigma-funcional",
+    "difficulty": "Principiante"
+  },
+  {
+    "title": "2. Expresiones y valores básicos",
+    "description": "Aprende a trabajar con tipos de datos primitivos como números, booleanos, caracteres y cadenas en Racket y OCaml, explorando operadores aritméticos y lógicos para realizar operaciones básicas.",
     "img": "expresiones.jpg",
     "page": "expresiones",
     "difficulty": "Principiante"
   },
   {
-    "title": "2. Estructuras de secuencia",
-    "description": "Comprende cómo implementar instrucciones que se ejecutan secuencialmente en OCaml, comparando con la estructura de Racket.",
-    "img": "estructuras-de-secuencia.jpg",
-    "page": "estructuras-de-secuencia",
+    "title": "3. Definición y uso de funciones",
+    "description": "Domina la creación y uso de funciones en Racket y OCaml, incluyendo la sintaxis para definir parámetros y manejar valores de retorno, con un enfoque práctico en ambos lenguajes.",
+    "img": "funciones.jpg",
+    "page": "funciones",
     "difficulty": "Principiante"
   },
   {
-    "title": "3. Estructuras de selección",
-    "description": "Asimila el uso de estructuras condicionales como `if` y `match` en OCaml, con referencias a Racket.",
-    "img": "estructuras-de-seleccion.jpg",
-    "page": "estructuras-de-seleccion",
+    "title": "4. Funciones con múltiples parámetros",
+    "description": "Profundiza en la definición y uso de funciones con múltiples parámetros en Racket y OCaml, aprendiendo cómo extender la funcionalidad básica para resolver problemas más complejos.",
+    "img": "funciones-multiples.jpg",
+    "page": "funciones-multiples",
     "difficulty": "Medio"
   },
   {
-    "title": "4. Estructuras de iteración",
-    "description": "Analiza el funcionamiento de iteraciones en OCaml, como bucles recursivos y `for`, comparándolos con Racket.",
-    "img": "estructuras-de-iteracion.jpg",
-    "page": "estructuras-de-iteracion",
+    "title": "5. Condicionales en programación funcional",
+    "description": "Asimila el uso de estructuras condicionales como `if` y `cond` en Racket y OCaml, comprendiendo cómo tomar decisiones en un enfoque funcional puro.",
+    "img": "condicionales.jpg",
+    "page": "condicionales",
     "difficulty": "Medio"
   },
   {
-    "title": "5. Cadenas y Caracteres",
-    "description": "Entiende la declaración, inicialización y manejo de cadenas y caracteres en OCaml, comparando su estructura con Racket.",
+    "title": "6. Introducción a la recursión",
+    "description": "Descubre el concepto de recursión en Racket y OCaml, aprendiendo a diseñar funciones con casos base y casos recursivos para resolver problemas de manera iterativa sin bucles tradicionales.",
+    "img": "recursion.jpg",
+    "page": "recursion",
+    "difficulty": "Medio"
+  },
+  {
+    "title": "7. Listas y operaciones básicas",
+    "description": "Explora la creación y manipulación de listas en Racket y OCaml, utilizando funciones básicas para trabajar con colecciones de datos de manera efectiva.",
+    "img": "listas.jpg",
+    "page": "listas",
+    "difficulty": "Medio"
+  },
+  {
+    "title": "8. Funciones de orden superior básicas",
+    "description": "Aprende a utilizar funciones de orden superior como `map` y `filter` en Racket y OCaml, aplicando funciones a colecciones de datos para transformar y filtrar elementos.",
+    "img": "funciones-orden-superior.jpg",
+    "page": "funciones-orden-superior",
+    "difficulty": "Avanzado"
+  },
+  {
+    "title": "9. Tipos de datos simples",
+    "description": "Comprende cómo trabajar con tuplas y registros en Racket y OCaml, agrupando datos relacionados para estructurar información de manera clara y funcional.",
+    "img": "tipos-datos-simples.jpg",
+    "page": "tipos-datos-simples",
+    "difficulty": "Avanzado"
+  },
+  {
+    "title": "10. Manejo de cadenas y caracteres",
+    "description": "Entiende cómo realizar operaciones básicas con cadenas y caracteres en Racket y OCaml, aprendiendo técnicas para manipular texto de forma eficiente.",
     "img": "cadenas-y-caracteres.jpg",
     "page": "cadenas-y-caracteres",
     "difficulty": "Medio"
   },
   {
-    "title": "6. Vectores",
-    "description": "Aprende a crear, inicializar y modificar arrays en OCaml, con comparaciones a la estructura de Racket.",
-    "img": "vectores.jpg",
-    "page": "vectores",
-    "difficulty": "Medio"
-  },
-  {
-    "title": "7. Matrices",
-    "description": "Descubre cómo trabajar con matrices en OCaml, incluyendo su creación y manipulación, con referencias a Racket.",
-    "img": "matrices.jpg",
-    "page": "matrices",
-    "difficulty": "Avanzado"
-  },
-  {
-    "title": "8. Estructuras de datos",
-    "description": "Explora la creación y manejo de estructuras de datos en OCaml, como listas y tipos personalizados.",
-    "img": "estructuras-de-datos.jpg",
-    "page": "estructuras-de-datos",
-    "difficulty": "Avanzado"
-  },
-  {
-    "title": "9. Funciones",
-    "description": "Domina la definición y uso de funciones en OCaml, aprovechando conceptos de Racket.",
-    "img": "funciones.jpg",
-    "page": "funciones",
-    "difficulty": "Avanzado"
-  },
-  {
-    "title": "10. Composición de Funciones",
-    "description": "Descubre cómo implementar la composición de funciones en OCaml, con un enfoque práctico basado en Racket.",
+    "title": "11. Composición de funciones",
+    "description": "Descubre cómo combinar funciones en Racket y OCaml mediante la composición, creando nuevas funcionalidades a partir de funciones existentes con un enfoque práctico.",
     "img": "composicion-de-funciones.jpg",
     "page": "composicion-de-funciones",
     "difficulty": "Avanzado"
   },
   {
-    "title": "11. Procedimientos",
-    "description": "Aprende a crear y utilizar funciones procedurales en OCaml, comparándolas con Racket.",
-    "img": "procedimientos.jpg",
-    "page": "procedimientos",
-    "difficulty": "Avanzado"
-  },
-  {
-    "title": "12. Modo gráfico",
-    "description": "Profundiza en funciones para crear entornos gráficos básicos en OCaml, desde figuras simples hasta fundamentos de desarrollo de videojuegos.",
-    "img": "modo-grafico.jpg",
-    "page": "modo-grafico",
+    "title": "12. Aplicación práctica: Procesamiento de listas",
+    "description": "Aplica de forma integrada conceptos de recursión, map y filter en Racket y OCaml para resolver problemas comunes relacionados con el procesamiento de listas.",
+    "img": "procesamiento-listas.jpg",
+    "page": "procesamiento-listas",
     "difficulty": "Avanzado"
   },
   {
     "title": "13. Práctica OCaml",
-    "description": "Realiza una prueba final para validar los conocimientos adquiridos en OCaml.",
+    "description": "Realiza una prueba final para consolidar los conocimientos adquiridos en OCaml, aplicando conceptos funcionales en ejercicios prácticos.",
     "img": "practica-ocaml.jpg",
     "page": "practica-ocaml",
     "difficulty": "Elemental"
   },
   {
     "title": "14. Práctica Racket",
-    "description": "Realiza una prueba final para consolidar los conocimientos adquiridos en Racket.",
+    "description": "Realiza una prueba final para validar los conocimientos adquiridos en Racket, resolviendo problemas que integran los conceptos funcionales aprendidos.",
     "img": "practica-racket.jpg",
     "page": "practica-racket",
     "difficulty": "Elemental"
