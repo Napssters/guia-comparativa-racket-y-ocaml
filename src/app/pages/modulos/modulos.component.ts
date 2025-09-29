@@ -23,6 +23,12 @@ export class ModulosComponent implements OnInit {
     });
   }
 
+  onImgError(event: Event) {
+    const element = event.target as HTMLImageElement | null;
+    if (element) {
+      element.src = 'assets/img/logo.webp';
+    }
+  }
   getDificultadColor(dificultad: string): string {
     switch (dificultad.toLowerCase()) {
       case 'principiante':

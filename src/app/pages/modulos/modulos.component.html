@@ -1,5 +1,5 @@
 <div class="w-full p-6">
-  <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-blue-700 text-center">Módulos</h2>
+  <h2 class="text-3xl md:text-5xl font-bold mb-4 text-center" style="color: #3e5aa9;">Módulos</h2>
   <p class="text-gray-700 text-justify md:text-center max-w-2xl mb-8 mx-auto">
     Explora los 12 módulos temáticos, cada uno con ejemplos prácticos y explicaciones claras para fortalecer tus
     conocimientos y habilidades en Racket y OCaml.
@@ -8,12 +8,14 @@
     class="grid grid-cols-1 sm:grid-cols-2 gap-8 p-2 mx-auto h-full place-items-center lg:flex lg:flex-wrap lg:justify-center">
     <ng-container *ngFor="let modulo of modulos">
       <div
-        class="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col h-full min-h-[22rem] w-72 border-2 px-0 pt-4 pb-4"
+        class="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col h-full min-h-[24rem] w-72 border-2 px-0 pb-4"
         [ngClass]="getDificultadBorder(modulo.difficulty)">
-        <img *ngIf="modulo.img" [src]="'img/' + modulo.img" [alt]="modulo.title"
-          class="w-full h-32 object-cover rounded-t-xl" loading="lazy" />
+        <img *ngIf="modulo.img" [src]="'assets/img/' + modulo.img" [alt]="modulo.title" (error)="onImgError($event)"
+          class="w-full h-52 object-cover rounded-t-xl" loading="lazy" />
+        <img *ngIf="!modulo.img" src="assets/img/logo.webp" alt="Logo por defecto"
+          class="w-full h-52 object-cover rounded-t-xl" loading="lazy" />
         <div class="px-4 flex flex-col flex-1">
-          <h3 class="font-semibold text-base mb-1">{{ modulo.title }}</h3>
+          <h3 class="font-semibold text-base mt-4 mb-1">{{ modulo.title }}</h3>
           <p class="text-gray-600 text-sm mb-2 flex-1 text-justify">{{ modulo.description }}</p>
           <div class="flex items-center justify-between mt-2">
             <span class="text-xs px-2 py-1 rounded border font-semibold"
@@ -21,7 +23,8 @@
               {{ modulo.difficulty }}
             </span>
             <a *ngIf="modulo.page" [routerLink]="['/' + modulo.page]"
-              class="text-blue-600 hover:underline text-xs font-medium">Ver más</a>
+              class="text-xs font-medium text-white rounded-full px-3 py-1 shadow transition"
+              style="background-color: #ec690d;">Ver más</a>
           </div>
         </div>
       </div>
