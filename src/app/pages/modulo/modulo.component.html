@@ -4,6 +4,22 @@
   [routerLink]="['/']">
   ← Volver al menú principal
 </button>
-<p>
-  modulo works!
-</p>
+
+<div class="flex flex-col md:flex-row gap-6 w-full">
+  <div class="flex-1 min-w-0">
+    <app-code-editor
+      [label]="'Racket'"
+      [language]="'scheme'"
+      [code]="racketCode"
+      [disabled]="true"
+    />
+  </div>
+  <div class="flex-1 min-w-0">
+    <app-code-editor
+      [label]="'OCaml'"
+      [language]="'ocaml'"
+      [code]="ocamlCode"
+      [disabled]="true"
+    />
+  </div>
+</div>
