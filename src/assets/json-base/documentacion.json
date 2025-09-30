@@ -47,7 +47,7 @@
             }
           ],
           "image": {
-            "url": "paradigma-funcional.jpg",
+            "url": "paradigma-funcional-2.jpg",
             "caption": "Comparación visual entre paradigmas de programación."
           }
         }
@@ -102,7 +102,7 @@
             }
           ],
           "image": {
-            "url": "expresiones.jpg",
+            "url": "expresiones-2.jpg",
             "caption": "Ilustración de operadores aplicados a datos básicos."
           }
         }
@@ -156,7 +156,7 @@
             }
           ],
           "image": {
-            "url": "funciones.jpg",
+            "url": "funciones-2.jpg",
             "caption": "Ejemplo de cómo usar una función con parámetros."
           }
         }
@@ -209,7 +209,7 @@
             }
           ],
           "image": {
-            "url": "funciones-multiples.jpg",
+            "url": "funciones-multiples-2.jpg",
             "caption": "Ejemplo de funciones con múltiples parámetros en acción."
           }
         }
@@ -264,7 +264,7 @@
             }
           ],
           "image": {
-            "url": "condicionales.jpg",
+            "url": "condicionales-2.jpg",
             "caption": "Ejemplo de condicionales aplicadas a decisiones simples."
           }
         }
@@ -318,7 +318,7 @@
             }
           ],
           "image": {
-            "url": "recursion.jpg",
+            "url": "recursion-2.jpg",
             "caption": "Ejemplo de casos base y recursivos en una función."
           }
         }
@@ -372,7 +372,7 @@
             }
           ],
           "image": {
-            "url": "listas.jpg",
+            "url": "listas-2.jpg",
             "caption": "Ejemplo de operaciones básicas con listas."
           }
         }
@@ -426,7 +426,7 @@
             }
           ],
           "image": {
-            "url": "funciones-orden-superior.jpg",
+            "url": "funciones-orden-superior-2.jpg",
             "caption": "Ejemplo de `map` y `filter` en acción."
           }
         }
@@ -480,7 +480,7 @@
             }
           ],
           "image": {
-            "url": "tipos-datos-simples.jpg",
+            "url": "tipos-datos-simples-2.jpg",
             "caption": "Ejemplo de un registro como un formulario estructurado."
           }
         }
@@ -534,7 +534,7 @@
             }
           ],
           "image": {
-            "url": "cadenas-y-caracteres.jpg",
+            "url": "cadenas-y-caracteres-2.jpg",
             "caption": "Ejemplo de operaciones con cadenas de texto."
           }
         }
@@ -587,7 +587,7 @@
             }
           ],
           "image": {
-            "url": "composicion-de-funciones.jpg",
+            "url": "composicion-de-funciones-2.jpg",
             "caption": "Ejemplo de composición en un flujo de trabajo."
           }
         }
@@ -642,7 +642,7 @@
             }
           ],
           "image": {
-            "url": "procesamiento-listas.jpg",
+            "url": "procesamiento-listas-2.jpg",
             "caption": "Ejemplo de `map` y `filter` procesando una lista."
           }
         }
