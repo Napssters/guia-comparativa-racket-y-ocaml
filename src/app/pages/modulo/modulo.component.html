@@ -1,15 +1,16 @@
 <app-documentacion [moduloKey]="moduloKey" />
 
-<div class="flex flex-col md:flex-row gap-6 w-full">
-  <div class="flex-1 min-w-0">
+<div class="mx-auto p-8 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-md mt-6 mb-6 flex flex-col gap-10" style="max-width: 90rem;">
+  <h1 class="bg-yellow-300 text-yellow-900 text-3xl font-bold rounded-xl px-6 py-4 mb-4 shadow-lg text-center">
+    ⚠️ Aviso temporal: El comparador de código aún está en desarrollo. Esta sección es solo una maqueta de muestra y no tiene funcionalidad real por ahora. Pronto estará disponible con todas sus características.
+  </h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <app-code-editor
       [label]="'Racket'"
       [language]="'scheme'"
       [code]="racketCode"
       [disabled]="true"
     />
-  </div>
-  <div class="flex-1 min-w-0">
     <app-code-editor
       [label]="'OCaml'"
       [language]="'ocaml'"
@@ -18,10 +19,3 @@
     />
   </div>
 </div>
-
-<button
-  class="mb-4 mt-10 px-4 py-1.5 text-white rounded-full shadow transition"
-  style="background-color: #ec690d;"
-  [routerLink]="['/']">
-  ← Volver al menú principal
-</button>
