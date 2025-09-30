@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import { CodeEditorComponent } from '../../shared/components/code-editor/code-editor.component';
+import { DocumentacionComponent } from '../../shared/components/documentacion/documentacion.component';
 
 @Component({
   selector: 'app-modulo',
   templateUrl: './modulo.component.html',
   styleUrls: ['./modulo.component.css'],
-  imports: [RouterModule, CodeEditorComponent],
+  imports: [RouterModule, CodeEditorComponent, DocumentacionComponent],
   standalone: true
 })
 export class ModuloComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
   racketCode: string = `#lang racket
   (define (suma-pares lst)
     (cond
@@ -34,4 +30,13 @@ export class ModuloComponent implements OnInit {
     Printf.printf "%d\n" resultado (* Resultado: 12 *)
   `;
 
+  moduloKey: string = '';
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.moduloKey = params.get('modulo') || '';
+    });
+  }
 }

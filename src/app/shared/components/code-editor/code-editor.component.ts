@@ -4,7 +4,7 @@ import { AceModule } from 'ngx-ace-wrapper';
 import 'ace-builds/src-noconflict/ace';
 import 'ace-builds/src-noconflict/mode-scheme';
 import 'ace-builds/src-noconflict/mode-ocaml';
-import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/theme-github';
 
 @Component({
   selector: 'app-code-editor',
@@ -27,7 +27,7 @@ export class CodeEditorComponent implements OnInit {
   onAceLoaded(editor: any) {
     // Solo se usan los modos y tema importados estáticamente
     const mode = this.language === 'scheme' || this.language === 'ocaml' ? this.language : 'text';
-    const theme = 'monokai';
+  const theme = 'github';
     // Desactiva el worker para evitar errores
     editor.session.setOption('useWorker', false);
     // Establece el modo y tema
