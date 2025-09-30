@@ -1,0 +1,652 @@
+[
+  {
+    "paradigma-funcional": {
+      "title": "1. Introducción al paradigma funcional",
+      "description": "El paradigma funcional es una forma de pensar y resolver problemas utilizando funciones, como si fueran recetas de cocina que siempre producen el mismo resultado si usas los mismos ingredientes. En este módulo, aprenderás los fundamentos de este enfoque en los lenguajes Racket y OCaml, entendiendo conceptos como funciones puras (que no cambian nada fuera de ellas), expresiones (instrucciones que generan un valor) y la inmutabilidad (datos que no cambian una vez creados). Comparado con otros estilos de programación, el paradigma funcional es como seguir una receta paso a paso sin improvisar, asegurando resultados predecibles. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Comprender qué es el paradigma funcional y cómo se diferencia de otros enfoques.",
+        "Identificar los conceptos de funciones puras, expresiones e inmutabilidad.",
+        "Reconocer las ventajas de usar Racket y OCaml para programar funcionalmente."
+      ],
+      "key_concepts": [
+        "Paradigma funcional",
+        "Funciones puras",
+        "Inmutabilidad",
+        "Expresiones"
+      ],
+      "subsections": [
+        {
+          "title": "Qué es el paradigma funcional",
+          "content": "Imagina que estás organizando una fiesta y cada invitado trae un plato según una receta específica. El paradigma funcional es como asegurarte de que cada receta (función) siempre produzca el mismo plato (resultado) si usas los mismos ingredientes (entradas). En Racket y OCaml, las funciones son el corazón del programa, y se diseñan para ser predecibles y no alterar otras partes del programa, a diferencia de otros estilos donde las instrucciones pueden cambiar cosas inesperadamente. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Hacer un batido",
+              "description": "Si sigues una receta para un batido (mezclar plátano, leche y azúcar), siempre obtendrás el mismo sabor si usas los mismos ingredientes. Esto es como una función pura en programación funcional: mismo input, mismo output. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Organizar una biblioteca",
+              "description": "Imagina que ordenas libros en una estantería por género sin cambiar los libros mismos. En programación funcional, los datos (libros) son inmutables, y solo los organizas o procesas sin modificarlos. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "paradigma-funcional.jpg",
+            "caption": "Una ilustración que representa el flujo predecible de funciones en el paradigma funcional."
+          }
+        },
+        {
+          "title": "Diferencias con otros paradigmas",
+          "content": "A diferencia de la programación imperativa, donde das órdenes paso a paso como un chef que improvisa, el paradigma funcional se centra en qué quieres lograr, no en cómo hacerlo. Por ejemplo, en lugar de decir 'toma un número, súmale 2, luego multiplícalo', defines una función que hace todo eso de una vez, como una máquina automática que entrega el resultado final. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Preparar café",
+              "description": "En la programación imperativa, indicas cada paso: moler café, hervir agua, mezclar. En programación funcional, defines una 'función café' que toma los granos y entrega la taza lista. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Armar un rompecabezas",
+              "description": "En otros paradigmas, puedes mover piezas y cambiar el tablero. En el funcional, cada movimiento crea un nuevo tablero sin alterar el original, como tomar una foto del progreso. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "paradigma-funcional.jpg",
+            "caption": "Comparación visual entre paradigmas de programación."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "expresiones": {
+      "title": "2. Expresiones y valores básicos",
+      "description": "En este módulo, aprenderás cómo los lenguajes Racket y OCaml manejan los datos más simples, como números, palabras y valores verdadero/falso, de la misma manera que usas ingredientes básicos en la cocina. Explorarás cómo realizar operaciones como sumar o comparar, que son los bloques de construcción para crear programas más complejos. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Entender los tipos de datos básicos en Racket y OCaml.",
+        "Aprender a usar operadores aritméticos y lógicos.",
+        "Realizar operaciones simples con números, booleanos y cadenas."
+      ],
+      "key_concepts": [
+        "Tipos de datos",
+        "Operadores aritméticos",
+        "Operadores lógicos",
+        "Expresiones"
+      ],
+      "subsections": [
+        {
+          "title": "Tipos de datos básicos",
+          "content": "Los tipos de datos son como los ingredientes de una receta: números (como 5 o 3.14), booleanos (verdadero o falso), caracteres (como la letra 'a') y cadenas (como 'hola'). En Racket y OCaml, estos son los elementos básicos con los que construyes programas, y cada uno tiene reglas específicas sobre cómo se usa. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Contar manzanas",
+              "description": "Un número como 5 representa cuántas manzanas tienes. Si sumas 3 más, usas un operador aritmético (+), como contar manzanas en una cesta. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Decidir si llueve",
+              "description": "Un booleano (verdadero/falso) es como decidir si necesitas un paraguas porque está lloviendo (verdadero) o no (falso). Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "expresiones.jpg",
+            "caption": "Ejemplo de tipos de datos básicos como números y booleanos."
+          }
+        },
+        {
+          "title": "Operadores para operaciones básicas",
+          "content": "Los operadores son como las acciones que haces con los ingredientes: sumar (+), restar (-), o comparar (¿es 5 mayor que 3?). En Racket y OCaml, usas estos operadores para combinar datos y obtener resultados, como calcular el total de una compra o verificar si tienes suficiente dinero. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Calcular una cuenta",
+              "description": "Sumar 10 + 5 es como calcular el total de una compra en una tienda, usando el operador + para combinar números. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Comparar pesos",
+              "description": "Comparar si 10 kilos de manzanas son más pesados que 8 kilos es como usar un operador lógico (>), que devuelve verdadero. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "expresiones.jpg",
+            "caption": "Ilustración de operadores aplicados a datos básicos."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "funciones": {
+      "title": "3. Definición y uso de funciones",
+      "description": "Las funciones son como recetas que puedes usar una y otra vez: defines los pasos una vez y luego los aplicas con diferentes ingredientes. Este módulo te enseña cómo crear y usar funciones en Racket y OCaml, especificando qué datos reciben y qué producen, como una máquina que siempre da el mismo resultado con los mismos insumos. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Aprender a definir funciones en Racket y OCaml.",
+        "Entender cómo pasar parámetros a una función.",
+        "Comprender cómo las funciones devuelven valores."
+      ],
+      "key_concepts": [
+        "Funciones",
+        "Parámetros",
+        "Valores de retorno"
+      ],
+      "subsections": [
+        {
+          "title": "Crear una función",
+          "content": "Definir una función es como escribir una receta: especificas los ingredientes (parámetros) y los pasos para obtener un plato (resultado). En Racket y OCaml, las funciones se escriben con una sintaxis clara, indicando qué datos necesitan y qué devuelven. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Receta de limonada",
+              "description": "Una función que calcula cuánta limonada puedes hacer con 3 limones es como una receta que siempre da el mismo resultado con la misma cantidad de limones. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Calcular el área",
+              "description": "Una función que calcula el área de un rectángulo (largo × ancho) es como una calculadora que toma medidas y te da el tamaño del espacio. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "funciones.jpg",
+            "caption": "Representación de una función como una receta."
+          }
+        },
+        {
+          "title": "Usar funciones",
+          "content": "Usar una función es como seguir una receta ya escrita: das los ingredientes (parámetros) y obtienes el plato (resultado). En Racket y OCaml, llamas a la función con datos específicos para obtener un valor calculado. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Hacer un pastel",
+              "description": "Si tienes una receta (función) para un pastel, la usas dando los ingredientes (parámetros como harina y azúcar) para obtener el pastel listo. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Planificar un viaje",
+              "description": "Una función que calcula el tiempo de viaje según la distancia y la velocidad es como usar un GPS que te dice cuánto tardarás. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "funciones.jpg",
+            "caption": "Ejemplo de cómo usar una función con parámetros."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "funciones-multiples": {
+      "title": "4. Funciones con múltiples parámetros",
+      "description": "A veces, una receta necesita más de un ingrediente, como azúcar y limones para una limonada. En este módulo, aprenderás a crear funciones en Racket y OCaml que manejan varios datos a la vez, permitiéndote resolver problemas más complejos, como calcular el costo total de una compra con descuentos. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Definir funciones con múltiples parámetros.",
+        "Aplicar funciones con varios datos de entrada.",
+        "Resolver problemas prácticos usando múltiples parámetros."
+      ],
+      "key_concepts": [
+        "Parámetros múltiples",
+        "Funciones complejas"
+      ],
+      "subsections": [
+        {
+          "title": "Definir funciones con varios parámetros",
+          "content": "Una función con múltiples parámetros es como una receta que necesita varios ingredientes para funcionar. En Racket y OCaml, especificas cada parámetro claramente, y la función los combina para dar un resultado útil. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Preparar un sándwich",
+              "description": "Una función que hace un sándwich necesita pan, jamón y queso como parámetros, combinándolos para crear el sándwich final. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Calcular el costo de una compra",
+              "description": "Una función que calcula el costo total toma el precio por unidad y la cantidad como parámetros, como sumar el costo de 5 manzanas a $2 cada una. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "funciones-multiples.jpg",
+            "caption": "Ilustración de una función que combina múltiples parámetros."
+          }
+        },
+        {
+          "title": "Aplicaciones prácticas",
+          "content": "Con múltiples parámetros, las funciones pueden resolver problemas más interesantes, como calcular el tiempo de un viaje considerando distancia, velocidad y paradas. Esto hace que las funciones sean más flexibles y útiles. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Planificar una cena",
+              "description": "Una función que calcula cuánta comida necesitas toma el número de invitados y el tipo de plato como parámetros, como planificar una barbacoa. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Diseñar una habitación",
+              "description": "Una función que calcula cuánta pintura necesitas usa el largo, ancho y alto de la habitación como parámetros, como medir para decorar. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "funciones-multiples.jpg",
+            "caption": "Ejemplo de funciones con múltiples parámetros en acción."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "condicionales": {
+      "title": "5. Condicionales en programación funcional",
+      "description": "Las condicionales son como tomar decisiones en la vida diaria: si llueve, llevas un paraguas; si no, no lo haces. En este módulo, aprenderás a usar estructuras como `if` y `cond` en Racket y OCaml para que tus programas tomen decisiones de manera funcional, sin cambiar datos existentes. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Entender cómo funcionan las condicionales en Racket y OCaml.",
+        "Aplicar `if` y `cond` para tomar decisiones.",
+        "Mantener un enfoque funcional puro en las decisiones."
+      ],
+      "key_concepts": [
+        "Condicionales",
+        "`if`",
+        "`cond`",
+        "Programación funcional"
+      ],
+      "subsections": [
+        {
+          "title": "Estructuras condicionales",
+          "content": "Las condicionales permiten que un programa elija entre diferentes caminos según una condición, como decidir qué ropa ponerte según el clima. En Racket y OCaml, usas `if` para decisiones simples y `cond` para casos más complejos, siempre devolviendo un valor sin alterar el entorno. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Elegir un paraguas",
+              "description": "Si está lloviendo (condición verdadera), tomas un paraguas; si no, no lo haces. Esto es como una instrucción `if` en programación funcional. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Escoger un menú",
+              "description": "Si es lunes, comes sopa; si es martes, pizza; si no, ensalada. Esto es como usar `cond` para elegir entre varias opciones. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "condicionales.jpg",
+            "caption": "Diagrama de una decisión condicional en programación funcional."
+          }
+        },
+        {
+          "title": "Condicionales en enfoque funcional",
+          "content": "En programación funcional, las condicionales no cambian datos, solo eligen un valor. Es como decidir qué camino tomar en un mapa sin modificar el mapa mismo. Esto asegura que los programas sean predecibles y fáciles de entender. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Seleccionar un regalo",
+              "description": "Si es un cumpleaños, eliges un pastel; si es Navidad, un juguete. La decisión no cambia la lista de regalos, solo selecciona uno. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Clasificar frutas",
+              "description": "Si una fruta es roja, la pones en una cesta; si es verde, en otra. Esto es como usar condicionales para clasificar sin alterar las frutas. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "condicionales.jpg",
+            "caption": "Ejemplo de condicionales aplicadas a decisiones simples."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "recursion": {
+      "title": "6. Introducción a la recursión",
+      "description": "La recursión es como seguir una receta que incluye llamarse a sí misma, como cortar una cebolla en trozos más pequeños hasta que estén listos. En este módulo, aprenderás a diseñar funciones recursivas en Racket y OCaml que resuelven problemas repitiendo pasos sin usar bucles tradicionales. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Comprender el concepto de recursión.",
+        "Diseñar funciones con casos base y recursivos.",
+        "Resolver problemas usando recursión en lugar de bucles."
+      ],
+      "key_concepts": [
+        "Recursión",
+        "Caso base",
+        "Caso recursivo"
+      ],
+      "subsections": [
+        {
+          "title": "Qué es la recursión",
+          "content": "La recursión es cuando una función se llama a sí misma para resolver un problema dividiéndolo en partes más pequeñas. Es como abrir una caja que contiene otra caja más pequeña, hasta llegar a la última. En Racket y OCaml, defines un caso base (cuándo parar) y un caso recursivo (cómo continuar). Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Cortar una cuerda",
+              "description": "Para cortar una cuerda en trozos iguales, cortas un pedazo y repites con lo que queda hasta que no hay más cuerda. Esto es como una función recursiva. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Contar monedas",
+              "description": "Para contar monedas en una pila, tomas una, cuentas las demás, y sumas. La recursión hace esto hasta que no quedan monedas. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "recursion.jpg",
+            "caption": "Ilustración de cómo la recursión divide un problema en partes."
+          }
+        },
+        {
+          "title": "Casos base y recursivos",
+          "content": "Toda función recursiva necesita un caso base para saber cuándo detenerse y un caso recursivo para seguir avanzando. Es como decidir si sigues cortando una fruta o paras cuando ya está en trozos pequeños. En Racket y OCaml, defines estas partes claramente para evitar errores. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Armar una torre",
+              "description": "Si construyes una torre de bloques, el caso base es cuando no hay más bloques. El caso recursivo es poner un bloque y repetir. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Leer un libro",
+              "description": "Leer un libro página por página es recursivo: el caso base es la última página, y el caso recursivo es leer una página y pasar a la siguiente. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "recursion.jpg",
+            "caption": "Ejemplo de casos base y recursivos en una función."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "listas": {
+      "title": "7. Listas y operaciones básicas",
+      "description": "Las listas son como carritos de compras: colecciones de elementos que puedes organizar y manipular. En este módulo, aprenderás a crear y trabajar con listas en Racket y OCaml, usando funciones para agregar, quitar o consultar elementos de manera efectiva. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Entender cómo se crean y estructuran listas.",
+        "Aplicar funciones básicas para manipular listas.",
+        "Resolver problemas simples con listas."
+      ],
+      "key_concepts": [
+        "Listas",
+        "Operaciones de listas",
+        "Estructuras de datos"
+      ],
+      "subsections": [
+        {
+          "title": "Crear y estructurar listas",
+          "content": "Una lista es una colección ordenada de elementos, como una lista de compras con leche, pan y huevos. En Racket y OCaml, las listas se construyen uniendo elementos, y puedes acceder a ellos o modificar la lista sin cambiar los datos originales. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Lista de compras",
+              "description": "Crear una lista con 'manzanas, plátanos, naranjas' es como escribir una lista de compras. Puedes agregar o quitar ítems sin cambiar los productos. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Fila de personas",
+              "description": "Una lista de nombres en una fila es como una lista en programación: puedes añadir a alguien al final o ver quién está primero. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "listas.jpg",
+            "caption": "Representación de una lista como una colección ordenada."
+          }
+        },
+        {
+          "title": "Operaciones con listas",
+          "content": "Puedes realizar operaciones como agregar un elemento, quitar uno o consultar el primero. Es como administrar una lista de tareas: añades una nueva, completas una, o verificas cuál es la próxima. Racket y OCaml ofrecen funciones específicas para estas tareas. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Organizar tareas",
+              "description": "Añadir 'lavar platos' a una lista de tareas es como usar una función para agregar un elemento al final de una lista. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Revisar un pedido",
+              "description": "Ver el primer artículo de una lista de compras es como usar una función para consultar el primer elemento de una lista. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "listas.jpg",
+            "caption": "Ejemplo de operaciones básicas con listas."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "funciones-orden-superior": {
+      "title": "8. Funciones de orden superior básicas",
+      "description": "Las funciones de orden superior son como herramientas que usan otras herramientas para trabajar. En este módulo, aprenderás a usar funciones como `map` y `filter` en Racket y OCaml para transformar o seleccionar elementos de listas, como clasificar frutas o duplicar cantidades en una receta. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Comprender qué son las funciones de orden superior.",
+        "Aplicar `map` y `filter` para procesar listas.",
+        "Resolver problemas usando funciones que operan sobre otras funciones."
+      ],
+      "key_concepts": [
+        "Funciones de orden superior",
+        "`map`",
+        "`filter`"
+      ],
+      "subsections": [
+        {
+          "title": "Qué son las funciones de orden superior",
+          "content": "Una función de orden superior toma otra función como ingrediente, como un chef que usa una receta dentro de otra receta. En Racket y OCaml, `map` y `filter` son ejemplos: `map` aplica una función a cada elemento de una lista, y `filter` selecciona elementos según una condición. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Duplicar ingredientes",
+              "description": "Si tienes una lista de cantidades para una receta (1, 2, 3 cucharadas) y usas `map` para duplicarlas, obtienes (2, 4, 6), como ajustar una receta para más personas. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Seleccionar frutas maduras",
+              "description": "Usar `filter` para elegir solo las frutas maduras de una canasta es como filtrar una lista para quedarte solo con ciertos elementos. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "funciones-orden-superior.jpg",
+            "caption": "Ilustración de funciones de orden superior aplicadas a listas."
+          }
+        },
+        {
+          "title": "Usos prácticos de `map` y `filter`",
+          "content": "Estas funciones simplifican el trabajo con listas, permitiéndote transformar o seleccionar datos sin escribir pasos repetitivos. Es como usar una máquina que automáticamente dobla la ropa o selecciona solo las camisas limpias. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Ajustar precios",
+              "description": "Usar `map` para aumentar un 10% los precios de una lista de productos es como ajustar un presupuesto automáticamente. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Filtrar tareas completadas",
+              "description": "Usar `filter` para mostrar solo las tareas terminadas de una lista es como revisar qué pendientes ya hiciste. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "funciones-orden-superior.jpg",
+            "caption": "Ejemplo de `map` y `filter` en acción."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "tipos-datos-simples": {
+      "title": "9. Tipos de datos simples",
+      "description": "Los tipos de datos simples, como tuplas y registros, son como cajas etiquetadas para guardar información relacionada, como los datos de un contacto. En este módulo, aprenderás a usar tuplas y registros en Racket y OCaml para organizar datos de manera clara y funcional. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Entender qué son tuplas y registros.",
+        "Crear y usar estos tipos de datos en Racket y OCaml.",
+        "Organizar información estructurada de manera efectiva."
+      ],
+      "key_concepts": [
+        "Tuplas",
+        "Registros",
+        "Datos estructurados"
+      ],
+      "subsections": [
+        {
+          "title": "Tuplas",
+          "content": "Una tupla es como una pequeña caja con compartimentos fijos, donde guardas datos relacionados, como el nombre y la edad de una persona. En Racket y OCaml, las tuplas son inmutables y se usan para agrupar datos simples. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Datos de una persona",
+              "description": "Una tupla con (nombre, edad) como ('Ana', 25) es como una tarjeta con la información básica de alguien. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Coordenadas de un mapa",
+              "description": "Una tupla (x, y) como (3, 5) representa un punto en un mapa, agrupando dos valores relacionados. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "tipos-datos-simples.jpg",
+            "caption": "Representación de una tupla como una caja de datos."
+          }
+        },
+        {
+          "title": "Registros",
+          "content": "Un registro es como un formulario con campos etiquetados, como nombre, dirección y teléfono. En Racket y OCaml, los registros permiten organizar datos con nombres claros, facilitando su uso en programas. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Ficha de un estudiante",
+              "description": "Un registro con {nombre: 'Juan', curso: 'Matemáticas'} es como una ficha escolar que organiza información. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Detalles de un producto",
+              "description": "Un registro con {nombre: 'Laptop', precio: 1000} es como una etiqueta que describe un producto en una tienda. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "tipos-datos-simples.jpg",
+            "caption": "Ejemplo de un registro como un formulario estructurado."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "cadenas-y-caracteres": {
+      "title": "10. Manejo de cadenas y caracteres",
+      "description": "Las cadenas y caracteres son como las palabras y letras que usas para escribir mensajes. En este módulo, aprenderás a manipular texto en Racket y OCaml, realizando operaciones como unir palabras, cambiar letras o extraer partes de un texto. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Entender cómo funcionan las cadenas y caracteres.",
+        "Realizar operaciones básicas con texto.",
+        "Aplicar técnicas para manipular texto eficientemente."
+      ],
+      "key_concepts": [
+        "Cadenas",
+        "Caracteres",
+        "Manipulación de texto"
+      ],
+      "subsections": [
+        {
+          "title": "Cadenas y caracteres",
+          "content": "Una cadena es una secuencia de caracteres, como una frase en un libro. Un carácter es una sola letra o símbolo. En Racket y OCaml, puedes trabajar con ambos para crear o modificar texto, como escribir un mensaje o corregir una palabra. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Escribir un mensaje",
+              "description": "Una cadena como 'Hola, mundo' es como escribir un saludo en una tarjeta. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Corregir una letra",
+              "description": "Cambiar la 'a' por una 'o' en 'casa' para obtener 'cosa' es como corregir un error tipográfico. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "cadenas-y-caracteres.jpg",
+            "caption": "Ilustración de cadenas como secuencias de texto."
+          }
+        },
+        {
+          "title": "Operaciones con texto",
+          "content": "Puedes unir cadenas, extraer partes o compararlas, como combinar frases o buscar una palabra en un texto. Racket y OCaml ofrecen funciones para estas tareas, haciendo que el manejo de texto sea eficiente. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Unir frases",
+              "description": "Juntar 'Hola' y 'mundo' para obtener 'Hola mundo' es como pegar dos partes de un mensaje. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Buscar una palabra",
+              "description": "Extraer 'sol' de 'El sol brilla' es como buscar una palabra específica en una oración. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "cadenas-y-caracteres.jpg",
+            "caption": "Ejemplo de operaciones con cadenas de texto."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "composicion-de-funciones": {
+      "title": "11. Composición de funciones",
+      "description": "La composición de funciones es como encadenar pasos en una línea de producción: una función toma el resultado de otra para crear algo nuevo. En este módulo, aprenderás a combinar funciones en Racket y OCaml para construir soluciones más complejas a partir de funciones simples. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Entender qué es la composición de funciones.",
+        "Combinar funciones para resolver problemas.",
+        "Aplicar composición en ejemplos prácticos."
+      ],
+      "key_concepts": [
+        "Composición de funciones",
+        "Encadenamiento"
+      ],
+      "subsections": [
+        {
+          "title": "Qué es la composición",
+          "content": "Componer funciones es como usar el resultado de una receta como ingrediente para otra. En Racket y OCaml, puedes definir una función que toma el output de otra función para producir un nuevo resultado, simplificando procesos complejos. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Preparar un postre",
+              "description": "Primero haces un bizcocho (función 1), luego lo decoras con crema (función 2). Componerlas es usar el bizcocho como base para el postre final. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Planificar un viaje",
+              "description": "Una función calcula la distancia a recorrer, y otra estima el tiempo. Componerlas te da el tiempo total directamente. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "composicion-de-funciones.jpg",
+            "caption": "Diagrama de cómo se encadenan funciones en composición."
+          }
+        },
+        {
+          "title": "Aplicaciones de la composición",
+          "content": "La composición permite crear programas más claros y reutilizables, como conectar máquinas en una fábrica. En Racket y OCaml, usas composición para combinar funciones que transforman datos de manera secuencial. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Procesar un pedido",
+              "description": "Una función calcula el costo, otra aplica un descuento. Componerlas te da el precio final en un solo paso. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Editar una foto",
+              "description": "Una función ajusta el brillo, otra añade un filtro. Componerlas aplica ambos efectos en orden automáticamente. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "composicion-de-funciones.jpg",
+            "caption": "Ejemplo de composición en un flujo de trabajo."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "procesamiento-listas": {
+      "title": "12. Aplicación práctica: Procesamiento de listas",
+      "description": "En este módulo, combinarás recursión, `map` y `filter` para resolver problemas con listas, como clasificar tareas o calcular totales. Aprenderás a aplicar estos conceptos en Racket y OCaml para manejar colecciones de datos de manera práctica y eficiente. Imagina que eres alguien que nunca ha usado una computadora para crear instrucciones automáticas, como un niño que juega con bloques de construcción. Aquí, aprenderás paso a paso, usando ejemplos de la vida diaria, como cocinar o organizar tu habitación, para que entiendas cómo estas ideas funcionan sin necesidad de conocimiento técnico previo. Por ejemplo, piensa en cómo sigues una rutina diaria: cada parte es simple, pero juntas forman algo útil. Esto es similar a cómo se construyen los programas en estos lenguajes, asegurando que todo sea confiable y fácil de seguir.",
+      "learning_objectives": [
+        "Aplicar recursión, `map` y `filter` en problemas reales.",
+        "Procesar listas de manera funcional.",
+        "Resolver problemas complejos combinando conceptos aprendidos."
+      ],
+      "key_concepts": [
+        "Procesamiento de listas",
+        "Recursión",
+        "`map`",
+        "`filter`"
+      ],
+      "subsections": [
+        {
+          "title": "Procesamiento con recursión",
+          "content": "La recursión te permite trabajar con listas dividiendo el problema en partes, como revisar una lista de tareas una por una. En Racket y OCaml, usas recursión para procesar listas sin modificarlas, asegurando un enfoque funcional. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Revisar una lista de compras",
+              "description": "Recorrer una lista de compras para sumar precios es como usar recursión: revisas un ítem, sumas su costo, y sigues con el resto. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Contar asistentes",
+              "description": "Contar cuántas personas hay en una lista de invitados es como usar recursión para sumar uno por uno hasta terminar. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "procesamiento-listas.jpg",
+            "caption": "Ilustración de recursión aplicada a una lista."
+          }
+        },
+        {
+          "title": "Uso de `map` y `filter`",
+          "content": "Con `map` y `filter`, puedes transformar o seleccionar elementos de una lista rápidamente, como ajustar precios o elegir tareas urgentes. Estas funciones hacen que el procesamiento de listas sea más simple y directo. Para alguien que no sabe nada de tecnología, esto es como aprender a usar un juguete nuevo: al principio parece complicado, pero con ejemplos simples como contar juguetes o agrupar colores, verás cómo se aplica. Recuerda, no necesitas saber de computadoras; solo imagina escenarios cotidianos donde repites acciones o tomas decisiones basadas en lo que ves alrededor.",
+          "examples": [
+            {
+              "title": "Ajustar un presupuesto",
+              "description": "Usar `map` para aumentar un 10% los precios de una lista de productos es como actualizar un presupuesto automáticamente. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            },
+            {
+              "title": "Seleccionar tareas urgentes",
+              "description": "Usar `filter` para quedarte con las tareas marcadas como urgentes es como elegir solo lo importante de una lista de pendientes. Este ejemplo te ayuda a ver cómo, en tu vida diaria, haces algo similar sin darte cuenta, haciendo que el concepto sea accesible incluso si nunca has oído hablar de programación."
+            }
+          ],
+          "image": {
+            "url": "procesamiento-listas.jpg",
+            "caption": "Ejemplo de `map` y `filter` procesando una lista."
+          }
+        }
+      ]
+    }
+  }
+]
