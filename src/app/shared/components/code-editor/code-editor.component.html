@@ -1,20 +1,8 @@
 <div class="flex flex-col h-full w-full min-w-0">
-		<label
-			class="font-bold mb-2 text-2xl"
-			[ngClass]="{
-				'text-[#3e5aa9]': label === 'Racket',
-				'text-[#ec690d]': label === 'OCaml'
-			}"
-		>
-			{{ label }}
-		</label>
-	<ace
-		[(value)]="code"
-		[mode]="language"
-		[theme]="'monokai'"
-		[disabled]="disabled"
-		(aceLoaded)="onAceLoaded($event)"
-		class="block w-full h-full min-h-[400px] border border-gray-300 text-base"
-		style="font-size: 16px;"
-	></ace>
+  <label class="font-bold mb-2 text-2xl">
+    <span [ngClass]="label === 'Racket' ? 'text-[#3e5aa9]' : (label === 'OCaml' ? 'text-[#ec690d]' : '')">
+      {{ label }}
+    </span>
+  </label>
+  <div #editor class="block w-full h-full min-h-[400px] border border-gray-300 text-base" style="font-size: 16px;"></div>
 </div>
