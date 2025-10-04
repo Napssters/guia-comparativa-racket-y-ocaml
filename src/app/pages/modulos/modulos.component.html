@@ -7,8 +7,7 @@
   <div *ngIf="modulos.length > 0; else noModulos"
     class="grid grid-cols-1 sm:grid-cols-2 gap-8 p-2 mx-auto h-full place-items-center lg:flex lg:flex-wrap lg:justify-center">
     <ng-container *ngFor="let modulo of modulos">
-      <div
-        class="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col h-full min-h-[24rem] w-72 border-2 px-0 pb-4"
+      <div class="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col h-[27rem] w-72 border-2 px-0 pb-4"
         [ngClass]="getDificultadBorder(modulo.difficulty)">
         <img *ngIf="modulo.img" [src]="'assets/img/' + modulo.img" [alt]="modulo.title" (error)="onImgError($event)"
           class="w-full h-52 object-cover rounded-t-xl" loading="lazy" />
