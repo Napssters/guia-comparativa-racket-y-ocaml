@@ -67,7 +67,7 @@
     "description": "Entiende cómo realizar operaciones básicas con cadenas y caracteres en Racket y OCaml, aprendiendo técnicas para manipular texto de forma eficiente.",
     "img": "cadenas-y-caracteres.jpg",
     "page": "cadenas-y-caracteres",
-    "difficulty": "Medio"
+    "difficulty": "Avanzado"
   },
   {
     "title": "11. Composición de funciones",
