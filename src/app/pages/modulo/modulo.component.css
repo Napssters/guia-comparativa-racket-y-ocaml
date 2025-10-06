@@ -1,0 +1,25 @@
+/* Línea seleccionadora con puntas tipo viñeta */
+.selector-bar {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
+	width: 70%;
+	height: 5px;
+	border-radius: 9999px;
+	background: linear-gradient(to right, #3e5aa9, #ec690d, #3e5aa9);
+	transition: width 0.3s, background 0.3s;
+}
+
+.button-with-point::after {
+	content: '';
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid #3e5aa9;
+}

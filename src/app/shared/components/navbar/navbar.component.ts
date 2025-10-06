@@ -11,6 +11,9 @@ import { RouterModule, Router } from '@angular/router';
   imports: [RouterModule, CommonModule]
 })
 export class NavbarComponent implements OnInit {
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   scrollToModulos() {
     const modulosSection = document.getElementById('modulos');
     if (modulosSection) {

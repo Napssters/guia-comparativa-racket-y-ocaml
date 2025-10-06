@@ -15,7 +15,7 @@
       <ul *ngIf="isDropdownOpen"
         class="absolute right-0 mt-2 w-72 bg-white border border-[#3e5aa9] rounded-2xl shadow-2xl z-20 py-2 px-1 animate-fade-in max-h-64 overflow-y-auto">
         <li *ngFor="let modulo of modulos" class="mb-1 last:mb-0">
-          <a [routerLink]="['/', modulo.page]" (click)="closeDropdown()"
+          <a [routerLink]="['/', modulo.page]" (click)="scrollToTop(); closeDropdown()"
             [ngClass]="isActiveModulo(modulo.page)
          ? 'block px-5 py-3 rounded-xl font-semibold border-2 border-[#3e5aa9] bg-[#e3eafd] text-[#3e5aa9] transition cursor-pointer shadow-sm'
          : 'block px-5 py-3 rounded-xl text-[#3e5aa9] font-semibold hover:bg-[#3e5aa9] hover:text-white transition cursor-pointer shadow-sm'">{{ modulo.title }}</a>

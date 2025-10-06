@@ -1,5 +1,9 @@
+
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { CodeEditorComponent } from '../../shared/components/code-editor/code-editor.component';
 import { DocumentacionComponent } from '../../shared/components/documentacion/documentacion.component';
 
@@ -7,36 +11,53 @@ import { DocumentacionComponent } from '../../shared/components/documentacion/do
   selector: 'app-modulo',
   templateUrl: './modulo.component.html',
   styleUrls: ['./modulo.component.css'],
-  imports: [RouterModule, CodeEditorComponent, DocumentacionComponent],
+  imports: [RouterModule, CommonModule, NgClass, CodeEditorComponent, DocumentacionComponent],
   standalone: true
 })
 export class ModuloComponent implements OnInit {
-  racketCode: string = `#lang racket
-  (define (suma-pares lst)
-    (cond
-      [(empty? lst) 0]
-      [(even? (first lst)) (+ (first lst) (suma-pares (rest lst)))]
-      [else (suma-pares (rest lst))]))
-
-  (suma-pares '(1 2 3 4 5 6)) ; Resultado: 12
-  `;
-  ocamlCode: string = `let rec suma_pares lst =
-    match lst with
-    | [] -> 0
-    | x :: xs -> if x mod 2 = 0 then x + suma_pares xs else suma_pares xs
-
-  let () =
-    let resultado = suma_pares [1;2;3;4;5;6] in
-    Printf.printf "%d\n" resultado (* Resultado: 12 *)
-  `;
-
+  // Propiedades y métodos de la clase Angular
   moduloKey: string = '';
+  ejercicios: { [key: string]: any } = {};
+  ejerciciosKeys: string[] = [];
+  ejercicioSeleccionado: string = '';
+  descripcionEjercicio: string = '';
+  racketCode: string = '';
+  ocamlCode: string = '';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.moduloKey = params.get('modulo') || '';
+      this.cargarEjercicios();
     });
+  }
+
+  cargarEjercicios() {
+    this.http.get<any>('assets/json-base/ejercicios.json').subscribe(data => {
+      if (data[this.moduloKey]) {
+        this.ejercicios = data[this.moduloKey];
+        this.ejerciciosKeys = Object.keys(this.ejercicios).sort();
+        this.ejercicioSeleccionado = this.ejerciciosKeys[0];
+        this.actualizarEjercicio();
+      }
+    });
+  }
+
+  seleccionarEjercicio(key: string) {
+    this.ejercicioSeleccionado = key;
+    this.actualizarEjercicio();
+  }
+
+  actualizarEjercicio() {
+    const ejercicio = this.ejercicios[this.ejercicioSeleccionado];
+    this.descripcionEjercicio = ejercicio?.description || '';
+    this.racketCode = ejercicio?.racket?.code || '';
+    this.ocamlCode = '';
+  }
+
+  mostrarConversion() {
+    const ejercicio = this.ejercicios[this.ejercicioSeleccionado];
+    this.ocamlCode = ejercicio?.ocaml?.code || '';
   }
 }
