@@ -13,7 +13,7 @@
 	bottom: 0;
 	transform: translateX(-50%);
 	width: 70%;
-	height: 5px;
+	height: 3px;
 	border-radius: 9999px;
 	background: linear-gradient(to right, #3e5aa9, #ec690d, #3e5aa9);
 	transition: width 0.3s, background 0.3s;

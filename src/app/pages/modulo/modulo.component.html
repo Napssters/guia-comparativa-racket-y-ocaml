@@ -39,16 +39,16 @@
   </p>
 
   <div class="mb-8 w-auto sm:w-full overflow-x-auto sm:overflow-x-visible hide-scrollbar">
-    <div class="flex flex-nowrap gap-2 sm:gap-8 md:gap-20 justify-start sm:justify-center items-center min-w-full px-2">
-      <ng-container *ngFor="let key of ejerciciosKeys">
+  <div class="flex flex-nowrap gap-0.5 sm:gap-1 md:gap-2 justify-start sm:justify-center items-center min-w-full px-2">
+      <ng-container *ngFor="let ej of ejerciciosDisplay">
         <button
-          (click)="seleccionarEjercicio(key)"
-          class="relative bg-transparent text-base sm:text-lg font-semibold px-4 sm:px-6 py-2 sm:py-3 rounded-lg focus:outline-none transition-colors duration-300 whitespace-nowrap"
-          [ngClass]="key === ejercicioSeleccionado ? 'text-[#3e5aa9] button-with-point' : 'text-gray-400 hover:text-[#3e5aa9]'">
+          (click)="seleccionarEjercicio(ej.key)"
+          class="relative bg-transparent text-sm sm:text-base font-semibold px-4 sm:px-6 py-2 sm:py-3 rounded-lg focus:outline-none transition-colors duration-300 whitespace-nowrap"
+          [ngClass]="ej.key === ejercicioSeleccionado ? 'text-[#3e5aa9] button-with-point' : 'text-gray-400 hover:text-[#3e5aa9]'">
           <span class="inline-block align-middle tracking-wide">
-            {{ key.replace('ejercicio-', 'Ejercicio ') }}
+            <span class="mr-1">⚡</span>{{ ej.numero }}. {{ ej.texto }}
           </span>
-          <span *ngIf="key === ejercicioSeleccionado"
+          <span *ngIf="ej.key === ejercicioSeleccionado"
             class="selector-bar"></span>
         </button>
       </ng-container>

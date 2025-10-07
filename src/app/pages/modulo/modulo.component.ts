@@ -31,6 +31,7 @@ export class ModuloComponent implements OnInit {
   moduloKey: string = '';
   ejercicios: { [key: string]: any } = {};
   ejerciciosKeys: string[] = [];
+  ejerciciosDisplay: { key: string, numero: string, texto: string }[] = [];
   ejercicioSeleccionado: string = '';
   descripcionEjercicio: string = '';
   racketCode: string = '';
@@ -79,6 +80,16 @@ export class ModuloComponent implements OnInit {
       if (data[this.moduloKey]) {
         this.ejercicios = data[this.moduloKey];
         this.ejerciciosKeys = Object.keys(this.ejercicios).sort();
+        // Genera la lista para mostrar con número y texto formateado
+        this.ejerciciosDisplay = this.ejerciciosKeys.map(key => {
+          const match = key.match(/ejercicio-(\d+)/);
+          const numero = match ? match[1] : '';
+          return {
+            key,
+            numero,
+            texto: 'Ejemplo'
+          };
+        });
         this.ejercicioSeleccionado = this.ejerciciosKeys[0];
         this.actualizarEjercicio();
       }
