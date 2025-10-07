@@ -1,4 +1,7 @@
 
+import { Router } from '@angular/router';
+
+
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -15,6 +18,15 @@ import { DocumentacionComponent } from '../../shared/components/documentacion/do
   standalone: true
 })
 export class ModuloComponent implements OnInit {
+  modulos: any[] = [];
+  moduloActualIndex: number = 0;
+  cambiarEjercicio(direccion: number) {
+    const idx = this.ejerciciosKeys.indexOf(this.ejercicioSeleccionado);
+    const nuevoIdx = idx + direccion;
+    if (nuevoIdx >= 0 && nuevoIdx < this.ejerciciosKeys.length) {
+      this.seleccionarEjercicio(this.ejerciciosKeys[nuevoIdx]);
+    }
+  }
   // Propiedades y métodos de la clase Angular
   moduloKey: string = '';
   ejercicios: { [key: string]: any } = {};
@@ -24,11 +36,40 @@ export class ModuloComponent implements OnInit {
   racketCode: string = '';
   ocamlCode: string = '';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
+    // Cargar módulos para navegación
+    this.http.get<any[]>('assets/json-base/modulos.json').subscribe(data => {
+      this.modulos = data;
+      // El índice se actualizará en ngOnInit
+    });
+  }
+
+  cambiarModulo(direccion: number) {
+    const nuevoIdx = this.moduloActualIndex + direccion;
+    if (nuevoIdx >= 0 && nuevoIdx < this.modulos.length) {
+      this.moduloActualIndex = nuevoIdx;
+      const page = this.modulos[nuevoIdx].page;
+      if (page) {
+        this.router.navigate(['/' + page]);
+      }
+    }
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.moduloKey = params.get('modulo') || '';
+      // Sincroniza el índice del módulo actual según la ruta
+      if (this.modulos && this.modulos.length > 0) {
+        const idx = this.modulos.findIndex((m: any) => m.page === this.moduloKey);
+        this.moduloActualIndex = idx >= 0 ? idx : 0;
+      } else {
+        // Si los módulos aún no han cargado, espera a que carguen
+        this.http.get<any[]>('assets/json-base/modulos.json').subscribe(data => {
+          this.modulos = data;
+          const idx = this.modulos.findIndex((m: any) => m.page === this.moduloKey);
+          this.moduloActualIndex = idx >= 0 ? idx : 0;
+        });
+      }
       this.cargarEjercicios();
     });
   }

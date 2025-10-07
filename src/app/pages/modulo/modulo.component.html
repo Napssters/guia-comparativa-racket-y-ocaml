@@ -1,3 +1,31 @@
+<!-- Botones sticky para anterior y siguiente módulo -->
+<button
+  class="fixed left-4 bottom-6 z-50 w-14 h-14 rounded-full flex items-center justify-center bg-[#3e5aa9] hover:bg-[#ec690d] text-white shadow-lg transition group"
+  (click)="cambiarModulo(-1)"
+  [disabled]="moduloActualIndex === 0"
+  style="outline: none;"
+  >
+  <span class="absolute left-1/2 -translate-x-1/2 -top-10 bg-gray-900 text-white text-xs rounded px-3 py-1 opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-50 shadow-lg">
+    Anterior módulo
+  </span>
+  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+  </svg>
+</button>
+
+<button
+  class="fixed right-4 bottom-6 z-50 w-14 h-14 rounded-full flex items-center justify-center bg-[#3e5aa9] hover:bg-[#ec690d] text-white shadow-lg transition group"
+  (click)="cambiarModulo(1)"
+  [disabled]="moduloActualIndex === modulos.length - 1"
+  style="outline: none;"
+  >
+  <span class="absolute left-1/2 -translate-x-1/2 -top-10 bg-gray-900 text-white text-xs rounded px-3 py-1 opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-50 shadow-lg">
+    Siguiente módulo
+  </span>
+  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+  </svg>
+</button>
 <app-documentacion [moduloKey]="moduloKey" />
 
 <div class="mx-auto p-8 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-md mt-6 mb-6 flex flex-col gap-10" style="max-width: 90rem;">
@@ -10,19 +38,21 @@
     Convierte y compara ejemplos de código entre Racket y OCaml. Esta herramienta te ayuda a entender cómo los conceptos y estructuras de programación funcional se traducen de Racket a OCaml, facilitando el aprendizaje y la transición entre ambos lenguajes.
   </p>
 
-  <div class="flex flex-row gap-2 mb-8 justify-center items-center">
-    <ng-container *ngFor="let key of ejerciciosKeys">
-      <button
-        (click)="seleccionarEjercicio(key)"
-        class="relative bg-transparent text-lg font-semibold px-6 py-3 focus:outline-none transition-colors duration-300"
-        [ngClass]="key === ejercicioSeleccionado ? 'text-[#3e5aa9] button-with-point' : 'text-gray-400 hover:text-[#3e5aa9]'">
-        <span class="inline-block align-middle tracking-wide">
-          {{ key.replace('ejercicio-', 'Ejercicio ') }}
-        </span>
-        <span *ngIf="key === ejercicioSeleccionado"
-          class="selector-bar"></span>
-      </button>
-    </ng-container>
+  <div class="mb-8 w-auto sm:w-full overflow-x-auto sm:overflow-x-visible hide-scrollbar">
+    <div class="flex flex-nowrap gap-2 sm:gap-8 md:gap-20 justify-start sm:justify-center items-center min-w-full px-2">
+      <ng-container *ngFor="let key of ejerciciosKeys">
+        <button
+          (click)="seleccionarEjercicio(key)"
+          class="relative bg-transparent text-base sm:text-lg font-semibold px-4 sm:px-6 py-2 sm:py-3 rounded-lg focus:outline-none transition-colors duration-300 whitespace-nowrap"
+          [ngClass]="key === ejercicioSeleccionado ? 'text-[#3e5aa9] button-with-point' : 'text-gray-400 hover:text-[#3e5aa9]'">
+          <span class="inline-block align-middle tracking-wide">
+            {{ key.replace('ejercicio-', 'Ejercicio ') }}
+          </span>
+          <span *ngIf="key === ejercicioSeleccionado"
+            class="selector-bar"></span>
+        </button>
+      </ng-container>
+    </div>
   </div>
 
   <div class="mb-0 text-base text-gray-800 font-medium bg-white border-l-4 border-[#3e5aa9] px-4 py-2 rounded shadow">
