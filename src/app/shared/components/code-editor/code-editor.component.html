@@ -5,4 +5,35 @@
     </span>
   </label>
   <div #editor class="block w-full h-full min-h-[400px] border border-gray-300 text-base" style="font-size: 16px;"></div>
+  <div class="flex flex-col gap-2 mt-4">
+    <div>
+      <label class="block text-xs font-semibold text-gray-500 mb-1">Output:</label>
+      <div
+        class="w-full min-h-[80px] max-h-60 bg-gray-100 border border-gray-300 rounded px-3 py-2 text-base break-words overflow-y-auto whitespace-pre-line"
+        [ngClass]="label === 'Racket' ? 'text-[#3e5aa9]' : (label === 'OCaml' ? 'text-[#ec690d]' : 'text-gray-800')"
+      >
+        {{ output }}
+      </div>
+    </div>
+    <div class="flex flex-row items-center gap-3" [ngClass]="label === 'OCaml' ? 'justify-end' : ''">
+      <ng-container *ngIf="showRunButton; else emptySpace">
+        <button
+          class="rounded-full w-12 h-12 flex items-center justify-center bg-[#3e5aa9] hover:bg-[#ec690d] text-white shadow-lg transition relative group focus:outline-none"
+          (click)="ejecutar()"
+          [attr.aria-label]="'Ejecutar'"
+          type="button"
+        >
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+            <polygon points="6,4 16,10 6,16" />
+          </svg>
+          <span class="absolute left-1/2 -translate-x-1/2 -top-10 bg-gray-900 text-white text-xs rounded px-3 py-1 opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-10 shadow-lg">
+            Ejecutar
+          </span>
+        </button>
+      </ng-container>
+      <ng-template #emptySpace>
+        <div class="w-12 h-12"></div>
+      </ng-template>
+    </div>
+  </div>
 </div>

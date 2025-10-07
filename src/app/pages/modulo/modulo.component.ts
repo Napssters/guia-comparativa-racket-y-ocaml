@@ -1,7 +1,4 @@
-
 import { Router } from '@angular/router';
-
-
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -36,6 +33,8 @@ export class ModuloComponent implements OnInit {
   descripcionEjercicio: string = '';
   racketCode: string = '';
   ocamlCode: string = '';
+  mostrarBotonOcaml: boolean = false;
+  answer: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     // Cargar módulos para navegación
@@ -105,11 +104,16 @@ export class ModuloComponent implements OnInit {
     const ejercicio = this.ejercicios[this.ejercicioSeleccionado];
     this.descripcionEjercicio = ejercicio?.description || '';
     this.racketCode = ejercicio?.racket?.code || '';
+    this.answer = ejercicio?.answer || '';
     this.ocamlCode = '';
+    this.mostrarBotonOcaml = false;
   }
 
   mostrarConversion() {
     const ejercicio = this.ejercicios[this.ejercicioSeleccionado];
     this.ocamlCode = ejercicio?.ocaml?.code || '';
+    this.mostrarBotonOcaml = true;
   }
+
+
 }
