@@ -1,866 +1,866 @@
 {
   "paradigma-funcional": {
     "ejercicio-1": {
-      "description": "Juan quiere calcular el área de su habitación cuadrada que mide 5 metros de lado. Define una función que calcule el cuadrado de un número para encontrar el área en metros cuadrados.",
+      "description": "¡Bienvenido al paradigma funcional! Aquí nos enfocamos en expresiones que siempre producen el mismo resultado sin cambiar nada. Imagina que Sofía quiere cubrir un jardín cuadrado con césped. Cada lado mide 4 metros. Para saber cuánta tierra comprar, calcula el área multiplicando 4 por 4. Usamos la operación primitiva de multiplicación para obtener 16 metros cuadrados, mostrando cómo el funcional usa cálculos puros y predecibles.",
       "racket": {
-        "code": "(define (square x)\n  (* x x)\n)"
+        "code": "(* 4 4)"
       },
       "ocaml": {
-        "code": "let square x =\n  x * x\n"
+        "code": "4 * 4"
       },
-      "answer": "25"
+      "answer": "16"
     },
     "ejercicio-2": {
-      "description": "Maria está organizando una fiesta y necesita saber si el número de invitados es par para dividirlos en parejas. Crea una función que determine si un número de invitados es par.",
+      "description": "En programación funcional, las expresiones son el corazón. Carlos organiza una cena y tiene 7 sillas. Para decidir si añadir una extra, verifica si 7 es impar usando el módulo. Calcula 7 mod 2, que da 1, indicando que es impar. Esta operación primitiva introduce cómo evaluamos condiciones simples sin alterar estado, un pilar del funcional.",
       "racket": {
-        "code": "(define (even? x)\n  (= (remainder x 2) 0)\n)"
+        "code": "(remainder 7 2)"
       },
       "ocaml": {
-        "code": "let even x =\n  (x mod 2) = 0\n"
+        "code": "7 mod 2"
       },
-      "answer": "true"
+      "answer": "1"
     },
     "ejercicio-3": {
-      "description": "Pedro ahorró 3 dólares y su abuela le dio 4 más. Escribe una función que sume dos cantidades de dinero para calcular cuánto tiene ahora.",
+      "description": "Las expresiones funcionales son deterministas. Ana compra 3 cuadernos a 5 dólares cada uno para su clase de matemáticas. Para saber cuánto gastará, multiplica 3 por 5. Esta operación primitiva muestra cómo el funcional usa cálculos básicos para resolver problemas reales, siempre dando el mismo resultado para los mismos valores.",
       "racket": {
-        "code": "(define (add a b)\n  (+ a b)\n)"
+        "code": "(* 3 5)"
       },
       "ocaml": {
-        "code": "let add a b =\n  a + b\n"
+        "code": "3 * 5"
       },
-      "answer": "7"
+      "answer": "15"
     },
     "ejercicio-4": {
-      "description": "En una fábrica, el número de formas de organizar 5 trabajadores en línea es el factorial de 5. Define una función que calcule el factorial para planificar permutaciones en la vida real como esta.",
+      "description": "En el funcional, combinamos operaciones simples. Un biólogo observa un cultivo que crece sumando 1 + 1 + 2 para estimar su tamaño en 3 etapas. Usa sumas primitivas para calcular este total. Esto te prepara para entender cómo descomponemos problemas en pasos básicos, manteniendo todo inmutable.",
       "racket": {
-        "code": "(define (factorial n)\n  (if (<= n 1)\n      1\n      (* n (factorial (- n 1)))\n  )\n)"
+        "code": "(+ 1 (+ 1 2))"
       },
       "ocaml": {
-        "code": "let rec factorial n =\n  if n <= 1 then\n    1\n  else\n    n * factorial (n - 1)\n"
+        "code": "1 + 1 + 2"
       },
-      "answer": "120"
+      "answer": "4"
     },
     "ejercicio-5": {
-      "description": "Ana midió la temperatura y vio -5 grados, pero necesita el valor absoluto para comparar distancias de cero. Crea una función que devuelva el valor absoluto de una temperatura.",
+      "description": "Aquí exploramos resta. Luis mide una temperatura de -3 grados y necesita la diferencia respecto a 0. Calcula 0 - (-3) usando resta primitiva. Esto introduce cómo manejamos números negativos en expresiones funcionales, siempre produciendo un valor fijo.",
       "racket": {
-        "code": "(define (abs-value x)\n  (if (< x 0)\n      (- x)\n      x\n  )\n)"
+        "code": "(- 0 -3)"
       },
       "ocaml": {
-        "code": "let abs_value x =\n  if x < 0 then\n    -x\n  else\n    x\n"
+        "code": "0 - (-3)"
       },
-      "answer": "5"
+      "answer": "3"
     },
     "ejercicio-6": {
-      "description": "Luis revisa su cuenta bancaria y quiere saber si el saldo es positivo para hacer una compra. Escribe una función que determine si un saldo es positivo.",
+      "description": "Aunque las listas vendrán después, podemos simular conteo con sumas. Marta tiene 3 tareas (1, 2, 3). Para contarlas, suma 1 por cada tarea: 1 + 1 + 1. Esta expresión primitiva te muestra cómo el funcional descompone problemas en cálculos simples, preparando para estructuras de datos.",
       "racket": {
-        "code": "(define (positive? x)\n  (> x 0)\n)"
+        "code": "(+ 1 (+ 1 (+ 1 0)))"
       },
       "ocaml": {
-        "code": "let positive x =\n  x > 0\n"
+        "code": "1 + 1 + 1 + 0"
       },
-      "answer": "true"
+      "answer": "3"
     },
     "ejercicio-7": {
-      "description": "Sofia compró 5 paquetes de stickers, cada uno con 10 stickers. Define una función que multiplique una cantidad por 10 para calcular el total de stickers.",
+      "description": "División para repartir recursos. Una receta usa 8 huevos para 4 personas. Para saber cuántos huevos por persona, divide 8 entre 4. Esta operación primitiva refuerza cómo el funcional usa cálculos directos para resolver problemas cotidianos sin efectos secundarios.",
       "racket": {
-        "code": "(define (times-ten x)\n  (* x 10)\n)"
+        "code": "(/ 8 4)"
       },
       "ocaml": {
-        "code": "let times_ten x =\n  x * 10\n"
+        "code": "8 / 4"
       },
-      "answer": "50"
+      "answer": "2"
     }
   },
   "expresiones": {
     "ejercicio-1": {
-      "description": "Carlos necesita multiplicar el precio de 3 artículos por 4 unidades cada uno para calcular el costo total. Define una función que multiplique dos números enteros.",
+      "description": "Seguimos con expresiones básicas. Clara prepara un postre y compra 4 manzanas a 2 dólares cada una. Para calcular el costo, multiplica 4 por 2. Esta multiplicación primitiva te muestra cómo las expresiones producen valores simples, introduciendo números enteros en el funcional.",
       "racket": {
-        "code": "(define (multiply a b)\n  (* a b)\n)"
+        "code": "(* 4 2)"
       },
       "ocaml": {
-        "code": "let multiply a b =\n  a * b\n"
+        "code": "4 * 2"
       },
-      "answer": "12"
+      "answer": "8"
     },
     "ejercicio-2": {
-      "description": "Elena cuenta 15 invitados en su fiesta y quiere saber si son más de 10 para ordenar más comida. Crea una función que determine si un número es mayor que 10.",
+      "description": "Las comparaciones son esenciales. Jorge organiza un taller con 12 asistentes. Para reservar una sala grande, verifica si 12 es mayor que 10. Calcula 12 > 10. Esto introduce expresiones booleanas, mostrando cómo evaluamos condiciones sin cambiar estado.",
       "racket": {
-        "code": "(define (greater-than-ten? x)\n  (> x 10)\n)"
+        "code": "(> 12 10)"
       },
       "ocaml": {
-        "code": "let greater_than_ten x =\n  x > 10\n"
+        "code": "12 > 10"
       },
       "answer": "true"
     },
     "ejercicio-3": {
-      "description": "Miguel tenía 10 caramelos y dio 4 a su amigo. Escribe una función que reste dos números para calcular cuántos le quedan.",
+      "description": "La resta ayuda en cálculos cotidianos. Lucía tiene 8 galletas y da 3 a su amiga. Para saber cuántas le quedan, resta 8 menos 3. Esta operación primitiva refuerza cómo las expresiones manejan cambios numéricos de forma pura.",
       "racket": {
-        "code": "(define (subtract a b)\n  (- a b)\n)"
+        "code": "(- 8 3)"
       },
       "ocaml": {
-        "code": "let subtract a b =\n  a - b\n"
-      },
-      "answer": "6"
-    },
-    "ejercicio-4": {
-      "description": "Para calcular el volumen de un cubo con lado 3, define una función que calcule el cubo de un número.",
-      "racket": {
-        "code": "(define (cube x)\n  (* x x x)\n)"
-      },
-      "ocaml": {
-        "code": "let cube x =\n  x * x * x\n"
-      },
-      "answer": "27"
-    },
-    "ejercicio-5": {
-      "description": "Ramon tiene 9 tareas y quiere saber si son divisibles por 3 para agruparlas en equipos. Crea una función que determine si un número es divisible por 3.",
-      "racket": {
-        "code": "(define (divisible-by-three? x)\n  (= (remainder x 3) 0)\n)"
-      },
-      "ocaml": {
-        "code": "let divisible_by_three x =\n  (x mod 3) = 0\n"
-      },
-      "answer": "true"
-    },
-    "ejercicio-6": {
-      "description": "Una receta requiere 10 huevos, pero solo hay para dividir por 2 personas. Escribe una función que divida un número por 2 para saber cuántos por persona.",
-      "racket": {
-        "code": "(define (divide-by-two x)\n  (/ x 2)\n)"
-      },
-      "ocaml": {
-        "code": "let divide_by_two x =\n  x / 2\n"
+        "code": "8 - 3"
       },
       "answer": "5"
     },
-    "ejercicio-7": {
-      "description": "Un interruptor está encendido (verdadero) y quieres invertirlo a apagado. Define una función que convierta un booleano a su opuesto para simular el cambio.",
+    "ejercicio-4": {
+      "description": "Anidamos operaciones para problemas complejos. Un arquitecto calcula el volumen de un cubo con lados de 2 metros: 2 * 2 * 2. Esta multiplicación anidada muestra cómo combinamos expresiones primitivas para obtener resultados como el volumen.",
       "racket": {
-        "code": "(define (not-bool x)\n  (not x)\n)"
+        "code": "(* 2 (* 2 2))"
       },
       "ocaml": {
-        "code": "let not_bool x =\n  not x\n"
+        "code": "2 * (2 * 2)"
       },
-      "answer": "false"
+      "answer": "8"
+    },
+    "ejercicio-5": {
+      "description": "El módulo verifica divisibilidad. Raúl organiza 9 sillas en filas de 3. Para confirmar que no sobran, calcula 9 mod 3. Esta operación primitiva introduce cómo evaluamos restos para patrones, un concepto clave en funcional.",
+      "racket": {
+        "code": "(remainder 9 3)"
+      },
+      "ocaml": {
+        "code": "9 mod 3"
+      },
+      "answer": "0"
+    },
+    "ejercicio-6": {
+      "description": "División para promedios. Una receta usa 8 huevos para 4 personas. Calcula 8 dividido por 2 (para 2 personas) para saber cuántos huevos por persona. Esto muestra cómo usamos división en expresiones funcionales.",
+      "racket": {
+        "code": "(/ 8 2)"
+      },
+      "ocaml": {
+        "code": "8 / 2"
+      },
+      "answer": "4"
+    },
+    "ejercicio-7": {
+      "description": "Lógica básica con negación. Un interruptor está apagado (falso). Para encenderlo, calcula la negación de falso. Esta operación primitiva introduce valores booleanos y cómo el funcional usa lógica pura para decisiones simples.",
+      "racket": {
+        "code": "(not #f)"
+      },
+      "ocaml": {
+        "code": "not false"
+      },
+      "answer": "true"
     }
   },
   "funciones": {
     "ejercicio-1": {
-      "description": "Para calcular el área de un rectángulo en un jardín de 5 metros de largo por 3 de ancho, define una función que multiplique base por altura.",
+      "description": "¡Ahora definimos funciones! María diseña un jardín rectangular de 6 metros por 3 metros. Para calcular el área de césped, define una función que multiplique base por altura. Evalúa con 6 y 3. Esto muestra cómo las funciones encapsulan cálculos reutilizables, un salto desde expresiones simples.",
       "racket": {
-        "code": "(define (rectangle-area base height)\n  (* base height)\n)"
+        "code": "(define (rectangle-area base height)\n  (* base height)\n)\n(rectangle-area 6 3)"
       },
       "ocaml": {
-        "code": "let rectangle_area base height =\n  base * height\n"
+        "code": "let rectangle_area base height =\n  base * height\nin\nrectangle_area 6 3"
       },
-      "answer": "15"
+      "answer": "18"
     },
     "ejercicio-2": {
-      "description": "Si un reloj marca 10 horas y quieres saber si es múltiplo de 2 para un evento cada 2 horas, crea una función que determine si un número es múltiplo de otro.",
+      "description": "Las funciones hacen la lógica reusable. Un festival tiene eventos cada 3 horas. Para saber si a las 9 es hora de un evento, define una función que verifique si un número es múltiplo de otro usando módulo. Evalúa con 9 y 3. Esto introduce funciones booleanas para decisiones.",
       "racket": {
-        "code": "(define (multiple? x y)\n  (= (remainder x y) 0)\n)"
+        "code": "(define (multiple? x y)\n  (= (remainder x y) 0)\n)\n(multiple? 9 3)"
       },
       "ocaml": {
-        "code": "let multiple x y =\n  (x mod y) = 0\n"
+        "code": "let multiple x y =\n  x mod y = 0\nin\nmultiple 9 3"
       },
       "answer": "true"
     },
     "ejercicio-3": {
-      "description": "En un juego, una torre crece a la potencia de 2 elevada a 3 niveles. Escribe una función que calcule la potencia para determinar la altura.",
+      "description": "Las funciones pueden ser recursivas. En un videojuego, el daño de un hechizo es 2 elevado a 3. Define una función recursiva que calcule la potencia. Evalúa con base 2 y exponente 3. Esto muestra cómo la recursión reemplaza bucles en el funcional, manteniendo pureza.",
       "racket": {
-        "code": "(define (power base exp)\n  (if (= exp 0)\n      1\n      (* base (power base (- exp 1)))\n  )\n)"
+        "code": "(define (power base exp)\n  (if (= exp 0)\n      1\n      (* base (power base (- exp 1)))\n  )\n)\n(power 2 3)"
       },
       "ocaml": {
-        "code": "let rec power base exp =\n  if exp = 0 then\n    1\n  else\n    base * power base (exp - 1)\n"
+        "code": "let rec power base exp =\n  if exp = 0 then\n    1\n  else\n    base * power base (exp - 1)\nin\npower 2 3"
       },
       "answer": "8"
     },
     "ejercicio-4": {
-      "description": "Dos amigos corrieron 4 y 6 km respectivamente; define una función que calcule el promedio para saber la distancia media.",
+      "description": "Funciones para promedios. Dos corredores recorren 5 y 7 kilómetros. Define una función que calcule el promedio de dos distancias. Evalúa con 5 y 7. Esto ilustra cómo las funciones simplifican cálculos repetitivos en problemas reales.",
       "racket": {
-        "code": "(define (average a b)\n  (/ (+ a b) 2)\n)"
+        "code": "(define (average a b)\n  (/ (+ a b) 2)\n)\n(average 5 7)"
       },
       "ocaml": {
-        "code": "let average a b =\n  (a + b) / 2\n"
+        "code": "let average a b =\n  (a + b) / 2\nin\naverage 5 7"
       },
-      "answer": "5"
+      "answer": "6"
     },
     "ejercicio-5": {
-      "description": "Un termómetro marca 50 grados y quieres saber si está entre 1 y 100 para un rango normal. Crea una función que determine si un número está entre 1 y 100.",
+      "description": "Funciones booleanas para validación. Un agricultor verifica si 75 grados Celsius está entre 1 y 100 para su invernadero. Define una función que use comparaciones lógicas. Evalúa con 75. Esto muestra cómo las funciones retornan valores lógicos reutilizables.",
       "racket": {
-        "code": "(define (between-1-100? x)\n  (and (>= x 1) (<= x 100)\n  )\n)"
+        "code": "(define (between-1-100? x)\n  (and (>= x 1) (<= x 100))\n)\n(between-1-100? 75)"
       },
       "ocaml": {
-        "code": "let between_1_100 x =\n  x >= 1 && x <= 100\n"
+        "code": "let between_1_100 x =\n  x >= 1 && x <= 100\nin\nbetween_1_100 75"
       },
       "answer": "true"
     },
     "ejercicio-6": {
-      "description": "Para calcular el área de un círculo de radio 2 en un diseño de pastel, escribe una función que use pi para el cálculo.",
+      "description": "Funciones con constantes. Un pastelero calcula el área de un pastel circular con radio 3 metros, usando pi (3.14159). Define una función para el área del círculo. Evalúa con 3. Esto introduce cómo las funciones manejan cálculos con valores fijos.",
       "racket": {
-        "code": "(define (circle-area r)\n  (* 3.14159 (* r r)\n  )\n)"
+        "code": "(define (circle-area r)\n  (* 3.14159 (* r r))\n)\n(circle-area 3)"
       },
       "ocaml": {
-        "code": "let circle_area r =\n  3.14159 *. (r *. r)\n"
+        "code": "let circle_area r =\n  3.14159 *. (r *. r)\nin\ncircle_area 3.0"
       },
-      "answer": "12.56636"
+      "answer": "28.27431"
     },
     "ejercicio-7": {
-      "description": "En un viaje a EE.UU., la temperatura es 0 Celsius y necesitas convertirla a Fahrenheit. Define una función para la conversión.",
+      "description": "Funciones para conversiones. Un turista convierte 20 grados Celsius a Fahrenheit (C * 9/5 + 32). Define una función para esta conversión. Evalúa con 20. Esto muestra cómo las funciones encapsulan fórmulas para uso repetitivo.",
       "racket": {
-        "code": "(define (celsius-to-fahrenheit c)\n  (+ (* c 9/5) 32)\n)"
+        "code": "(define (celsius-to-fahrenheit c)\n  (+ (* c 9/5) 32)\n)\n(celsius-to-fahrenheit 20)"
       },
       "ocaml": {
-        "code": "let celsius_to_fahrenheit c =\n  (c *. 9.0 /. 5.0) +. 32.0\n"
+        "code": "let celsius_to_fahrenheit c =\n  (c *. 9.0 /. 5.0) +. 32.0\nin\ncelsius_to_fahrenheit 20.0"
       },
-      "answer": "32"
+      "answer": "68"
     }
   },
   "funciones-multiples": {
     "ejercicio-1": {
-      "description": "Un triángulo en un techo tiene base 6 metros y altura 4; define una función para calcular su área y planificar materiales.",
+      "description": "Ahora usamos múltiples parámetros. Un artista pinta un mural triangular con base 8 metros y altura 5 metros. Define una función que calcule el área (base * altura / 2). Evalúa con 8 y 5. Esto extiende las funciones para manejar varios inputs en cálculos reales.",
       "racket": {
-        "code": "(define (triangle-area base height)\n  (/ (* base height) 2)\n)"
+        "code": "(define (triangle-area base height)\n  (/ (* base height) 2)\n)\n(triangle-area 8 5)"
       },
       "ocaml": {
-        "code": "let triangle_area base height =\n  (base *. height) /. 2.0\n"
+        "code": "let triangle_area base height =\n  (base *. height) /. 2.0\nin\ntriangle_area 8.0 5.0"
       },
-      "answer": "12"
+      "answer": "20"
     },
     "ejercicio-2": {
-      "description": "Tres hermanos tienen edades 1, 2, 3 años y quieres saber si están en orden ascendente. Crea una función para verificar orden en datos como edades.",
+      "description": "Funciones con lógica compleja. Tres tareas toman 2, 3 y 4 minutos. Define una función que verifique si están en orden ascendente. Evalúa con 2, 3 y 4. Esto muestra cómo las funciones combinan comparaciones para decisiones más avanzadas.",
       "racket": {
-        "code": "(define (ascending? a b c)\n  (and (< a b) (< b c)\n  )\n)"
+        "code": "(define (ascending? a b c)\n  (and (< a b) (< b c))\n)\n(ascending? 2 3 4)"
       },
       "ocaml": {
-        "code": "let ascending a b c =\n  a < b && b < c\n"
+        "code": "let ascending a b c =\n  a < b && b < c\nin\nascending 2 3 4"
       },
       "answer": "true"
     },
     "ejercicio-3": {
-      "description": "Para encontrar la distancia entre casa (0,0) y escuela (3,4), escribe una función que calcule la distancia entre dos puntos en un mapa.",
+      "description": "Cálculos geométricos. Un estudiante camina de (1,2) a (4,6). Define una función para la distancia euclidiana: raíz de ((x2-x1)^2 + (y2-y1)^2). Evalúa con (1,2) y (4,6). Esto introduce funciones con múltiples parámetros para problemas espaciales.",
       "racket": {
-        "code": "(define (distance x1 y1 x2 y2)\n  (sqrt (+ (expt (- x2 x1) 2)\n           (expt (- y2 y1) 2)\n           )\n  )\n)"
+        "code": "(define (distance x1 y1 x2 y2)\n  (sqrt (+ (expt (- x2 x1) 2)\n           (expt (- y2 y1) 2))\n  )\n)\n(distance 1 2 4 6)"
       },
       "ocaml": {
-        "code": "let distance x1 y1 x2 y2 =\n  sqrt ((x2 -. x1) ** 2.0 +.\n        (y2 -. y1) ** 2.0\n  )\n"
+        "code": "let distance x1 y1 x2 y2 =\n  sqrt ((x2 -. x1) ** 2.0 +.\n        (y2 -. y1) ** 2.0)\nin\ndistance 1.0 2.0 4.0 6.0"
       },
       "answer": "5"
     },
     "ejercicio-4": {
-      "description": "De tres puntuaciones 3, 7, 5 en un juego, define una función que encuentre el máximo para premiar al ganador.",
+      "description": "Comparaciones múltiples. En un torneo, los puntajes son 6, 8 y 4. Define una función que encuentre el máximo de tres valores. Evalúa con 6, 8 y 4. Esto muestra cómo las funciones manejan selecciones complejas de forma reusable.",
       "racket": {
-        "code": "(define (max-of-three a b c)\n  (max a (max b c)\n  )\n)"
+        "code": "(define (max-of-three a b c)\n  (max a (max b c))\n)\n(max-of-three 6 8 4)"
       },
       "ocaml": {
-        "code": "let max_of_three a b c =\n  max a (max b c)\n"
+        "code": "let max_of_three a b c =\n  max a (max b c)\nin\nmax_of_three 6 8 4"
       },
-      "answer": "7"
+      "answer": "8"
     },
     "ejercicio-5": {
-      "description": "Tres amigos ahorraron 4, 5, 6 dólares; calcula el promedio para dividir un gasto.",
+      "description": "Promedios avanzados. Tres amigos gastan 10, 15 y 20 dólares. Define una función que calcule el promedio de tres valores. Evalúa con 10, 15 y 20. Esto extiende el concepto de funciones para manejar más datos en cálculos compartidos.",
       "racket": {
-        "code": "(define (average-three a b c)\n  (/ (+ a b c) 3)\n)"
+        "code": "(define (average-three a b c)\n  (/ (+ a b c) 3)\n)\n(average-three 10 15 20)"
       },
       "ocaml": {
-        "code": "let average_three a b c =\n  (a + b + c) / 3\n"
+        "code": "let average_three a b c =\n  (a + b + c) / 3\nin\naverage_three 10 15 20"
       },
-      "answer": "5"
+      "answer": "15"
     },
     "ejercicio-6": {
-      "description": "Verifica si tres mediciones 1, 2, 3 son todas positivas para validar datos en un experimento.",
+      "description": "Validación múltiple. Un laboratorio mide presiones 2, 3 y 4 kPa. Define una función que verifique si todas son positivas. Evalúa con 2, 3 y 4. Esto muestra cómo las funciones combinan condiciones lógicas para validaciones complejas.",
       "racket": {
-        "code": "(define (all-positive? a b c)\n  (and (> a 0) (> b 0) (> c 0)\n  )\n)"
+        "code": "(define (all-positive? a b c)\n  (and (> a 0) (> b 0) (> c 0))\n)\n(all-positive? 2 3 4)"
       },
       "ocaml": {
-        "code": "let all_positive a b c =\n  a > 0 && b > 0 && c > 0\n"
+        "code": "let all_positive a b c =\n  a > 0 && b > 0 && c > 0\nin\nall_positive 2 3 4"
       },
       "answer": "true"
     },
     "ejercicio-7": {
-      "description": "Una caja mide 2 de largo, 3 de ancho, 4 de alto; calcula el volumen para enviar paquetes.",
+      "description": "Volumen de cajas. Una empresa calcula el volumen de una caja con dimensiones 3, 2 y 4 metros. Define una función que multiplique tres valores. Evalúa con 3, 2 y 4. Esto refuerza cómo las funciones manejan múltiples inputs para cálculos prácticos.",
       "racket": {
-        "code": "(define (cuboid-volume l w h)\n  (* l w h)\n)"
+        "code": "(define (cuboid-volume l w h)\n  (* l w h)\n)\n(cuboid-volume 3 2 4)"
       },
       "ocaml": {
-        "code": "let cuboid_volume l w h =\n  l *. w *. h\n"
+        "code": "let cuboid_volume l w h =\n  l *. w *. h\nin\ncuboid_volume 3.0 2.0 4.0"
       },
       "answer": "24"
     }
   },
   "condicionales": {
     "ejercicio-1": {
-      "description": "De dos ofertas 5 y 3 dólares de descuento, elige la mayor para ahorrar más. Define una función que devuelva el mayor de dos números.",
+      "description": "Las condicionales permiten decisiones. En una subasta, las ofertas son 10 y 7 dólares. Define una función que seleccione el mayor. Evalúa con 10 y 7. Esto introduce `if` para elegir valores basados en condiciones, manteniendo la pureza funcional.",
       "racket": {
-        "code": "(define (max-two a b)\n  (if (> a b)\n      a\n      b\n  )\n)"
+        "code": "(define (max-two a b)\n  (if (> a b)\n      a\n      b\n  )\n)\n(max-two 10 7)"
       },
       "ocaml": {
-        "code": "let max_two a b =\n  if a > b then\n    a\n  else\n    b\n"
+        "code": "let max_two a b =\n  if a > b then\n    a\n  else\n    b\nin\nmax_two 10 7"
       },
-      "answer": "5"
+      "answer": "10"
     },
     "ejercicio-2": {
-      "description": "Un sensor mide 5 grados y clasifícalo como positivo, negativo o cero para alertas climáticas.",
+      "description": "Clasificación con condicionales. Un sensor mide 3 grados Celsius. Define una función que clasifique como positivo, negativo o cero. Evalúa con 3. Esto muestra cómo usamos `cond` o `if-else` para categorizar valores.",
       "racket": {
-        "code": "(define (classify-number x)\n  (cond\n    [(> x 0) 'positive]\n    [(< x 0) 'negative]\n    [else 'zero]\n  )\n)"
+        "code": "(define (classify-number x)\n  (cond\n    [(> x 0) 'positive]\n    [(< x 0) 'negative]\n    [else 'zero]\n  )\n)\n(classify-number 3)"
       },
       "ocaml": {
-        "code": "let classify_number x =\n  if x > 0 then\n    \"positive\"\n  else if x < 0 then\n    \"negative\"\n  else\n    \"zero\"\n"
+        "code": "let classify_number x =\n  if x > 0 then\n    \"positive\"\n  else if x < 0 then\n    \"negative\"\n  else\n    \"zero\"\nin\nclassify_number 3"
       },
       "answer": "positive"
     },
     "ejercicio-3": {
-      "description": "Para planificar un evento en 2020, determina si es bisiesto para agregar un día extra en febrero.",
+      "description": "Condiciones complejas. Para 2024, verifica si es bisiesto (divisible por 4, no por 100, salvo por 400). Define una función y evalúa con 2024. Esto muestra cómo anidamos condicionales para lógica avanzada.",
       "racket": {
-        "code": "(define (leap-year? year)\n  (cond\n    [(= (remainder year 400) 0) #t]\n    [(= (remainder year 100) 0) #f]\n    [(= (remainder year 4) 0) #t]\n    [else #f]\n  )\n)"
+        "code": "(define (leap-year? year)\n  (cond\n    [(= (remainder year 400) 0) #t]\n    [(= (remainder year 100) 0) #f]\n    [(= (remainder year 4) 0) #t]\n    [else #f]\n  )\n)\n(leap-year? 2024)"
       },
       "ocaml": {
-        "code": "let leap_year year =\n  if year mod 400 = 0 then\n    true\n  else if year mod 100 = 0 then\n    false\n  else if year mod 4 = 0 then\n    true\n  else\n    false\n"
+        "code": "let leap_year year =\n  if year mod 400 = 0 then\n    true\n  else if year mod 100 = 0 then\n    false\n  else if year mod 4 = 0 then\n    true\n  else\n    false\nin\nleap_year 2024"
       },
       "answer": "true"
     },
     "ejercicio-4": {
-      "description": "En una reseña, -5 significa negativo; devuelva el signo para categorizar comentarios.",
+      "description": "Clasificación numérica. Una reseña tiene puntuación -2. Define una función que devuelva el signo (1, -1, 0). Evalúa con -2. Esto refuerza cómo las condicionales producen valores basados en casos.",
       "racket": {
-        "code": "(define (sign x)\n  (cond\n    [(> x 0) 1]\n    [(< x 0) -1]\n    [else 0]\n  )\n)"
+        "code": "(define (sign x)\n  (cond\n    [(> x 0) 1]\n    [(< x 0) -1]\n    [else 0]\n  )\n)\n(sign -2)"
       },
       "ocaml": {
-        "code": "let sign x =\n  if x > 0 then\n    1\n  else if x < 0 then\n    -1\n  else\n    0\n"
+        "code": "let sign x =\n  if x > 0 then\n    1\n  else if x < 0 then\n    -1\n  else\n    0\nin\nsign (-2)"
       },
       "answer": "-1"
     },
     "ejercicio-5": {
-      "description": "Un estudiante sacó 85 en un examen; clasifícalo como A, B, C, D o F para el boletín.",
+      "description": "Sistemas de calificación. Una estudiante obtiene 92. Define una función para clasificar: A (90+), B (80-89), C (70-79), D (60-69), F (<60). Evalúa con 92. Esto muestra condicionales para rangos.",
       "racket": {
-        "code": "(define (grade score)\n  (cond\n    [(>= score 90) 'A]\n    [(>= score 80) 'B]\n    [(>= score 70) 'C]\n    [(>= score 60) 'D]\n    [else 'F]\n  )\n)"
+        "code": "(define (grade score)\n  (cond\n    [(>= score 90) 'A]\n    [(>= score 80) 'B]\n    [(>= score 70) 'C]\n    [(>= score 60) 'D]\n    [else 'F]\n  )\n)\n(grade 92)"
       },
       "ocaml": {
-        "code": "let grade score =\n  if score >= 90 then\n    \"A\"\n  else if score >= 80 then\n    \"B\"\n  else if score >= 70 then\n    \"C\"\n  else if score >= 60 then\n    \"D\"\n  else\n    \"F\"\n"
+        "code": "let grade score =\n  if score >= 90 then\n    \"A\"\n  else if score >= 80 then\n    \"B\"\n  else if score >= 70 then\n    \"C\"\n  else if score >= 60 then\n    \"D\"\n  else\n    \"F\"\nin\ngrade 92"
       },
-      "answer": "B"
+      "answer": "A"
     },
     "ejercicio-6": {
-      "description": "Un número 6 es divisible por 2 y 3, útil para programar horarios cada 6 horas.",
+      "description": "Condiciones combinadas. Una alarma se activa si 12 es divisible por 2 y 3. Define una función para verificar esto. Evalúa con 12. Esto muestra cómo combinamos condiciones lógicas en funciones.",
       "racket": {
-        "code": "(define (divisible-both? x)\n  (and (= (remainder x 2) 0)\n       (= (remainder x 3) 0)\n  )\n)"
+        "code": "(define (divisible-both? x)\n  (and (= (remainder x 2) 0)\n       (= (remainder x 3) 0))\n)\n(divisible-both? 12)"
       },
       "ocaml": {
-        "code": "let divisible_both x =\n  (x mod 2 = 0) &&\n  (x mod 3 = 0)\n"
+        "code": "let divisible_both x =\n  x mod 2 = 0 && x mod 3 = 0\nin\ndivisible_both 12"
       },
       "answer": "true"
     },
     "ejercicio-7": {
-      "description": "Un triángulo con lados 2, 2, 2 es equilátero; clasifícalo para diseños arquitectónicos.",
+      "description": "Clasificación geométrica. Un triángulo tiene lados 3, 3, 3. Define una función que lo clasifique como equilátero, isósceles o escaleno. Evalúa con 3, 3, 3. Esto introduce condicionales para categorías múltiples.",
       "racket": {
-        "code": "(define (triangle-type a b c)\n  (cond\n    [(and (= a b) (= b c)) 'equilateral]\n    [(or (= a b) (= b c) (= a c)) 'isosceles]\n    [else 'scalene]\n  )\n)"
+        "code": "(define (triangle-type a b c)\n  (cond\n    [(and (= a b) (= b c)) 'equilateral]\n    [(or (= a b) (= b c) (= a c)) 'isosceles]\n    [else 'scalene]\n  )\n)\n(triangle-type 3 3 3)"
       },
       "ocaml": {
-        "code": "let triangle_type a b c =\n  if a = b && b = c then\n    \"equilateral\"\n  else if a = b || b = c || a = c then\n    \"isosceles\"\n  else\n    \"scalene\"\n"
+        "code": "let triangle_type a b c =\n  if a = b && b = c then\n    \"equilateral\"\n  else if a = b || b = c || a = c then\n    \"isosceles\"\n  else\n    \"scalene\"\nin\ntriangle_type 3 3 3"
       },
       "answer": "equilateral"
     }
   },
   "recursion": {
     "ejercicio-1": {
-      "description": "Para sumar los primeros 5 días de ventas diarias, define una función recursiva que calcule la suma de los primeros n números naturales.",
+      "description": "La recursión reemplaza bucles. Un comerciante suma ventas de 1 a 4 dólares en 4 días. Define una función recursiva para sumar los primeros n números. Evalúa con 4. Esto muestra cómo la recursión acumula resultados sin estado.",
       "racket": {
-        "code": "(define (sum-n n)\n  (if (<= n 0)\n      0\n      (+ n (sum-n (- n 1)))\n  )\n)"
+        "code": "(define (sum-n n)\n  (if (<= n 0)\n      0\n      (+ n (sum-n (- n 1)))\n  )\n)\n(sum-n 4)"
       },
       "ocaml": {
-        "code": "let rec sum_n n =\n  if n <= 0 then\n    0\n  else\n    n + sum_n (n - 1)\n"
+        "code": "let rec sum_n n =\n  if n <= 0 then\n    0\n  else\n    n + sum_n (n - 1)\nin\nsum_n 4"
       },
-      "answer": "15"
+      "answer": "10"
     },
     "ejercicio-2": {
-      "description": "En ahorro, el interés compuesto es base a potencia de tiempo; calcula para base 2, 3 años.",
+      "description": "Recursión para potencias. Una inversión de 2 dólares se duplica 4 veces. Define una función recursiva para calcular 2^4. Evalúa con 2 y 4. Esto refuerza cómo la recursión maneja cálculos repetitivos.",
       "racket": {
-        "code": "(define (power base exp)\n  (if (= exp 0)\n      1\n      (* base (power base (- exp 1)))\n  )\n)"
+        "code": "(define (power base exp)\n  (if (= exp 0)\n      1\n      (* base (power base (- exp 1)))\n  )\n)\n(power 2 4)"
       },
       "ocaml": {
-        "code": "let rec power base exp =\n  if exp = 0 then\n    1\n  else\n    base * power base (exp - 1)\n"
+        "code": "let rec power base exp =\n  if exp = 0 then\n    1\n  else\n    base * power base (exp - 1)\nin\npower 2 4"
       },
-      "answer": "8"
+      "answer": "16"
     },
     "ejercicio-3": {
-      "description": "El número de formas de subir 5 escaleras es factorial; usa para planificar rutas.",
+      "description": "Factoriales con recursión. Un gerente calcula formas de organizar 4 cajas (4!). Define una función recursiva para el factorial. Evalúa con 4. Esto muestra cómo la recursión resuelve problemas combinatorios.",
       "racket": {
-        "code": "(define (factorial n)\n  (if (<= n 1)\n      1\n      (* n (factorial (- n 1)))\n  )\n)"
+        "code": "(define (factorial n)\n  (if (<= n 1)\n      1\n      (* n (factorial (- n 1)))\n  )\n)\n(factorial 4)"
       },
       "ocaml": {
-        "code": "let rec factorial n =\n  if n <= 1 then\n    1\n  else\n    n * factorial (n - 1)\n"
+        "code": "let rec factorial n =\n  if n <= 1 then\n    1\n  else\n    n * factorial (n - 1)\nin\nfactorial 4"
       },
-      "answer": "120"
+      "answer": "24"
     },
     "ejercicio-4": {
-      "description": "En biología, la población de conejos sigue Fibonacci; calcula el 6to mes para predecir crecimiento.",
+      "description": "Secuencias recursivas. Un biólogo calcula el número de Fibonacci para el mes 6. Define una función recursiva para Fibonacci. Evalúa con 6. Esto introduce recursión doble para secuencias naturales.",
       "racket": {
-        "code": "(define (fibonacci n)\n  (if (<= n 1)\n      n\n      (+ (fibonacci (- n 1))\n         (fibonacci (- n 2))\n      )\n  )\n)"
+        "code": "(define (fibonacci n)\n  (if (<= n 1)\n      n\n      (+ (fibonacci (- n 1))\n         (fibonacci (- n 2))\n      )\n  )\n)\n(fibonacci 6)"
       },
       "ocaml": {
-        "code": "let rec fibonacci n =\n  if n <= 1 then\n    n\n  else\n    fibonacci (n - 1) +\n    fibonacci (n - 2)\n"
+        "code": "let rec fibonacci n =\n  if n <= 1 then\n    n\n  else\n    fibonacci (n - 1) +\n    fibonacci (n - 2)\nin\nfibonacci 6"
       },
       "answer": "8"
     },
     "ejercicio-5": {
-      "description": "Para validar un código postal 123, suma sus dígitos recursivamente para cheques de error.",
+      "description": "Procesamiento numérico. Un código postal 12345 se valida sumando sus dígitos. Define una función recursiva para sumar dígitos. Evalúa con 12345. Esto muestra cómo la recursión descompone números.",
       "racket": {
-        "code": "(define (sum-digits n)\n  (if (< n 10)\n      n\n      (+ (remainder n 10)\n         (sum-digits (quotient n 10))\n      )\n  )\n)"
+        "code": "(define (sum-digits n)\n  (if (< n 10)\n      n\n      (+ (remainder n 10)\n         (sum-digits (quotient n 10))\n      )\n  )\n)\n(sum-digits 12345)"
       },
       "ocaml": {
-        "code": "let rec sum_digits n =\n  if n < 10 then\n    n\n  else\n    (n mod 10) +\n    sum_digits (n / 10)\n"
+        "code": "let rec sum_digits n =\n  if n < 10 then\n    n\n  else\n    (n mod 10) +\n    sum_digits (n / 10)\nin\nsum_digits 12345"
       },
-      "answer": "6"
+      "answer": "15"
     },
     "ejercicio-6": {
-      "description": "El producto de los primeros 3 números impares es usado en fórmulas matemáticas; calcula recursivamente.",
+      "description": "Productos recursivos. Un matemático calcula el producto de los primeros 3 impares (1, 3, 5). Define una función recursiva para esto. Evalúa con 3. Esto extiende la recursión a productos específicos.",
       "racket": {
-        "code": "(define (product-odds n)\n  (if (<= n 0)\n      1\n      (* (+ (* 2 n) -1)\n         (product-odds (- n 1))\n      )\n  )\n)"
+        "code": "(define (product-odds n)\n  (if (<= n 0)\n      1\n      (* (+ (* 2 n) -1)\n         (product-odds (- n 1))\n      )\n  )\n)\n(product-odds 3)"
       },
       "ocaml": {
-        "code": "let rec product_odds n =\n  if n <= 0 then\n    1\n  else\n    (2 * n - 1) *\n    product_odds (n - 1)\n"
+        "code": "let rec product_odds n =\n  if n <= 0 then\n    1\n  else\n    (2 * n - 1) *\n    product_odds (n - 1)\nin\nproduct_odds 3"
       },
       "answer": "15"
     },
     "ejercicio-7": {
-      "description": "Para contar dígitos en un número de teléfono 1234, usa recursión para validación.",
+      "description": "Contar dígitos. Un número de teléfono 1234 se valida contando sus dígitos. Define una función recursiva para contar dígitos. Evalúa con 1234. Esto muestra cómo la recursión maneja descomposición numérica.",
       "racket": {
-        "code": "(define (count-digits n)\n  (if (< n 10)\n      1\n      (+ 1 (count-digits (quotient n 10))\n      )\n  )\n)"
+        "code": "(define (count-digits n)\n  (if (< n 10)\n      1\n      (+ 1 (count-digits (quotient n 10)))\n  )\n)\n(count-digits 1234)"
       },
       "ocaml": {
-        "code": "let rec count_digits n =\n  if n < 10 then\n    1\n  else\n    1 + count_digits (n / 10)\n"
+        "code": "let rec count_digits n =\n  if n < 10 then\n    1\n  else\n    1 + count_digits (n / 10)\nin\ncount_digits 1234"
       },
       "answer": "4"
     }
   },
   "listas": {
     "ejercicio-1": {
-      "description": "Una lista de 3 compras; calcula su longitud para saber cuántas cosas comprar.",
+      "description": "Las listas son esenciales en funcional. Una organizadora tiene tareas (1 2 3 4). Define una función recursiva para contar elementos. Evalúa con (1 2 3 4). Esto introduce listas y recursión para procesarlas.",
       "racket": {
-        "code": "(define (length lst)\n  (if (empty? lst)\n      0\n      (+ 1 (length (rest lst))\n      )\n  )\n)"
+        "code": "(define (length lst)\n  (if (empty? lst)\n      0\n      (+ 1 (length (rest lst)))\n  )\n)\n(length '(1 2 3 4))"
       },
       "ocaml": {
-        "code": "let rec length lst =\n  if lst = [] then\n    0\n  else\n    1 + length (List.tl lst)\n"
+        "code": "let rec length lst =\n  if lst = [] then\n    0\n  else\n    1 + length (List.tl lst)\nin\nlength [1; 2; 3; 4]"
       },
-      "answer": "3"
+      "answer": "4"
     },
     "ejercicio-2": {
-      "description": "De una lista de tareas '(1 2 3)', devuelve la primera para empezar el día.",
+      "description": "Acceder a listas. Un gerente prioriza la primera tarea de (5 6 7). Define una función para obtener el primer elemento. Evalúa con (5 6 7). Esto muestra cómo extraemos datos de listas.",
       "racket": {
-        "code": "(define (first-element lst)\n  (if (empty? lst)\n      null\n      (first lst)\n  )\n)"
+        "code": "(define (first-element lst)\n  (if (empty? lst)\n      null\n      (first lst)\n  )\n)\n(first-element '(5 6 7))"
       },
       "ocaml": {
-        "code": "let first_element lst =\n  if lst = [] then\n    None\n  else\n    Some (List.hd lst)\n"
+        "code": "let first_element lst =\n  if lst = [] then\n    None\n  else\n    Some (List.hd lst)\nin\nfirst_element [5; 6; 7]"
       },
-      "answer": "1"
+      "answer": "5"
     },
     "ejercicio-3": {
-      "description": "En una cola de gente '(1 2 3)', encuentra el último para saber quién espera más.",
+      "description": "Último elemento. En una cola (1 2 3), el último cliente espera más. Define una función recursiva para obtener el último elemento. Evalúa con (1 2 3). Esto introduce recursión para navegar listas.",
       "racket": {
-        "code": "(define (last-element lst)\n  (if (empty? (rest lst))\n      (first lst)\n      (last-element (rest lst))\n  )\n)"
+        "code": "(define (last-element lst)\n  (if (empty? (rest lst))\n      (first lst)\n      (last-element (rest lst))\n  )\n)\n(last-element '(1 2 3))"
       },
       "ocaml": {
-        "code": "let rec last_element lst =\n  if List.tl lst = [] then\n    List.hd lst\n  else\n    last_element (List.tl lst)\n"
+        "code": "let rec last_element lst =\n  if List.tl lst = [] then\n    List.hd lst\n  else\n    last_element (List.tl lst)\nin\nlast_element [1; 2; 3]"
       },
       "answer": "3"
     },
     "ejercicio-4": {
-      "description": "Combina lista de frutas '(1 2)' con verduras '(3 4)' para una lista de compras completa.",
+      "description": "Combinar listas. Un mercado une frutas (1 2) y verduras (3 4). Define una función recursiva para concatenar listas. Evalúa con (1 2) y (3 4). Esto muestra cómo construimos listas nuevas.",
       "racket": {
-        "code": "(define (append lst1 lst2)\n  (if (empty? lst1)\n      lst2\n      (cons (first lst1)\n            (append (rest lst1) lst2)\n      )\n  )\n)"
+        "code": "(define (append lst1 lst2)\n  (if (empty? lst1)\n      lst2\n      (cons (first lst1)\n            (append (rest lst1) lst2))\n  )\n)\n(append '(1 2) '(3 4))"
       },
       "ocaml": {
-        "code": "let rec append lst1 lst2 =\n  if lst1 = [] then\n    lst2\n  else\n    List.hd lst1 :: append (List.tl lst1) lst2\n"
+        "code": "let rec append lst1 lst2 =\n  if lst1 = [] then\n    lst2\n  else\n    List.hd lst1 :: append (List.tl lst1) lst2\nin\nappend [1; 2] [3; 4]"
       },
       "answer": "(1 2 3 4)"
     },
     "ejercicio-5": {
-      "description": "De una lista de pendientes '(1 2 3)', quita la primera después de completarla.",
+      "description": "Eliminar elementos. Un estudiante completa la primera tarea de (1 2 3). Define una función para obtener el resto de la lista. Evalúa con (1 2 3). Esto muestra cómo manipulamos listas funcionalmente.",
       "racket": {
-        "code": "(define (rest-list lst)\n  (if (empty? lst)\n      null\n      (rest lst)\n  )\n)"
+        "code": "(define (rest-list lst)\n  (if (empty? lst)\n      null\n      (rest lst)\n  )\n)\n(rest-list '(1 2 3))"
       },
       "ocaml": {
-        "code": "let rest_list lst =\n  if lst = [] then\n    []\n  else\n    List.tl lst\n"
+        "code": "let rest_list lst =\n  if lst = [] then\n    []\n  else\n    List.tl lst\nin\nrest_list [1; 2; 3]"
       },
       "answer": "(2 3)"
     },
     "ejercicio-6": {
-      "description": "Verifica si una lista de tareas está vacía para saber si el día está libre.",
+      "description": "Verificar listas vacías. Una aplicación notifica si la lista de tareas () está vacía. Define una función para esto. Evalúa con (). Esto introduce verificaciones de estructura en listas.",
       "racket": {
-        "code": "(define (empty-list? lst)\n  (empty? lst)\n)"
+        "code": "(define (empty-list? lst)\n  (empty? lst)\n)\n(empty-list? '())"
       },
       "ocaml": {
-        "code": "let empty_list lst =\n  lst = []\n"
+        "code": "let empty_list lst =\n  lst = []\nin\nempty_list []"
       },
       "answer": "true"
     },
     "ejercicio-7": {
-      "description": "Añade 0 al inicio de lista '(1 2 3)' para numerar posiciones.",
+      "description": "Añadir elementos. Un programador añade 0 a (1 2 3) para numerar desde cero. Define una función para añadir al inicio. Evalúa con 0 y (1 2 3). Esto muestra cómo construimos listas dinámicamente.",
       "racket": {
-        "code": "(define (cons-element x lst)\n  (cons x lst)\n)"
+        "code": "(define (cons-element x lst)\n  (cons x lst)\n)\n(cons-element 0 '(1 2 3))"
       },
       "ocaml": {
-        "code": "let cons_element x lst =\n  x :: lst\n"
+        "code": "let cons_element x lst =\n  x :: lst\nin\ncons_element 0 [1; 2; 3]"
       },
       "answer": "(0 1 2 3)"
     }
   },
   "funciones-orden-superior": {
     "ejercicio-1": {
-      "description": "Duplica los precios en una lista '(1 2 3)' para aplicar un aumento.",
+      "description": "Las funciones de orden superior transforman listas. Una tienda duplica precios (2 3 4). Define una función usando map para duplicar cada elemento. Evalúa con (2 3 4). Esto introduce cómo pasamos funciones como argumentos.",
       "racket": {
-        "code": "(define (double-list lst)\n  (map (lambda (x) (* x 2))\n       lst\n  )\n)"
+        "code": "(define (double-list lst)\n  (map (lambda (x) (* x 2))\n       lst\n  )\n)\n(double-list '(2 3 4))"
       },
       "ocaml": {
-        "code": "let double_list lst =\n  List.map (fun x -> x * 2) lst\n"
+        "code": "let double_list lst =\n  List.map (fun x -> x * 2) lst\nin\ndouble_list [2; 3; 4]"
       },
-      "answer": "(2 4 6)"
+      "answer": "(4 6 8)"
     },
     "ejercicio-2": {
-      "description": "De '(1 2 3 4)', filtra pares para seleccionar tamaños even en ropa.",
+      "description": "Filtrar con funciones. Un almacén selecciona tallas pares de (1 2 3 4). Define una función usando filter para pares. Evalúa con (1 2 3 4). Esto muestra cómo seleccionamos elementos funcionalmente.",
       "racket": {
-        "code": "(define (even-numbers lst)\n  (filter (lambda (x) (= (remainder x 2) 0))\n          lst\n  )\n)"
+        "code": "(define (even-numbers lst)\n  (filter (lambda (x) (= (remainder x 2) 0))\n          lst\n  )\n)\n(even-numbers '(1 2 3 4))"
       },
       "ocaml": {
-        "code": "let even_numbers lst =\n  List.filter (fun x -> x mod 2 = 0) lst\n"
+        "code": "let even_numbers lst =\n  List.filter (fun x -> x mod 2 = 0) lst\nin\neven_numbers [1; 2; 3; 4]"
       },
       "answer": "(2 4)"
     },
     "ejercicio-3": {
-      "description": "Calcula cuadrados de '(1 2 3)' para áreas de cuadrados en un diseño.",
+      "description": "Transformaciones con map. Un diseñador calcula áreas de cuadrados con lados (2 3 4). Define una función que eleve al cuadrado cada elemento. Evalúa con (2 3 4). Esto refuerza el uso de map para cálculos masivos.",
       "racket": {
-        "code": "(define (square-list lst)\n  (map (lambda (x) (* x x))\n       lst\n  )\n)"
+        "code": "(define (square-list lst)\n  (map (lambda (x) (* x x))\n       lst\n  )\n)\n(square-list '(2 3 4))"
       },
       "ocaml": {
-        "code": "let square_list lst =\n  List.map (fun x -> x * x) lst\n"
+        "code": "let square_list lst =\n  List.map (fun x -> x * x) lst\nin\nsquare_list [2; 3; 4]"
       },
-      "answer": "(1 4 9)"
+      "answer": "(4 9 16)"
     },
     "ejercicio-4": {
-      "description": "Filtra números mayores que 10 de '(5 12 8 15)' para seleccionar adultos.",
+      "description": "Filtrado avanzado. Un evento admite edades mayores a 10: (5 12 8 15). Define una función con filter para seleccionarlas. Evalúa con (5 12 8 15). Esto muestra cómo filtramos con condiciones específicas.",
       "racket": {
-        "code": "(define (greater-than-ten lst)\n  (filter (lambda (x) (> x 10))\n          lst\n  )\n)"
+        "code": "(define (greater-than-ten lst)\n  (filter (lambda (x) (> x 10))\n          lst\n  )\n)\n(greater-than-ten '(5 12 8 15))"
       },
       "ocaml": {
-        "code": "let greater_than_ten lst =\n  List.filter (fun x -> x > 10) lst\n"
+        "code": "let greater_than_ten lst =\n  List.filter (fun x -> x > 10) lst\nin\ngreater_than_ten [5; 12; 8; 15]"
       },
       "answer": "(12 15)"
     },
     "ejercicio-5": {
-      "description": "Convierte '(-1 2 -3)' a absolutos para distancias positivas.",
+      "description": "Transformar con condicionales. Un analista corrige errores (-2 3 -4) tomando valores absolutos. Define una función con map y condicional. Evalúa con (-2 3 -4). Esto combina map con lógica interna.",
       "racket": {
-        "code": "(define (abs-list lst)\n  (map (lambda (x)\n         (if (< x 0)\n             (- x)\n             x\n         )\n       )\n       lst\n  )\n)"
+        "code": "(define (abs-list lst)\n  (map (lambda (x)\n         (if (< x 0)\n             (- x)\n             x\n         ))\n       lst\n  )\n)\n(abs-list '(-2 3 -4))"
       },
       "ocaml": {
-        "code": "let abs_list lst =\n  List.map (fun x ->\n              if x < 0 then\n                -x\n              else\n                x\n           ) lst\n"
+        "code": "let abs_list lst =\n  List.map (fun x ->\n              if x < 0 then\n                -x\n              else\n                x\n           ) lst\nin\nabs_list [-2; 3; -4]"
       },
-      "answer": "(1 2 3)"
+      "answer": "(2 3 4)"
     },
     "ejercicio-6": {
-      "description": "Filtra positivos de '(-1 2 -3 4)' para ganancias en finanzas.",
+      "description": "Filtrar positivos. Un contable selecciona ganancias positivas de (-1 2 -3 4). Define una función con filter. Evalúa con (-1 2 -3 4). Esto refuerza el filtrado para datos específicos.",
       "racket": {
-        "code": "(define (positive-numbers lst)\n  (filter (lambda (x) (> x 0))\n          lst\n  )\n)"
+        "code": "(define (positive-numbers lst)\n  (filter (lambda (x) (> x 0))\n          lst\n  )\n)\n(positive-numbers '(-1 2 -3 4))"
       },
       "ocaml": {
-        "code": "let positive_numbers lst =\n  List.filter (fun x -> x > 0) lst\n"
+        "code": "let positive_numbers lst =\n  List.filter (fun x -> x > 0) lst\nin\npositive_numbers [-1; 2; -3; 4]"
       },
       "answer": "(2 4)"
     },
     "ejercicio-7": {
-      "description": "Añade 1 a cada en '(1 2 3)' para actualizar edades.",
+      "description": "Actualizar listas. Una escuela incrementa edades (10 11 12) en 1. Define una función con map para sumar 1 a cada elemento. Evalúa con (10 11 12). Esto muestra transformaciones masivas con map.",
       "racket": {
-        "code": "(define (increment-list lst)\n  (map (lambda (x) (+ x 1))\n       lst\n  )\n)"
+        "code": "(define (increment-list lst)\n  (map (lambda (x) (+ x 1))\n       lst\n  )\n)\n(increment-list '(10 11 12))"
       },
       "ocaml": {
-        "code": "let increment_list lst =\n  List.map (fun x -> x + 1) lst\n"
+        "code": "let increment_list lst =\n  List.map (fun x -> x + 1) lst\nin\nincrement_list [10; 11; 12]"
       },
-      "answer": "(2 3 4)"
+      "answer": "(11 12 13)"
     }
   },
   "tipos-datos-simples": {
     "ejercicio-1": {
-      "description": "Una tupla con 3 y 4 representa horas trabajadas; suma para total.",
+      "description": "Tuplas para datos estructurados. Una empresa registra horas (5, 3). Define una función para sumar los valores de una tupla. Evalúa con (5, 3). Esto introduce tipos de datos compuestos en funcional.",
       "racket": {
-        "code": "(define (sum-tuple t)\n  (+ (car t) (cdr t)\n  )\n)"
+        "code": "(define (sum-tuple t)\n  (+ (car t) (cdr t))\n)\n(sum-tuple '(5 . 3))"
       },
       "ocaml": {
-        "code": "let sum_tuple (a, b) =\n  a + b\n"
+        "code": "let sum_tuple (a, b) =\n  a + b\nin\nsum_tuple (5, 3)"
+      },
+      "answer": "8"
+    },
+    "ejercicio-2": {
+      "description": "Acceder a tuplas. Una coordenada es (7, 8). Define una función para obtener el primer elemento. Evalúa con (7, 8). Esto muestra cómo extraemos datos de estructuras simples.",
+      "racket": {
+        "code": "(define (first-of-tuple t)\n  (car t)\n)\n(first-of-tuple '(7 . 8))"
+      },
+      "ocaml": {
+        "code": "let first_of_tuple (a, _) =\n  a\nin\nfirst_of_tuple (7, 8)"
       },
       "answer": "7"
     },
-    "ejercicio-2": {
-      "description": "De tupla (1, 2), devuelve el primero para coordenada x.",
-      "racket": {
-        "code": "(define (first-of-tuple t)\n  (car t)\n)"
-      },
-      "ocaml": {
-        "code": "let first_of_tuple (a, _) =\n  a\n"
-      },
-      "answer": "1"
-    },
     "ejercicio-3": {
-      "description": "Registro de persona \"Alice\" 30 años; devuelve edad para verificación.",
+      "description": "Estructuras personalizadas. Un registro es ('Ana', 20). Define una función para extraer la edad. Evalúa con ('Ana', 20). Esto introduce tipos definidos por el usuario.",
       "racket": {
-        "code": "(struct person (name age))\n(define (get-age p)\n  (person-age p)\n)"
+        "code": "(struct person (name age))\n(define (get-age p)\n  (person-age p)\n)\n(get-age (person \"Ana\" 20))"
       },
       "ocaml": {
-        "code": "type person = { name: string; age: int }\nlet get_age p =\n  p.age\n"
+        "code": "type person = { name: string; age: int }\nlet get_age p =\n  p.age\nin\nget_age { name = \"Ana\"; age = 20 }"
       },
-      "answer": "30"
+      "answer": "20"
     },
     "ejercicio-4": {
-      "description": "Tupla (2, 3, 4) para dimensiones; calcula producto para volumen.",
+      "description": "Tuplas triples. Una caja tiene dimensiones (2, 3, 4). Define una función para multiplicar los valores. Evalúa con (2, 3, 4). Esto extiende el uso de tuplas para cálculos complejos.",
       "racket": {
-        "code": "(define (product-triple t)\n  (* (car t) (* (cadr t) (caddr t))\n  )\n)"
+        "code": "(define (product-triple t)\n  (* (car t) (* (cadr t) (caddr t)))\n)\n(product-triple '(2 3 4))"
       },
       "ocaml": {
-        "code": "let product_triple (a, b, c) =\n  a * b * c\n"
+        "code": "let product_triple (a, b, c) =\n  a * b * c\nin\nproduct_triple (2, 3, 4)"
       },
       "answer": "24"
     },
     "ejercicio-5": {
-      "description": "Verifica si dos tuplas (1,2) son iguales para comparar coordenadas.",
+      "description": "Comparar tuplas. Un sistema verifica si (1,2) es igual a (1,2). Define una función para comparar tuplas. Evalúa con (1,2) y (1,2). Esto muestra cómo manejamos igualdad en estructuras.",
       "racket": {
-        "code": "(define (equal-tuples? t1 t2)\n  (and (= (car t1) (car t2))\n       (= (cdr t1) (cdr t2))\n  )\n)"
+        "code": "(define (equal-tuples? t1 t2)\n  (and (= (car t1) (car t2))\n       (= (cdr t1) (cdr t2)))\n)\n(equal-tuples? '(1 . 2) '(1 . 2))"
       },
       "ocaml": {
-        "code": "let equal_tuples (a1, b1) (a2, b2) =\n  a1 = a2 && b1 = b2\n"
+        "code": "let equal_tuples (a1, b1) (a2, b2) =\n  a1 = a2 && b1 = b2\nin\nequal_tuples (1, 2) (1, 2)"
       },
       "answer": "true"
     },
     "ejercicio-6": {
-      "description": "Registro de \"Bob\" 25; devuelve nombre para saludo.",
+      "description": "Extraer de registros. Un censo registra ('Bob', 25). Define una función para obtener el nombre. Evalúa con ('Bob', 25). Esto refuerza el acceso a datos estructurados.",
       "racket": {
-        "code": "(struct person (name age))\n(define (get-name p)\n  (person-name p)\n)"
+        "code": "(struct person (name age))\n(define (get-name p)\n  (person-name p)\n)\n(get-name (person \"Bob\" 25))"
       },
       "ocaml": {
-        "code": "type person = { name: string; age: int }\nlet get_name p =\n  p.name\n"
+        "code": "type person = { name: string; age: int }\nlet get_name p =\n  p.name\nin\nget_name { name = \"Bob\"; age = 25 }"
       },
       "answer": "Bob"
     },
     "ejercicio-7": {
-      "description": "Crea tupla de 5 y su cuadrado para tabla de áreas.",
+      "description": "Crear tuplas. Un profesor genera (6, 36) para un número y su cuadrado. Define una función para crear esta tupla. Evalúa con 6. Esto muestra cómo construimos datos estructurados.",
       "racket": {
-        "code": "(define (number-square-tuple n)\n  (cons n (* n n)\n  )\n)"
+        "code": "(define (number-square-tuple n)\n  (cons n (* n n))\n)\n(number-square-tuple 6)"
       },
       "ocaml": {
-        "code": "let number_square_tuple n =\n  (n, n * n)\n"
+        "code": "let number_square_tuple n =\n  (n, n * n)\nin\nnumber_square_tuple 6"
       },
-      "answer": "(5 25)"
+      "answer": "(6 36)"
     }
   },
   "cadenas-y-caracteres": {
     "ejercicio-1": {
-      "description": "Cuenta longitud de \"hello\" para validar longitud de nombre de usuario.",
+      "description": "Cadenas para texto. Una aplicación valida que 'admin' tenga 5 caracteres. Define una función para contar la longitud. Evalúa con 'admin'. Esto introduce el manejo de cadenas en funcional.",
       "racket": {
-        "code": "(define (string-length str)\n  (string-length str)\n)"
+        "code": "(define (string-length str)\n  (string-length str)\n)\n(string-length \"admin\")"
       },
       "ocaml": {
-        "code": "let string_length str =\n  String.length str\n"
+        "code": "let string_length str =\n  String.length str\nin\nstring_length \"admin\""
       },
       "answer": "5"
     },
     "ejercicio-2": {
-      "description": "Concatena \"hello\" y \"world\" para saludo completo.",
+      "description": "Concatenar cadenas. Un sistema genera 'hola mundo' uniendo 'hola' y 'mundo' con un espacio. Define una función para esto. Evalúa con 'hola' y 'mundo'. Esto muestra cómo manipulamos texto.",
       "racket": {
-        "code": "(define (concat-strings s1 s2)\n  (string-append s1 s2)\n)"
+        "code": "(define (concat-strings s1 s2)\n  (string-append s1 \" \" s2)\n)\n(concat-strings \"hola\" \"mundo\")"
       },
       "ocaml": {
-        "code": "let concat_strings s1 s2 =\n  s1 ^ s2\n"
+        "code": "let concat_strings s1 s2 =\n  s1 ^ \" \" ^ s2\nin\nconcat_strings \"hola\" \"mundo\""
       },
-      "answer": "helloworld"
+      "answer": "hola mundo"
     },
     "ejercicio-3": {
-      "description": "Devuelve primer carácter de \"hello\" para inicial.",
+      "description": "Acceder a caracteres. Un diseñador usa la inicial de 'gato' para un monograma. Define una función para obtener el primer carácter. Evalúa con 'gato'. Esto introduce el manejo de caracteres.",
       "racket": {
-        "code": "(define (first-char str)\n  (string-ref str 0)\n)"
+        "code": "(define (first-char str)\n  (string-ref str 0)\n)\n(first-char \"gato\")"
       },
       "ocaml": {
-        "code": "let first_char str =\n  if str = \"\" then\n    None\n  else\n    Some (String.get str 0)\n"
+        "code": "let first_char str =\n  if str = \"\" then\n    None\n  else\n    Some (String.get str 0)\nin\nfirst_char \"gato\""
       },
-      "answer": "h"
+      "answer": "g"
     },
     "ejercicio-4": {
-      "description": "Convierte \"hello\" a mayúsculas para título.",
+      "description": "Transformar cadenas. Un cartel usa 'welcome' en mayúsculas. Define una función para convertir a mayúsculas. Evalúa con 'welcome'. Esto muestra cómo transformamos texto funcionalmente.",
       "racket": {
-        "code": "(define (to-upper str)\n  (string-upcase str)\n)"
+        "code": "(define (to-upper str)\n  (string-upcase str)\n)\n(to-upper \"welcome\")"
       },
       "ocaml": {
-        "code": "let to_upper str =\n  String.uppercase_ascii str\n"
+        "code": "let to_upper str =\n  String.uppercase_ascii str\nin\nto_upper \"welcome\""
       },
-      "answer": "HELLO"
+      "answer": "WELCOME"
     },
     "ejercicio-5": {
-      "description": "Verifica si cadena está vacía para input vacío.",
+      "description": "Verificar cadenas. Un formulario comprueba si '' está vacío. Define una función para esto. Evalúa con ''. Esto introduce validaciones de cadenas en funcional.",
       "racket": {
-        "code": "(define (empty-string? str)\n  (string=? str \"\")\n)"
+        "code": "(define (empty-string? str)\n  (string=? str \"\")\n)\n(empty-string? \"\")"
       },
       "ocaml": {
-        "code": "let empty_string str =\n  str = \"\"\n"
+        "code": "let empty_string str =\n  str = \"\"\nin\nempty_string \"\""
       },
       "answer": "true"
     },
     "ejercicio-6": {
-      "description": "Extrae subcadena de \"hello\" desde 1 longitud 3 para abreviatura.",
+      "description": "Extraer subcadenas. Un programador toma 'yth' de 'python' desde la posición 1 con longitud 3. Define una función para esto. Evalúa con 'python', 1, 3. Esto muestra manipulación precisa de cadenas.",
       "racket": {
-        "code": "(define (substring-from str start len)\n  (substring str start (+ start len)\n  )\n)"
+        "code": "(define (substring-from str start len)\n  (substring str start (+ start len))\n)\n(substring-from \"python\" 1 3)"
       },
       "ocaml": {
-        "code": "let substring_from str start len =\n  String.sub str start len\n"
+        "code": "let substring_from str start len =\n  String.sub str start len\nin\nsubstring_from \"python\" 1 3"
       },
-      "answer": "ell"
+      "answer": "yth"
     },
     "ejercicio-7": {
-      "description": "Cuenta vocales en \"hello\" para juego de palabras.",
+      "description": "Contar vocales. Un juego cuenta vocales en 'hello'. Define una función para contar a, e, i, o, u. Evalúa con 'hello'. Esto combina listas y cadenas para procesamiento avanzado.",
       "racket": {
-        "code": "(define (count-vowels str)\n  (length\n    (filter (lambda (c)\n              (member c '(#\\a #\\e #\\i #\\o #\\u))\n            )\n            (string->list str)\n    )\n  )\n)"
+        "code": "(define (count-vowels str)\n  (length\n    (filter (lambda (c)\n              (member c '(#\\a #\\e #\\i #\\o #\\u))\n            )\n            (string->list str))\n  )\n)\n(count-vowels \"hello\")"
       },
       "ocaml": {
-        "code": "let count_vowels str =\n  String.fold_left\n    (fun acc c ->\n       if List.mem c ['a'; 'e'; 'i'; 'o'; 'u'] then\n         acc + 1\n       else\n         acc\n    ) 0 str\n"
+        "code": "let count_vowels str =\n  String.fold_left\n    (fun acc c ->\n       if List.mem c ['a'; 'e'; 'i'; 'o'; 'u'] then\n         acc + 1\n       else\n         acc\n    ) 0 str\nin\ncount_vowels \"hello\""
       },
       "answer": "2"
     }
   },
   "composicion-de-funciones": {
     "ejercicio-1": {
-      "description": "Componer cuadrado después de suma 1 para procesar edad más uno al cuadrado.",
+      "description": "Componer funciones es poderoso. Un demógrafo procesa una edad 5 sumando 1 y elevando al cuadrado. Define una función que componga estas operaciones. Evalúa con 5. Esto introduce composición para combinar cálculos.",
       "racket": {
-        "code": "(define (compose-square-plus-one x)\n  ((compose (lambda (x) (* x x))\n            (lambda (x) (+ x 1))\n   )\n   x\n  )\n)"
+        "code": "(define (compose-square-plus-one x)\n  ((compose (lambda (x) (* x x))\n            (lambda (x) (+ x 1))\n   )\n   x\n  )\n)\n(compose-square-plus-one 5)"
       },
       "ocaml": {
-        "code": "let compose_square_plus_one x =\n  (fun x -> x * x)\n  ((fun x -> x + 1) x)\n"
+        "code": "let compose_square_plus_one x =\n  (fun x -> x * x)\n  ((fun x -> x + 1) x)\nin\ncompose_square_plus_one 5"
+      },
+      "answer": "36"
+    },
+    "ejercicio-2": {
+      "description": "Composición para ajustes. Un salario de 10 dólares se ajusta restando 3 y duplicando. Define una función que componga duplicar después de restar 3. Evalúa con 10. Esto muestra cómo encadenamos transformaciones.",
+      "racket": {
+        "code": "(define (compose-double-minus-three x)\n  ((compose (lambda (x) (* x 2))\n            (lambda (x) (- x 3))\n   )\n   x\n  )\n)\n(compose-double-minus-three 10)"
+      },
+      "ocaml": {
+        "code": "let compose_double_minus_three x =\n  (fun x -> x * 2)\n  ((fun x -> x - 3) x)\nin\ncompose_double_minus_three 10"
+      },
+      "answer": "14"
+    },
+    "ejercicio-3": {
+      "description": "Composición múltiple. Un científico procesa 3: duplica, suma 1, eleva al cuadrado. Define una función que componga estas operaciones. Evalúa con 3. Esto extiende la composición a múltiples pasos.",
+      "racket": {
+        "code": "(define (compose-three x)\n  ((compose (lambda (x) (* x x))\n            (compose (lambda (x) (+ x 1))\n                     (lambda (x) (* x 2))\n            )\n   )\n   x\n  )\n)\n(compose-three 3)"
+      },
+      "ocaml": {
+        "code": "let compose_three x =\n  (fun x -> x * x)\n  ((fun x -> x + 1)\n   ((fun x -> x * 2) x)\n  )\nin\ncompose_three 3"
+      },
+      "answer": "49"
+    },
+    "ejercicio-4": {
+      "description": "Composición con condicionales. Un error de -3 se corrige sumando 5 y tomando el valor absoluto. Define una función que componga estas operaciones. Evalúa con -3. Esto combina lógica y composición.",
+      "racket": {
+        "code": "(define (compose-abs-plus-five x)\n  ((compose (lambda (x)\n              (if (< x 0)\n                  (- x)\n                  x\n              ))\n            (lambda (x) (+ x 5))\n   )\n   x\n  )\n)\n(compose-abs-plus-five -3)"
+      },
+      "ocaml": {
+        "code": "let compose_abs_plus_five x =\n  (fun x ->\n     if x < 0 then\n       -x\n     else\n       x\n  )\n  ((fun x -> x + 5) x)\nin\ncompose_abs_plus_five (-3)"
+      },
+      "answer": "2"
+    },
+    "ejercicio-5": {
+      "description": "Ajustes compuestos. Un bono de 4 dólares se calcula restando 1 y triplicando. Define una función que componga triplicar después de restar 1. Evalúa con 4. Esto refuerza la composición para transformaciones.",
+      "racket": {
+        "code": "(define (compose-triple-minus-one x)\n  ((compose (lambda (x) (* x 3))\n            (lambda (x) (- x 1))\n   )\n   x\n  )\n)\n(compose-triple-minus-one 4)"
+      },
+      "ocaml": {
+        "code": "let compose_triple_minus_one x =\n  (fun x -> x * 3)\n  ((fun x -> x - 1) x)\nin\ncompose_triple_minus_one 4"
       },
       "answer": "9"
     },
-    "ejercicio-2": {
-      "description": "Duplicar después de restar 3 para ajustar salario.",
-      "racket": {
-        "code": "(define (compose-double-minus-three x)\n  ((compose (lambda (x) (* x 2))\n            (lambda (x) (- x 3))\n   )\n   x\n  )\n)"
-      },
-      "ocaml": {
-        "code": "let compose_double_minus_three x =\n  (fun x -> x * 2)\n  ((fun x -> x - 3) x)\n"
-      },
-      "answer": "4"
-    },
-    "ejercicio-3": {
-      "description": "Componer cuadrado, suma 1, duplicar para procesar datos en cadena.",
-      "racket": {
-        "code": "(define (compose-three x)\n  ((compose (lambda (x) (* x x))\n            (compose (lambda (x) (+ x 1))\n                     (lambda (x) (* x 2))\n            )\n   )\n   x\n  )\n)"
-      },
-      "ocaml": {
-        "code": "let compose_three x =\n  (fun x -> x * x)\n  ((fun x -> x + 1)\n   ((fun x -> x * 2) x)\n  )\n"
-      },
-      "answer": "25"
-    },
-    "ejercicio-4": {
-      "description": "Absoluto después de suma 5 para distancias ajustadas.",
-      "racket": {
-        "code": "(define (compose-abs-plus-five x)\n  ((compose (lambda (x)\n              (if (< x 0)\n                  (- x)\n                  x\n              )\n            )\n            (lambda (x) (+ x 5))\n   )\n   x\n  )\n)"
-      },
-      "ocaml": {
-        "code": "let compose_abs_plus_five x =\n  (fun x ->\n     if x < 0 then\n       -x\n     else\n       x\n  )\n  ((fun x -> x + 5) x)\n"
-      },
-      "answer": "8"
-    },
-    "ejercicio-5": {
-      "description": "Triplicar después de restar 1 para cálculo de bonos.",
-      "racket": {
-        "code": "(define (compose-triple-minus-one x)\n  ((compose (lambda (x) (* x 3))\n            (lambda (x) (- x 1))\n   )\n   x\n  )\n)"
-      },
-      "ocaml": {
-        "code": "let compose_triple_minus_one x =\n  (fun x -> x * 3)\n  ((fun x -> x - 1) x)\n"
-      },
-      "answer": "6"
-    },
     "ejercicio-6": {
-      "description": "Par después de cuadrado para verificar propiedades matemáticas.",
+      "description": "Composición con lógica. Un matemático verifica si el cuadrado de 3 es par. Define una función que componga paridad después de elevar al cuadrado. Evalúa con 3. Esto muestra composición con resultados booleanos.",
       "racket": {
-        "code": "(define (compose-square-even x)\n  ((compose (lambda (x) (= (remainder x 2) 0))\n            (lambda (x) (* x x))\n   )\n   x\n  )\n)"
+        "code": "(define (compose-square-even x)\n  ((compose (lambda (x) (= (remainder x 2) 0))\n            (lambda (x) (* x x))\n   )\n   x\n  )\n)\n(compose-square-even 3)"
       },
       "ocaml": {
-        "code": "let compose_square_even x =\n  (fun x -> x mod 2 = 0)\n  ((fun x -> x * x) x)\n"
+        "code": "let compose_square_even x =\n  (fun x -> x mod 2 = 0)\n  ((fun x -> x * x) x)\nin\ncompose_square_even 3"
       },
       "answer": "true"
     },
     "ejercicio-7": {
-      "description": "Duplicar después de absoluto para procesar errores.",
+      "description": "Corrección compuesta. Un error de -4 se corrige tomando el valor absoluto y duplicando. Define una función que componga duplicar después del valor absoluto. Evalúa con -4. Esto combina condicionales y composición.",
       "racket": {
-        "code": "(define (compose-double-abs x)\n  ((compose (lambda (x) (* x 2))\n            (lambda (x)\n              (if (< x 0)\n                  (- x)\n                  x\n              )\n            )\n   )\n   x\n  )\n)"
+        "code": "(define (compose-double-abs x)\n  ((compose (lambda (x) (* x 2))\n            (lambda (x)\n              (if (< x 0)\n                  (- x)\n                  x\n              ))\n   )\n   x\n  )\n)\n(compose-double-abs -4)"
       },
       "ocaml": {
-        "code": "let compose_double_abs x =\n  (fun x -> x * 2)\n  ((fun x ->\n      if x < 0 then\n        -x\n      else\n        x\n   ) x)\n"
+        "code": "let compose_double_abs x =\n  (fun x -> x * 2)\n  ((fun x ->\n      if x < 0 then\n        -x\n      else\n        x\n   ) x)\nin\ncompose_double_abs (-4)"
       },
-      "answer": "6"
+      "answer": "8"
     }
   },
   "procesamiento-listas": {
     "ejercicio-1": {
-      "description": "Suma elementos de lista '(1 2 3)' para total de ventas diarias.",
+      "description": "Procesar listas es clave en funcional. Un comerciante suma ventas (2 3 4). Define una función recursiva para sumar todos los elementos. Evalúa con (2 3 4). Esto combina listas y recursión para cálculos acumulados.",
       "racket": {
-        "code": "(define (sum-list lst)\n  (if (empty? lst)\n      0\n      (+ (first lst)\n         (sum-list (rest lst))\n      )\n  )\n)"
+        "code": "(define (sum-list lst)\n  (if (empty? lst)\n      0\n      (+ (first lst)\n         (sum-list (rest lst)))\n  )\n)\n(sum-list '(2 3 4))"
       },
       "ocaml": {
-        "code": "let rec sum_list lst =\n  if lst = [] then\n    0\n  else\n    List.hd lst + sum_list (List.tl lst)\n"
+        "code": "let rec sum_list lst =\n  if lst = [] then\n    0\n  else\n    List.hd lst + sum_list (List.tl lst)\nin\nsum_list [2; 3; 4]"
       },
-      "answer": "6"
+      "answer": "9"
     },
     "ejercicio-2": {
-      "description": "Triplica '(1 2 3)' para escalar recetas.",
+      "description": "Transformar listas. Un chef triplica ingredientes (1 2 3). Define una función con map para multiplicar por 3. Evalúa con (1 2 3). Esto muestra cómo map aplica transformaciones a listas enteras.",
       "racket": {
-        "code": "(define (triple-list lst)\n  (map (lambda (x) (* x 3))\n       lst\n  )\n)"
+        "code": "(define (triple-list lst)\n  (map (lambda (x) (* x 3))\n       lst\n  )\n)\n(triple-list '(1 2 3))"
       },
       "ocaml": {
-        "code": "let triple_list lst =\n  List.map (fun x -> x * 3) lst\n"
+        "code": "let triple_list lst =\n  List.map (fun x -> x * 3) lst\nin\ntriple_list [1; 2; 3]"
       },
       "answer": "(3 6 9)"
     },
     "ejercicio-3": {
-      "description": "Filtra impares de '(1 2 3 4)' para números de lotería.",
+      "description": "Filtrar listas. Un sorteo selecciona números impares de (1 2 3 4). Define una función con filter para impares. Evalúa con (1 2 3 4). Esto introduce filtrado para subconjuntos específicos.",
       "racket": {
-        "code": "(define (odd-numbers lst)\n  (filter (lambda (x) (= (remainder x 2) 1))\n          lst\n  )\n)"
+        "code": "(define (odd-numbers lst)\n  (filter (lambda (x) (= (remainder x 2) 1))\n          lst\n  )\n)\n(odd-numbers '(1 2 3 4))"
       },
       "ocaml": {
-        "code": "let odd_numbers lst =\n  List.filter (fun x -> x mod 2 = 1) lst\n"
+        "code": "let odd_numbers lst =\n  List.filter (fun x -> x mod 2 = 1) lst\nin\nodd_numbers [1; 2; 3; 4]"
       },
       "answer": "(1 3)"
     },
     "ejercicio-4": {
-      "description": "Invierte '(1 2 3)' para orden inverso en pila.",
+      "description": "Invertir listas. Un sistema prioriza tareas recientes invirtiendo (1 2 3). Define una función recursiva para invertir. Evalúa con (1 2 3). Esto muestra cómo manipulamos el orden de listas.",
       "racket": {
-        "code": "(define (reverse-list lst)\n  (if (empty? lst)\n      '()\n      (append (reverse-list (rest lst))\n              (list (first lst))\n      )\n  )\n)"
+        "code": "(define (reverse-list lst)\n  (if (empty? lst)\n      null\n      (append (reverse-list (rest lst))\n              (list (first lst)))\n  )\n)\n(reverse-list '(1 2 3))"
       },
       "ocaml": {
-        "code": "let rec reverse_list lst =\n  if lst = [] then\n    []\n  else\n    reverse_list (List.tl lst) @ [List.hd lst]\n"
+        "code": "let rec reverse_list lst =\n  if lst = [] then\n    []\n  else\n    reverse_list (List.tl lst) @ [List.hd lst]\nin\nreverse_list [1; 2; 3]"
       },
       "answer": "(3 2 1)"
     },
     "ejercicio-5": {
-      "description": "Cuadrados de pares en '(1 2 3 4)' para áreas even.",
+      "description": "Acumulación con fold. Una tienda suma ventas (10 20 30). Define una función con foldl para sumar. Evalúa con (10 20 30). Esto introduce fold para acumulaciones en listas.",
       "racket": {
-        "code": "(define (square-evens lst)\n  (map (lambda (x) (* x x))\n       (filter (lambda (x) (= (remainder x 2) 0))\n               lst\n       )\n  )\n)"
+        "code": "(define (sum-fold lst)\n  (foldl + 0 lst)\n)\n(sum-fold '(10 20 30))"
       },
       "ocaml": {
-        "code": "let square_evens lst =\n  List.map (fun x -> x * x)\n           (List.filter (fun x -> x mod 2 = 0) lst)\n"
+        "code": "let sum_fold lst =\n  List.fold_left (+) 0 lst\nin\nsum_fold [10; 20; 30]"
       },
-      "answer": "(4 16)"
+      "answer": "60"
     },
     "ejercicio-6": {
-      "description": "Cuenta mayores que 5 en '(3 6 2 7)' para aprobados.",
+      "description": "Filtrar booleanos. Un organizador selecciona tareas completadas (true false true). Define una función con filter para valores true. Evalúa con (true false true). Esto muestra filtrado de booleanos.",
       "racket": {
-        "code": "(define (count-greater-five lst)\n  (if (empty? lst)\n      0\n      (+ (if (> (first lst) 5)\n             1\n             0\n         )\n         (count-greater-five (rest lst))\n      )\n  )\n)"
+        "code": "(define (true-values lst)\n  (filter (lambda (x) x) lst)\n)\n(true-values '(#t #f #t))"
       },
       "ocaml": {
-        "code": "let rec count_greater_five lst =\n  if lst = [] then\n    0\n  else\n    (if List.hd lst > 5 then 1 else 0) +\n    count_greater_five (List.tl lst)\n"
+        "code": "let true_values lst =\n  List.filter (fun x -> x) lst\nin\ntrue_values [true; false; true]"
       },
-      "answer": "2"
+      "answer": "(true true)"
     },
     "ejercicio-7": {
-      "description": "Cubos de mayores que 3 en '(1 2 4 5)' para volúmenes grandes.",
+      "description": "Transformaciones masivas. Un analista multiplica precios (2 3 4) por 10. Define una función con map para multiplicar por 10. Evalúa con (2 3 4). Esto refuerza map para ajustes en listas.",
       "racket": {
-        "code": "(define (cube-greater-three lst)\n  (map (lambda (x) (* x x x))\n       (filter (lambda (x) (> x 3))\n               lst\n       )\n  )\n)"
+        "code": "(define (times-ten lst)\n  (map (lambda (x) (* x 10))\n       lst\n  )\n)\n(times-ten '(2 3 4))"
       },
       "ocaml": {
-        "code": "let cube_greater_three lst =\n  List.map (fun x -> x * x * x)\n           (List.filter (fun x -> x > 3) lst)\n"
+        "code": "let times_ten lst =\n  List.map (fun x -> x * 10) lst\nin\ntimes_ten [2; 3; 4]"
       },
-      "answer": "(64 125)"
+      "answer": "(20 30 40)"
     }
   }
 }
