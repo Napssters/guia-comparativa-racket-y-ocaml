@@ -6,12 +6,17 @@ import { CommonModule } from '@angular/common';
 import { NgClass } from '@angular/common';
 import { CodeEditorComponent } from '../../shared/components/code-editor/code-editor.component';
 import { DocumentacionComponent } from '../../shared/components/documentacion/documentacion.component';
+import { ComparadorComponent } from '../../shared/components/comparador/comparador.component';
 
 @Component({
   selector: 'app-modulo',
   templateUrl: './modulo.component.html',
   styleUrls: ['./modulo.component.css'],
-  imports: [RouterModule, CommonModule, NgClass, CodeEditorComponent, DocumentacionComponent],
+  imports: [
+    RouterModule, CommonModule, NgClass,
+    CodeEditorComponent, DocumentacionComponent,
+    ComparadorComponent
+  ],
   standalone: true
 })
 export class ModuloComponent implements OnInit {
