@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { NgClass } from '@angular/common';
 import { CodeEditorComponent } from '../../shared/components/code-editor/code-editor.component';
 import { DocumentacionComponent } from '../../shared/components/documentacion/documentacion.component';
 import { ComparadorComponent } from '../../shared/components/comparador/comparador.component';
+
 
 @Component({
   selector: 'app-modulo',
@@ -20,6 +21,7 @@ import { ComparadorComponent } from '../../shared/components/comparador/comparad
   standalone: true
 })
 export class ModuloComponent implements OnInit {
+  @ViewChild(ComparadorComponent) comparadorComp?: ComparadorComponent;
   modulos: any[] = [];
   moduloActualIndex: number = 0;
   // Debugger/Comparador línea a línea
@@ -28,14 +30,6 @@ export class ModuloComponent implements OnInit {
   lineaActualIndex: number = 0;
   lineaActual: any = null;
   totalLineas: number = 0;
-  cambiarEjercicio(direccion: number) {
-    const idx = this.ejerciciosKeys.indexOf(this.ejercicioSeleccionado);
-    const nuevoIdx = idx + direccion;
-    if (nuevoIdx >= 0 && nuevoIdx < this.ejerciciosKeys.length) {
-      this.seleccionarEjercicio(this.ejerciciosKeys[nuevoIdx]);
-    }
-  }
-  // Propiedades y métodos de la clase Angular
   moduloKey: string = '';
   ejercicios: { [key: string]: any } = {};
   ejerciciosKeys: string[] = [];
@@ -47,6 +41,14 @@ export class ModuloComponent implements OnInit {
   mostrarBotonOcaml: boolean = false;
   mostrarComparador: boolean = false;
   answer: string = '';
+
+  cambiarEjercicio(direccion: number) {
+    const idx = this.ejerciciosKeys.indexOf(this.ejercicioSeleccionado);
+    const nuevoIdx = idx + direccion;
+    if (nuevoIdx >= 0 && nuevoIdx < this.ejerciciosKeys.length) {
+      this.seleccionarEjercicio(this.ejerciciosKeys[nuevoIdx]);
+    }
+  }
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     // Cargar módulos para navegación
@@ -120,17 +122,18 @@ export class ModuloComponent implements OnInit {
     this.ocamlCode = ejercicio?.ocaml?.code || '';
     this.mostrarBotonOcaml = true;
     this.mostrarComparador = true;
-    // Reiniciar debugger al mostrar comparador
+    if (!this.debugReady) return;
+    // Reinicia el índice y muestra la primera línea
     this.lineaActualIndex = 0;
     this.actualizarLineaComparacion();
   }
 
   avanzarLineaComparacion() {
     if (!this.debugReady) return;
-    // Avanza a la siguiente línea si hay más
+    // Mostrar la línea actual y luego avanzar el índice para la próxima vez
+    this.actualizarLineaComparacion();
     if (this.lineaActualIndex + 1 < this.totalLineas) {
       this.lineaActualIndex++;
-      this.actualizarLineaComparacion();
     }
   }
 

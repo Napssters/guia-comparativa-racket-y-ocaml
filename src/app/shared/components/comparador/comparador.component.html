@@ -2,7 +2,7 @@
   <div class="relative group">
     <button
       class="rounded-full w-12 h-12 flex items-center justify-center bg-[#3e5aa9] hover:bg-[#ec690d] text-white shadow-lg transition group focus:outline-none"
-      type="button" aria-label="Comparar">
+      type="button" aria-label="Comparar" (click)="mostrarToastYAvanzar()">
       <!-- Bug PNG icon -->
       <img src="assets/img/bug.png" alt="debug bug" class="w-7 h-7" />
     </button>
@@ -10,5 +10,19 @@
       class="absolute left-1/2 -translate-x-1/2 -top-10 bg-gray-900 text-white text-xs rounded px-3 py-1 opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-10 shadow-lg">
       Comparar
     </span>
+    <!-- Toast visual -->
+    <div *ngIf="showToast" class="fixed top-8 left-1/2 -translate-x-1/2 z-50">
+      <div class="bg-[#3e5aa9] text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in-out min-w-[320px] relative">
+        <button (click)="cerrarToast()" class="absolute top-2 right-2 text-white hover:text-[#ec690d] text-xl font-bold focus:outline-none" aria-label="Cerrar">&times;</button>
+        <div class="font-bold mb-1">Comparación actual:</div>
+        <div>
+          <div><span class="font-semibold">Racket:</span> {{ lineaRacket }}</div>
+          <div><span class="font-semibold">OCaml:</span> {{ lineaOcaml }}</div>
+          <div><span class="font-semibold">Explicación Racket:</span> {{ explanationRacket }}</div>
+          <div><span class="font-semibold">Explicación OCaml:</span> {{ explanationOcaml }}</div>
+          <div><span class="font-semibold">Comparación:</span> {{ comparison }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
