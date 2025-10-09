@@ -54,8 +54,4 @@ export class CodeEditorComponent implements AfterViewInit {
       this.output = '';
     }
   }
-
-  comparar() {
-    // TODO: Implementar lógica de comparación
-  }
 }

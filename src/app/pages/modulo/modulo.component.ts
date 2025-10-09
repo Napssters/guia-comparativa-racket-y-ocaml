@@ -39,6 +39,7 @@ export class ModuloComponent implements OnInit {
   racketCode: string = '';
   ocamlCode: string = '';
   mostrarBotonOcaml: boolean = false;
+  mostrarComparador: boolean = false;
   answer: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
@@ -55,6 +56,7 @@ export class ModuloComponent implements OnInit {
       this.moduloActualIndex = nuevoIdx;
       const page = this.modulos[nuevoIdx].page;
       if (page) {
+        this.mostrarComparador = false;
         this.router.navigate(['/' + page]);
       }
     }
@@ -63,6 +65,7 @@ export class ModuloComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.moduloKey = params.get('modulo') || '';
+      this.mostrarComparador = false;
       // Sincroniza el índice del módulo actual según la ruta
       if (this.modulos && this.modulos.length > 0) {
         const idx = this.modulos.findIndex((m: any) => m.page === this.moduloKey);
@@ -103,6 +106,7 @@ export class ModuloComponent implements OnInit {
   seleccionarEjercicio(key: string) {
     this.ejercicioSeleccionado = key;
     this.actualizarEjercicio();
+    this.mostrarComparador = false;
   }
 
   actualizarEjercicio() {
@@ -118,6 +122,7 @@ export class ModuloComponent implements OnInit {
     const ejercicio = this.ejercicios[this.ejercicioSeleccionado];
     this.ocamlCode = ejercicio?.ocaml?.code || '';
     this.mostrarBotonOcaml = true;
+    this.mostrarComparador = true;
   }
 
 

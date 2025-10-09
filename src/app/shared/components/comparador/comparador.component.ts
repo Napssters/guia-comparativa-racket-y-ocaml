@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-comparador',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comparador.component.css']
 })
 export class ComparadorComponent implements OnInit {
+  @Input() lineaRacket: string = '';
+  @Input() lineaOcaml: string = '';
+  @Input() explanationRacket: string = '';
+  @Input() explanationOcaml: string = '';
+  @Input() comparison: string = '';
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }

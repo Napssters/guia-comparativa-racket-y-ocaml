@@ -1,3 +1,14 @@
-<p>
-  comparador works!
-</p>
+<div class="flex items-center justify-center">
+  <div class="relative group">
+    <button
+      class="rounded-full w-12 h-12 flex items-center justify-center bg-[#3e5aa9] hover:bg-[#ec690d] text-white shadow-lg transition group focus:outline-none"
+      type="button" aria-label="Comparar">
+      <!-- Bug PNG icon -->
+      <img src="assets/img/bug.png" alt="debug bug" class="w-7 h-7" />
+    </button>
+    <span
+      class="absolute left-1/2 -translate-x-1/2 -top-10 bg-gray-900 text-white text-xs rounded px-3 py-1 opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-10 shadow-lg">
+      Comparar
+    </span>
+  </div>
+</div>
