@@ -22,6 +22,12 @@ import { ComparadorComponent } from '../../shared/components/comparador/comparad
 export class ModuloComponent implements OnInit {
   modulos: any[] = [];
   moduloActualIndex: number = 0;
+  // Debugger/Comparador línea a línea
+  comparacionData: any = null;
+  debugReady: boolean = false;
+  lineaActualIndex: number = 0;
+  lineaActual: any = null;
+  totalLineas: number = 0;
   cambiarEjercicio(direccion: number) {
     const idx = this.ejerciciosKeys.indexOf(this.ejercicioSeleccionado);
     const nuevoIdx = idx + direccion;
@@ -48,19 +54,14 @@ export class ModuloComponent implements OnInit {
       this.modulos = data;
       // El índice se actualizará en ngOnInit
     });
+    // Cargar comparacion.json para el debugger
+    this.http.get<any>('assets/json-base/comparacion.json').subscribe(data => {
+      this.comparacionData = data;
+      this.debugReady = true;
+    });
   }
 
-  cambiarModulo(direccion: number) {
-    const nuevoIdx = this.moduloActualIndex + direccion;
-    if (nuevoIdx >= 0 && nuevoIdx < this.modulos.length) {
-      this.moduloActualIndex = nuevoIdx;
-      const page = this.modulos[nuevoIdx].page;
-      if (page) {
-        this.mostrarComparador = false;
-        this.router.navigate(['/' + page]);
-      }
-    }
-  }
+  // cambiarModulo redefinido más abajo con lógica de debugger
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -103,11 +104,7 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  seleccionarEjercicio(key: string) {
-    this.ejercicioSeleccionado = key;
-    this.actualizarEjercicio();
-    this.mostrarComparador = false;
-  }
+  // seleccionarEjercicio redefinido más abajo con lógica de debugger
 
   actualizarEjercicio() {
     const ejercicio = this.ejercicios[this.ejercicioSeleccionado];
@@ -123,6 +120,87 @@ export class ModuloComponent implements OnInit {
     this.ocamlCode = ejercicio?.ocaml?.code || '';
     this.mostrarBotonOcaml = true;
     this.mostrarComparador = true;
+    // Reiniciar debugger al mostrar comparador
+    this.lineaActualIndex = 0;
+    this.actualizarLineaComparacion();
+  }
+
+  avanzarLineaComparacion() {
+    if (!this.debugReady) return;
+    // Avanza a la siguiente línea si hay más
+    if (this.lineaActualIndex + 1 < this.totalLineas) {
+      this.lineaActualIndex++;
+      this.actualizarLineaComparacion();
+    }
+  }
+
+  actualizarLineaComparacion() {
+    // Busca el objeto de comparación según el módulo y ejercicio
+    if (!this.comparacionData || !this.moduloKey || !this.ejercicioSeleccionado) {
+      this.lineaActual = null;
+      this.totalLineas = 0;
+      return;
+    }
+    const moduloObj = this.comparacionData[this.moduloKey];
+    if (!moduloObj) {
+      this.lineaActual = null;
+      this.totalLineas = 0;
+      return;
+    }
+    const ejercicioObj = moduloObj[this.ejercicioSeleccionado];
+    if (!ejercicioObj) {
+      this.lineaActual = null;
+      this.totalLineas = 0;
+      return;
+    }
+    // Se asume que las líneas están alineadas por índice
+    const linesRacket = ejercicioObj.racket?.lines || [];
+    const linesOcaml = ejercicioObj.ocaml?.lines || [];
+    const explanationsRacket = ejercicioObj.explanations_racket || [];
+    const explanationsOcaml = ejercicioObj.explanations_ocaml || [];
+    const comparisons = ejercicioObj.comparisons || [];
+    this.totalLineas = Math.max(
+      linesRacket.length,
+      linesOcaml.length,
+      explanationsRacket.length,
+      explanationsOcaml.length,
+      comparisons.length
+    );
+    // Proteger el índice
+    if (this.lineaActualIndex >= this.totalLineas) {
+      this.lineaActualIndex = this.totalLineas - 1;
+    }
+    this.lineaActual = {
+      lineaRacket: linesRacket[this.lineaActualIndex] || '',
+      lineaOcaml: linesOcaml[this.lineaActualIndex] || '',
+      explanationRacket: explanationsRacket[this.lineaActualIndex] || '',
+      explanationOcaml: explanationsOcaml[this.lineaActualIndex] || '',
+      comparison: comparisons[this.lineaActualIndex] || ''
+    };
+  }
+
+  // Cuando se cambia de ejercicio, reiniciar debugger
+  seleccionarEjercicio(key: string) {
+    this.ejercicioSeleccionado = key;
+    this.actualizarEjercicio();
+    this.mostrarComparador = false;
+    this.lineaActualIndex = 0;
+    this.actualizarLineaComparacion();
+  }
+
+  // Si se cambia de módulo, reiniciar debugger
+  cambiarModulo(direccion: number) {
+    const nuevoIdx = this.moduloActualIndex + direccion;
+    if (nuevoIdx >= 0 && nuevoIdx < this.modulos.length) {
+      this.moduloActualIndex = nuevoIdx;
+      const page = this.modulos[nuevoIdx].page;
+      if (page) {
+        this.mostrarComparador = false;
+        this.router.navigate(['/' + page]);
+        this.lineaActualIndex = 0;
+        this.actualizarLineaComparacion();
+      }
+    }
   }
 
 
