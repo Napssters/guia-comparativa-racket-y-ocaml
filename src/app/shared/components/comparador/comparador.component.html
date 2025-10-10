@@ -2,27 +2,39 @@
   <div class="relative group">
     <button
       class="rounded-full w-12 h-12 flex items-center justify-center bg-[#3e5aa9] hover:bg-[#ec690d] text-white shadow-lg transition group focus:outline-none"
-      type="button" aria-label="Comparar" (click)="mostrarToastYAvanzar()">
-      <!-- Bug PNG icon -->
+      type="button" aria-label="Comparar" (click)="abrirModal()">
       <img src="assets/img/bug.png" alt="debug bug" class="w-7 h-7" />
     </button>
     <span
       class="absolute left-1/2 -translate-x-1/2 -top-10 bg-gray-900 text-white text-xs rounded px-3 py-1 opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-10 shadow-lg">
       Comparar
     </span>
-    <!-- Toast visual -->
-    <div *ngIf="showToast" class="fixed top-8 left-1/2 -translate-x-1/2 z-50">
-      <div class="bg-[#3e5aa9] text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in-out min-w-[320px] relative">
-        <button (click)="cerrarToast()" class="absolute top-2 right-2 text-white hover:text-[#ec690d] text-xl font-bold focus:outline-none" aria-label="Cerrar">&times;</button>
-        <div class="font-bold mb-1">Comparación actual:</div>
-        <div>
-          <div><span class="font-semibold">Racket:</span> {{ lineaRacket }}</div>
-          <div><span class="font-semibold">OCaml:</span> {{ lineaOcaml }}</div>
-          <div><span class="font-semibold">Explicación Racket:</span> {{ explanationRacket }}</div>
-          <div><span class="font-semibold">Explicación OCaml:</span> {{ explanationOcaml }}</div>
-          <div><span class="font-semibold">Comparación:</span> {{ comparison }}</div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
+
+<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center glass-overlay overflow-y-auto p-2">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-4xl w-full relative max-h-[98vh] overflow-y-auto">
+  <button (click)="cerrarModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-[#3e5aa9] hover:bg-[#ec690d] text-white transition" aria-label="Cerrar modal">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <app-code-editor [label]="'Racket'" [language]="'scheme'" [code]="racketLines" [answer]="answer" [disabled]="true" [highlightLine]="highlightLineRacket" [showRunButton]="false" [showOutput]="mostrarOutput" [enableHighlight]="true"></app-code-editor>
+  <app-code-editor [label]="'OCaml'" [language]="'ocaml'" [code]="ocamlLines" [answer]="answer" [showRunButton]="false" [disabled]="true" [highlightLine]="highlightLineOcaml" [showOutput]="mostrarOutput" [enableHighlight]="true"></app-code-editor>
+    </div>
+  <div class="sticky bottom-0 left-0 w-full flex justify-center items-center z-50 -mt-2">
+      <button (click)="cambiarLinea(-1)" [disabled]="highlightLineRacket <= 0" class="mx-2 rounded-full w-12 h-12 flex items-center justify-center bg-[#3e5aa9] hover:bg-[#ec690d] text-white shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+  <span class="mx-4 font-bold text-lg text-[#3e5aa9] flex items-center h-12">Línea {{ highlightLineRacket + 1 }}</span>
+      <button (click)="cambiarLinea(1)" [disabled]="highlightLineRacket >= maxLineRacket - 1" class="mx-2 rounded-full w-12 h-12 flex items-center justify-center bg-[#3e5aa9] hover:bg-[#ec690d] text-white shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+    </div>
+  </div>

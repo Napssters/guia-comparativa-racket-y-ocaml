@@ -68,15 +68,8 @@
           Convertir a OCaml
         </span>
       </div>
-      <div class="mt-0 sm:mt-1 w-auto sm:w-full flex flex-col items-center justify-center" *ngIf="mostrarComparador">
-        <app-comparador
-          [lineaRacket]="lineaActual?.lineaRacket || ''"
-          [lineaOcaml]="lineaActual?.lineaOcaml || ''"
-          [explanationRacket]="lineaActual?.explanationRacket || ''"
-          [explanationOcaml]="lineaActual?.explanationOcaml || ''"
-          [comparison]="lineaActual?.comparison || ''"
-          (avanzarLinea)="avanzarLineaComparacion()"
-        ></app-comparador>
+      <div class="mt-0 sm:mt-1 w-auto sm:w-full flex justify-center" *ngIf="mostrarComparador">
+        <app-comparador [modulo]="moduloKey" [ejercicio]="ejercicioSeleccionado" [answer]="answer"></app-comparador>
       </div>
     </div>
     <app-code-editor [label]="'OCaml'" [language]="'ocaml'" [code]="ocamlCode" [answer]="answer"

@@ -1,1 +1,5 @@
+/* Forzar cursor pointer en todo el editor y sus hijos */
+.ace_editor, .ace_content, .ace_text-input, .ace_scroller, .ace_layer {
+	cursor: pointer !important;
+}
 
