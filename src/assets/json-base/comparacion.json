@@ -1,25 +1,25 @@
 {
   "paradigma-funcional": {
     "ejercicio-1": {
-      "title": "Calcular área de un cuadrado",
+      "title": "Sumar distancias de un viaje",
       "racket": {
-        "lines": ["(* 4 4)"]
+        "lines": ["(+ 5 3)"]
       },
       "ocaml": {
-        "lines": ["4 * 4"]
+        "lines": ["5 + 3"]
       },
       "explanations_racket": [
-        "Esta línea calcula el área de un cuadrado de lado 4 metros multiplicando 4 por 4 usando la función primitiva '*'. En Racket, todas las operaciones se escriben en notación prefija, con paréntesis que delimitan la expresión completa. Esto refleja el paradigma funcional, donde las expresiones producen un valor sin efectos secundarios, como imaginar que calculas el área de un jardín sin modificar su diseño. La elección de 4 y 4 es un ejemplo simple para enseñar multiplicación básica a principiantes, garantizando un resultado predecible (16)."
+        "Esta línea calcula la distancia total de un viaje sumando 5 km y 3 km usando la función primitiva '+'. En Racket, la notación prefija (+ 5 3) con paréntesis explicita que la suma es una operación funcional pura, que siempre produce el mismo resultado sin modificar estado. Este ejemplo es ideal para principiantes, como planificar un camino combinando tramos, mostrando cómo las expresiones simples resuelven problemas reales con determinismo. El resultado es 8."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula el área de un cuadrado de lado 4 metros usando el operador '*' para multiplicar 4 por 4. En OCaml, las operaciones aritméticas usan notación infija, similar a la matemática tradicional, lo que las hace más intuitivas para principiantes. Como en el paradigma funcional, esta expresión es pura: siempre produce 16 sin cambiar estado. El uso de 4 y 4 es un caso simple para introducir aritmética sin necesidad de variables o funciones, enfatizando la inmutabilidad."
+        "Esta línea calcula la distancia total de un viaje sumando 5 km y 3 km usando el operador '+'. En OCaml, la notación infija (5 + 3) es natural, como en matemáticas básicas, lo que facilita la comprensión. Como expresión funcional pura, siempre retorna 8 sin efectos secundarios. El contexto de un viaje ayuda a principiantes a ver cómo la suma modela escenarios prácticos, enfatizando la inmutabilidad y predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan 4 * 4 para obtener el área (16), siguiendo el principio funcional de expresiones puras que no modifican estado. Ambas usan operadores primitivos de multiplicación y valores fijos para un ejemplo introductorio. Diferencias: Racket usa notación prefija con paréntesis (* 4 4), lo que explicita la aplicación de la función, alineándose con la filosofía de Lisp de tratar todo como listas. OCaml usa notación infija (4 * 4), más cercana a la escritura matemática, lo que reduce la verbosidad y mejora la legibilidad para principiantes. Además, OCaml tiene tipado estático implícito (sabe que 4 es entero), mientras que Racket es dinámico, pero esto no afecta esta línea simple."
+        "Similitudes: Ambas líneas suman 5 + 3 para obtener 8, siguiendo el principio funcional de pureza y determinismo. Ambas usan operadores primitivos de suma para un ejemplo introductorio. Diferencias: Racket usa notación prefija (+ 5 3) con paréntesis, enfatizando que '+' es una función, lo que es explícito pero verboso. OCaml usa notación infija (5 + 3), más concisa y similar a la matemática estándar, mejorando la legibilidad. El tipado dinámico de Racket permite flexibilidad, mientras que OCaml infiere tipos enteros, aunque esto no afecta el resultado."
       ]
     },
     "ejercicio-2": {
-      "title": "Verificar si un número es impar",
+      "title": "Verificar paridad con resto",
       "racket": {
         "lines": ["(remainder 7 2)"]
       },
@@ -27,231 +27,231 @@
         "lines": ["7 mod 2"]
       },
       "explanations_racket": [
-        "Esta línea usa la función primitiva 'remainder' para calcular el resto de dividir 7 entre 2, resultando en 1, lo que indica que 7 es impar. En Racket, 'remainder' es una operación funcional pura que siempre produce el mismo resultado para los mismos argumentos, respetando la inmutabilidad. La notación prefija con paréntesis (remainder 7 2) es típica de Racket, derivada de Lisp, y ayuda a principiantes a entender que las operaciones son funciones. Este ejemplo introduce el concepto de módulo para verificar propiedades numéricas, como imaginar si un número de sillas deja una sobrante al dividirlas en pares."
+        "Esta línea calcula el resto de dividir 7 por 2 usando 'remainder', resultando en 1, lo que indica que 7 es impar. En Racket, 'remainder' es una operación primitiva pura que siempre da el mismo resultado, respetando la inmutabilidad. La notación prefija (remainder 7 2) ayuda a principiantes a ver las operaciones como funciones, como comprobar si un número de objetos deja sobrantes en grupos de dos. Este ejemplo enseña propiedades numéricas de forma determinista."
       ],
       "explanations_ocaml": [
-        "Esta línea usa el operador 'mod' para calcular el resto de dividir 7 entre 2, dando 1, lo que indica que 7 es impar. En OCaml, 'mod' es un operador infijo, similar a la notación matemática, lo que lo hace intuitivo para principiantes. Como operación funcional, es pura y no altera estado, produciendo siempre el mismo resultado. El ejemplo de 7 mod 2 enseña cómo usar módulo para verificar paridad, como decidir si una cantidad de objetos no se puede dividir equitativamente. El tipado estático de OCaml asegura que los argumentos sean enteros, aunque en este caso no se explicita."
+        "Esta línea calcula el resto de dividir 7 por 2 usando 'mod', dando 1, lo que indica imparidad. En OCaml, 'mod' es un operador infijo intuitivo, similar a matemáticas escolares. Como expresión pura, no altera estado y siempre produce el mismo resultado. El ejemplo enseña a principiantes cómo verificar paridad, como decidir si una cantidad de items no se divide equitativamente, con el tipado estático asegurando operandos enteros."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan el resto de 7 dividido por 2 para verificar si es impar, siguiendo el principio funcional de pureza y determinismo. Ambas usan operaciones primitivas de módulo y el mismo ejemplo (7 y 2) para enseñar paridad. Diferencias: Racket usa la función 'remainder' en notación prefija con paréntesis, enfatizando que las operaciones son aplicaciones de funciones, lo que es explícito pero más verboso. OCaml usa el operador infijo 'mod', que es más conciso y se parece a la matemática estándar, facilitando la lectura. Además, 'remainder' en Racket puede devolver negativos para entradas negativas, mientras que 'mod' en OCaml siempre da no negativos, aunque en este caso (positivos) el comportamiento es idéntico."
+        "Similitudes: Ambas calculan el resto de 7 / 2 para verificar imparidad (1), siguiendo pureza funcional. Ambas usan operadores primitivos para un ejemplo básico. Diferencias: Racket usa 'remainder' prefija con paréntesis, más explícito, mientras que OCaml usa 'mod' infijo, más conciso. 'remainder' puede dar negativos, 'mod' no, pero aquí es idéntico. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-3": {
-      "title": "Calcular costo de cuadernos",
+      "title": "Comparar inventarios con >",
       "racket": {
-        "lines": ["(* 3 5)"]
+        "lines": ["(> 12 8)"]
       },
       "ocaml": {
-        "lines": ["3 * 5"]
+        "lines": ["12 > 8"]
       },
       "explanations_racket": [
-        "Esta línea calcula el costo total de 3 cuadernos a 5 dólares cada uno, usando la función primitiva '*' para multiplicar 3 por 5, dando 15. En Racket, la notación prefija (* 3 5) refuerza que las operaciones son funciones, un concepto clave del paradigma funcional donde cada expresión produce un valor sin efectos secundarios. Este ejemplo es ideal para principiantes, ya que usa números pequeños y un contexto cotidiano (comprar cuadernos), mostrando cómo el cálculo es predecible y puro, como calcular un presupuesto sin cambiar los precios."
+        "Esta línea compara si 12 unidades son mayores que 8 usando '>', retornando #t porque 12 > 8. En Racket, '>' es una función primitiva pura que produce valores booleanos sin efectos secundarios. La notación prefija (> 12 8) ayuda a principiantes a entender las comparaciones como funciones, como verificar si un inventario excede otro en una tienda. Este ejemplo enseña decisiones numéricas de forma determinista."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula el costo de 3 cuadernos a 5 dólares cada uno, usando el operador '*' para multiplicar 3 por 5, resultando en 15. En OCaml, la notación infija (3 * 5) imita la matemática tradicional, haciéndola accesible para principiantes. La expresión es funcionalmente pura, siempre produce 15 y no altera estado, alineándose con el paradigma funcional. El contexto de cuadernos ayuda a entender cómo las operaciones aritméticas se aplican a problemas reales, reforzando la inmutabilidad."
+        "Esta línea compara si 12 unidades son mayores que 8 usando '>', retornando true porque 12 > 8. En OCaml, '>' es un operador infijo intuitivo, similar a matemáticas. Como expresión pura, siempre da el mismo resultado. El ejemplo enseña a principiantes cómo comparar cantidades, como en un inventario, con el tipado estático asegurando operandos compatibles."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas realizan la misma multiplicación (3 * 5) para calcular un costo, manteniendo pureza funcional y usando valores fijos para un ejemplo claro. Ambas son operaciones primitivas sin necesidad de funciones definidas. Diferencias: Racket usa notación prefija (* 3 5) con paréntesis, destacando que '*' es una función, lo que es más explícito pero requiere más caracteres. OCaml usa notación infija (3 * 5), más compacta y similar a la escritura matemática. El tipado dinámico de Racket permite flexibilidad en los tipos, mientras que OCaml infiere que 3 y 5 son enteros, pero esto no afecta el resultado en este caso simple."
+        "Similitudes: Ambas comparan 12 > 8 para verificar superioridad, retornando #t/true, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '>' prefija con paréntesis, explícito como función, mientras que OCaml usa infijo, más conciso. Racket dinámico, OCaml estático, pero aquí idéntico."
       ]
     },
     "ejercicio-4": {
-      "title": "Sumar etapas de crecimiento",
+      "title": "Dividir ganancias con /",
       "racket": {
-        "lines": ["(+ 1 (+ 1 2))"]
+        "lines": ["(/ 10 2)"]
       },
       "ocaml": {
-        "lines": ["1 + 1 + 2"]
+        "lines": ["10 / 2"]
       },
       "explanations_racket": [
-        "Esta línea calcula la suma de tres etapas de crecimiento (1 + 1 + 2) usando la función primitiva '+' en notación prefija. La expresión anidada (+ 1 (+ 1 2)) indica que primero se suma 1 + 2 y luego se suma 1 al resultado, dando 4. En Racket, los paréntesis explicitan el orden de evaluación, lo que refuerza la claridad en el paradigma funcional, donde las expresiones son deterministas. Este ejemplo simula un proceso biológico (crecimiento) para enseñar cómo combinar operaciones simples en un cálculo puro."
+        "Esta línea divide 10 ganancias entre 2 personas usando '/', resultando en 5. En Racket, '/' es una función primitiva pura que produce valores sin efectos secundarios. La notación prefija (/ 10 2) refuerza que las operaciones son funciones, como repartir equitativamente un premio. Este ejemplo enseña a principiantes división en contextos prácticos, con determinismo."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula la suma de 1 + 1 + 2 usando el operador '+' en notación infija, dando 4. En OCaml, la asociatividad izquierda del operador '+' permite escribir la suma linealmente sin paréntesis, ya que 1 + 1 se evalúa primero, luego se suma 2. Esto refleja la simplicidad de la sintaxis de OCaml y su enfoque funcional, donde la expresión es pura y siempre produce el mismo resultado. El contexto de etapas de crecimiento conecta el cálculo con un escenario real, ideal para principiantes."
+        "Esta línea divide 10 ganancias entre 2 personas usando '/', dando 5. En OCaml, '/' es un operador infijo intuitivo. Como expresión pura, siempre retorna el mismo resultado. El contexto de repartir ganancias muestra cómo la división resuelve distribuciones, con tipado estático asegurando operandos enteros."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas suman los mismos valores (1, 1, 2) para obtener 4, siguiendo el principio funcional de pureza y determinismo. Ambas usan operadores primitivos de suma. Diferencias: Racket requiere paréntesis anidados (+ 1 (+ 1 2)), lo que explicita el orden de evaluación y refleja su herencia Lisp, pero aumenta la verbosidad. OCaml usa notación infija (1 + 1 + 2), más concisa y natural, ya que la asociatividad izquierda elimina paréntesis. Esto refleja la filosofía de Racket de claridad estructural frente a la simplicidad sintáctica de OCaml. El tipado dinámico de Racket contrasta con el estático de OCaml, aunque no afecta este caso."
+        "Similitudes: Ambas dividen 10 / 2 para obtener 5, con pureza funcional. Ambas usan operadores primitivos para un ejemplo básico. Diferencias: Racket usa '/' prefija con paréntesis, explícito, mientras que OCaml usa infijo, conciso. Racket puede retornar fracciones, OCaml división entera, pero aquí idéntico."
       ]
     },
     "ejercicio-5": {
-      "title": "Diferencia respecto a cero",
+      "title": "Verificar igualdad con =",
       "racket": {
-        "lines": ["(- 0 -3)"]
+        "lines": ["(= 5 5)"]
       },
       "ocaml": {
-        "lines": ["0 - (-3)"]
+        "lines": ["5 = 5"]
       },
       "explanations_racket": [
-        "Esta línea calcula la diferencia entre 0 y -3 usando la función primitiva '-', resultando en 3. En Racket, la notación prefija (- 0 -3) indica que se resta -3 de 0, lo que equivale a 0 + 3. Esto introduce el manejo de números negativos en expresiones funcionales puras, donde el resultado es siempre predecible. El contexto (diferencia respecto a cero) es útil para principiantes, como imaginar medir una temperatura relativa a un punto base, sin alterar el sistema."
+        "Esta línea verifica si 5 es igual a 5 usando '=', retornando #t. En Racket, '=' es una función primitiva pura para comparar números. La notación prefija (= 5 5) ayuda a principiantes a ver comparaciones como funciones, como confirmar si dos medidas son iguales. Este ejemplo enseña igualdad de forma determinista."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula 0 - (-3), que resulta en 3, usando el operador '-' en notación infija. En OCaml, los paréntesis alrededor de -3 son necesarios para indicar el número negativo, ya que el operador resta requiere claridad. La expresión es funcionalmente pura, produciendo siempre el mismo resultado sin efectos secundarios. Este ejemplo enseña cómo manejar negativos en un contexto práctico, como calcular una diferencia de temperatura, y es accesible para principiantes por su simplicidad."
+        "Esta línea verifica si 5 es igual a 5 usando '=', retornando true. En OCaml, '=' es un operador infijo intuitivo. Como expresión pura, siempre produce el mismo resultado. El ejemplo de comparar medidas muestra cómo la igualdad resuelve validaciones, con tipado estático."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan 0 - (-3) = 3, usando operaciones de resta primitivas y manteniendo pureza funcional. Ambas introducen el manejo de números negativos. Diferencias: Racket usa notación prefija (- 0 -3) sin necesidad de paréntesis para el negativo, ya que el operador '-' distingue claramente entre resta y negación. OCaml requiere paréntesis (0 - (-3)) para evitar ambigüedad en la notación infija, lo que añade un carácter extra pero es más intuitivo para quienes conocen matemáticas tradicionales. El tipado estático de OCaml asegura que los operandos sean enteros, mientras que Racket es más flexible."
+        "Similitudes: Ambas verifican 5 = 5, retornando #t/true, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '=' prefija con paréntesis, explícito, mientras que OCaml usa infijo, conciso. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-6": {
-      "title": "Contar tareas",
+      "title": "Valor absoluto con abs",
       "racket": {
-        "lines": ["(+ 1 (+ 1 (+ 1 0)))"]
+        "lines": ["(abs -5)"]
       },
       "ocaml": {
-        "lines": ["1 + 1 + 1 + 0"]
+        "lines": ["abs (-5)"]
       },
       "explanations_racket": [
-        "Esta línea suma 1 + 1 + 1 + 0 usando la función '+' en notación prefija, con paréntesis anidados para indicar el orden: primero 1 + 0, luego 1 + resultado, y así sucesivamente, dando 3. En Racket, esta anidación explicita el orden de evaluación, un pilar del paradigma funcional donde las expresiones son puras y predecibles. El ejemplo simula contar tareas, como si cada '1' fuera una tarea completada, preparando a principiantes para conceptos de acumulación sin usar listas aún."
+        "Esta línea calcula el valor absoluto de -5 usando 'abs', resultando en 5. En Racket, 'abs' es una función primitiva pura que convierte negativos a positivos sin efectos secundarios. La notación prefija (abs -5) enseña a principiantes cómo manejar números negativos, como medir una distancia siempre positiva en un mapa. Este ejemplo refuerza la determinismo en cálculos."
       ],
       "explanations_ocaml": [
-        "Esta línea suma 1 + 1 + 1 + 0 en notación infija, resultando en 3, gracias a la asociatividad izquierda del operador '+'. En OCaml, la sintaxis lineal elimina la necesidad de paréntesis, haciendo el código más legible para principiantes. La expresión es funcionalmente pura, siempre produciendo el mismo resultado. El contexto de contar tareas conecta el cálculo con un escenario práctico, enseñando cómo las operaciones simples pueden modelar problemas reales sin alterar estado."
+        "Esta línea calcula el valor absoluto de -5 usando 'abs', dando 5. En OCaml, 'abs' es una función primitiva pura. La notación infija abs (-5) es clara para principiantes, como convertir una temperatura negativa a positiva para un cálculo. El tipado estático asegura operandos enteros, manteniendo predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas suman 1 + 1 + 1 + 0 para contar tareas, dando 3, y respetan la pureza funcional. Ambas usan operaciones primitivas de suma. Diferencias: Racket usa notación prefija con paréntesis anidados (+ 1 (+ 1 (+ 1 0))), lo que explicita el orden pero es más verboso. OCaml usa notación infija (1 + 1 + 1 + 0), más concisa y natural, ya que la asociatividad izquierda elimina paréntesis. Esto refleja la filosofía de Racket de claridad estructural frente a la simplicidad sintáctica de OCaml. El tipado dinámico de Racket contrasta con el estático de OCaml, aunque no afecta este caso."
+        "Similitudes: Ambas calculan abs(-5) = 5, con pureza funcional. Ambas usan funciones primitivas para un ejemplo básico. Diferencias: Racket usa 'abs' prefija sin paréntesis extra, explícito, mientras que OCaml usa infijo con paréntesis para negativo. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-7": {
-      "title": "Dividir huevos por persona",
+      "title": "Raíz cuadrada con sqrt",
       "racket": {
-        "lines": ["(/ 8 4)"]
+        "lines": ["(sqrt 16)"]
       },
       "ocaml": {
-        "lines": ["8 / 4"]
+        "lines": ["sqrt 16.0"]
       },
       "explanations_racket": [
-        "Esta línea divide 8 entre 4 usando la función primitiva '/', dando 2, para calcular cuántos huevos le tocan a cada persona. En Racket, la notación prefija (/ 8 4) enfatiza que la división es una función, alineándose con el paradigma funcional donde las operaciones producen valores sin efectos secundarios. Este ejemplo usa un contexto cotidiano (repartir huevos) para enseñar división a principiantes, mostrando cómo un cálculo simple puede resolver un problema práctico de distribución."
+        "Esta línea calcula la raíz cuadrada de 16 usando 'sqrt', resultando en 4. En Racket, 'sqrt' es una función primitiva pura que maneja cálculos matemáticos sin efectos secundarios. La notación prefija (sqrt 16) es ideal para principiantes, como encontrar el lado de un cuadrado con área 16, mostrando determinismo en expresiones funcionales."
       ],
       "explanations_ocaml": [
-        "Esta línea divide 8 entre 4 usando el operador '/', resultando en 2, para determinar la cantidad de huevos por persona. En OCaml, la notación infija (8 / 4) es intuitiva, imitando la escritura matemática. Como expresión funcional pura, siempre produce el mismo resultado sin alterar estado. El ejemplo de repartir huevos es accesible para principiantes, ilustrando cómo las operaciones aritméticas modelan escenarios reales, reforzando la inmutabilidad."
+        "Esta línea calcula la raíz cuadrada de 16.0 usando 'sqrt', dando 4.0. En OCaml, 'sqrt' es una función primitiva pura para flotantes. La notación infija sqrt 16.0 enseña a principiantes cómo manejar raíces, como calcular el lado de un cuadrado, con tipado estático asegurando flotantes."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan 8 / 4 = 2, usando división para un problema de distribución, y mantienen pureza funcional. Ambas usan operadores primitivos y un ejemplo simple para enseñar división. Diferencias: Racket usa notación prefija (/ 8 4) con paréntesis, destacando que '/' es una función, lo que es más explícito pero verboso. OCaml usa notación infija (8 / 4), más compacta y similar a la matemática estándar. Además, en OCaml, '/' realiza división entera para enteros, mientras que en Racket puede devolver fracciones para otros casos, pero aquí el resultado es idéntico debido a los valores enteros."
+        "Similitudes: Ambas calculan sqrt(16) = 4, con pureza funcional. Ambas usan funciones primitivas para un ejemplo matemático. Diferencias: Racket usa 'sqrt' prefija con entero, retornando flotante, mientras que OCaml requiere flotante 16.0. Racket dinámico, OCaml estático."
       ]
     }
   },
   "expresiones": {
     "ejercicio-1": {
-      "title": "Calcular costo de manzanas",
+      "title": "Verificar igualdad de paquetes",
       "racket": {
-        "lines": ["(* 4 2)"]
+        "lines": ["(= 8 8)"]
       },
       "ocaml": {
-        "lines": ["4 * 2"]
+        "lines": ["8 = 8"]
       },
       "explanations_racket": [
-        "Esta línea calcula el costo total de 4 manzanas a 2 dólares cada una, usando la función primitiva '*' para multiplicar 4 por 2, resultando en 8. En Racket, la notación prefija (* 4 2) con paréntesis es estándar, reflejando su herencia Lisp donde las operaciones son funciones explícitas. Esta expresión es funcionalmente pura, siempre produce el mismo resultado sin efectos secundarios, alineándose con el paradigma funcional. El contexto de comprar manzanas es ideal para principiantes, ya que conecta la multiplicación con un escenario cotidiano, como calcular un gasto en el mercado."
+        "Esta línea verifica si 8 = 8 usando la función primitiva '=', retornando #t. En Racket, la notación prefija (= 8 8) con paréntesis muestra que '=' es una función pura que compara números. Este ejemplo, como Clara revisando paquetes de galletas, enseña a principiantes cómo validar equivalencias en un contexto real, como inventarios, manteniendo pureza funcional y determinismo."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula el costo de 4 manzanas a 2 dólares cada una, usando el operador '*' para multiplicar 4 por 2, dando 8. En OCaml, la notación infija (4 * 2) imita la escritura matemática, haciéndola intuitiva para principiantes. La expresión es pura, siempre retorna 8 sin alterar estado, respetando los principios funcionales. El ejemplo de manzanas enseña aritmética básica en un contexto real, como planificar un presupuesto, y el tipado estático de OCaml infiere que los operandos son enteros."
+        "Esta línea verifica si 8 = 8 usando el operador '=', retornando true. En OCaml, la notación infija (8 = 8) es intuitiva, como en matemáticas. La expresión es pura, siempre produce true sin efectos secundarios. El contexto de Clara con paquetes de galletas muestra cómo la igualdad resuelve validaciones prácticas, con tipado estático asegurando operandos enteros."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan 4 * 2 = 8 para determinar un costo, usando operaciones primitivas de multiplicación y manteniendo pureza funcional. Ambas son ejemplos simples para enseñar aritmética a principiantes. Diferencias: Racket usa notación prefija (* 4 2) con paréntesis, enfatizando que '*' es una función, lo que es más explícito pero verboso. OCaml usa notación infija (4 * 2), más compacta y similar a la matemática tradicional, mejorando la legibilidad. El tipado dinámico de Racket permite flexibilidad, mientras que OCaml infiere tipos enteros, aunque esto no afecta el resultado en este caso."
+        "Similitudes: Ambas verifican 8 = 8, retornando #t/true, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '=' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket es dinámico, OCaml estático, pero el resultado es idéntico."
       ]
     },
     "ejercicio-2": {
-      "title": "Verificar capacidad de sala",
+      "title": "Comparar presupuesto con límite",
       "racket": {
-        "lines": ["(> 12 10)"]
+        "lines": ["(> 15 10)"]
       },
       "ocaml": {
-        "lines": ["12 > 10"]
+        "lines": ["15 > 10"]
       },
       "explanations_racket": [
-        "Esta línea evalúa si 12 es mayor que 10 usando la función primitiva '>', retornando #t (verdadero) porque 12 > 10. En Racket, la notación prefija (> 12 10) con paréntesis explicita que '>' es una función que compara dos valores, produciendo un booleano. Esto refuerza el paradigma funcional, donde las expresiones son puras y no modifican estado. El contexto de verificar la capacidad de una sala (e.g., si caben 12 personas en un espacio para 10) es práctico, ayudando a principiantes a entender comparaciones como decisiones en la vida real."
+        "Esta línea evalúa si 15 > 10 usando '>', retornando #t. En Racket, la notación prefija (> 15 10) muestra que '>' es una función pura que produce un booleano. El contexto de Jorge revisando un presupuesto enseña a principiantes cómo hacer comparaciones, como en planificación financiera, con resultados deterministas."
       ],
       "explanations_ocaml": [
-        "Esta línea verifica si 12 es mayor que 10 usando el operador '>', retornando true porque 12 > 10. En OCaml, la notación infija (12 > 10) es intuitiva, similar a la matemática estándar. La expresión es funcionalmente pura, siempre produce el mismo resultado booleano sin efectos secundarios, alineándose con los principios funcionales. El ejemplo de la capacidad de una sala conecta la comparación con un escenario cotidiano, como decidir si un evento excede el límite de personas, y el tipado estático asegura que los operandos son enteros."
+        "Esta línea verifica si 15 > 10 usando '>', retornando true. En OCaml, la notación infija (15 > 10) es intuitiva. La expresión es pura, siempre produce true. El ejemplo de Jorge con un presupuesto conecta comparaciones con escenarios reales, con tipado estático asegurando operandos enteros."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas comparan 12 > 10, retornando un valor booleano (verdadero), y son expresiones puras que no alteran estado. Ambas usan operaciones primitivas de comparación para un ejemplo introductorio. Diferencias: Racket usa notación prefija (> 12 10) con paréntesis, destacando que '>' es una función, lo que es más explícito pero requiere más caracteres. OCaml usa notación infija (12 > 10), más concisa y natural para principiantes. Además, Racket usa #t/#f para booleanos, mientras que OCaml usa true/false, y el tipado estático de OCaml contrasta con el dinámico de Racket, aunque no afecta este caso."
+        "Similitudes: Ambas comparan 15 > 10, retornando #t/true, con pureza funcional. Ambas usan operadores primitivos para un ejemplo básico. Diferencias: Racket usa '>' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático, pero idéntico aquí."
       ]
     },
     "ejercicio-3": {
-      "title": "Restar galletas",
+      "title": "Sumar distancias caminadas",
       "racket": {
-        "lines": ["(- 8 3)"]
+        "lines": ["(+ 7 5)"]
       },
       "ocaml": {
-        "lines": ["8 - 3"]
+        "lines": ["7 + 5"]
       },
       "explanations_racket": [
-        "Esta línea calcula cuántas galletas quedan al restar 3 de 8 usando la función primitiva '-', resultando en 5. En Racket, la notación prefija (- 8 3) indica que '-' es una función que resta el segundo argumento del primero, manteniendo pureza funcional (mismo resultado, sin efectos secundarios). El contexto de galletas es atractivo para principiantes, como imaginar comer 3 galletas de un paquete de 8, enseñando resta en un escenario tangible."
+        "Esta línea calcula 7 + 5 usando '+', resultando en 12. En Racket, la notación prefija (+ 7 5) indica que '+' es una función pura. El contexto de Lucía sumando distancias caminadas enseña a principiantes cómo resolver problemas cotidianos, como calcular un recorrido, con cálculos deterministas."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula 8 - 3 usando el operador '-' para determinar cuántas galletas quedan, dando 5. En OCaml, la notación infija (8 - 3) es intuitiva, imitando la matemática tradicional. La expresión es pura, siempre produce 5 sin alterar estado, alineándose con el paradigma funcional. El ejemplo de galletas conecta la resta con un caso práctico, como calcular sobrantes en un picnic, y el tipado estático asegura que los operandos sean enteros."
+        "Esta línea calcula 7 + 5 usando '+', dando 12. En OCaml, la notación infija (7 + 5) es intuitiva. La expresión es pura, siempre produce 12. El ejemplo de Lucía con distancias conecta la suma con un caso práctico, con tipado estático asegurando operandos enteros."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan 8 - 3 = 5, usando resta para un problema práctico, y son expresiones puras. Ambas usan operaciones primitivas para enseñar aritmética básica. Diferencias: Racket usa notación prefija (- 8 3) con paréntesis, destacando que '-' es una función, lo que es más explícito pero verboso. OCaml usa notación infija (8 - 3), más compacta y similar a la matemática estándar. El tipado dinámico de Racket permite flexibilidad, mientras que OCaml infiere tipos enteros, pero el resultado es idéntico en este caso."
+        "Similitudes: Ambas suman 7 + 5 = 12, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '+' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático, pero idéntico."
       ]
     },
     "ejercicio-4": {
-      "title": "Calcular volumen de cubo",
+      "title": "Calcular caramelos sobrantes",
       "racket": {
-        "lines": ["(* 2 (* 2 2))"]
+        "lines": ["(- 20 6)"]
       },
       "ocaml": {
-        "lines": ["2 * (2 * 2)"]
+        "lines": ["20 - 6"]
       },
       "explanations_racket": [
-        "Esta línea calcula el volumen de un cubo de lado 2 (2 * 2 * 2) usando la función '*' en notación prefija. La expresión anidada (* 2 (* 2 2)) indica que primero se multiplica 2 * 2 = 4, luego 2 * 4 = 8. En Racket, los paréntesis explicitan el orden de evaluación, reforzando la pureza funcional donde el resultado es siempre 8 sin efectos secundarios. El contexto del volumen de un cubo es ideal para principiantes, como calcular el espacio en una caja, introduciendo anidamiento de operaciones."
+        "Esta línea calcula 20 - 6 usando '-', resultando en 14. En Racket, la notación prefija (- 20 6) muestra que '-' es una función pura. El contexto de Raúl dando caramelos enseña a principiantes cómo calcular sobrantes, como en distribución de recursos, con resultados deterministas."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula el volumen de un cubo de lado 2 usando el operador '*' en notación infija, con paréntesis (2 * (2 * 2)) para indicar que primero se evalúa 2 * 2 = 4, luego 2 * 4 = 8. En OCaml, los paréntesis son necesarios para priorizar operaciones, pero la sintaxis infija es intuitiva. La expresión es pura, siempre retorna 8, alineándose con el paradigma funcional. El ejemplo del cubo enseña anidamiento en un contexto real, como medir un contenedor."
+        "Esta línea calcula 20 - 6 usando '-', dando 14. En OCaml, la notación infija (20 - 6) es intuitiva. La expresión es pura, siempre produce 14. El ejemplo de Raúl con caramelos conecta la resta con un caso práctico, con tipado estático."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan 2 * 2 * 2 = 8 para el volumen de un cubo, usando multiplicación y anidamiento, manteniendo pureza funcional. Ambas introducen prioridad de operaciones. Diferencias: Racket usa notación prefija (* 2 (* 2 2)) with paréntesis obligatorios, reflejando su estructura Lisp y explicitando la evaluación. OCaml usa notación infija (2 * (2 * 2)), requiriendo paréntesis solo para prioridad, lo que es más conciso y matemático. El tipado estático de OCaml infiere enteros, mientras que Racket es dinámico, pero el resultado es idéntico."
+        "Similitudes: Ambas restan 20 - 6 = 14, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '-' prefija, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático, pero idéntico."
       ]
     },
     "ejercicio-5": {
-      "title": "Verificar divisibilidad",
+      "title": "Verificar divisibilidad de libros",
       "racket": {
-        "lines": ["(remainder 9 3)"]
+        "lines": ["(remainder 10 3)"]
       },
       "ocaml": {
-        "lines": ["9 mod 3"]
+        "lines": ["10 mod 3"]
       },
       "explanations_racket": [
-        "Esta línea usa la función 'remainder' para calcular el resto de dividir 9 entre 3, dando 0, lo que indica que 9 es divisible por 3. En Racket, la notación prefija (remainder 9 3) con paréntesis muestra que 'remainder' es una función, reforzando la pureza funcional (mismo resultado, sin efectos secundarios). El ejemplo enseña a principiantes cómo verificar divisibilidad, como dividir 9 caramelos entre 3 niños sin sobrantes, introduciendo el concepto de módulo en un contexto práctico."
+        "Esta línea calcula el resto de 10 / 3 usando 'remainder', dando 1. En Racket, la notación prefija (remainder 10 3) muestra que 'remainder' es pura. El contexto de Ana organizando libros enseña a principiantes divisibilidad, con resultados deterministas."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula el resto de 9 dividido por 3 usando el operador 'mod', resultando en 0, indicando divisibilidad. En OCaml, la notación infija (9 mod 3) es intuitiva, similar a la matemática estándar. La expresión es pura, siempre produce 0, alineándose con el paradigma funcional. El contexto de divisibilidad es claro para principiantes, como repartir caramelos equitativamente, y el tipado estático asegura que los operandos sean enteros."
+        "Esta línea calcula el resto de 10 / 3 usando 'mod', dando 1. En OCaml, la notación infija (10 mod 3) es intuitiva. La expresión es pura, siempre produce 1. El ejemplo de Ana con libros conecta el módulo con un caso práctico, con tipado estático."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan el resto de 9 ÷ 3 = 0 para verificar divisibilidad, usando operaciones de módulo y manteniendo pureza funcional. Ambas son ejemplos simples para enseñar módulo. Diferencias: Racket usa la función 'remainder' en notación prefija (remainder 9 3), más explícita pero verbosa, mientras que OCaml usa el operador infijo 'mod', más conciso y matemático. Además, 'remainder' en Racket puede devolver negativos para entradas negativas, mientras que 'mod' en OCaml siempre da no negativos, pero en este caso (positivos) el comportamiento es idéntico."
+        "Similitudes: Ambas calculan resto de 10 / 3 = 1, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa 'remainder' prefija, explícita, mientras que OCaml usa 'mod' infija, concisa. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-6": {
-      "title": "Dividir huevos para dos personas",
+      "title": "Repartir huevos entre personas",
       "racket": {
-        "lines": ["(/ 8 2)"]
+        "lines": ["(/ 12 3)"]
       },
       "ocaml": {
-        "lines": ["8 / 2"]
+        "lines": ["12 / 3"]
       },
       "explanations_racket": [
-        "Esta línea divide 8 entre 2 usando la función primitiva '/', dando 4, para calcular cuántos huevos le tocan a cada persona. En Racket, la notación prefija (/ 8 2) indica que '/' es una función, reforzando la pureza funcional donde el resultado es siempre predecible. El contexto de repartir huevos es accesible para principiantes, como dividir un paquete de 8 huevos entre 2 amigos, enseñando división en un escenario cotidiano."
+        "Esta línea calcula 12 / 3 usando '/', dando 4. En Racket, la notación prefija (/ 12 3) muestra que '/' es pura. El contexto de un chef repartiendo huevos enseña a principiantes división, como en recetas, con resultados deterministas."
       ],
       "explanations_ocaml": [
-        "Esta línea divide 8 entre 2 usando el operador '/', resultando en 4, para determinar huevos por persona. En OCaml, la notación infija (8 / 2) es intuitiva, imitando la matemática estándar. La expresión es pura, siempre produce 4 sin efectos secundarios, alineándose con el paradigma funcional. El ejemplo de huevos conecta la división con un caso práctico, ideal para principiantes, y el tipado estático asegura operandos enteros."
+        "Esta línea calcula 12 / 3 usando '/', dando 4. En OCaml, la notación infija (12 / 3) es intuitiva. La expresión es pura, siempre produce 4. El ejemplo del chef con huevos conecta la división con un caso práctico, con tipado estático."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas calculan 8 ÷ 2 = 4 para un problema de distribución, usando división y manteniendo pureza funcional. Ambas son ejemplos simples para enseñar división. Diferencias: Racket usa notación prefija (/ 8 2) con paréntesis, destacando que '/' es una función, mientras que OCaml usa notación infija (8 / 2), más compacta y matemática. En OCaml, '/' realiza división entera para enteros, mientras que Racket puede devolver fracciones, pero aquí el resultado es idéntico."
+        "Similitudes: Ambas dividen 12 / 3 = 4, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '/' prefija, explícita, mientras que OCaml usa infija, concisa. Racket puede retornar fracciones, OCaml entera."
       ]
     },
     "ejercicio-7": {
-      "title": "Negar interruptor apagado",
+      "title": "Comparar área ajustada con límite",
       "racket": {
-        "lines": ["(not #f)"]
+        "lines": ["(> (- (expt 3 2) 4) 5)"]
       },
       "ocaml": {
-        "lines": ["not false"]
+        "lines": ["( ( (3 ** 2.0) - 4 ) > 5 )"]
       },
       "explanations_racket": [
-        "Esta línea aplica la función 'not' al valor booleano #f (falso), retornando #t (verdadero), para simular negar el estado de un interruptor apagado. En Racket, la notación prefija (not #f) muestra que 'not' es una función que invierte un booleano, respetando la pureza funcional (mismo resultado, sin efectos secundarios). Este ejemplo introduce operaciones lógicas a principiantes, como cambiar un interruptor de apagado a encendido, conectando la lógica con un escenario físico."
+        "Esta línea calcula (> (- (expt 3 2) 4) 5), dando #f. Primero, (expt 3 2) = 9, luego (- 9 4) = 5, y (> 5 5) = #f. En Racket, 'expt', '-', '>' son puras. La notación prefija enseña a principiantes anidamiento, como un arquitecto ajustando áreas, con resultados deterministas."
       ],
       "explanations_ocaml": [
-        "Esta línea aplica el operador 'not' al valor booleano false, retornando true, para representar la negación de un interruptor apagado. En OCaml, la notación infija (not false) es clara, similar a la lógica matemática. La expresión es pura, siempre produce true, alineándose con el paradigma funcional. El contexto del interruptor es intuitivo para principiantes, enseñando negación lógica como cambiar el estado de un dispositivo, y el tipado estático asegura que el operando sea booleano."
+        "Esta línea calcula ( ( (3 ** 2.0) - 4 ) > 5 ), dando false. Primero, 3 ** 2.0 = 9.0, luego 9.0 - 4 = 5, y 5 > 5 = false. En OCaml, '**' usa flotantes, '-' y '>' son infijos. La expresión es pura, ideal para enseñar anidamiento, con tipado estático."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas aplican negación lógica a un valor falso, retornando verdadero, y son expresiones puras para enseñar lógica booleana. Ambas usan un ejemplo práctico de un interruptor. Diferencias: Racket usa notación prefija (not #f) con paréntesis, destacando que 'not' es una función, mientras que OCaml usa notación infija (not false), más concisa. Racket usa #t/#f para booleanos, mientras que OCaml usa true/false. El tipado dinámico de Racket contrasta con el estático de OCaml, pero el comportamiento es idéntico en este caso."
+        "Similitudes: Ambas evalúan (> (- (expt 3 2) 4) 5) = #f, con pureza funcional. Ambas combinan operadores para un ejemplo complejo. Diferencias: Racket usa 'expt' prefija con enteros, OCaml usa '**' con flotantes (3 ** 2.0). Racket dinámico, OCaml estático."
       ]
     }
   },

@@ -12,8 +12,8 @@
   </div>
 </div>
 
-<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center glass-overlay overflow-y-auto p-2">
-  <div class="bg-white rounded-lg shadow-lg p-6 max-w-4xl w-full relative max-h-[98vh] overflow-y-auto">
+<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center glass-overlay overflow-y-auto p-2" (click)="onOverlayClick($event)">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-4xl w-full relative max-h-[98vh] overflow-y-auto" (click)="$event.stopPropagation()">
     <button (click)="cerrarModal()"
       class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-[#3e5aa9] hover:bg-[#ec690d] text-white transition z-[100]"
       aria-label="Cerrar modal">

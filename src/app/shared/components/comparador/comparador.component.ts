@@ -14,7 +14,7 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   initialOffsetRacket = 0;
   initialOffsetOcaml = 0;
   // Margen extra para la posición vertical de los cards
-  cardOffsetMargin = 22;
+  cardOffsetMargin = 35;
   // Referencias a los editores de código
   @ViewChild('racketEditor') racketEditorRef: any;
   @ViewChild('ocamlEditor') ocamlEditorRef: any;
@@ -143,7 +143,7 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   }
 
   abrirModal() {
-    this.cardOffsetMargin = 22;
+    this.cardOffsetMargin = 35;
     this.showModal = true;
     this.actualizarExplicaciones();
     Promise.resolve().then(() => {
@@ -169,5 +169,9 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
     if (this.comparacionData) {
       this.actualizarLineas();
     }
+  }
+
+  onOverlayClick(event: MouseEvent) {
+    this.cerrarModal();
   }
 }
