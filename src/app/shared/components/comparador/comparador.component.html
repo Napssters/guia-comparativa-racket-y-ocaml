@@ -35,7 +35,7 @@
       <!-- Cards superpuestos, sin afectar el layout de los editores -->
       <!-- Card Explicación Racket -->
       <div *ngIf="explicacionRacket" class="absolute z-30 pointer-events-none"
-        [ngStyle]="{'left': '10px', 'width': '210px', 'top': (offsetRacket || 40) + 'px'}">
+  [ngStyle]="{'left': '10px', 'width': '210px', 'top': ((offsetRacket || 40) + cardOffsetMargin) + 'px'}">
         <div class="bg-blue-50 border border-blue-200 rounded-xl shadow-lg p-4 text-blue-900 text-sm w-[210px] h-[210px] overflow-y-auto pointer-events-auto flex flex-col">
           <span class="font-bold block mb-2 text-blue-700">Explicación Racket</span>
           <div class="break-words leading-relaxed flex-1">
@@ -45,7 +45,7 @@
       </div>
       <!-- Card Explicación OCaml -->
       <div *ngIf="explicacionOcaml" class="absolute z-30 pointer-events-none"
-        [ngStyle]="{'right': '10px', 'width': '210px', 'top': (offsetOcaml || 40) + 'px'}">
+  [ngStyle]="{'right': '10px', 'width': '210px', 'top': ((offsetOcaml || 40) + cardOffsetMargin) + 'px'}">
         <div class="bg-orange-50 border border-orange-200 rounded-xl shadow-lg p-4 text-orange-900 text-sm w-[210px] h-[210px] overflow-y-auto pointer-events-auto flex flex-col">
           <span class="font-bold block mb-2 text-orange-700">Explicación OCaml</span>
           <div class="break-words leading-relaxed flex-1">
@@ -55,7 +55,7 @@
       </div>
       <!-- Card Comparación superpuesto y rectangular -->
       <div *ngIf="explicacionComparacion" class="absolute left-1/2 -translate-x-1/2 z-40 pointer-events-none"
-        [ngStyle]="{'width': '370px', 'top': (((offsetRacket + offsetOcaml) / 2) || 40) + 'px'}">
+  [ngStyle]="{'width': '370px', 'top': ((((offsetRacket + offsetOcaml) / 2) || 40) + cardOffsetMargin) + 'px'}">
         <div class="bg-green-50 border border-green-200 rounded-xl shadow-lg p-4 text-green-900 text-sm w-[370px] h-[210px] overflow-y-auto pointer-events-auto flex flex-col">
           <span class="font-bold block mb-2 text-green-700">Comparación</span>
           <div class="break-words leading-relaxed flex-1">

@@ -112,16 +112,4 @@ export class CodeEditorComponent implements AfterViewInit {
     this.editor.scrollToLine(line, true, true, function () {});
   }
 
-  // Devuelve el offsetTop (en píxeles) de la línea resaltada en el editor
-  public getHighlightedLineOffset(): number {
-    if (!this.editor || typeof this.highlightLine !== 'number') return 0;
-    // Ace: obtener el nodo DOM de la línea resaltada
-    const line = this.highlightLine || 0;
-    const lineElements = this.editor.renderer.layerConfig && this.editor.renderer.$textLayer.element.children;
-    if (lineElements && lineElements[line]) {
-      const el = lineElements[line] as HTMLElement;
-      return el.offsetTop + el.offsetHeight;
-    }
-    return 0;
-  }
 }

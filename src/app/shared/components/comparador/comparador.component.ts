@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, CodeEditorComponent]
 })
 export class ComparadorComponent implements OnInit, AfterViewInit {
+  // Margen extra para la posición vertical de los cards
+  cardOffsetMargin = 22;
   // Referencias a los editores de código
   @ViewChild('racketEditor') racketEditorRef: any;
   @ViewChild('ocamlEditor') ocamlEditorRef: any;
@@ -132,7 +134,8 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.highlightLineOcaml = Math.min(nueva, this.maxLineOcaml - 1);
       this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1);
       this.actualizarExplicaciones();
-      // Esperar al siguiente ciclo de renderizado para asegurar que el editor actualizó la línea
+      // Ajustar el margen de los cards
+      this.cardOffsetMargin += (delta > 0 ? 20 : -20);
       Promise.resolve().then(() => this.actualizarOffsets());
     }
   }
