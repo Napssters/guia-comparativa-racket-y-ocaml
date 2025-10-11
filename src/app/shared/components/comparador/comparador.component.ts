@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CodeEditorComponent } from '../code-editor/code-editor.component';
 import { HttpClient } from '@angular/common/http';
@@ -10,10 +10,22 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, CodeEditorComponent]
 })
-export class ComparadorComponent implements OnInit {
+export class ComparadorComponent implements OnInit, AfterViewInit {
+  // Referencias a los editores de código
+  @ViewChild('racketEditor') racketEditorRef: any;
+  @ViewChild('ocamlEditor') ocamlEditorRef: any;
+
+  // Offset dinámico para los cards
+  offsetRacket: number = 0;
+  offsetOcaml: number = 0;
   mostrarOutput = false;
   maxLineRacket = 1;
   maxLineOcaml = 1;
+
+  // Explicaciones actuales para la línea resaltada
+  explicacionRacket: string = '';
+  explicacionComparacion: string = '';
+  explicacionOcaml: string = '';
   @Input() modulo: string = '';
   @Input() ejercicio: string = '';
   @Input() answer: string = '';
@@ -26,8 +38,22 @@ export class ComparadorComponent implements OnInit {
   showModal: boolean = false;
 
   constructor(private http: HttpClient) { }
+
   ngOnInit() {
     this.cargarComparacion();
+  }
+
+   ngAfterViewInit() {
+    this.actualizarOffsets();
+  }
+  actualizarOffsets() {
+    // Calcula el offset de la línea resaltada en cada editor
+    if (this.racketEditorRef && this.racketEditorRef.getHighlightedLineOffset) {
+      this.offsetRacket = this.racketEditorRef.getHighlightedLineOffset();
+    }
+    if (this.ocamlEditorRef && this.ocamlEditorRef.getHighlightedLineOffset) {
+      this.offsetOcaml = this.ocamlEditorRef.getHighlightedLineOffset();
+    }
   }
 
   cargarComparacion() {
@@ -51,6 +77,7 @@ export class ComparadorComponent implements OnInit {
       // Por defecto resalta la primera línea
       this.highlightLineRacket = 0;
       this.highlightLineOcaml = 0;
+      this.actualizarExplicaciones();
     } else {
       this.racketLines = '';
       this.ocamlLines = '';
@@ -58,6 +85,43 @@ export class ComparadorComponent implements OnInit {
       this.maxLineOcaml = 1;
       this.highlightLineRacket = 0;
       this.highlightLineOcaml = 0;
+      this.explicacionRacket = '';
+      this.explicacionComparacion = '';
+      this.explicacionOcaml = '';
+    }
+  }
+
+  // Actualiza las explicaciones según la línea resaltada
+  actualizarExplicaciones() {
+    if (
+      this.comparacionData &&
+      this.comparacionData[this.modulo] &&
+      this.comparacionData[this.modulo][this.ejercicio]
+    ) {
+      const info = this.comparacionData[this.modulo][this.ejercicio];
+      const idx = this.highlightLineRacket;
+      // Explicación Racket
+      if (info.explanations_racket && info.explanations_racket[idx]) {
+        this.explicacionRacket = info.explanations_racket[idx];
+      } else {
+        this.explicacionRacket = '';
+      }
+      // Explicación OCaml
+      if (info.explanations_ocaml && info.explanations_ocaml[idx]) {
+        this.explicacionOcaml = info.explanations_ocaml[idx];
+      } else {
+        this.explicacionOcaml = '';
+      }
+      // Comparación
+      if (info.comparisons && info.comparisons[idx]) {
+        this.explicacionComparacion = info.comparisons[idx];
+      } else {
+        this.explicacionComparacion = '';
+      }
+    } else {
+      this.explicacionRacket = '';
+      this.explicacionComparacion = '';
+      this.explicacionOcaml = '';
     }
   }
 
@@ -67,11 +131,16 @@ export class ComparadorComponent implements OnInit {
       this.highlightLineRacket = nueva;
       this.highlightLineOcaml = Math.min(nueva, this.maxLineOcaml - 1);
       this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1);
+      this.actualizarExplicaciones();
+      // Esperar al siguiente ciclo de renderizado para asegurar que el editor actualizó la línea
+      Promise.resolve().then(() => this.actualizarOffsets());
     }
   }
 
   abrirModal() {
     this.showModal = true;
+    this.actualizarExplicaciones();
+    Promise.resolve().then(() => this.actualizarOffsets());
   }
 
   cerrarModal() {
@@ -79,6 +148,9 @@ export class ComparadorComponent implements OnInit {
     this.highlightLineRacket = 0;
     this.highlightLineOcaml = 0;
     this.mostrarOutput = false;
+    this.actualizarExplicaciones();
+    this.offsetRacket = 0;
+    this.offsetOcaml = 0;
   }
 
   ngOnChanges() {
