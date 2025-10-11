@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, CodeEditorComponent]
 })
 export class ComparadorComponent implements OnInit, AfterViewInit {
+  initialOffsetRacket = 0;
+  initialOffsetOcaml = 0;
   // Margen extra para la posición vertical de los cards
   cardOffsetMargin = 22;
   // Referencias a los editores de código
@@ -141,9 +143,15 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   }
 
   abrirModal() {
+    this.cardOffsetMargin = 22;
     this.showModal = true;
     this.actualizarExplicaciones();
-    Promise.resolve().then(() => this.actualizarOffsets());
+    Promise.resolve().then(() => {
+      this.actualizarOffsets();
+      // Guardar los offsets iniciales al abrir el modal
+      this.initialOffsetRacket = this.offsetRacket;
+      this.initialOffsetOcaml = this.offsetOcaml;
+    });
   }
 
   cerrarModal() {
@@ -152,8 +160,9 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
     this.highlightLineOcaml = 0;
     this.mostrarOutput = false;
     this.actualizarExplicaciones();
-    this.offsetRacket = 0;
-    this.offsetOcaml = 0;
+    // Restaurar los offsets iniciales al cerrar el modal
+    this.offsetRacket = this.initialOffsetRacket;
+    this.offsetOcaml = this.initialOffsetOcaml;
   }
 
   ngOnChanges() {
