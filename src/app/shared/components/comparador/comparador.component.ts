@@ -11,17 +11,12 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, CodeEditorComponent]
 })
 export class ComparadorComponent implements OnInit, AfterViewInit {
-  initialOffsetRacket = 0;
-  initialOffsetOcaml = 0;
-  // Margen extra para la posición vertical de los cards
-  cardOffsetMargin = 35;
+  showCardsLeft = true;
   // Referencias a los editores de código
   @ViewChild('racketEditor') racketEditorRef: any;
   @ViewChild('ocamlEditor') ocamlEditorRef: any;
 
-  // Offset dinámico para los cards
-  offsetRacket: number = 0;
-  offsetOcaml: number = 0;
+  // (offsets eliminados, ya no se usan)
   mostrarOutput = false;
   maxLineRacket = 1;
   maxLineOcaml = 1;
@@ -47,18 +42,7 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
     this.cargarComparacion();
   }
 
-   ngAfterViewInit() {
-    this.actualizarOffsets();
-  }
-  actualizarOffsets() {
-    // Calcula el offset de la línea resaltada en cada editor
-    if (this.racketEditorRef && this.racketEditorRef.getHighlightedLineOffset) {
-      this.offsetRacket = this.racketEditorRef.getHighlightedLineOffset();
-    }
-    if (this.ocamlEditorRef && this.ocamlEditorRef.getHighlightedLineOffset) {
-      this.offsetOcaml = this.ocamlEditorRef.getHighlightedLineOffset();
-    }
-  }
+  ngAfterViewInit() {}
 
   cargarComparacion() {
     this.http.get('assets/json-base/comparacion.json').subscribe((data: any) => {
@@ -136,22 +120,15 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.highlightLineOcaml = Math.min(nueva, this.maxLineOcaml - 1);
       this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1);
       this.actualizarExplicaciones();
-      // Ajustar el margen de los cards
-      this.cardOffsetMargin += (delta > 0 ? 20 : -20);
-      Promise.resolve().then(() => this.actualizarOffsets());
+      // Alternar lado de los cards
+      this.showCardsLeft = !this.showCardsLeft;
     }
   }
 
   abrirModal() {
-    this.cardOffsetMargin = 35;
     this.showModal = true;
+    this.showCardsLeft = true;
     this.actualizarExplicaciones();
-    Promise.resolve().then(() => {
-      this.actualizarOffsets();
-      // Guardar los offsets iniciales al abrir el modal
-      this.initialOffsetRacket = this.offsetRacket;
-      this.initialOffsetOcaml = this.offsetOcaml;
-    });
   }
 
   cerrarModal() {
@@ -160,9 +137,6 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
     this.highlightLineOcaml = 0;
     this.mostrarOutput = false;
     this.actualizarExplicaciones();
-    // Restaurar los offsets iniciales al cerrar el modal
-    this.offsetRacket = this.initialOffsetRacket;
-    this.offsetOcaml = this.initialOffsetOcaml;
   }
 
   ngOnChanges() {
