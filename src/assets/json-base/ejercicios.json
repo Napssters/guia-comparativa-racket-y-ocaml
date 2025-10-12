@@ -3,7 +3,7 @@
     "ejercicio-1": {
       "description": "¡Bienvenido al paradigma funcional! Aquí nos enfocamos en expresiones que siempre producen el mismo resultado sin cambiar nada. Imagina que Ana camina 5 km por la mañana y 3 km por la tarde para calcular su distancia total del día. Usa la operación primitiva de suma para obtener 8 km, mostrando cómo el funcional resuelve problemas cotidianos, como sumar tramos de un viaje, con cálculos puros y predecibles.",
       "racket": {
-        "code": "(+ 5 3)"
+        "code": "(+ 5 3)\n(+ 5 3)\n(+ 5 3)\n(+ 5 3)"
       },
       "ocaml": {
         "code": "5 + 3"

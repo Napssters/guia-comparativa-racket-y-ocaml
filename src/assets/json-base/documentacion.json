@@ -106,7 +106,573 @@
             "caption": "Ilustración de operadores aplicados a datos básicos."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Contar manzanas",
+            "code": "(+ 5 3) ; Resultado: 8"
+          },
+          {
+            "title": "Decidir si llueve",
+            "code": "(> 10 0) ; Resultado: #t (verdadero, como si hay lluvia si el valor es positivo)"
+          },
+          {
+            "title": "Calcular una cuenta",
+            "code": "(+ 10 5) ; Resultado: 15"
+          },
+          {
+            "title": "Comparar pesos",
+            "code": "(> 10 8) ; Resultado: #t"
+          },
+          {
+            "name": "*",
+            "code": "(* 4 5) ; Resultado: 20"
+          },
+          {
+            "name": "+",
+            "code": "(+ 1 2 3) ; Resultado: 6"
+          },
+          {
+            "name": "-",
+            "code": "(- 10 4) ; Resultado: 6"
+          },
+          {
+            "name": "/",
+            "code": "(/ 10 2) ; Resultado: 5"
+          },
+          {
+            "name": "<",
+            "code": "(< 3 5) ; Resultado: #t"
+          },
+          {
+            "name": "<=",
+            "code": "(<= 5 5) ; Resultado: #t"
+          },
+          {
+            "name": "=",
+            "code": "(= 7 7) ; Resultado: #t"
+          },
+          {
+            "name": ">",
+            "code": "(> 8 6) ; Resultado: #t"
+          },
+          {
+            "name": ">=",
+            "code": "(>= 9 9) ; Resultado: #t"
+          },
+          {
+            "name": "abs",
+            "code": "(abs -5) ; Resultado: 5"
+          },
+          {
+            "name": "acos",
+            "code": "(acos 0) ; Resultado: 1.5707963267948966"
+          },
+          {
+            "name": "add1",
+            "code": "(add1 10) ; Resultado: 11"
+          },
+          {
+            "name": "angle",
+            "code": "(angle (make-polar 1 (/ pi 4))) ; Resultado: 45.0 (aprox)"
+          },
+          {
+            "name": "asin",
+            "code": "(asin 1) ; Resultado: 1.5707963267948966"
+          },
+          {
+            "name": "atan",
+            "code": "(atan 1) ; Resultado: 0.7853981633974483"
+          },
+          {
+            "name": "ceiling",
+            "code": "(ceiling 3.2) ; Resultado: 4"
+          },
+          {
+            "name": "complex?",
+            "code": "(complex? 3+4i) ; Resultado: #t"
+          },
+          {
+            "name": "conjugate",
+            "code": "(conjugate 3+4i) ; Resultado: 3-4i"
+          },
+          {
+            "name": "cos",
+            "code": "(cos 0) ; Resultado: 1.0"
+          },
+          {
+            "name": "cosh",
+            "code": "(cosh 0) ; Resultado: 1.0"
+          },
+          {
+            "name": "current-seconds",
+            "code": "(current-seconds) ; Resultado: segundos actuales"
+          },
+          {
+            "name": "denominator",
+            "code": "(denominator 3/4) ; Resultado: 4"
+          },
+          {
+            "name": "e",
+            "code": "e ; Resultado: 2.718281828459045"
+          },
+          {
+            "name": "even?",
+            "code": "(even? 4) ; Resultado: #t"
+          },
+          {
+            "name": "exact->inexact",
+            "code": "(exact->inexact 3) ; Resultado: 3.0"
+          },
+          {
+            "name": "exact?",
+            "code": "(exact? 3) ; Resultado: #t"
+          },
+          {
+            "name": "exp",
+            "code": "(exp 1) ; Resultado: 2.718281828459045"
+          },
+          {
+            "name": "expt",
+            "code": "(expt 2 3) ; Resultado: 8"
+          },
+          {
+            "name": "floor",
+            "code": "(floor 3.8) ; Resultado: 3"
+          },
+          {
+            "name": "gcd",
+            "code": "(gcd 12 18) ; Resultado: 6"
+          },
+          {
+            "name": "imag-part",
+            "code": "(imag-part 3+4i) ; Resultado: 4"
+          },
+          {
+            "name": "inexact->exact",
+            "code": "(inexact->exact 3.0) ; Resultado: 3"
+          },
+          {
+            "name": "inexact?",
+            "code": "(inexact? 3.0) ; Resultado: #t"
+          },
+          {
+            "name": "integer->char",
+            "code": "(integer->char 65) ; Resultado: #\\A"
+          },
+          {
+            "name": "integer-sqrt",
+            "code": "(integer-sqrt 16) ; Resultado: 4"
+          },
+          {
+            "name": "integer?",
+            "code": "(integer? 5) ; Resultado: #t"
+          },
+          {
+            "name": "lcm",
+            "code": "(lcm 12 18) ; Resultado: 36"
+          },
+          {
+            "name": "log",
+            "code": "(log 8 2) ; Resultado: 3.0"
+          },
+          {
+            "name": "magnitude",
+            "code": "(magnitude 3+4i) ; Resultado: 5.0"
+          },
+          {
+            "name": "make-polar",
+            "code": "(make-polar 1 0) ; Resultado: 1+0i"
+          },
+          {
+            "name": "make-rectangular",
+            "code": "(make-rectangular 3 4) ; Resultado: 3+4i"
+          },
+          {
+            "name": "max",
+            "code": "(max 5 3) ; Resultado: 5"
+          },
+          {
+            "name": "min",
+            "code": "(min 5 3) ; Resultado: 3"
+          },
+          {
+            "name": "modulo",
+            "code": "(modulo 10 3) ; Resultado: 1"
+          },
+          {
+            "name": "negative?",
+            "code": "(negative? -5) ; Resultado: #t"
+          },
+          {
+            "name": "number->string",
+            "code": "(number->string 42) ; Resultado: \"42\""
+          },
+          {
+            "name": "number?",
+            "code": "(number? 5) ; Resultado: #t"
+          },
+          {
+            "name": "numerator",
+            "code": "(numerator 3/4) ; Resultado: 3"
+          },
+          {
+            "name": "odd?",
+            "code": "(odd? 3) ; Resultado: #t"
+          },
+          {
+            "name": "pi",
+            "code": "pi ; Resultado: 3.141592653589793"
+          },
+          {
+            "name": "positive?",
+            "code": "(positive? 5) ; Resultado: #t"
+          },
+          {
+            "name": "quotient",
+            "code": "(quotient 10 3) ; Resultado: 3"
+          },
+          {
+            "name": "random",
+            "code": "(random 10) ; Resultado: número entre 0 y 9"
+          },
+          {
+            "name": "rational?",
+            "code": "(rational? 3/4) ; Resultado: #t"
+          },
+          {
+            "name": "real-part",
+            "code": "(real-part 3+4i) ; Resultado: 3"
+          },
+          {
+            "name": "real?",
+            "code": "(real? 5.0) ; Resultado: #t"
+          },
+          {
+            "name": "remainder",
+            "code": "(remainder 10 3) ; Resultado: 1"
+          },
+          {
+            "name": "round",
+            "code": "(round 3.6) ; Resultado: 4"
+          },
+          {
+            "name": "sgn",
+            "code": "(sgn 5) ; Resultado: 1"
+          },
+          {
+            "name": "sin",
+            "code": "(sin 0) ; Resultado: 0.0"
+          },
+          {
+            "name": "sinh",
+            "code": "(sinh 0) ; Resultado: 0.0"
+          },
+          {
+            "name": "sqr",
+            "code": "(sqr 4) ; Resultado: 16"
+          },
+          {
+            "name": "sqrt",
+            "code": "(sqrt 16) ; Resultado: 4.0"
+          },
+          {
+            "name": "sub1",
+            "code": "(sub1 10) ; Resultado: 9"
+          },
+          {
+            "name": "tan",
+            "code": "(tan 0) ; Resultado: 0.0"
+          },
+          {
+            "name": "zero?",
+            "code": "(zero? 0) ; Resultado: #t"
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Contar manzanas",
+            "code": "5 + 3 ;; (* Resultado: 8 *)"
+          },
+          {
+            "title": "Decidir si llueve",
+            "code": "10 > 0 ;; (* Resultado: true *)"
+          },
+          {
+            "title": "Calcular una cuenta",
+            "code": "10 + 5 ;; (* Resultado: 15 *)"
+          },
+          {
+            "title": "Comparar pesos",
+            "code": "10 > 8 ;; (* Resultado: true *)"
+          },
+          {
+            "name": "*",
+            "code": "4 * 5 ;; (* Resultado: 20 *)"
+          },
+          {
+            "name": "+",
+            "code": "1 + 2 + 3 ;; (* Resultado: 6 *)"
+          },
+          {
+            "name": "-",
+            "code": "10 - 4 ;; (* Resultado: 6 *)"
+          },
+          {
+            "name": "/",
+            "code": "10 / 2 ;; (* Resultado: 5 *)"
+          },
+          {
+            "name": "<",
+            "code": "3 < 5 ;; (* Resultado: true *)"
+          },
+          {
+            "name": "<=",
+            "code": "5 <= 5 ;; (* Resultado: true *)"
+          },
+          {
+            "name": "=",
+            "code": "7 = 7 ;; (* Resultado: true *)"
+          },
+          {
+            "name": ">",
+            "code": "8 > 6 ;; (* Resultado: true *)"
+          },
+          {
+            "name": ">=",
+            "code": "9 >= 9 ;; (* Resultado: true *)"
+          },
+          {
+            "name": "abs",
+            "code": "abs (-5) ;; (* Resultado: 5 *)"
+          },
+          {
+            "name": "acos",
+            "code": "acos 0.0 ;; (* Resultado: 1.5707963267948966 *)"
+          },
+          {
+            "name": "succ",
+            "code": "succ 10 ;; (* Resultado: 11, equivalente a add1 *)"
+          },
+          {
+            "name": "atan2",
+            "code": "atan2 4.0 3.0 ;; (* Para angle, usa atan2 para componentes *)"
+          },
+          {
+            "name": "asin",
+            "code": "asin 1.0 ;; (* Resultado: 1.5707963267948966 *)"
+          },
+          {
+            "name": "atan",
+            "code": "atan 1.0 ;; (* Resultado: 0.7853981633974483 *)"
+          },
+          {
+            "name": "ceil",
+            "code": "ceil 3.2 ;; (* Resultado: 4.0 *)"
+          },
+          {
+            "name": "complex",
+            "code": "(* No directo, usa módulos como Complex *)"
+          },
+          {
+            "name": "conj",
+            "code": "(* Usa Complex.conj *)"
+          },
+          {
+            "name": "cos",
+            "code": "cos 0.0 ;; (* Resultado: 1.0 *)"
+          },
+          {
+            "name": "cosh",
+            "code": "cosh 0.0 ;; (* Resultado: 1.0 *)"
+          },
+          {
+            "name": "Unix.time",
+            "code": "Unix.time () ;; (* Segundos actuales, equivalente a current-seconds *)"
+          },
+          {
+            "name": "denominator",
+            "code": "(* No directo para racionales, usa Qml o similares *)"
+          },
+          {
+            "name": "e",
+            "code": "exp 1.0 ;; (* Resultado: 2.718281828459045 *)"
+          },
+          {
+            "name": "even",
+            "code": "4 mod 2 = 0 ;; (* Resultado: true *)"
+          },
+          {
+            "name": "float_of_int",
+            "code": "float_of_int 3 ;; (* Resultado: 3.0 *)"
+          },
+          {
+            "name": "is_int",
+            "code": "(* No directo, usa modf para chequear *)"
+          },
+          {
+            "name": "exp",
+            "code": "exp 1.0 ;; (* Resultado: 2.718281828459045 *)"
+          },
+          {
+            "name": "**",
+            "code": "2.0 ** 3.0 ;; (* Resultado: 8.0 *)"
+          },
+          {
+            "name": "floor",
+            "code": "floor 3.8 ;; (* Resultado: 3.0 *)"
+          },
+          {
+            "name": "gcd",
+            "code": "gcd 12 18 ;; (* Resultado: 6 *)"
+          },
+          {
+            "name": "im",
+            "code": "(* Usa Complex.im *)"
+          },
+          {
+            "name": "int_of_float",
+            "code": "int_of_float 3.0 ;; (* Resultado: 3 *)"
+          },
+          {
+            "name": "is_float",
+            "code": "(* No directo *)"
+          },
+          {
+            "name": "char_of_int",
+            "code": "char_of_int 65 ;; (* Resultado: 'A' *)"
+          },
+          {
+            "name": "sqrt (float)",
+            "code": "truncate (sqrt 16.0) ;; (* Resultado: 4 *)"
+          },
+          {
+            "name": "int",
+            "code": "(* Tipos son inferidos *)"
+          },
+          {
+            "name": "lcm",
+            "code": "(fun a b -> abs (a * b) / gcd a b) 12 18 ;; (* Resultado: 36 *)"
+          },
+          {
+            "name": "log",
+            "code": "log 2.71828 ;; (* Resultado: 1.0 approx *)"
+          },
+          {
+            "name": "hypot",
+            "code": "hypot 3.0 4.0 ;; (* Resultado: 5.0, para magnitude *)"
+          },
+          {
+            "name": "polar",
+            "code": "(* Usa Complex.polar *)"
+          },
+          {
+            "name": "of_re_im",
+            "code": "(* Usa Complex.of_re_im o similar *)"
+          },
+          {
+            "name": "max",
+            "code": "max 5 3 ;; (* Resultado: 5 *)"
+          },
+          {
+            "name": "min",
+            "code": "min 5 3 ;; (* Resultado: 3 *)"
+          },
+          {
+            "name": "mod",
+            "code": "10 mod 3 ;; (* Resultado: 1 *)"
+          },
+          {
+            "name": "neg",
+            "code": "5 < 0 ;; (* Resultado: false *)"
+          },
+          {
+            "name": "string_of_int",
+            "code": "string_of_int 42 ;; (* Resultado: \"42\" *)"
+          },
+          {
+            "name": "is_number",
+            "code": "(* Tipos inferidos *)"
+          },
+          {
+            "name": "numerator",
+            "code": "(* No directo *)"
+          },
+          {
+            "name": "odd",
+            "code": "3 mod 2 <> 0 ;; (* Resultado: true *)"
+          },
+          {
+            "name": "pi",
+            "code": "Float.pi ;; (* Resultado: 3.141592653589793 *)"
+          },
+          {
+            "name": "pos",
+            "code": "5 > 0 ;; (* Resultado: true *)"
+          },
+          {
+            "name": "/",
+            "code": "10 / 3 ;; (* Resultado: 3 *)"
+          },
+          {
+            "name": "Random.int",
+            "code": "Random.int 10 ;; (* Número entre 0 y 9 *)"
+          },
+          {
+            "name": "rational",
+            "code": "(* No directo *)"
+          },
+          {
+            "name": "re",
+            "code": "(* Usa Complex.re *)"
+          },
+          {
+            "name": "is_float",
+            "code": "(* Tipos inferidos *)"
+          },
+          {
+            "name": "mod",
+            "code": "10 mod 3 ;; (* Resultado: 1 *)"
+          },
+          {
+            "name": "round",
+            "code": "round 3.6 ;; (* Resultado: 4.0 *)"
+          },
+          {
+            "name": "sign",
+            "code": "compare 5 0 ;; (* Resultado: 1 *)"
+          },
+          {
+            "name": "sin",
+            "code": "sin 0.0 ;; (* Resultado: 0.0 *)"
+          },
+          {
+            "name": "sinh",
+            "code": "sinh 0.0 ;; (* Resultado: 0.0 *)"
+          },
+          {
+            "name": "sqr",
+            "code": "4 * 4 ;; (* Resultado: 16 *)"
+          },
+          {
+            "name": "sqrt",
+            "code": "sqrt 16.0 ;; (* Resultado: 4.0 *)"
+          },
+          {
+            "name": "pred",
+            "code": "pred 10 ;; (* Resultado: 9, equivalente a sub1 *)"
+          },
+          {
+            "name": "tan",
+            "code": "tan 0.0 ;; (* Resultado: 0.0 *)"
+          },
+          {
+            "name": "zero",
+            "code": "0 = 0 ;; (* Resultado: true *)"
+          }
+        ]
+      }
     }
   },
   {
@@ -118,11 +684,7 @@
         "Entender cómo pasar parámetros a una función.",
         "Comprender cómo las funciones devuelven valores."
       ],
-      "key_concepts": [
-        "Funciones",
-        "Parámetros",
-        "Valores de retorno"
-      ],
+      "key_concepts": ["Funciones", "Parámetros", "Valores de retorno"],
       "subsections": [
         {
           "title": "Crear una función",
@@ -172,10 +734,7 @@
         "Aplicar funciones con varios datos de entrada.",
         "Resolver problemas prácticos usando múltiples parámetros."
       ],
-      "key_concepts": [
-        "Parámetros múltiples",
-        "Funciones complejas"
-      ],
+      "key_concepts": ["Parámetros múltiples", "Funciones complejas"],
       "subsections": [
         {
           "title": "Definir funciones con varios parámetros",
@@ -280,11 +839,7 @@
         "Diseñar funciones con casos base y recursivos.",
         "Resolver problemas usando recursión en lugar de bucles."
       ],
-      "key_concepts": [
-        "Recursión",
-        "Caso base",
-        "Caso recursivo"
-      ],
+      "key_concepts": ["Recursión", "Caso base", "Caso recursivo"],
       "subsections": [
         {
           "title": "Qué es la recursión",
@@ -388,11 +943,7 @@
         "Aplicar `map` y `filter` para procesar listas.",
         "Resolver problemas usando funciones que operan sobre otras funciones."
       ],
-      "key_concepts": [
-        "Funciones de orden superior",
-        "`map`",
-        "`filter`"
-      ],
+      "key_concepts": ["Funciones de orden superior", "`map`", "`filter`"],
       "subsections": [
         {
           "title": "Qué son las funciones de orden superior",
@@ -442,11 +993,7 @@
         "Crear y usar estos tipos de datos en Racket y OCaml.",
         "Organizar información estructurada de manera efectiva."
       ],
-      "key_concepts": [
-        "Tuplas",
-        "Registros",
-        "Datos estructurados"
-      ],
+      "key_concepts": ["Tuplas", "Registros", "Datos estructurados"],
       "subsections": [
         {
           "title": "Tuplas",
@@ -496,11 +1043,7 @@
         "Realizar operaciones básicas con texto.",
         "Aplicar técnicas para manipular texto eficientemente."
       ],
-      "key_concepts": [
-        "Cadenas",
-        "Caracteres",
-        "Manipulación de texto"
-      ],
+      "key_concepts": ["Cadenas", "Caracteres", "Manipulación de texto"],
       "subsections": [
         {
           "title": "Cadenas y caracteres",
@@ -550,10 +1093,7 @@
         "Combinar funciones para resolver problemas.",
         "Aplicar composición en ejemplos prácticos."
       ],
-      "key_concepts": [
-        "Composición de funciones",
-        "Encadenamiento"
-      ],
+      "key_concepts": ["Composición de funciones", "Encadenamiento"],
       "subsections": [
         {
           "title": "Qué es la composición",
