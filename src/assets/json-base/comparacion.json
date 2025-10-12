@@ -3,127 +3,217 @@
     "ejercicio-1": {
       "title": "Sumar distancias de un viaje",
       "racket": {
-        "lines": ["(+ 5 3)"]
+        "lines": ["(+ 5 3)", "(+ 2 7)", "(+ 10 4)", "(+ 1 6)", "(+ 8 2)"]
       },
       "ocaml": {
-        "lines": ["5 + 3"]
+        "lines": ["5 + 3", "2 + 7", "10 + 4", "1 + 6", "8 + 2"]
       },
       "explanations_racket": [
-        "Esta línea calcula la distancia total de un viaje sumando 5 km y 3 km usando la función primitiva '+'. En Racket, la notación prefija (+ 5 3) con paréntesis explicita que la suma es una operación funcional pura, que siempre produce el mismo resultado sin modificar estado. Este ejemplo es ideal para principiantes, como planificar un camino combinando tramos, mostrando cómo las expresiones simples resuelven problemas reales con determinismo. El resultado es 8."
+        "Esta línea calcula la distancia total sumando 5 km y 3 km con '+', resultando en 8. La notación prefija (+ 5 3) en Racket enfatiza la suma como función pura, ideal para principiantes que suman tramos de un viaje, como ir a la escuela y volver, con resultados predecibles.",
+        "Suma 2 km y 7 km con '+', dando 9. La notación prefija (+ 2 7) muestra cómo Racket trata operaciones como funciones, útil para modelar caminatas cortas, como de casa al parque, sin alterar estado.",
+        "Suma 10 km y 4 km, resultando en 14. (+ 10 4) refuerza la pureza funcional, como combinar distancias de un viaje largo, asegurando determinismo para principiantes.",
+        "Suma 1 km y 6 km, dando 7. La notación (+ 1 6) es clara para modelar tramos pequeños, como ir a una tienda, manteniendo inmutabilidad.",
+        "Suma 8 km y 2 km, resultando en 10. (+ 8 2) enseña cómo sumar distancias, como un paseo matutino y vespertino, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula la distancia total de un viaje sumando 5 km y 3 km usando el operador '+'. En OCaml, la notación infija (5 + 3) es natural, como en matemáticas básicas, lo que facilita la comprensión. Como expresión funcional pura, siempre retorna 8 sin efectos secundarios. El contexto de un viaje ayuda a principiantes a ver cómo la suma modela escenarios prácticos, enfatizando la inmutabilidad y predictibilidad."
+        "Calcula la distancia sumando 5 km y 3 km con '+', dando 8. La notación infija 5 + 3 en OCaml es intuitiva, como matemáticas escolares, ideal para modelar tramos de un viaje, con pureza y sin efectos secundarios.",
+        "Suma 2 km y 7 km, resultando en 9. La notación 2 + 7 es simple, como sumar distancias de caminatas diarias, con tipado estático asegurando enteros.",
+        "Suma 10 km y 4 km, dando 14. La expresión 10 + 4 modela viajes largos, manteniendo determinismo y facilidad para principiantes.",
+        "Suma 1 km y 6 km, resultando en 7. La notación 1 + 6 es clara para tramos cortos, como ir al mercado, con pureza funcional.",
+        "Suma 8 km y 2 km, dando 10. La expresión 8 + 2 representa caminatas combinadas, con OCaml asegurando resultados predecibles."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas suman 5 + 3 para obtener 8, siguiendo el principio funcional de pureza y determinismo. Ambas usan operadores primitivos de suma para un ejemplo introductorio. Diferencias: Racket usa notación prefija (+ 5 3) con paréntesis, enfatizando que '+' es una función, lo que es explícito pero verboso. OCaml usa notación infija (5 + 3), más concisa y similar a la matemática estándar, mejorando la legibilidad. El tipado dinámico de Racket permite flexibilidad, mientras que OCaml infiere tipos enteros, aunque esto no afecta el resultado."
+        "Similitudes: Ambas calculan 5 + 3 = 8, con pureza funcional, usando operadores de suma primitivos para modelar distancias de un viaje. Diferencias: Racket usa notación prefija (+ 5 3) con paréntesis, explícita como función, mientras que OCaml usa infija 5 + 3, más concisa y matemática. Racket tiene tipado dinámico, OCaml infiere enteros.",
+        "Similitudes: Ambas calculan 2 + 7 = 9, con pureza funcional, usando suma para caminatas cortas. Diferencias: Racket usa prefija (+ 2 7), destacando la función, mientras que OCaml usa infija 2 + 7, más natural. Racket dinámico, OCaml estático, pero resultado idéntico.",
+        "Similitudes: Ambas calculan 10 + 4 = 14, con pureza funcional, modelando viajes largos. Diferencias: Racket usa prefija (+ 10 4), explícita, mientras que OCaml usa infija 10 + 4, concisa. Tipado dinámico en Racket, estático en OCaml.",
+        "Similitudes: Ambas calculan 1 + 6 = 7, con pureza funcional, para tramos pequeños. Diferencias: Racket usa prefija (+ 1 6), mientras que OCaml usa infija 1 + 6, más intuitiva. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan 8 + 2 = 10, con pureza funcional, para paseos combinados. Diferencias: Racket usa prefija (+ 8 2), explícita, mientras que OCaml usa infija 8 + 2, concisa. Tipado dinámico vs. estático, pero idéntico."
       ]
     },
     "ejercicio-2": {
       "title": "Verificar paridad con resto",
       "racket": {
-        "lines": ["(remainder 7 2)"]
+        "lines": [
+          "(remainder 7 2)",
+          "(remainder 4 2)",
+          "(remainder 9 2)",
+          "(remainder 6 2)",
+          "(remainder 3 2)"
+        ]
       },
       "ocaml": {
-        "lines": ["7 mod 2"]
+        "lines": ["7 mod 2", "4 mod 2", "9 mod 2", "6 mod 2", "3 mod 2"]
       },
       "explanations_racket": [
-        "Esta línea calcula el resto de dividir 7 por 2 usando 'remainder', resultando en 1, lo que indica que 7 es impar. En Racket, 'remainder' es una operación primitiva pura que siempre da el mismo resultado, respetando la inmutabilidad. La notación prefija (remainder 7 2) ayuda a principiantes a ver las operaciones como funciones, como comprobar si un número de objetos deja sobrantes en grupos de dos. Este ejemplo enseña propiedades numéricas de forma determinista."
+        "Calcula el resto de 7 ÷ 2 con 'remainder', dando 1 (impar). La notación prefija (remainder 7 2) en Racket muestra la operación como función pura, ideal para verificar si un número de sillas deja sobrantes en pares.",
+        "Calcula 4 ÷ 2, dando 0 (par). (remainder 4 2) enseña paridad, como dividir dulces equitativamente, con pureza funcional.",
+        "Calcula 9 ÷ 2, resultando en 1 (impar). (remainder 9 2) modela casos como organizar invitados, manteniendo determinismo.",
+        "Calcula 6 ÷ 2, dando 0 (par). (remainder 6 2) es útil para dividir objetos en grupos, sin alterar estado.",
+        "Calcula 3 ÷ 2, dando 1 (impar). (remainder 3 2) refuerza paridad, como clasificar frutas, con inmutabilidad."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula el resto de dividir 7 por 2 usando 'mod', dando 1, lo que indica imparidad. En OCaml, 'mod' es un operador infijo intuitivo, similar a matemáticas escolares. Como expresión pura, no altera estado y siempre produce el mismo resultado. El ejemplo enseña a principiantes cómo verificar paridad, como decidir si una cantidad de items no se divide equitativamente, con el tipado estático asegurando operandos enteros."
+        "Calcula el resto de 7 ÷ 2 con 'mod', dando 1 (impar). La notación infija 7 mod 2 es intuitiva, como verificar sillas sobrantes, con pureza funcional.",
+        "Calcula 4 ÷ 2, dando 0 (par). 4 mod 2 modela división equitativa, como repartir dulces, con tipado estático.",
+        "Calcula 9 ÷ 2, resultando en 1 (impar). 9 mod 2 es útil para organizar grupos, manteniendo determinismo.",
+        "Calcula 6 ÷ 2, dando 0 (par). 6 mod 2 enseña división en pares, como clasificar objetos, sin efectos secundarios.",
+        "Calcula 3 ÷ 2, dando 1 (impar). 3 mod 2 modela paridad, como contar frutas sobrantes, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas calculan el resto de 7 / 2 para verificar imparidad (1), siguiendo pureza funcional. Ambas usan operadores primitivos para un ejemplo básico. Diferencias: Racket usa 'remainder' prefija con paréntesis, más explícito, mientras que OCaml usa 'mod' infijo, más conciso. 'remainder' puede dar negativos, 'mod' no, pero aquí es idéntico. Racket dinámico, OCaml estático."
+        "Similitudes: Ambas calculan resto de 7 ÷ 2 = 1, con pureza funcional, verificando imparidad. Diferencias: Racket usa 'remainder' prefija, explícita, mientras que OCaml usa 'mod' infija, concisa. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan 4 ÷ 2 = 0, con pureza funcional, verificando paridad. Diferencias: Racket usa 'remainder' prefija, mientras que OCaml usa 'mod' infija. Tipado dinámico vs. estático, pero idéntico.",
+        "Similitudes: Ambas calculan 9 ÷ 2 = 1, con pureza funcional, para imparidad. Diferencias: Racket usa 'remainder' prefija, OCaml usa 'mod' infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan 6 ÷ 2 = 0, con pureza funcional, para paridad. Diferencias: Racket usa 'remainder' prefija, OCaml usa 'mod' infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan 3 ÷ 2 = 1, con pureza funcional, verificando imparidad. Diferencias: Racket usa 'remainder' prefija, OCaml usa 'mod' infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-3": {
       "title": "Comparar inventarios con >",
       "racket": {
-        "lines": ["(> 12 8)"]
+        "lines": ["(> 12 8)", "(> 5 10)", "(> 15 7)", "(> 3 3)", "(> 9 4)"]
       },
       "ocaml": {
-        "lines": ["12 > 8"]
+        "lines": ["12 > 8", "5 > 10", "15 > 7", "3 > 3", "9 > 4"]
       },
       "explanations_racket": [
-        "Esta línea compara si 12 unidades son mayores que 8 usando '>', retornando #t porque 12 > 8. En Racket, '>' es una función primitiva pura que produce valores booleanos sin efectos secundarios. La notación prefija (> 12 8) ayuda a principiantes a entender las comparaciones como funciones, como verificar si un inventario excede otro en una tienda. Este ejemplo enseña decisiones numéricas de forma determinista."
+        "Compara 12 > 8 con '>', dando #t. La notación prefija (> 12 8) en Racket muestra comparación como función pura, ideal para comparar inventarios en una tienda.",
+        "Compara 5 > 10, dando #f. (> 5 10) enseña decisiones, como verificar existencias, con determinismo.",
+        "Compara 15 > 7, resultando en #t. (> 15 7) modela comparar cantidades, como productos, sin efectos secundarios.",
+        "Compara 3 > 3, dando #f. (> 3 3) enseña que igual no es mayor, útil para inventarios equilibrados.",
+        "Compara 9 > 4, dando #t. (> 9 4) modela comparar ventas, manteniendo inmutabilidad."
       ],
       "explanations_ocaml": [
-        "Esta línea compara si 12 unidades son mayores que 8 usando '>', retornando true porque 12 > 8. En OCaml, '>' es un operador infijo intuitivo, similar a matemáticas. Como expresión pura, siempre da el mismo resultado. El ejemplo enseña a principiantes cómo comparar cantidades, como en un inventario, con el tipado estático asegurando operandos compatibles."
+        "Compara 12 > 8 con '>', dando true. La notación infija 12 > 8 es intuitiva, como comparar inventarios, con pureza funcional.",
+        "Compara 5 > 10, dando false. 5 > 10 modela decisiones de stock, con tipado estático asegurando enteros.",
+        "Compara 15 > 7, dando true. 15 > 7 es útil para comparar cantidades, manteniendo determinismo.",
+        "Compara 3 > 3, dando false. 3 > 3 enseña que igual no es mayor, con pureza.",
+        "Compara 9 > 4, dando true. 9 > 4 modela comparar ventas, sin efectos secundarios."
       ],
       "comparisons": [
-        "Similitudes: Ambas comparan 12 > 8 para verificar superioridad, retornando #t/true, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '>' prefija con paréntesis, explícito como función, mientras que OCaml usa infijo, más conciso. Racket dinámico, OCaml estático, pero aquí idéntico."
+        "Similitudes: Ambas comparan 12 > 8, dando #t/true, con pureza funcional, para inventarios. Diferencias: Racket usa '>' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas comparan 5 > 10, dando #f/false, con pureza funcional, para existencias. Diferencias: Racket usa '>' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas comparan 15 > 7, dando #t/true, con pureza funcional, para cantidades. Diferencias: Racket usa '>' prefija, OCaml infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas comparan 3 > 3, dando #f/false, con pureza funcional, para inventarios equilibrados. Diferencias: Racket usa '>' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas comparan 9 > 4, dando #t/true, con pureza funcional, para ventas. Diferencias: Racket usa '>' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-4": {
       "title": "Dividir ganancias con /",
       "racket": {
-        "lines": ["(/ 10 2)"]
+        "lines": ["(/ 10 2)", "(/ 12 3)", "(/ 8 4)", "(/ 15 5)", "(/ 6 2)"]
       },
       "ocaml": {
-        "lines": ["10 / 2"]
+        "lines": ["10 / 2", "12 / 3", "8 / 4", "15 / 5", "6 / 2"]
       },
       "explanations_racket": [
-        "Esta línea divide 10 ganancias entre 2 personas usando '/', resultando en 5. En Racket, '/' es una función primitiva pura que produce valores sin efectos secundarios. La notación prefija (/ 10 2) refuerza que las operaciones son funciones, como repartir equitativamente un premio. Este ejemplo enseña a principiantes división en contextos prácticos, con determinismo."
+        "Divide 10 ÷ 2 con '/', dando 5. La notación prefija (/ 10 2) en Racket muestra división como función pura, ideal para repartir ganancias equitativamente.",
+        "Divide 12 ÷ 3, dando 4. (/ 12 3) modela repartir premios, con determinismo para principiantes.",
+        "Divide 8 ÷ 4, resultando en 2. (/ 8 4) enseña división en grupos, como compartir recursos, sin alterar estado.",
+        "Divide 15 ÷ 5, dando 3. (/ 15 5) es útil para distribuciones, manteniendo inmutabilidad.",
+        "Divide 6 ÷ 2, dando 3. (/ 6 2) modela repartir objetos, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea divide 10 ganancias entre 2 personas usando '/', dando 5. En OCaml, '/' es un operador infijo intuitivo. Como expresión pura, siempre retorna el mismo resultado. El contexto de repartir ganancias muestra cómo la división resuelve distribuciones, con tipado estático asegurando operandos enteros."
+        "Divide 10 ÷ 2 con '/', dando 5. La notación infija 10 / 2 es intuitiva, como repartir ganancias, con pureza funcional.",
+        "Divide 12 ÷ 3, dando 4. 12 / 3 modela compartir premios, con tipado estático asegurando enteros.",
+        "Divide 8 ÷ 4, dando 2. 8 / 4 enseña división equitativa, como repartir recursos, con determinismo.",
+        "Divide 15 ÷ 5, dando 3. 15 / 5 es útil para distribuciones, sin efectos secundarios.",
+        "Divide 6 ÷ 2, dando 3. 6 / 2 modela repartir objetos, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas dividen 10 / 2 para obtener 5, con pureza funcional. Ambas usan operadores primitivos para un ejemplo básico. Diferencias: Racket usa '/' prefija con paréntesis, explícito, mientras que OCaml usa infijo, conciso. Racket puede retornar fracciones, OCaml división entera, pero aquí idéntico."
+        "Similitudes: Ambas dividen 10 ÷ 2 = 5, con pureza funcional, para repartir ganancias. Diferencias: Racket usa '/' prefija, explícita, mientras que OCaml usa infija, concisa. Racket puede dar fracciones, OCaml entera, pero idéntico aquí.",
+        "Similitudes: Ambas dividen 12 ÷ 3 = 4, con pureza funcional, para premios. Diferencias: Racket usa '/' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas dividen 8 ÷ 4 = 2, con pureza funcional, para recursos. Diferencias: Racket usa '/' prefija, OCaml infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas dividen 15 ÷ 5 = 3, con pureza funcional, para distribuciones. Diferencias: Racket usa '/' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas dividen 6 ÷ 2 = 3, con pureza funcional, para repartir objetos. Diferencias: Racket usa '/' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-5": {
       "title": "Verificar igualdad con =",
       "racket": {
-        "lines": ["(= 5 5)"]
+        "lines": ["(= 5 5)", "(= 3 4)", "(= 7 7)", "(= 2 2)", "(= 9 8)"]
       },
       "ocaml": {
-        "lines": ["5 = 5"]
+        "lines": ["5 = 5", "3 = 4", "7 = 7", "2 = 2", "9 = 8"]
       },
       "explanations_racket": [
-        "Esta línea verifica si 5 es igual a 5 usando '=', retornando #t. En Racket, '=' es una función primitiva pura para comparar números. La notación prefija (= 5 5) ayuda a principiantes a ver comparaciones como funciones, como confirmar si dos medidas son iguales. Este ejemplo enseña igualdad de forma determinista."
+        "Verifica si 5 = 5 con '=', dando #t. La notación prefija (= 5 5) en Racket muestra igualdad como función pura, ideal para comparar cajas de libros.",
+        "Verifica 3 = 4, dando #f. (= 3 4) enseña comparar cantidades, como pesos, con determinismo.",
+        "Verifica 7 = 7, dando #t. (= 7 7) modela validar medidas iguales, con inmutabilidad.",
+        "Verifica 2 = 2, dando #t. (= 2 2) es útil para inventarios, sin efectos secundarios.",
+        "Verifica 9 = 8, dando #f. (= 9 8) enseña comparar cantidades distintas, con pureza."
       ],
       "explanations_ocaml": [
-        "Esta línea verifica si 5 es igual a 5 usando '=', retornando true. En OCaml, '=' es un operador infijo intuitivo. Como expresión pura, siempre produce el mismo resultado. El ejemplo de comparar medidas muestra cómo la igualdad resuelve validaciones, con tipado estático."
+        "Verifica 5 = 5 con '=', dando true. La notación infija 5 = 5 es intuitiva, como comparar libros, con pureza funcional.",
+        "Verifica 3 = 4, dando false. 3 = 4 modela comparar pesos, con tipado estático.",
+        "Verifica 7 = 7, dando true. 7 = 7 enseña validar medidas, con determinismo.",
+        "Verifica 2 = 2, dando true. 2 = 2 es útil para inventarios, sin efectos secundarios.",
+        "Verifica 9 = 8, dando false. 9 = 8 modela comparar cantidades distintas, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas verifican 5 = 5, retornando #t/true, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '=' prefija con paréntesis, explícito, mientras que OCaml usa infijo, conciso. Racket dinámico, OCaml estático."
+        "Similitudes: Ambas verifican 5 = 5, dando #t/true, con pureza funcional, para comparar libros. Diferencias: Racket usa '=' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas verifican 3 = 4, dando #f/false, con pureza funcional, para pesos. Diferencias: Racket usa '=' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas verifican 7 = 7, dando #t/true, con pureza funcional, para medidas. Diferencias: Racket usa '=' prefija, OCaml infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas verifican 2 = 2, dando #t/true, con pureza funcional, para inventarios. Diferencias: Racket usa '=' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas verifican 9 = 8, dando #f/false, con pureza funcional, para cantidades distintas. Diferencias: Racket usa '=' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-6": {
       "title": "Valor absoluto con abs",
       "racket": {
-        "lines": ["(abs -5)"]
+        "lines": ["(abs -5)", "(abs -3)", "(abs 4)", "(abs -7)", "(abs 0)"]
       },
       "ocaml": {
-        "lines": ["abs (-5)"]
+        "lines": ["abs (-5)", "abs (-3)", "abs 4", "abs (-7)", "abs 0"]
       },
       "explanations_racket": [
-        "Esta línea calcula el valor absoluto de -5 usando 'abs', resultando en 5. En Racket, 'abs' es una función primitiva pura que convierte negativos a positivos sin efectos secundarios. La notación prefija (abs -5) enseña a principiantes cómo manejar números negativos, como medir una distancia siempre positiva en un mapa. Este ejemplo refuerza la determinismo en cálculos."
+        "Calcula abs(-5) con 'abs', dando 5. La notación prefija (abs -5) en Racket muestra valor absoluto como función pura, ideal para medir distancias en mapas.",
+        "Calcula abs(-3), dando 3. (abs -3) modela convertir desviaciones negativas, con determinismo.",
+        "Calcula abs(4), dando 4. (abs 4) enseña manejar positivos, como medir alturas, sin efectos secundarios.",
+        "Calcula abs(-7), dando 7. (abs -7) es útil para distancias negativas, manteniendo inmutabilidad.",
+        "Calcula abs(0), dando 0. (abs 0) modela el caso base, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula el valor absoluto de -5 usando 'abs', dando 5. En OCaml, 'abs' es una función primitiva pura. La notación infija abs (-5) es clara para principiantes, como convertir una temperatura negativa a positiva para un cálculo. El tipado estático asegura operandos enteros, manteniendo predictibilidad."
+        "Calcula abs(-5) con 'abs', dando 5. La notación infija abs (-5) es clara, como medir distancias, con pureza funcional.",
+        "Calcula abs(-3), dando 3. abs (-3) modela convertir desviaciones, con tipado estático.",
+        "Calcula abs(4), dando 4. abs 4 enseña manejar positivos, como alturas, con determinismo.",
+        "Calcula abs(-7), dando 7. abs (-7) es útil para distancias, sin efectos secundarios.",
+        "Calcula abs(0), dando 0. abs 0 modela el caso base, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas calculan abs(-5) = 5, con pureza funcional. Ambas usan funciones primitivas para un ejemplo básico. Diferencias: Racket usa 'abs' prefija sin paréntesis extra, explícito, mientras que OCaml usa infijo con paréntesis para negativo. Racket dinámico, OCaml estático."
+        "Similitudes: Ambas calculan abs(-5) = 5, con pureza funcional, para medir distancias. Diferencias: Racket usa 'abs' prefija, explícita, mientras que OCaml usa infija con paréntesis para negativos. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan abs(-3) = 3, con pureza funcional, para desviaciones. Diferencias: Racket usa 'abs' prefija, OCaml infija con paréntesis. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan abs(4) = 4, con pureza funcional, para positivos. Diferencias: Racket usa 'abs' prefija, OCaml infija sin paréntesis. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan abs(-7) = 7, con pureza funcional, para distancias negativas. Diferencias: Racket usa 'abs' prefija, OCaml infija con paréntesis. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan abs(0) = 0, con pureza funcional, para caso base. Diferencias: Racket usa 'abs' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-7": {
       "title": "Raíz cuadrada con sqrt",
       "racket": {
-        "lines": ["(sqrt 16)"]
+        "lines": ["(sqrt 16)", "(sqrt 25)", "(sqrt 9)", "(sqrt 4)", "(sqrt 36)"]
       },
       "ocaml": {
-        "lines": ["sqrt 16.0"]
+        "lines": ["sqrt 16.0", "sqrt 25.0", "sqrt 9.0", "sqrt 4.0", "sqrt 36.0"]
       },
       "explanations_racket": [
-        "Esta línea calcula la raíz cuadrada de 16 usando 'sqrt', resultando en 4. En Racket, 'sqrt' es una función primitiva pura que maneja cálculos matemáticos sin efectos secundarios. La notación prefija (sqrt 16) es ideal para principiantes, como encontrar el lado de un cuadrado con área 16, mostrando determinismo en expresiones funcionales."
+        "Calcula sqrt(16) con 'sqrt', dando 4. La notación prefija (sqrt 16) en Racket muestra raíz cuadrada como función pura, ideal para calcular lados de cuadrados.",
+        "Calcula sqrt(25), dando 5. (sqrt 25) modela diseño estructural, con determinismo.",
+        "Calcula sqrt(9), dando 3. (sqrt 9) enseña raíces para áreas, sin efectos secundarios.",
+        "Calcula sqrt(4), dando 2. (sqrt 4) es útil para cálculos geométricos, con inmutabilidad.",
+        "Calcula sqrt(36), dando 6. (sqrt 36) modela diseño de áreas, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula la raíz cuadrada de 16.0 usando 'sqrt', dando 4.0. En OCaml, 'sqrt' es una función primitiva pura para flotantes. La notación infija sqrt 16.0 enseña a principiantes cómo manejar raíces, como calcular el lado de un cuadrado, con tipado estático asegurando flotantes."
+        "Calcula sqrt(16.0) con 'sqrt', dando 4.0. La notación infija sqrt 16.0 es clara, como calcular lados, con pureza y tipado flotante.",
+        "Calcula sqrt(25.0), dando 5.0. sqrt 25.0 modela diseño estructural, con tipado estático.",
+        "Calcula sqrt(9.0), dando 3.0. sqrt 9.0 enseña raíces para áreas, con determinismo.",
+        "Calcula sqrt(4.0), dando 2.0. sqrt 4.0 es útil para geometría, sin efectos secundarios.",
+        "Calcula sqrt(36.0), dando 6.0. sqrt 36.0 modela diseño de áreas, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas calculan sqrt(16) = 4, con pureza funcional. Ambas usan funciones primitivas para un ejemplo matemático. Diferencias: Racket usa 'sqrt' prefija con entero, retornando flotante, mientras que OCaml requiere flotante 16.0. Racket dinámico, OCaml estático."
+        "Similitudes: Ambas calculan sqrt(16) = 4, con pureza funcional, para lados de cuadrados. Diferencias: Racket usa 'sqrt' prefija con enteros, retornando flotante, mientras que OCaml requiere flotante (16.0). Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan sqrt(25) = 5, con pureza funcional, para diseño estructural. Diferencias: Racket usa 'sqrt' prefija con enteros, OCaml usa flotante (25.0). Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan sqrt(9) = 3, con pureza funcional, para áreas. Diferencias: Racket usa 'sqrt' prefija, OCaml usa flotante (9.0). Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan sqrt(4) = 2, con pureza funcional, para geometría. Diferencias: Racket usa 'sqrt' prefija, OCaml usa flotante (4.0). Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan sqrt(36) = 6, con pureza funcional, para diseño de áreas. Diferencias: Racket usa 'sqrt' prefija, OCaml usa flotante (36.0). Racket dinámico, OCaml estático."
       ]
     }
   },
@@ -131,127 +221,229 @@
     "ejercicio-1": {
       "title": "Verificar igualdad de paquetes",
       "racket": {
-        "lines": ["(= 8 8)"]
+        "lines": ["(= 8 8)", "(= 5 6)", "(= 7 7)", "(= 3 3)", "(= 9 10)"]
       },
       "ocaml": {
-        "lines": ["8 = 8"]
+        "lines": ["8 = 8", "5 = 6", "7 = 7", "3 = 3", "9 = 10"]
       },
       "explanations_racket": [
-        "Esta línea verifica si 8 = 8 usando la función primitiva '=', retornando #t. En Racket, la notación prefija (= 8 8) con paréntesis muestra que '=' es una función pura que compara números. Este ejemplo, como Clara revisando paquetes de galletas, enseña a principiantes cómo validar equivalencias en un contexto real, como inventarios, manteniendo pureza funcional y determinismo."
+        "Verifica si 8 = 8 con '=', dando #t. La notación prefija (= 8 8) en Racket muestra igualdad como función pura, ideal para comparar paquetes de galletas en inventarios.",
+        "Verifica 5 = 6, dando #f. (= 5 6) enseña comparar cantidades distintas, como cajas de productos, con determinismo.",
+        "Verifica 7 = 7, dando #t. (= 7 7) modela validar medidas iguales, como en control de calidad, con inmutabilidad.",
+        "Verifica 3 = 3, dando #t. (= 3 3) es útil para confirmar inventarios, sin efectos secundarios.",
+        "Verifica 9 = 10, dando #f. (= 9 10) enseña comparar cantidades distintas, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea verifica si 8 = 8 usando el operador '=', retornando true. En OCaml, la notación infija (8 = 8) es intuitiva, como en matemáticas. La expresión es pura, siempre produce true sin efectos secundarios. El contexto de Clara con paquetes de galletas muestra cómo la igualdad resuelve validaciones prácticas, con tipado estático asegurando operandos enteros."
+        "Verifica 8 = 8 con '=', dando true. La notación infija 8 = 8 es intuitiva, como comparar galletas, con pureza funcional.",
+        "Verifica 5 = 6, dando false. 5 = 6 modela comparar cantidades, con tipado estático asegurando enteros.",
+        "Verifica 7 = 7, dando true. 7 = 7 enseña validar medidas, con determinismo.",
+        "Verifica 3 = 3, dando true. 3 = 3 es útil para inventarios, sin efectos secundarios.",
+        "Verifica 9 = 10, dando false. 9 = 10 modela comparar cantidades distintas, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas verifican 8 = 8, retornando #t/true, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '=' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket es dinámico, OCaml estático, pero el resultado es idéntico."
+        "Similitudes: Ambas verifican 8 = 8, dando #t/true, con pureza funcional, para comparar galletas. Diferencias: Racket usa '=' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas verifican 5 = 6, dando #f/false, con pureza funcional, para cantidades distintas. Diferencias: Racket usa '=' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas verifican 7 = 7, dando #t/true, con pureza funcional, para medidas. Diferencias: Racket usa '=' prefija, OCaml infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas verifican 3 = 3, dando #t/true, con pureza funcional, para inventarios. Diferencias: Racket usa '=' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas verifican 9 = 10, dando #f/false, con pureza funcional, para cantidades distintas. Diferencias: Racket usa '=' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-2": {
       "title": "Comparar presupuesto con límite",
       "racket": {
-        "lines": ["(> 15 10)"]
+        "lines": ["(> 15 10)", "(> 8 9)", "(> 12 5)", "(> 10 10)", "(> 20 15)"]
       },
       "ocaml": {
-        "lines": ["15 > 10"]
+        "lines": ["15 > 10", "8 > 9", "12 > 5", "10 > 10", "20 > 15"]
       },
       "explanations_racket": [
-        "Esta línea evalúa si 15 > 10 usando '>', retornando #t. En Racket, la notación prefija (> 15 10) muestra que '>' es una función pura que produce un booleano. El contexto de Jorge revisando un presupuesto enseña a principiantes cómo hacer comparaciones, como en planificación financiera, con resultados deterministas."
+        "Compara 15 > 10 con '>', dando #t. La notación prefija (> 15 10) en Racket muestra comparación como función pura, ideal para verificar presupuestos en planificación financiera.",
+        "Compara 8 > 9, dando #f. (> 8 9) enseña decisiones de límites, con determinismo.",
+        "Compara 12 > 5, dando #t. (> 12 5) modela comparar gastos, sin efectos secundarios.",
+        "Compara 10 > 10, dando #f. (> 10 10) enseña que igual no es mayor, útil para presupuestos equilibrados.",
+        "Compara 20 > 15, dando #t. (> 20 15) modela verificar excedentes, con inmutabilidad."
       ],
       "explanations_ocaml": [
-        "Esta línea verifica si 15 > 10 usando '>', retornando true. En OCaml, la notación infija (15 > 10) es intuitiva. La expresión es pura, siempre produce true. El ejemplo de Jorge con un presupuesto conecta comparaciones con escenarios reales, con tipado estático asegurando operandos enteros."
+        "Compara 15 > 10 con '>', dando true. La notación infija 15 > 10 es intuitiva, como verificar presupuestos, con pureza funcional.",
+        "Compara 8 > 9, dando false. 8 > 9 modela decisiones de límites, con tipado estático.",
+        "Compara 12 > 5, dando true. 12 > 5 es útil para comparar gastos, con determinismo.",
+        "Compara 10 > 10, dando false. 10 > 10 enseña que igual no es mayor, con pureza.",
+        "Compara 20 > 15, dando true. 20 > 15 modela verificar excedentes, sin efectos secundarios."
       ],
       "comparisons": [
-        "Similitudes: Ambas comparan 15 > 10, retornando #t/true, con pureza funcional. Ambas usan operadores primitivos para un ejemplo básico. Diferencias: Racket usa '>' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático, pero idéntico aquí."
+        "Similitudes: Ambas comparan 15 > 10, dando #t/true, con pureza funcional, para presupuestos. Diferencias: Racket usa '>' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas comparan 8 > 9, dando #f/false, con pureza funcional, para límites. Diferencias: Racket usa '>' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas comparan 12 > 5, dando #t/true, con pureza funcional, para gastos. Diferencias: Racket usa '>' prefija, OCaml infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas comparan 10 > 10, dando #f/false, con pureza funcional, para presupuestos equilibrados. Diferencias: Racket usa '>' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas comparan 20 > 15, dando #t/true, con pureza funcional, para excedentes. Diferencias: Racket usa '>' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-3": {
       "title": "Sumar distancias caminadas",
       "racket": {
-        "lines": ["(+ 7 5)"]
+        "lines": ["(+ 7 5)", "(+ 3 4)", "(+ 6 8)", "(+ 2 9)", "(+ 10 3)"]
       },
       "ocaml": {
-        "lines": ["7 + 5"]
+        "lines": ["7 + 5", "3 + 4", "6 + 8", "2 + 9", "10 + 3"]
       },
       "explanations_racket": [
-        "Esta línea calcula 7 + 5 usando '+', resultando en 12. En Racket, la notación prefija (+ 7 5) indica que '+' es una función pura. El contexto de Lucía sumando distancias caminadas enseña a principiantes cómo resolver problemas cotidianos, como calcular un recorrido, con cálculos deterministas."
+        "Calcula 7 + 5 con '+', dando 12. La notación prefija (+ 7 5) en Racket muestra suma como función pura, ideal para combinar distancias de caminatas.",
+        "Suma 3 + 4, dando 7. (+ 3 4) modela tramos cortos, como ir al parque, con determinismo.",
+        "Suma 6 + 8, dando 14. (+ 6 8) es útil para recorridos largos, sin efectos secundarios.",
+        "Suma 2 + 9, dando 11. (+ 2 9) enseña sumar distancias variadas, con inmutabilidad.",
+        "Suma 10 + 3, dando 13. (+ 10 3) modela combinar tramos, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula 7 + 5 usando '+', dando 12. En OCaml, la notación infija (7 + 5) es intuitiva. La expresión es pura, siempre produce 12. El ejemplo de Lucía con distancias conecta la suma con un caso práctico, con tipado estático asegurando operandos enteros."
+        "Calcula 7 + 5 con '+', dando 12. La notación infija 7 + 5 es intuitiva, como sumar tramos de caminatas, con pureza funcional.",
+        "Suma 3 + 4, dando 7. 3 + 4 modela tramos cortos, con tipado estático asegurando enteros.",
+        "Suma 6 + 8, dando 14. 6 + 8 es útil para recorridos largos, con determinismo.",
+        "Suma 2 + 9, dando 11. 2 + 9 enseña sumar distancias, sin efectos secundarios.",
+        "Suma 10 + 3, dando 13. 10 + 3 modela combinar tramos, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas suman 7 + 5 = 12, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '+' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático, pero idéntico."
+        "Similitudes: Ambas calculan 7 + 5 = 12, con pureza funcional, para distancias de caminatas. Diferencias: Racket usa '+' prefija con paréntesis, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan 3 + 4 = 7, con pureza funcional, para tramos cortos. Diferencias: Racket usa '+' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan 6 + 8 = 14, con pureza funcional, para recorridos largos. Diferencias: Racket usa '+' prefija, OCaml infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan 2 + 9 = 11, con pureza funcional, para distancias variadas. Diferencias: Racket usa '+' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan 10 + 3 = 13, con pureza funcional, para combinar tramos. Diferencias: Racket usa '+' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-4": {
       "title": "Calcular caramelos sobrantes",
       "racket": {
-        "lines": ["(- 20 6)"]
+        "lines": ["(- 20 6)", "(- 15 4)", "(- 12 3)", "(- 8 2)", "(- 10 5)"]
       },
       "ocaml": {
-        "lines": ["20 - 6"]
+        "lines": ["20 - 6", "15 - 4", "12 - 3", "8 - 2", "10 - 5"]
       },
       "explanations_racket": [
-        "Esta línea calcula 20 - 6 usando '-', resultando en 14. En Racket, la notación prefija (- 20 6) muestra que '-' es una función pura. El contexto de Raúl dando caramelos enseña a principiantes cómo calcular sobrantes, como en distribución de recursos, con resultados deterministas."
+        "Calcula 20 - 6 con '-', dando 14. La notación prefija (- 20 6) en Racket muestra resta como función pura, ideal para calcular caramelos sobrantes.",
+        "Resta 15 - 4, dando 11. (- 15 4) modela distribución de recursos, con determinismo.",
+        "Resta 12 - 3, dando 9. (- 12 3) enseña calcular sobrantes, sin efectos secundarios.",
+        "Resta 8 - 2, dando 6. (- 8 2) es útil para repartir objetos, con inmutabilidad.",
+        "Resta 10 - 5, dando 5. (- 10 5) modela calcular sobrantes, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula 20 - 6 usando '-', dando 14. En OCaml, la notación infija (20 - 6) es intuitiva. La expresión es pura, siempre produce 14. El ejemplo de Raúl con caramelos conecta la resta con un caso práctico, con tipado estático."
+        "Calcula 20 - 6 con '-', dando 14. La notación infija 20 - 6 es intuitiva, como calcular caramelos sobrantes, con pureza funcional.",
+        "Resta 15 - 4, dando 11. 15 - 4 modela distribución, con tipado estático.",
+        "Resta 12 - 3, dando 9. 12 - 3 enseña calcular sobrantes, con determinismo.",
+        "Resta 8 - 2, dando 6. 8 - 2 es útil para repartir objetos, sin efectos secundarios.",
+        "Resta 10 - 5, dando 5. 10 - 5 modela sobrantes, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas restan 20 - 6 = 14, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '-' prefija, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático, pero idéntico."
+        "Similitudes: Ambas restan 20 - 6 = 14, con pureza funcional, para caramelos sobrantes. Diferencias: Racket usa '-' prefija, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas restan 15 - 4 = 11, con pureza funcional, para distribución. Diferencias: Racket usa '-' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas restan 12 - 3 = 9, con pureza funcional, para sobrantes. Diferencias: Racket usa '-' prefija, OCaml infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas restan 8 - 2 = 6, con pureza funcional, para repartir objetos. Diferencias: Racket usa '-' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas restan 10 - 5 = 5, con pureza funcional, para sobrantes. Diferencias: Racket usa '-' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-5": {
       "title": "Verificar divisibilidad de libros",
       "racket": {
-        "lines": ["(remainder 10 3)"]
+        "lines": [
+          "(remainder 10 3)",
+          "(remainder 8 2)",
+          "(remainder 7 4)",
+          "(remainder 12 5)",
+          "(remainder 9 3)"
+        ]
       },
       "ocaml": {
-        "lines": ["10 mod 3"]
+        "lines": ["10 mod 3", "8 mod 2", "7 mod 4", "12 mod 5", "9 mod 3"]
       },
       "explanations_racket": [
-        "Esta línea calcula el resto de 10 / 3 usando 'remainder', dando 1. En Racket, la notación prefija (remainder 10 3) muestra que 'remainder' es pura. El contexto de Ana organizando libros enseña a principiantes divisibilidad, con resultados deterministas."
+        "Calcula resto de 10 ÷ 3 con 'remainder', dando 1. La notación prefija (remainder 10 3) en Racket muestra módulo como función pura, ideal para verificar sobrantes de libros.",
+        "Calcula 8 ÷ 2, dando 0. (remainder 8 2) enseña divisibilidad exacta, con determinismo.",
+        "Calcula 7 ÷ 4, dando 3. (remainder 7 4) modela sobrantes en grupos, sin efectos secundarios.",
+        "Calcula 12 ÷ 5, dando 2. (remainder 12 5) es útil para organización, con inmutabilidad.",
+        "Calcula 9 ÷ 3, dando 0. (remainder 9 3) modela división exacta, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula el resto de 10 / 3 usando 'mod', dando 1. En OCaml, la notación infija (10 mod 3) es intuitiva. La expresión es pura, siempre produce 1. El ejemplo de Ana con libros conecta el módulo con un caso práctico, con tipado estático."
+        "Calcula resto de 10 ÷ 3 con 'mod', dando 1. La notación infija 10 mod 3 es intuitiva, como verificar sobrantes de libros, con pureza funcional.",
+        "Calcula 8 ÷ 2, dando 0. 8 mod 2 modela divisibilidad exacta, con tipado estático.",
+        "Calcula 7 ÷ 4, dando 3. 7 mod 4 enseña sobrantes, con determinismo.",
+        "Calcula 12 ÷ 5, dando 2. 12 mod 5 es útil para organización, sin efectos secundarios.",
+        "Calcula 9 ÷ 3, dando 0. 9 mod 3 modela división exacta, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas calculan resto de 10 / 3 = 1, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa 'remainder' prefija, explícita, mientras que OCaml usa 'mod' infija, concisa. Racket dinámico, OCaml estático."
+        "Similitudes: Ambas calculan resto de 10 ÷ 3 = 1, con pureza funcional, para sobrantes de libros. Diferencias: Racket usa 'remainder' prefija, explícita, mientras que OCaml usa 'mod' infija, concisa. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan 8 ÷ 2 = 0, con pureza funcional, para divisibilidad exacta. Diferencias: Racket usa 'remainder' prefija, OCaml 'mod' infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan 7 ÷ 4 = 3, con pureza funcional, para sobrantes en grupos. Diferencias: Racket usa 'remainder' prefija, OCaml 'mod' infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan 12 ÷ 5 = 2, con pureza funcional, para organización. Diferencias: Racket usa 'remainder' prefija, OCaml 'mod' infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan 9 ÷ 3 = 0, con pureza funcional, para división exacta. Diferencias: Racket usa 'remainder' prefija, OCaml 'mod' infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-6": {
       "title": "Repartir huevos entre personas",
       "racket": {
-        "lines": ["(/ 12 3)"]
+        "lines": ["(/ 12 3)", "(/ 8 2)", "(/ 15 5)", "(/ 6 2)", "(/ 9 3)"]
       },
       "ocaml": {
-        "lines": ["12 / 3"]
+        "lines": ["12 / 3", "8 / 2", "15 / 5", "6 / 2", "9 / 3"]
       },
       "explanations_racket": [
-        "Esta línea calcula 12 / 3 usando '/', dando 4. En Racket, la notación prefija (/ 12 3) muestra que '/' es pura. El contexto de un chef repartiendo huevos enseña a principiantes división, como en recetas, con resultados deterministas."
+        "Calcula 12 ÷ 3 con '/', dando 4. La notación prefija (/ 12 3) en Racket muestra división como función pura, ideal para repartir huevos entre personas.",
+        "Divide 8 ÷ 2, dando 4. (/ 8 2) modela reparto equitativo, con determinismo.",
+        "Divide 15 ÷ 5, dando 3. (/ 15 5) enseña distribución, sin efectos secundarios.",
+        "Divide 6 ÷ 2, dando 3. (/ 6 2) es útil para repartir recursos, con inmutabilidad.",
+        "Divide 9 ÷ 3, dando 3. (/ 9 3) modela reparto en recetas, con pureza funcional."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula 12 / 3 usando '/', dando 4. En OCaml, la notación infija (12 / 3) es intuitiva. La expresión es pura, siempre produce 4. El ejemplo del chef con huevos conecta la división con un caso práctico, con tipado estático."
+        "Calcula 12 ÷ 3 con '/', dando 4. La notación infija 12 / 3 es intuitiva, como repartir huevos, con pureza funcional.",
+        "Divide 8 ÷ 2, dando 4. 8 / 2 modela reparto equitativo, con tipado estático.",
+        "Divide 15 ÷ 5, dando 3. 15 / 5 enseña distribución, con determinismo.",
+        "Divide 6 ÷ 2, dando 3. 6 / 2 es útil para repartir recursos, sin efectos secundarios.",
+        "Divide 9 ÷ 3, dando 3. 9 / 3 modela reparto en recetas, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas dividen 12 / 3 = 4, con pureza funcional. Ambas usan operadores primitivos para un ejemplo simple. Diferencias: Racket usa '/' prefija, explícita, mientras que OCaml usa infija, concisa. Racket puede retornar fracciones, OCaml entera."
+        "Similitudes: Ambas dividen 12 ÷ 3 = 4, con pureza funcional, para repartir huevos. Diferencias: Racket usa '/' prefija, explícita, mientras que OCaml usa infija, concisa. Racket puede dar fracciones, OCaml entera, pero idéntico aquí.",
+        "Similitudes: Ambas dividen 8 ÷ 2 = 4, con pureza funcional, para reparto equitativo. Diferencias: Racket usa '/' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas dividen 15 ÷ 5 = 3, con pureza funcional, para distribución. Diferencias: Racket usa '/' prefija, OCaml infija. Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas dividen 6 ÷ 2 = 3, con pureza funcional, para repartir recursos. Diferencias: Racket usa '/' prefija, OCaml infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas dividen 9 ÷ 3 = 3, con pureza funcional, para recetas. Diferencias: Racket usa '/' prefija, OCaml infija. Racket dinámico, OCaml estático."
       ]
     },
     "ejercicio-7": {
       "title": "Comparar área ajustada con límite",
       "racket": {
-        "lines": ["(> (- (expt 3 2) 4) 5)"]
+        "lines": [
+          "(> (- (expt 3 2) 4) 5)",
+          "(> (- (expt 4 2) 3) 7)",
+          "(> (- (expt 2 2) 2) 1)",
+          "(> (- (expt 5 2) 5) 10)",
+          "(> (- (expt 6 2) 6) 15)"
+        ]
       },
       "ocaml": {
-        "lines": ["( ( (3 ** 2.0) - 4 ) > 5 )"]
+        "lines": [
+          "( ( (3 ** 2.0) - 4 ) > 5 )",
+          "( ( (4 ** 2.0) - 3 ) > 7 )",
+          "( ( (2 ** 2.0) - 2 ) > 1 )",
+          "( ( (5 ** 2.0) - 5 ) > 10 )",
+          "( ( (6 ** 2.0) - 6 ) > 15 )"
+        ]
       },
       "explanations_racket": [
-        "Esta línea calcula (> (- (expt 3 2) 4) 5), dando #f. Primero, (expt 3 2) = 9, luego (- 9 4) = 5, y (> 5 5) = #f. En Racket, 'expt', '-', '>' son puras. La notación prefija enseña a principiantes anidamiento, como un arquitecto ajustando áreas, con resultados deterministas."
+        "Calcula (> (- (expt 3 2) 4) 5), dando #f (9 - 4 = 5, 5 > 5 = #f). La notación prefija en Racket muestra anidamiento puro, ideal para ajustes de áreas en diseño estructural.",
+        "Calcula (> (- (expt 4 2) 3) 7), dando #t (16 - 3 = 13, 13 > 7 = #t). Enseña combinar operaciones, con determinismo.",
+        "Calcula (> (- (expt 2 2) 2) 1), dando #t (4 - 2 = 2, 2 > 1 = #t). Modela cálculos estructurales, sin efectos secundarios.",
+        "Calcula (> (- (expt 5 2) 5) 10), dando #t (25 - 5 = 20, 20 > 10 = #t). Útil para diseño, con inmutabilidad.",
+        "Calcula (> (- (expt 6 2) 6) 15), dando #t (36 - 6 = 30, 30 > 15 = #t). Modela ajustes complejos, con pureza."
       ],
       "explanations_ocaml": [
-        "Esta línea calcula ( ( (3 ** 2.0) - 4 ) > 5 ), dando false. Primero, 3 ** 2.0 = 9.0, luego 9.0 - 4 = 5, y 5 > 5 = false. En OCaml, '**' usa flotantes, '-' y '>' son infijos. La expresión es pura, ideal para enseñar anidamiento, con tipado estático."
+        "Calcula ( ( (3 ** 2.0) - 4 ) > 5 ), dando false (9.0 - 4 = 5, 5 > 5 = false). La notación infija en OCaml con flotantes es clara, ideal para ajustes de áreas, con pureza.",
+        "Calcula ( ( (4 ** 2.0) - 3 ) > 7 ), dando true (16.0 - 3 = 13, 13 > 7 = true). Enseña anidamiento, con tipado estático.",
+        "Calcula ( ( (2 ** 2.0) - 2 ) > 1 ), dando true (4.0 - 2 = 2, 2 > 1 = true). Modela cálculos estructurales, con determinismo.",
+        "Calcula ( ( (5 ** 2.0) - 5 ) > 10 ), dando true (25.0 - 5 = 20, 20 > 10 = true). Útil para diseño, sin efectos secundarios.",
+        "Calcula ( ( (6 ** 2.0) - 6 ) > 15 ), dando true (36.0 - 6 = 30, 30 > 15 = true). Modela ajustes complejos, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas evalúan (> (- (expt 3 2) 4) 5) = #f, con pureza funcional. Ambas combinan operadores para un ejemplo complejo. Diferencias: Racket usa 'expt' prefija con enteros, OCaml usa '**' con flotantes (3 ** 2.0). Racket dinámico, OCaml estático."
+        "Similitudes: Ambas evalúan (> (- (expt 3 2) 4) 5) = #f, con pureza funcional, para ajustes de áreas. Diferencias: Racket usa 'expt' prefija con enteros, OCaml usa '**' con flotantes (3 ** 2.0). Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas evalúan (> (- (expt 4 2) 3) 7) = #t, con pureza funcional, para diseño estructural. Diferencias: Racket usa 'expt' prefija, OCaml '**' con flotantes (4 ** 2.0). Tipado dinámico vs. estático.",
+        "Similitudes: Ambas evalúan (> (- (expt 2 2) 2) 1) = #t, con pureza funcional, para cálculos estructurales. Diferencias: Racket usa 'expt' prefija, OCaml '**' con flotantes (2 ** 2.0). Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas evalúan (> (- (expt 5 2) 5) 10) = #t, con pureza funcional, para diseño. Diferencias: Racket usa 'expt' prefija, OCaml '**' con flotantes (5 ** 2.0). Tipado dinámico vs. estático.",
+        "Similitudes: Ambas evalúan (> (- (expt 6 2) 6) 15) = #t, con pureza funcional, para ajustes complejos. Diferencias: Racket usa 'expt' prefija, OCaml '**' con flotantes (6 ** 2.0). Racket dinámico, OCaml estático."
       ]
     }
   },

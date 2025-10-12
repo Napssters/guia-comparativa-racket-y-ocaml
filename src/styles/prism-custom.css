@@ -1,0 +1,42 @@
+@import 'prismjs/themes/prism-tomorrow.css';
+
+/* Personalización extra para Racket y OCaml */
+code[class*="language-"] {
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'monospace';
+  font-size: 1em;
+}
+
+/* Paréntesis */
+.token.punctuation {
+  color: #8d5524;
+  font-weight: bold;
+}
+
+/* Funciones primitivas (keywords) */
+.token.keyword {
+  color: #3e5aa9 !important;
+  font-weight: bold;
+}
+
+/* Strings */
+.token.string {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+/* Números */
+.token.number {
+  color: #a0522d;
+  font-weight: bold;
+}
+
+/* Comentarios */
+.token.comment {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Identificadores (variables, nombres) */
+.token.variable, .token.symbol {
+  color: #16a085;
+}

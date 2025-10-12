@@ -2,13 +2,14 @@ import { Component, Input, OnInit, OnChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RemoveNumberPipe } from '../../pipes/remove-number.pipe';
+import { PrismHighlightPipe } from '../../pipes/prism-highlight.pipe';
 
 @Component({
   selector: 'app-documentacion',
   templateUrl: './documentacion.component.html',
   styleUrls: ['./documentacion.component.css'],
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RemoveNumberPipe]
+  imports: [CommonModule, HttpClientModule, RemoveNumberPipe, PrismHighlightPipe]
 })
 export class DocumentacionComponent implements OnInit, OnChanges {
   @Input() moduloKey: string = '';
@@ -34,8 +35,8 @@ export class DocumentacionComponent implements OnInit, OnChanges {
       next: (data) => {
         const found = data.find((item: any) => item[this.moduloKey]);
         this.moduloData = found ? found[this.moduloKey] : null;
-        // Si es expresiones, extraer codigos
-        if (this.moduloKey === 'expresiones' && this.moduloData && this.moduloData.codigos) {
+        // Si el módulo tiene la llave 'codigos', extraer y mostrar
+        if (this.moduloData && this.moduloData.codigos) {
           this.codigosExpresiones = {
             racket: this.getFormattedCodigos(this.moduloData.codigos.racket, 'racket'),
             ocaml: this.getFormattedCodigos(this.moduloData.codigos.ocaml, 'ocaml')
@@ -68,11 +69,18 @@ export class DocumentacionComponent implements OnInit, OnChanges {
           code = code.replace(/; ?Resultado: ?(.+)/, '').trim();
         }
       } else if (lang === 'ocaml') {
-        // Busca ;; (* Resultado: ... *)
-        const match = code.match(/;; \(\* ?Resultado: ?(.+?) ?\*\)/);
+        // Busca ;; (* Resultado: ... *) o ; Resultado: ...
+        let match = code.match(/;; \(\* ?Resultado: ?(.+?) ?\*\)/);
         if (match) {
           result = match[1].trim();
           code = code.replace(/;; \(\* ?Resultado: ?(.+?) ?\*\)/, ';;').trim();
+        } else {
+          // Alternativa: ; Resultado: ...
+          match = code.match(/; ?Resultado: ?(.+)/);
+          if (match) {
+            result = match[1].trim();
+            code = code.replace(/; ?Resultado: ?(.+)/, '').trim();
+          }
         }
       }
       return {

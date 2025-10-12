@@ -29,7 +29,10 @@
                 "output": "/assets"
               }
             ],
-            "styles": ["src/styles.css"],
+            "styles": [
+              "src/styles.css",
+              "src/styles/prism-custom.css"
+            ],
             "scripts": []
           },
           "configurations": {
