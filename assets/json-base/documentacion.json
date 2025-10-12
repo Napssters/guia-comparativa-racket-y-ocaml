@@ -111,565 +111,565 @@
         "racket": [
           {
             "title": "Contar manzanas",
-            "code": "(+ 5 3) ; Resultado: 8"
+            "code": "(+ 5 3) ; Resultado: 8 manzanas"
           },
           {
             "title": "Decidir si llueve",
-            "code": "(> 10 0) ; Resultado: #t (verdadero, como si hay lluvia si el valor es positivo)"
+            "code": "(> 10 0) ; Resultado: verdadero (hay lluvia si el valor es positivo)"
           },
           {
             "title": "Calcular una cuenta",
-            "code": "(+ 10 5) ; Resultado: 15"
+            "code": "(+ 10 5) ; Resultado: 15 dólares"
           },
           {
             "title": "Comparar pesos",
-            "code": "(> 10 8) ; Resultado: #t"
+            "code": "(> 10 8) ; Resultado: verdadero (10 es mayor que 8)"
           },
           {
-            "name": "*",
+            "title": "Multiplicar números",
             "code": "(* 4 5) ; Resultado: 20"
           },
           {
-            "name": "+",
+            "title": "Sumar números",
             "code": "(+ 1 2 3) ; Resultado: 6"
           },
           {
-            "name": "-",
+            "title": "Restar números",
             "code": "(- 10 4) ; Resultado: 6"
           },
           {
-            "name": "/",
+            "title": "Dividir números",
             "code": "(/ 10 2) ; Resultado: 5"
           },
           {
-            "name": "<",
-            "code": "(< 3 5) ; Resultado: #t"
+            "title": "Comparar menor que",
+            "code": "(< 3 5) ; Resultado: verdadero (3 es menor que 5)"
           },
           {
-            "name": "<=",
-            "code": "(<= 5 5) ; Resultado: #t"
+            "title": "Comparar menor o igual",
+            "code": "(<= 5 5) ; Resultado: verdadero (5 es menor o igual a 5)"
           },
           {
-            "name": "=",
-            "code": "(= 7 7) ; Resultado: #t"
+            "title": "Comparar igualdad",
+            "code": "(= 7 7) ; Resultado: verdadero (7 es igual a 7)"
           },
           {
-            "name": ">",
-            "code": "(> 8 6) ; Resultado: #t"
+            "title": "Comparar mayor que",
+            "code": "(> 8 6) ; Resultado: verdadero (8 es mayor que 6)"
           },
           {
-            "name": ">=",
-            "code": "(>= 9 9) ; Resultado: #t"
+            "title": "Comparar mayor o igual",
+            "code": "(>= 9 9) ; Resultado: verdadero (9 es mayor o igual a 9)"
           },
           {
-            "name": "abs",
+            "title": "Calcular valor absoluto",
             "code": "(abs -5) ; Resultado: 5"
           },
           {
-            "name": "acos",
-            "code": "(acos 0) ; Resultado: 1.5707963267948966"
+            "title": "Calcular arco coseno",
+            "code": "(acos 0) ; Resultado: 1.5707963267948966 radianes"
           },
           {
-            "name": "add1",
+            "title": "Sumar uno",
             "code": "(add1 10) ; Resultado: 11"
           },
           {
-            "name": "angle",
-            "code": "(angle (make-polar 1 (/ pi 4))) ; Resultado: 45.0 (aprox)"
+            "title": "Calcular ángulo",
+            "code": "(angle (make-polar 1 (/ pi 4))) ; Resultado: 45.0 grados (aproximado)"
           },
           {
-            "name": "asin",
-            "code": "(asin 1) ; Resultado: 1.5707963267948966"
+            "title": "Calcular arco seno",
+            "code": "(asin 1) ; Resultado: 1.5707963267948966 radianes"
           },
           {
-            "name": "atan",
-            "code": "(atan 1) ; Resultado: 0.7853981633974483"
+            "title": "Calcular arco tangente",
+            "code": "(atan 1) ; Resultado: 0.7853981633974483 radianes"
           },
           {
-            "name": "ceiling",
+            "title": "Redondear hacia arriba",
             "code": "(ceiling 3.2) ; Resultado: 4"
           },
           {
-            "name": "complex?",
-            "code": "(complex? 3+4i) ; Resultado: #t"
+            "title": "Verificar número complejo",
+            "code": "(complex? 3+4i) ; Resultado: verdadero (es un número complejo)"
           },
           {
-            "name": "conjugate",
+            "title": "Calcular conjugado",
             "code": "(conjugate 3+4i) ; Resultado: 3-4i"
           },
           {
-            "name": "cos",
+            "title": "Calcular coseno",
             "code": "(cos 0) ; Resultado: 1.0"
           },
           {
-            "name": "cosh",
+            "title": "Calcular coseno hiperbólico",
             "code": "(cosh 0) ; Resultado: 1.0"
           },
           {
-            "name": "current-seconds",
+            "title": "Obtener segundos actuales",
             "code": "(current-seconds) ; Resultado: segundos actuales"
           },
           {
-            "name": "denominator",
+            "title": "Obtener denominador",
             "code": "(denominator 3/4) ; Resultado: 4"
           },
           {
-            "name": "e",
+            "title": "Obtener constante e",
             "code": "e ; Resultado: 2.718281828459045"
           },
           {
-            "name": "even?",
-            "code": "(even? 4) ; Resultado: #t"
+            "title": "Verificar número par",
+            "code": "(even? 4) ; Resultado: verdadero (4 es par)"
           },
           {
-            "name": "exact->inexact",
+            "title": "Convertir a inexacto",
             "code": "(exact->inexact 3) ; Resultado: 3.0"
           },
           {
-            "name": "exact?",
-            "code": "(exact? 3) ; Resultado: #t"
+            "title": "Verificar exactitud",
+            "code": "(exact? 3) ; Resultado: verdadero (3 es exacto)"
           },
           {
-            "name": "exp",
+            "title": "Calcular exponencial",
             "code": "(exp 1) ; Resultado: 2.718281828459045"
           },
           {
-            "name": "expt",
+            "title": "Calcular potencia",
             "code": "(expt 2 3) ; Resultado: 8"
           },
           {
-            "name": "floor",
+            "title": "Redondear hacia abajo",
             "code": "(floor 3.8) ; Resultado: 3"
           },
           {
-            "name": "gcd",
+            "title": "Calcular máximo común divisor",
             "code": "(gcd 12 18) ; Resultado: 6"
           },
           {
-            "name": "imag-part",
+            "title": "Obtener parte imaginaria",
             "code": "(imag-part 3+4i) ; Resultado: 4"
           },
           {
-            "name": "inexact->exact",
+            "title": "Convertir a exacto",
             "code": "(inexact->exact 3.0) ; Resultado: 3"
           },
           {
-            "name": "inexact?",
-            "code": "(inexact? 3.0) ; Resultado: #t"
+            "title": "Verificar inexactitud",
+            "code": "(inexact? 3.0) ; Resultado: verdadero (3.0 es inexacto)"
           },
           {
-            "name": "integer->char",
+            "title": "Convertir entero a carácter",
             "code": "(integer->char 65) ; Resultado: #\\A"
           },
           {
-            "name": "integer-sqrt",
+            "title": "Calcular raíz cuadrada entera",
             "code": "(integer-sqrt 16) ; Resultado: 4"
           },
           {
-            "name": "integer?",
-            "code": "(integer? 5) ; Resultado: #t"
+            "title": "Verificar entero",
+            "code": "(integer? 5) ; Resultado: verdadero (5 es entero)"
           },
           {
-            "name": "lcm",
+            "title": "Calcular mínimo común múltiplo",
             "code": "(lcm 12 18) ; Resultado: 36"
           },
           {
-            "name": "log",
+            "title": "Calcular logaritmo",
             "code": "(log 8 2) ; Resultado: 3.0"
           },
           {
-            "name": "magnitude",
+            "title": "Calcular magnitud",
             "code": "(magnitude 3+4i) ; Resultado: 5.0"
           },
           {
-            "name": "make-polar",
+            "title": "Crear número polar",
             "code": "(make-polar 1 0) ; Resultado: 1+0i"
           },
           {
-            "name": "make-rectangular",
+            "title": "Crear número rectangular",
             "code": "(make-rectangular 3 4) ; Resultado: 3+4i"
           },
           {
-            "name": "max",
+            "title": "Obtener máximo",
             "code": "(max 5 3) ; Resultado: 5"
           },
           {
-            "name": "min",
+            "title": "Obtener mínimo",
             "code": "(min 5 3) ; Resultado: 3"
           },
           {
-            "name": "modulo",
+            "title": "Calcular módulo",
             "code": "(modulo 10 3) ; Resultado: 1"
           },
           {
-            "name": "negative?",
-            "code": "(negative? -5) ; Resultado: #t"
+            "title": "Verificar número negativo",
+            "code": "(negative? -5) ; Resultado: verdadero (-5 es negativo)"
           },
           {
-            "name": "number->string",
+            "title": "Convertir número a cadena",
             "code": "(number->string 42) ; Resultado: \"42\""
           },
           {
-            "name": "number?",
-            "code": "(number? 5) ; Resultado: #t"
+            "title": "Verificar número",
+            "code": "(number? 5) ; Resultado: verdadero (5 es un número)"
           },
           {
-            "name": "numerator",
+            "title": "Obtener numerador",
             "code": "(numerator 3/4) ; Resultado: 3"
           },
           {
-            "name": "odd?",
-            "code": "(odd? 3) ; Resultado: #t"
+            "title": "Verificar número impar",
+            "code": "(odd? 3) ; Resultado: verdadero (3 es impar)"
           },
           {
-            "name": "pi",
+            "title": "Obtener constante pi",
             "code": "pi ; Resultado: 3.141592653589793"
           },
           {
-            "name": "positive?",
-            "code": "(positive? 5) ; Resultado: #t"
+            "title": "Verificar número positivo",
+            "code": "(positive? 5) ; Resultado: verdadero (5 es positivo)"
           },
           {
-            "name": "quotient",
+            "title": "Calcular cociente",
             "code": "(quotient 10 3) ; Resultado: 3"
           },
           {
-            "name": "random",
+            "title": "Generar número aleatorio",
             "code": "(random 10) ; Resultado: número entre 0 y 9"
           },
           {
-            "name": "rational?",
-            "code": "(rational? 3/4) ; Resultado: #t"
+            "title": "Verificar número racional",
+            "code": "(rational? 3/4) ; Resultado: verdadero (3/4 es racional)"
           },
           {
-            "name": "real-part",
+            "title": "Obtener parte real",
             "code": "(real-part 3+4i) ; Resultado: 3"
           },
           {
-            "name": "real?",
-            "code": "(real? 5.0) ; Resultado: #t"
+            "title": "Verificar número real",
+            "code": "(real? 5.0) ; Resultado: verdadero (5.0 es real)"
           },
           {
-            "name": "remainder",
+            "title": "Calcular resto",
             "code": "(remainder 10 3) ; Resultado: 1"
           },
           {
-            "name": "round",
+            "title": "Redondear número",
             "code": "(round 3.6) ; Resultado: 4"
           },
           {
-            "name": "sgn",
+            "title": "Obtener signo",
             "code": "(sgn 5) ; Resultado: 1"
           },
           {
-            "name": "sin",
+            "title": "Calcular seno",
             "code": "(sin 0) ; Resultado: 0.0"
           },
           {
-            "name": "sinh",
+            "title": "Calcular seno hiperbólico",
             "code": "(sinh 0) ; Resultado: 0.0"
           },
           {
-            "name": "sqr",
+            "title": "Calcular cuadrado",
             "code": "(sqr 4) ; Resultado: 16"
           },
           {
-            "name": "sqrt",
+            "title": "Calcular raíz cuadrada",
             "code": "(sqrt 16) ; Resultado: 4.0"
           },
           {
-            "name": "sub1",
+            "title": "Restar uno",
             "code": "(sub1 10) ; Resultado: 9"
           },
           {
-            "name": "tan",
+            "title": "Calcular tangente",
             "code": "(tan 0) ; Resultado: 0.0"
           },
           {
-            "name": "zero?",
-            "code": "(zero? 0) ; Resultado: #t"
+            "title": "Verificar cero",
+            "code": "(zero? 0) ; Resultado: verdadero (0 es cero)"
           }
         ],
         "ocaml": [
           {
             "title": "Contar manzanas",
-            "code": "5 + 3 ;; (* Resultado: 8 *)"
+            "code": "5 + 3 ;; (* Resultado: 8 manzanas *)"
           },
           {
             "title": "Decidir si llueve",
-            "code": "10 > 0 ;; (* Resultado: true *)"
+            "code": "10 > 0 ;; (* Resultado: verdadero (hay lluvia si el valor es positivo) *)"
           },
           {
             "title": "Calcular una cuenta",
-            "code": "10 + 5 ;; (* Resultado: 15 *)"
+            "code": "10 + 5 ;; (* Resultado: 15 dólares *)"
           },
           {
             "title": "Comparar pesos",
-            "code": "10 > 8 ;; (* Resultado: true *)"
+            "code": "10 > 8 ;; (* Resultado: verdadero (10 es mayor que 8) *)"
           },
           {
-            "name": "*",
+            "title": "Multiplicar números",
             "code": "4 * 5 ;; (* Resultado: 20 *)"
           },
           {
-            "name": "+",
+            "title": "Sumar números",
             "code": "1 + 2 + 3 ;; (* Resultado: 6 *)"
           },
           {
-            "name": "-",
+            "title": "Restar números",
             "code": "10 - 4 ;; (* Resultado: 6 *)"
           },
           {
-            "name": "/",
+            "title": "Dividir números",
             "code": "10 / 2 ;; (* Resultado: 5 *)"
           },
           {
-            "name": "<",
-            "code": "3 < 5 ;; (* Resultado: true *)"
+            "title": "Comparar menor que",
+            "code": "3 < 5 ;; (* Resultado: verdadero (3 es menor que 5) *)"
           },
           {
-            "name": "<=",
-            "code": "5 <= 5 ;; (* Resultado: true *)"
+            "title": "Comparar menor o igual",
+            "code": "5 <= 5 ;; (* Resultado: verdadero (5 es menor o igual a 5) *)"
           },
           {
-            "name": "=",
-            "code": "7 = 7 ;; (* Resultado: true *)"
+            "title": "Comparar igualdad",
+            "code": "7 = 7 ;; (* Resultado: verdadero (7 es igual a 7) *)"
           },
           {
-            "name": ">",
-            "code": "8 > 6 ;; (* Resultado: true *)"
+            "title": "Comparar mayor que",
+            "code": "8 > 6 ;; (* Resultado: verdadero (8 es mayor que 6) *)"
           },
           {
-            "name": ">=",
-            "code": "9 >= 9 ;; (* Resultado: true *)"
+            "title": "Comparar mayor o igual",
+            "code": "9 >= 9 ;; (* Resultado: verdadero (9 es mayor o igual a 9) *)"
           },
           {
-            "name": "abs",
+            "title": "Calcular valor absoluto",
             "code": "abs (-5) ;; (* Resultado: 5 *)"
           },
           {
-            "name": "acos",
-            "code": "acos 0.0 ;; (* Resultado: 1.5707963267948966 *)"
+            "title": "Calcular arco coseno",
+            "code": "acos 0.0 ;; (* Resultado: 1.5707963267948966 radianes *)"
           },
           {
-            "name": "succ",
-            "code": "succ 10 ;; (* Resultado: 11, equivalente a add1 *)"
+            "title": "Sumar uno",
+            "code": "succ 10 ;; (* Resultado: 11 *)"
           },
           {
-            "name": "atan2",
-            "code": "atan2 4.0 3.0 ;; (* Para angle, usa atan2 para componentes *)"
+            "title": "Calcular arco tangente dos",
+            "code": "atan2 4.0 3.0 ;; (* Resultado: ángulo en radianes *)"
           },
           {
-            "name": "asin",
-            "code": "asin 1.0 ;; (* Resultado: 1.5707963267948966 *)"
+            "title": "Calcular arco seno",
+            "code": "asin 1.0 ;; (* Resultado: 1.5707963267948966 radianes *)"
           },
           {
-            "name": "atan",
-            "code": "atan 1.0 ;; (* Resultado: 0.7853981633974483 *)"
+            "title": "Calcular arco tangente",
+            "code": "atan 1.0 ;; (* Resultado: 0.7853981633974483 radianes *)"
           },
           {
-            "name": "ceil",
+            "title": "Redondear hacia arriba",
             "code": "ceil 3.2 ;; (* Resultado: 4.0 *)"
           },
           {
-            "name": "complex",
+            "title": "Usar número complejo",
             "code": "(* No directo, usa módulos como Complex *)"
           },
           {
-            "name": "conj",
+            "title": "Calcular conjugado",
             "code": "(* Usa Complex.conj *)"
           },
           {
-            "name": "cos",
+            "title": "Calcular coseno",
             "code": "cos 0.0 ;; (* Resultado: 1.0 *)"
           },
           {
-            "name": "cosh",
+            "title": "Calcular coseno hiperbólico",
             "code": "cosh 0.0 ;; (* Resultado: 1.0 *)"
           },
           {
-            "name": "Unix.time",
-            "code": "Unix.time () ;; (* Segundos actuales, equivalente a current-seconds *)"
+            "title": "Obtener segundos actuales",
+            "code": "Unix.time () ;; (* Resultado: segundos actuales *)"
           },
           {
-            "name": "denominator",
+            "title": "Obtener denominador",
             "code": "(* No directo para racionales, usa Qml o similares *)"
           },
           {
-            "name": "e",
+            "title": "Obtener constante e",
             "code": "exp 1.0 ;; (* Resultado: 2.718281828459045 *)"
           },
           {
-            "name": "even",
-            "code": "4 mod 2 = 0 ;; (* Resultado: true *)"
+            "title": "Verificar número par",
+            "code": "4 mod 2 = 0 ;; (* Resultado: verdadero (4 es par) *)"
           },
           {
-            "name": "float_of_int",
+            "title": "Convertir entero a flotante",
             "code": "float_of_int 3 ;; (* Resultado: 3.0 *)"
           },
           {
-            "name": "is_int",
+            "title": "Verificar entero",
             "code": "(* No directo, usa modf para chequear *)"
           },
           {
-            "name": "exp",
+            "title": "Calcular exponencial",
             "code": "exp 1.0 ;; (* Resultado: 2.718281828459045 *)"
           },
           {
-            "name": "**",
+            "title": "Calcular potencia",
             "code": "2.0 ** 3.0 ;; (* Resultado: 8.0 *)"
           },
           {
-            "name": "floor",
+            "title": "Redondear hacia abajo",
             "code": "floor 3.8 ;; (* Resultado: 3.0 *)"
           },
           {
-            "name": "gcd",
+            "title": "Calcular máximo común divisor",
             "code": "gcd 12 18 ;; (* Resultado: 6 *)"
           },
           {
-            "name": "im",
+            "title": "Obtener parte imaginaria",
             "code": "(* Usa Complex.im *)"
           },
           {
-            "name": "int_of_float",
+            "title": "Convertir flotante a entero",
             "code": "int_of_float 3.0 ;; (* Resultado: 3 *)"
           },
           {
-            "name": "is_float",
+            "title": "Verificar flotante",
             "code": "(* No directo *)"
           },
           {
-            "name": "char_of_int",
+            "title": "Convertir entero a carácter",
             "code": "char_of_int 65 ;; (* Resultado: 'A' *)"
           },
           {
-            "name": "sqrt (float)",
+            "title": "Calcular raíz cuadrada entera",
             "code": "truncate (sqrt 16.0) ;; (* Resultado: 4 *)"
           },
           {
-            "name": "int",
+            "title": "Inferir tipo entero",
             "code": "(* Tipos son inferidos *)"
           },
           {
-            "name": "lcm",
+            "title": "Calcular mínimo común múltiplo",
             "code": "(fun a b -> abs (a * b) / gcd a b) 12 18 ;; (* Resultado: 36 *)"
           },
           {
-            "name": "log",
-            "code": "log 2.71828 ;; (* Resultado: 1.0 approx *)"
+            "title": "Calcular logaritmo",
+            "code": "log 2.71828 ;; (* Resultado: 1.0 aproximadamente *)"
           },
           {
-            "name": "hypot",
-            "code": "hypot 3.0 4.0 ;; (* Resultado: 5.0, para magnitude *)"
+            "title": "Calcular hipotenusa",
+            "code": "hypot 3.0 4.0 ;; (* Resultado: 5.0 *)"
           },
           {
-            "name": "polar",
+            "title": "Crear número polar",
             "code": "(* Usa Complex.polar *)"
           },
           {
-            "name": "of_re_im",
+            "title": "Crear número rectangular",
             "code": "(* Usa Complex.of_re_im o similar *)"
           },
           {
-            "name": "max",
+            "title": "Obtener máximo",
             "code": "max 5 3 ;; (* Resultado: 5 *)"
           },
           {
-            "name": "min",
+            "title": "Obtener mínimo",
             "code": "min 5 3 ;; (* Resultado: 3 *)"
           },
           {
-            "name": "mod",
+            "title": "Calcular módulo",
             "code": "10 mod 3 ;; (* Resultado: 1 *)"
           },
           {
-            "name": "neg",
-            "code": "5 < 0 ;; (* Resultado: false *)"
+            "title": "Verificar número negativo",
+            "code": "5 < 0 ;; (* Resultado: falso (5 no es negativo) *)"
           },
           {
-            "name": "string_of_int",
+            "title": "Convertir número a cadena",
             "code": "string_of_int 42 ;; (* Resultado: \"42\" *)"
           },
           {
-            "name": "is_number",
+            "title": "Verificar número",
             "code": "(* Tipos inferidos *)"
           },
           {
-            "name": "numerator",
+            "title": "Obtener numerador",
             "code": "(* No directo *)"
           },
           {
-            "name": "odd",
-            "code": "3 mod 2 <> 0 ;; (* Resultado: true *)"
+            "title": "Verificar número impar",
+            "code": "3 mod 2 <> 0 ;; (* Resultado: verdadero (3 es impar) *)"
           },
           {
-            "name": "pi",
+            "title": "Obtener constante pi",
             "code": "Float.pi ;; (* Resultado: 3.141592653589793 *)"
           },
           {
-            "name": "pos",
-            "code": "5 > 0 ;; (* Resultado: true *)"
+            "title": "Verificar número positivo",
+            "code": "5 > 0 ;; (* Resultado: verdadero (5 es positivo) *)"
           },
           {
-            "name": "/",
+            "title": "Calcular cociente",
             "code": "10 / 3 ;; (* Resultado: 3 *)"
           },
           {
-            "name": "Random.int",
-            "code": "Random.int 10 ;; (* Número entre 0 y 9 *)"
+            "title": "Generar número aleatorio",
+            "code": "Random.int 10 ;; (* Resultado: número entre 0 y 9 *)"
           },
           {
-            "name": "rational",
+            "title": "Verificar número racional",
             "code": "(* No directo *)"
           },
           {
-            "name": "re",
+            "title": "Obtener parte real",
             "code": "(* Usa Complex.re *)"
           },
           {
-            "name": "is_float",
+            "title": "Verificar flotante",
             "code": "(* Tipos inferidos *)"
           },
           {
-            "name": "mod",
+            "title": "Calcular módulo nuevamente",
             "code": "10 mod 3 ;; (* Resultado: 1 *)"
           },
           {
-            "name": "round",
+            "title": "Redondear número",
             "code": "round 3.6 ;; (* Resultado: 4.0 *)"
           },
           {
-            "name": "sign",
+            "title": "Obtener signo",
             "code": "compare 5 0 ;; (* Resultado: 1 *)"
           },
           {
-            "name": "sin",
+            "title": "Calcular seno",
             "code": "sin 0.0 ;; (* Resultado: 0.0 *)"
           },
           {
-            "name": "sinh",
+            "title": "Calcular seno hiperbólico",
             "code": "sinh 0.0 ;; (* Resultado: 0.0 *)"
           },
           {
-            "name": "sqr",
+            "title": "Calcular cuadrado",
             "code": "4 * 4 ;; (* Resultado: 16 *)"
           },
           {
-            "name": "sqrt",
+            "title": "Calcular raíz cuadrada",
             "code": "sqrt 16.0 ;; (* Resultado: 4.0 *)"
           },
           {
-            "name": "pred",
-            "code": "pred 10 ;; (* Resultado: 9, equivalente a sub1 *)"
+            "title": "Restar uno",
+            "code": "pred 10 ;; (* Resultado: 9 *)"
           },
           {
-            "name": "tan",
+            "title": "Calcular tangente",
             "code": "tan 0.0 ;; (* Resultado: 0.0 *)"
           },
           {
-            "name": "zero",
-            "code": "0 = 0 ;; (* Resultado: true *)"
+            "title": "Verificar cero",
+            "code": "0 = 0 ;; (* Resultado: verdadero (0 es cero) *)"
           }
         ]
       }
@@ -722,7 +722,53 @@
             "caption": "Ejemplo de cómo usar una función con parámetros."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Definir una funci\u00f3n simple",
+            "code": "(define (saludo) \"Hola\") ; Resultado: una funci\u00f3n que retorna \"Hola\""
+          },
+          {
+            "title": "Definir funci\u00f3n con par\u00e1metro",
+            "code": "(define (sumar uno) (+ uno 1)) ; Resultado: una funci\u00f3n que suma 1 a un n\u00famero"
+          },
+          {
+            "title": "Llamar a una funci\u00f3n",
+            "code": "(sumar 5) ; Resultado: 6 (asumiendo la funci\u00f3n definida)"
+          },
+          {
+            "title": "Funci\u00f3n lambda simple",
+            "code": " (lambda (x) (* x 2)) ; Resultado: una funci\u00f3n an\u00f3nima que duplica un n\u00famero"
+          },
+          {
+            "title": "Aplicar lambda",
+            "code": "((lambda (x) (* x 2)) 3) ; Resultado: 6"
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Definir una funci\u00f3n simple",
+            "code": "let saludo () = \"Hola\" ;; ; Resultado: una funci\u00f3n que retorna \"Hola\""
+          },
+          {
+            "title": "Definir funci\u00f3n con par\u00e1metro",
+            "code": "let sumar uno = uno + 1 ;; ; Resultado: una funci\u00f3n que suma 1 a un n\u00famero"
+          },
+          {
+            "title": "Llamar a una funci\u00f3n",
+            "code": "sumar 5 ;; ; Resultado: 6 (asumiendo la funci\u00f3n definida)"
+          },
+          {
+            "title": "Funci\u00f3n lambda simple",
+            "code": "fun x -> x * 2 ;; ; Resultado: una funci\u00f3n an\u00f3nima que duplica un n\u00famero"
+          },
+          {
+            "title": "Aplicar lambda",
+            "code": "(fun x -> x * 2) 3 ;; ; Resultado: 6"
+          }
+        ]
+      }
     }
   },
   {
@@ -772,7 +818,53 @@
             "caption": "Ejemplo de funciones con múltiples parámetros en acción."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Definir funci\u00f3n con dos par\u00e1metros",
+            "code": "(define (sumar-dos a b) (+ a b)) ; Resultado: una funci\u00f3n que suma dos n\u00fameros"
+          },
+          {
+            "title": "Definir funci\u00f3n con tres par\u00e1metros",
+            "code": "(define (multiplicar-tres x y z) (* x y z)) ; Resultado: una funci\u00f3n que multiplica tres n\u00fameros"
+          },
+          {
+            "title": "Llamar funci\u00f3n con m\u00faltiples par\u00e1metros",
+            "code": "(sumar-dos 4 6) ; Resultado: 10 (asumiendo la funci\u00f3n definida)"
+          },
+          {
+            "title": "Lambda con m\u00faltiples par\u00e1metros",
+            "code": "(lambda (a b) (- a b)) ; Resultado: funci\u00f3n an\u00f3nima que resta dos n\u00fameros"
+          },
+          {
+            "title": "Aplicar lambda con m\u00faltiples par\u00e1metros",
+            "code": "((lambda (a b c) (+ a b c)) 1 2 3) ; Resultado: 6"
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Definir funci\u00f3n con dos par\u00e1metros",
+            "code": "let sumar_dos a b = a + b ;; ; Resultado: una funci\u00f3n que suma dos n\u00fameros"
+          },
+          {
+            "title": "Definir funci\u00f3n con tres par\u00e1metros",
+            "code": "let multiplicar_tres x y z = x * y * z ;; ; Resultado: una funci\u00f3n que multiplica tres n\u00fameros"
+          },
+          {
+            "title": "Llamar funci\u00f3n con m\u00faltiples par\u00e1metros",
+            "code": "sumar_dos 4 6 ;; ; Resultado: 10 (asumiendo la funci\u00f3n definida)"
+          },
+          {
+            "title": "Lambda con m\u00faltiples par\u00e1metros",
+            "code": "fun a b -> a - b ;; ; Resultado: funci\u00f3n an\u00f3nima que resta dos n\u00fameros"
+          },
+          {
+            "title": "Aplicar lambda con m\u00faltiples par\u00e1metros",
+            "code": "(fun a b c -> a + b + c) 1 2 3 ;; ; Resultado: 6"
+          }
+        ]
+      }
     }
   },
   {
@@ -827,7 +919,53 @@
             "caption": "Ejemplo de condicionales aplicadas a decisiones simples."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Usar if simple",
+            "code": "(if (> 5 3) \"Mayor\" \"Menor\") ; Resultado: \"Mayor\""
+          },
+          {
+            "title": "Usar cond con m\u00faltiples casos",
+            "code": "(cond [(= 1 1) \"Uno\"]\n      [(= 2 2) \"Dos\"]\n      [else \"Otro\"]) ; Resultado: \"Uno\""
+          },
+          {
+            "title": "If con expresi\u00f3n booleana",
+            "code": "(if #t \"Verdadero\" \"Falso\") ; Resultado: \"Verdadero\""
+          },
+          {
+            "title": "Cond con else",
+            "code": "(cond [#f \"Falso\"]\n      [else \"Else\"]) ; Resultado: \"Else\""
+          },
+          {
+            "title": "If anidado",
+            "code": "(if (> 10 5) (if (< 3 4) \"Anidado\" \"No\") \"No\") ; Resultado: \"Anidado\""
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Usar if simple",
+            "code": "if 5 > 3 then \"Mayor\" else \"Menor\" ;; ; Resultado: \"Mayor\""
+          },
+          {
+            "title": "Usar match con m\u00faltiples casos",
+            "code": "match 1 with\n| 1 -> \"Uno\"\n| 2 -> \"Dos\"\n| _ -> \"Otro\" ;; ; Resultado: \"Uno\""
+          },
+          {
+            "title": "If con expresi\u00f3n booleana",
+            "code": "if true then \"Verdadero\" else \"Falso\" ;; ; Resultado: \"Verdadero\""
+          },
+          {
+            "title": "Match con wildcard",
+            "code": "match false with\n| true -> \"Verdadero\"\n| _ -> \"Falso\" ;; ; Resultado: \"Falso\""
+          },
+          {
+            "title": "If anidado",
+            "code": "if 10 > 5 then if 3 < 4 then \"Anidado\" else \"No\" else \"No\" ;; ; Resultado: \"Anidado\""
+          }
+        ]
+      }
     }
   },
   {
@@ -931,7 +1069,181 @@
             "caption": "Ejemplo de operaciones básicas con listas."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Crear una lista",
+            "code": "(list 1 2 3) ; Resultado: '(1 2 3)"
+          },
+          {
+            "title": "A\u00f1adir elemento al frente",
+            "code": "(cons 0 '(1 2 3)) ; Resultado: '(0 1 2 3)"
+          },
+          {
+            "title": "Obtener primer elemento",
+            "code": "(car '(1 2 3)) ; Resultado: 1"
+          },
+          {
+            "title": "Obtener resto de la lista",
+            "code": "(cdr '(1 2 3)) ; Resultado: '(2 3)"
+          },
+          {
+            "title": "Verificar lista vac\u00eda",
+            "code": "(null? '()) ; Resultado: verdadero (#t)"
+          },
+          {
+            "title": "Verificar si es lista",
+            "code": "(list? '(1 2 3)) ; Resultado: verdadero (#t)"
+          },
+          {
+            "title": "Obtener longitud de lista",
+            "code": "(length '(1 2 3)) ; Resultado: 3"
+          },
+          {
+            "title": "A\u00f1adir listas",
+            "code": "(append '(1 2) '(3 4)) ; Resultado: '(1 2 3 4)"
+          },
+          {
+            "title": "Reversar lista",
+            "code": "(reverse '(1 2 3)) ; Resultado: '(3 2 1)"
+          },
+          {
+            "title": "Verificar miembro en lista",
+            "code": "(member 2 '(1 2 3)) ; Resultado: '(2 3)"
+          },
+          {
+            "title": "Remover elemento de lista",
+            "code": "(remove 2 '(1 2 3)) ; Resultado: '(1 3)"
+          },
+          {
+            "title": "Aplicar map a lista",
+            "code": "(map add1 '(1 2 3)) ; Resultado: '(2 3 4)"
+          },
+          {
+            "title": "Filtrar lista",
+            "code": "(filter even? '(1 2 3 4)) ; Resultado: '(2 4)"
+          },
+          {
+            "title": "Fold izquierdo",
+            "code": "(foldl + 0 '(1 2 3)) ; Resultado: 6"
+          },
+          {
+            "title": "Fold derecho",
+            "code": "(foldr cons '() '(1 2 3)) ; Resultado: '(1 2 3)"
+          },
+          {
+            "title": "Obtener primer elemento (first)",
+            "code": "(first '(1 2 3)) ; Resultado: 1"
+          },
+          {
+            "title": "Obtener resto (rest)",
+            "code": "(rest '(1 2 3)) ; Resultado: '(2 3)"
+          },
+          {
+            "title": "Obtener segundo elemento",
+            "code": "(second '(1 2 3)) ; Resultado: 2"
+          },
+          {
+            "title": "Obtener tercero",
+            "code": "(third '(1 2 3)) ; Resultado: 3"
+          },
+          {
+            "title": "Verificar lista vac\u00eda (empty?)",
+            "code": "(empty? '()) ; Resultado: verdadero (#t)"
+          },
+          {
+            "title": "Crear lista repetida",
+            "code": "(make-list 3 0) ; Resultado: '(0 0 0)"
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Crear una lista",
+            "code": "[1; 2; 3] ;; ; Resultado: [1; 2; 3]"
+          },
+          {
+            "title": "A\u00f1adir elemento al frente",
+            "code": "0 :: [1; 2; 3] ;; ; Resultado: [0; 1; 2; 3]"
+          },
+          {
+            "title": "Obtener primer elemento",
+            "code": "List.hd [1; 2; 3] ;; ; Resultado: 1"
+          },
+          {
+            "title": "Obtener resto de la lista",
+            "code": "List.tl [1; 2; 3] ;; ; Resultado: [2; 3]"
+          },
+          {
+            "title": "Verificar lista vac\u00eda",
+            "code": "[] = [] ;; ; Resultado: true"
+          },
+          {
+            "title": "Verificar si es lista",
+            "code": "(* No directo, listas son tipos inferidos *)"
+          },
+          {
+            "title": "Obtener longitud de lista",
+            "code": "List.length [1; 2; 3] ;; ; Resultado: 3"
+          },
+          {
+            "title": "A\u00f1adir listas",
+            "code": "[1; 2] @ [3; 4] ;; ; Resultado: [1; 2; 3; 4]"
+          },
+          {
+            "title": "Reversar lista",
+            "code": "List.rev [1; 2; 3] ;; ; Resultado: [3; 2; 1]"
+          },
+          {
+            "title": "Verificar miembro en lista",
+            "code": "List.mem 2 [1; 2; 3] ;; ; Resultado: true"
+          },
+          {
+            "title": "Remover elemento de lista",
+            "code": "List.filter (fun x -> x <> 2) [1; 2; 3] ;; ; Resultado: [1; 3]"
+          },
+          {
+            "title": "Aplicar map a lista",
+            "code": "List.map (fun x -> x + 1) [1; 2; 3] ;; ; Resultado: [2; 3; 4]"
+          },
+          {
+            "title": "Filtrar lista",
+            "code": "List.filter (fun x -> x mod 2 = 0) [1; 2; 3; 4] ;; ; Resultado: [2; 4]"
+          },
+          {
+            "title": "Fold izquierdo",
+            "code": "List.fold_left (+) 0 [1; 2; 3] ;; ; Resultado: 6"
+          },
+          {
+            "title": "Fold derecho",
+            "code": "List.fold_right (fun x acc -> x :: acc) [1; 2; 3] [] ;; ; Resultado: [1; 2; 3]"
+          },
+          {
+            "title": "Obtener primer elemento (hd)",
+            "code": "List.hd [1; 2; 3] ;; ; Resultado: 1"
+          },
+          {
+            "title": "Obtener resto (tl)",
+            "code": "List.tl [1; 2; 3] ;; ; Resultado: [2; 3]"
+          },
+          {
+            "title": "Obtener segundo elemento",
+            "code": "List.nth [1; 2; 3] 1 ;; ; Resultado: 2 (0-indexed)"
+          },
+          {
+            "title": "Obtener tercero",
+            "code": "List.nth [1; 2; 3] 2 ;; ; Resultado: 3"
+          },
+          {
+            "title": "Verificar lista vac\u00eda",
+            "code": "List.is_empty [] ;; ; Resultado: true"
+          },
+          {
+            "title": "Crear lista repetida",
+            "code": "List.init 3 (fun _ -> 0) ;; ; Resultado: [0; 0; 0]"
+          }
+        ]
+      }
     }
   },
   {
@@ -981,7 +1293,53 @@
             "caption": "Ejemplo de `map` y `filter` en acción."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Aplicar map para duplicar",
+            "code": "(map (lambda (x) (* x 2)) '(1 2 3)) ; Resultado: '(2 4 6)"
+          },
+          {
+            "title": "Filtrar n\u00fameros pares",
+            "code": "(filter even? '(1 2 3 4)) ; Resultado: '(2 4)"
+          },
+          {
+            "title": "Map con funci\u00f3n definida",
+            "code": "(define (cuadrado x) (* x x))\n(map cuadrado '(1 2 3)) ; Resultado: '(1 4 9)"
+          },
+          {
+            "title": "Filter con condici\u00f3n",
+            "code": "(filter (lambda (x) (> x 5)) '(3 6 2 7)) ; Resultado: '(6 7)"
+          },
+          {
+            "title": "Combinar map y filter",
+            "code": "(map add1 (filter odd? '(1 2 3 4))) ; Resultado: '(2 4)"
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Aplicar map para duplicar",
+            "code": "List.map (fun x -> x * 2) [1; 2; 3] ;; ; Resultado: [2; 4; 6]"
+          },
+          {
+            "title": "Filtrar n\u00fameros pares",
+            "code": "List.filter (fun x -> x mod 2 = 0) [1; 2; 3; 4] ;; ; Resultado: [2; 4]"
+          },
+          {
+            "title": "Map con funci\u00f3n definida",
+            "code": "let cuadrado x = x * x ;;\nList.map cuadrado [1; 2; 3] ;; ; Resultado: [1; 4; 9]"
+          },
+          {
+            "title": "Filter con condici\u00f3n",
+            "code": "List.filter (fun x -> x > 5) [3; 6; 2; 7] ;; ; Resultado: [6; 7]"
+          },
+          {
+            "title": "Combinar map y filter",
+            "code": "List.map (fun x -> x + 1) (List.filter (fun x -> x mod 2 <> 0) [1; 2; 3; 4]) ;; ; Resultado: [2; 4]"
+          }
+        ]
+      }
     }
   },
   {
@@ -1031,7 +1389,69 @@
             "caption": "Ejemplo de un registro como un formulario estructurado."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Crear una tupla (pair)",
+            "code": "(cons 'Ana 25) ; Resultado: '(Ana . 25)"
+          },
+          {
+            "title": "Acceder al primer elemento de tupla",
+            "code": "(car (cons 'Ana 25)) ; Resultado: 'Ana"
+          },
+          {
+            "title": "Acceder al segundo elemento de tupla",
+            "code": "(cdr (cons 'Ana 25)) ; Resultado: 25"
+          },
+          {
+            "title": "Definir una estructura (registro)",
+            "code": "(struct: persona (nombre edad)) ; Resultado: define una estructura persona"
+          },
+          {
+            "title": "Crear un registro",
+            "code": "(persona \"Juan\" 30) ; Resultado: #<persona>"
+          },
+          {
+            "title": "Acceder a campo de registro",
+            "code": "(persona-nombre (persona \"Juan\" 30)) ; Resultado: \"Juan\""
+          },
+          {
+            "title": "Verificar estructura",
+            "code": "(persona? (persona \"Juan\" 30)) ; Resultado: #t"
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Crear una tupla",
+            "code": "(\"Ana\", 25) ;; ; Resultado: (\"Ana\", 25)"
+          },
+          {
+            "title": "Acceder al primer elemento de tupla",
+            "code": "fst (\"Ana\", 25) ;; ; Resultado: \"Ana\""
+          },
+          {
+            "title": "Acceder al segundo elemento de tupla",
+            "code": "snd (\"Ana\", 25) ;; ; Resultado: 25"
+          },
+          {
+            "title": "Definir un tipo registro",
+            "code": "type persona = { nombre : string; edad : int } ;; ; Resultado: define un tipo persona"
+          },
+          {
+            "title": "Crear un registro",
+            "code": "{ nombre = \"Juan\"; edad = 30 } ;; ; Resultado: {nombre = \"Juan\"; edad = 30}"
+          },
+          {
+            "title": "Acceder a campo de registro",
+            "code": "let p = { nombre = \"Juan\"; edad = 30 } in p.nombre ;; ; Resultado: \"Juan\""
+          },
+          {
+            "title": "Pattern matching con tupla",
+            "code": "let (n, e) = (\"Ana\", 25) in n ;; ; Resultado: \"Ana\""
+          }
+        ]
+      }
     }
   },
   {
@@ -1081,7 +1501,93 @@
             "caption": "Ejemplo de operaciones con cadenas de texto."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Crear una cadena",
+            "code": "\"Hola\" ; Resultado: \"Hola\""
+          },
+          {
+            "title": "Unir cadenas",
+            "code": "(string-append \"Hola\" \" mundo\") ; Resultado: \"Hola mundo\""
+          },
+          {
+            "title": "Obtener longitud de cadena",
+            "code": "(string-length \"Hola\") ; Resultado: 4"
+          },
+          {
+            "title": "Extraer subcadena",
+            "code": "(substring \"Hola mundo\" 0 4) ; Resultado: \"Hola\""
+          },
+          {
+            "title": "Convertir a may\u00fasculas",
+            "code": "(string-upcase \"hola\") ; Resultado: \"HOLA\""
+          },
+          {
+            "title": "Convertir a min\u00fasculas",
+            "code": "(string-downcase \"HOLA\") ; Resultado: \"hola\""
+          },
+          {
+            "title": "Reemplazar en cadena",
+            "code": "(string-replace \"casa\" \"a\" \"o\" #:all? #f) ; Resultado: \"cosa\""
+          },
+          {
+            "title": "Verificar si contiene",
+            "code": "(string-contains? \"Hola mundo\" \"mundo\") ; Resultado: #t"
+          },
+          {
+            "title": "Crear car\u00e1cter",
+            "code": "#\\a ; Resultado: #\\a"
+          },
+          {
+            "title": "Convertir car\u00e1cter a cadena",
+            "code": "(string #\\H #\\o #\\l #\\a) ; Resultado: \"Hola\""
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Crear una cadena",
+            "code": "\"Hola\" ;; ; Resultado: \"Hola\""
+          },
+          {
+            "title": "Unir cadenas",
+            "code": "\"Hola\" ^ \" mundo\" ;; ; Resultado: \"Hola mundo\""
+          },
+          {
+            "title": "Obtener longitud de cadena",
+            "code": "String.length \"Hola\" ;; ; Resultado: 4"
+          },
+          {
+            "title": "Extraer subcadena",
+            "code": "String.sub \"Hola mundo\" 0 4 ;; ; Resultado: \"Hola\""
+          },
+          {
+            "title": "Convertir a may\u00fasculas",
+            "code": "String.uppercase_ascii \"hola\" ;; ; Resultado: \"HOLA\""
+          },
+          {
+            "title": "Convertir a min\u00fasculas",
+            "code": "String.lowercase_ascii \"HOLA\" ;; ; Resultado: \"hola\""
+          },
+          {
+            "title": "Reemplazar en cadena",
+            "code": "String.map (fun c -> if c = 'a' then 'o' else c) \"casa\" ;; ; Resultado: \"coso\""
+          },
+          {
+            "title": "Verificar si contiene",
+            "code": "String.contains \"Hola mundo\" 'm' ;; ; Resultado: true (para caracter, para string usa String.contains_from)"
+          },
+          {
+            "title": "Crear car\u00e1cter",
+            "code": "'a' ;; ; Resultado: 'a'"
+          },
+          {
+            "title": "Convertir car\u00e1cter a cadena",
+            "code": "String.make 1 'H' ^ \"ola\" ;; ; Resultado: \"Hola\""
+          }
+        ]
+      }
     }
   },
   {
@@ -1131,7 +1637,53 @@
             "caption": "Ejemplo de composición en un flujo de trabajo."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Componer dos funciones",
+            "code": "(define (compose f g) (lambda (x) (f (g x)))) ; Resultado: funci\u00f3n que compone f y g"
+          },
+          {
+            "title": "Usar compose con add1 y sqr",
+            "code": "((compose sqr add1) 3) ; Resultado: 16 (sqr (add1 3) = 4^2)"
+          },
+          {
+            "title": "Composici\u00f3n m\u00faltiple",
+            "code": "(define (compose3 f g h) (lambda (x) (f (g (h x))))) ; Resultado: composici\u00f3n de tres funciones"
+          },
+          {
+            "title": "Aplicar composici\u00f3n m\u00faltiple",
+            "code": "((compose3 sqr add1 sub1) 5) ; Resultado: 16 (sqr (add1 (sub1 5)) = 5)"
+          },
+          {
+            "title": "Composici\u00f3n con identity",
+            "code": "(define (identity x) x)\n((compose sqr identity) 4) ; Resultado: 16"
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Componer dos funciones",
+            "code": "let compose f g x = f (g x) ;; ; Resultado: funci\u00f3n que compone f y g"
+          },
+          {
+            "title": "Usar compose con succ y cuadrado",
+            "code": "let cuadrado x = x * x ;;\ncompose cuadrado succ 3 ;; ; Resultado: 16 (cuadrado (succ 3) = 4*4)"
+          },
+          {
+            "title": "Composici\u00f3n m\u00faltiple",
+            "code": "let compose3 f g h x = f (g (h x)) ;; ; Resultado: composici\u00f3n de tres funciones"
+          },
+          {
+            "title": "Aplicar composici\u00f3n m\u00faltiple",
+            "code": "compose3 cuadrado succ pred 5 ;; ; Resultado: 16 (cuadrado (succ (pred 5)) = 5*5? Espera, pred 5 = 4, succ 4 = 5, cuadrado 5 = 25)"
+          },
+          {
+            "title": "Composici\u00f3n con identity",
+            "code": "let identity x = x ;;\ncompose cuadrado identity 4 ;; ; Resultado: 16"
+          }
+        ]
+      }
     }
   },
   {
@@ -1186,7 +1738,61 @@
             "caption": "Ejemplo de `map` y `filter` procesando una lista."
           }
         }
-      ]
+      ],
+      "codigos": {
+        "racket": [
+          {
+            "title": "Suma recursiva de lista",
+            "code": "(define (suma-rec lista)\n  (if (empty? lista)\n      0\n      (+ (first lista) (suma-rec (rest lista))))) ; Resultado: funci\u00f3n para sumar lista"
+          },
+          {
+            "title": "Usar suma recursiva",
+            "code": "(suma-rec '(1 2 3)) ; Resultado: 6"
+          },
+          {
+            "title": "Procesar con map y filter",
+            "code": "(map add1 (filter even? '(1 2 3 4))) ; Resultado: '(3 5)"
+          },
+          {
+            "title": "Fold para suma",
+            "code": "(foldl + 0 '(1 2 3)) ; Resultado: 6"
+          },
+          {
+            "title": "Recursi\u00f3n para longitud",
+            "code": "(define (len-rec lista)\n  (if (empty? lista)\n      0\n      (+ 1 (len-rec (rest lista))))) ; Resultado: funci\u00f3n para longitud"
+          },
+          {
+            "title": "Usar longitud recursiva",
+            "code": "(len-rec '(a b c)) ; Resultado: 3"
+          }
+        ],
+        "ocaml": [
+          {
+            "title": "Suma recursiva de lista",
+            "code": "let rec suma_rec lista =\n  match lista with\n  | [] -> 0\n  | hd :: tl -> hd + suma_rec tl ;; ; Resultado: funci\u00f3n para sumar lista"
+          },
+          {
+            "title": "Usar suma recursiva",
+            "code": "suma_rec [1; 2; 3] ;; ; Resultado: 6"
+          },
+          {
+            "title": "Procesar con map y filter",
+            "code": "List.map (fun x -> x + 1) (List.filter (fun x -> x mod 2 = 0) [1; 2; 3; 4]) ;; ; Resultado: [3; 5]"
+          },
+          {
+            "title": "Fold para suma",
+            "code": "List.fold_left (+) 0 [1; 2; 3] ;; ; Resultado: 6"
+          },
+          {
+            "title": "Recursi\u00f3n para longitud",
+            "code": "let rec len_rec lista =\n  match lista with\n  | [] -> 0\n  | _ :: tl -> 1 + len_rec tl ;; ; Resultado: funci\u00f3n para longitud"
+          },
+          {
+            "title": "Usar longitud recursiva",
+            "code": "len_rec [\"a\"; \"b\"; \"c\"] ;; ; Resultado: 3"
+          }
+        ]
+      }
     }
   }
 ]

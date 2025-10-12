@@ -1,146 +1,146 @@
 {
   "paradigma-funcional": {
     "ejercicio-1": {
-      "description": "¡Bienvenido al paradigma funcional! Aquí nos enfocamos en expresiones que siempre producen el mismo resultado sin cambiar nada. Imagina que Ana camina 5 km por la mañana y 3 km por la tarde para calcular su distancia total del día. Usa la operación primitiva de suma para obtener 8 km, mostrando cómo el funcional resuelve problemas cotidianos, como sumar tramos de un viaje, con cálculos puros y predecibles.",
+      "description": "¡Bienvenido al paradigma funcional! Nos enfocamos en expresiones puras que siempre dan el mismo resultado. Imagina que Ana planifica varios viajes, sumando distancias recorridas en diferentes tramos, como 5 km + 3 km, 2 km + 7 km, o 10 km + 4 km. Usa la operación primitiva de suma para calcular las distancias totales, mostrando cómo el funcional resuelve problemas cotidianos, como combinar tramos de caminatas, con cálculos predecibles y sin modificar estado.",
       "racket": {
-        "code": "(+ 5 3)\n(+ 5 3)\n(+ 5 3)\n(+ 5 3)"
+        "code": "(+ 5 3)\n(+ 2 7)\n(+ 10 4)\n(+ 1 6)\n(+ 8 2)"
       },
       "ocaml": {
-        "code": "5 + 3"
+        "code": "5 + 3\n2 + 7\n10 + 4\n1 + 6\n8 + 2"
       },
-      "answer": "8"
+      "answer": "8\n9\n14\n7\n10"
     },
     "ejercicio-2": {
-      "description": "En programación funcional, las expresiones son el corazón. Carlos organiza una cena y tiene 7 sillas. Para decidir si añadir una extra, verifica si 7 es impar usando el módulo. Calcula 7 mod 2, que da 1, indicando que es impar. Esta operación primitiva introduce cómo evaluamos condiciones simples sin alterar estado, un pilar del funcional.",
+      "description": "En programación funcional, las expresiones son clave. Carlos organiza eventos y verifica si cantidades de sillas, como 7, 4, 9, 6 o 3, son impares para decidir si añadir una extra. Usa el módulo (resto de dividir por 2) para determinar paridad, obteniendo 1 para impares y 0 para pares. Esta operación primitiva muestra cómo evaluar condiciones simples, como organizar asientos, de forma pura y determinista.",
       "racket": {
-        "code": "(remainder 7 2)"
+        "code": "(remainder 7 2)\n(remainder 4 2)\n(remainder 9 2)\n(remainder 6 2)\n(remainder 3 2)"
       },
       "ocaml": {
-        "code": "7 mod 2"
+        "code": "7 mod 2\n4 mod 2\n9 mod 2\n6 mod 2\n3 mod 2"
       },
-      "answer": "1"
+      "answer": "1\n0\n1\n0\n1"
     },
     "ejercicio-3": {
-      "description": "Las expresiones funcionales son deterministas. Sofía gestiona una tienda y compara dos inventarios: uno con 12 unidades y otro con 8. Para saber si el primero es mayor, usa la comparación mayor que, que retorna true porque 12 > 8. Esta operación primitiva muestra cómo el funcional usa comparaciones puras para tomar decisiones, como gestionar inventarios, sin modificar nada.",
+      "description": "Las expresiones funcionales son deterministas. Sofía gestiona una tienda y compara inventarios de productos, como 12 vs. 8 unidades, 5 vs. 10, o 15 vs. 7, para decidir cuál tiene más existencias. Usa la comparación mayor que, que retorna true si el primero es mayor, o false si no. Esta operación primitiva muestra cómo el funcional toma decisiones puras, como gestionar inventarios, sin alterar nada.",
       "racket": {
-        "code": "(> 12 8)"
+        "code": "(> 12 8)\n(> 5 10)\n(> 15 7)\n(> 3 3)\n(> 9 4)"
       },
       "ocaml": {
-        "code": "12 > 8"
+        "code": "12 > 8\n5 > 10\n15 > 7\n3 > 3\n9 > 4"
       },
-      "answer": "#t"
+      "answer": "#t\n#f\n#t\n#f\n#t"
     },
     "ejercicio-4": {
-      "description": "En el funcional, resolvemos problemas prácticos. Luis organiza un proyecto y reparte 10 dólares de ganancias entre 2 personas. Para calcular cuánto recibe cada una, divide 10 entre 2 usando la operación primitiva de división. Esto da 5, mostrando cómo el funcional usa cálculos directos para distribuciones equitativas, manteniendo todo inmutable.",
+      "description": "El funcional resuelve problemas prácticos. Luis reparte ganancias de proyectos entre equipos, como 10 dólares entre 2 personas, 12 entre 3, o 8 entre 4. Usa la operación primitiva de división para calcular cuánto recibe cada uno, obteniendo resultados como 5, 4, o 2. Esto muestra cómo el funcional realiza cálculos directos para distribuciones equitativas, manteniendo todo inmutable y predecible.",
       "racket": {
-        "code": "(/ 10 2)"
+        "code": "(/ 10 2)\n(/ 12 3)\n(/ 8 4)\n(/ 15 5)\n(/ 6 2)"
       },
       "ocaml": {
-        "code": "10 / 2"
+        "code": "10 / 2\n12 / 3\n8 / 4\n15 / 5\n6 / 2"
       },
-      "answer": "5"
+      "answer": "5\n4\n2\n3\n3"
     },
     "ejercicio-5": {
-      "description": "Seguimos con comparaciones. Marta verifica si dos cajas tienen el mismo número de libros, 5 en cada una. Usa la operación de igualdad, que retorna true porque 5 = 5. Esta expresión pura introduce cómo el funcional valida equivalencias, como en inventarios, con cálculos simples que no alteran el estado.",
+      "description": "Las comparaciones son esenciales en el funcional. Marta verifica si cajas de libros tienen el mismo número de unidades, como 5 vs. 5, 3 vs. 4, o 7 vs. 7. Usa la operación de igualdad, que retorna true si son iguales, o false si no. Esta expresión pura muestra cómo validar equivalencias, como en inventarios, con cálculos simples que no alteran el estado.",
       "racket": {
-        "code": "(= 5 5)"
+        "code": "(= 5 5)\n(= 3 4)\n(= 7 7)\n(= 2 2)\n(= 9 8)"
       },
       "ocaml": {
-        "code": "5 = 5"
+        "code": "5 = 5\n3 = 4\n7 = 7\n2 = 2\n9 = 8"
       },
-      "answer": "#t"
+      "answer": "#t\n#f\n#t\n#f\n#f"
     },
     "ejercicio-6": {
-      "description": "Avanzamos con funciones matemáticas. Un excursionista mide una desviación de -5 metros respecto a un punto base y necesita la distancia absoluta. Usa el valor absoluto, que da 5. Esta operación primitiva enseña cómo el funcional maneja números negativos, como en mediciones de terreno, con resultados siempre predecibles.",
+      "description": "Exploramos funciones matemáticas. Un excursionista mide desviaciones respecto a un punto base, como -5, -3, 4, -7 o 0 metros, y necesita distancias absolutas. Usa el valor absoluto para obtener valores positivos, como 5, 3, o 4. Esta operación primitiva enseña cómo el funcional maneja números negativos en mediciones, como en mapas, con resultados predecibles y sin efectos secundarios.",
       "racket": {
-        "code": "(abs -5)"
+        "code": "(abs -5)\n(abs -3)\n(abs 4)\n(abs -7)\n(abs 0)"
       },
       "ocaml": {
-        "code": "abs (-5)"
+        "code": "abs (-5)\nabs (-3)\nabs 4\nabs (-7)\nabs 0"
       },
-      "answer": "5"
+      "answer": "5\n3\n4\n7\n0"
     },
     "ejercicio-7": {
-      "description": "Exploramos cálculos más avanzados. Un ingeniero diseña un cuadrado con área de 16 metros cuadrados y necesita el lado. Calcula la raíz cuadrada de 16, que da 4. Esta operación primitiva muestra cómo el funcional usa funciones matemáticas para problemas reales, como diseño estructural, con expresiones puras y deterministas.",
+      "description": "El funcional aborda cálculos avanzados. Un ingeniero diseña cuadrados con áreas como 16, 25, 9, 4 o 36 metros cuadrados y necesita calcular los lados. Usa la raíz cuadrada para obtener valores como 4, 5, o 3. Esta operación primitiva muestra cómo resolver problemas reales, como diseño estructural, con expresiones puras y deterministas.",
       "racket": {
-        "code": "(sqrt 16)"
+        "code": "(sqrt 16)\n(sqrt 25)\n(sqrt 9)\n(sqrt 4)\n(sqrt 36)"
       },
       "ocaml": {
-        "code": "sqrt 16.0"
+        "code": "sqrt 16.0\nsqrt 25.0\nsqrt 9.0\nsqrt 4.0\nsqrt 36.0"
       },
-      "answer": "4"
+      "answer": "4\n5\n3\n2\n6"
     }
   },
   "expresiones": {
     "ejercicio-1": {
-      "description": "¡Bienvenidos al paradigma funcional! Las expresiones siempre dan el mismo resultado sin alterar estado. Clara verifica si dos paquetes tienen 8 galletas cada uno. Calcula 8 = 8, que da true. Esta operación primitiva de igualdad introduce cómo validamos equivalencias, como en control de inventarios, usando expresiones puras para decisiones simples.",
+      "description": "¡Bienvenidos al paradigma funcional! Las expresiones puras siempre producen el mismo resultado sin alterar estado. Clara verifica si varios paquetes tienen el mismo número de galletas, como 8 vs. 8, 5 vs. 6, o 7 vs. 7. Usa la operación primitiva de igualdad para obtener resultados booleanos, mostrando cómo validar equivalencias en inventarios con cálculos simples y deterministas.",
       "racket": {
-        "code": "(= 8 8)"
+        "code": "(= 8 8)\n(= 5 6)\n(= 7 7)\n(= 3 3)\n(= 9 10)"
       },
       "ocaml": {
-        "code": "8 = 8"
+        "code": "8 = 8\n5 = 6\n7 = 7\n3 = 3\n9 = 10"
       },
-      "answer": "#t"
+      "answer": "#t\n#f\n#t\n#t\n#f"
     },
     "ejercicio-2": {
-      "description": "Las comparaciones son clave en el funcional. Jorge revisa si un presupuesto de 15 dólares supera un límite de 10 dólares. Calcula 15 > 10, que da true. Esta operación primitiva muestra cómo evaluamos condiciones sin efectos secundarios, como en planificación financiera, con resultados predecibles.",
+      "description": "Las comparaciones son esenciales en el funcional. Jorge revisa si varios presupuestos, como 15, 8, 12, 10, o 20 dólares, superan diferentes límites, como 10, 9, 5, 10, o 15 dólares. Usa la operación mayor que para obtener resultados booleanos, mostrando cómo evaluar condiciones en planificación financiera con expresiones puras y predecibles.",
       "racket": {
-        "code": "(> 15 10)"
+        "code": "(> 15 10)\n(> 8 9)\n(> 12 5)\n(> 10 10)\n(> 20 15)"
       },
       "ocaml": {
-        "code": "15 > 10"
+        "code": "15 > 10\n8 > 9\n12 > 5\n10 > 10\n20 > 15"
       },
-      "answer": "#t"
+      "answer": "#t\n#f\n#t\n#f\n#t"
     },
     "ejercicio-3": {
-      "description": "La suma resuelve problemas cotidianos. Lucía camina 7 km por la mañana y 5 km por la tarde. Calcula 7 + 5, que da 12. Esta operación primitiva refuerza cómo el funcional usa cálculos aritméticos simples, como sumar distancias de un viaje, con resultados siempre consistentes.",
+      "description": "La suma resuelve problemas cotidianos. Lucía calcula distancias totales de caminatas combinando tramos, como 7 km + 5 km, 3 km + 4 km, o 6 km + 8 km. Usa la operación primitiva de suma para obtener las distancias, mostrando cómo el funcional realiza cálculos aritméticos simples para viajes, manteniendo resultados consistentes y sin efectos secundarios.",
       "racket": {
-        "code": "(+ 7 5)"
+        "code": "(+ 7 5)\n(+ 3 4)\n(+ 6 8)\n(+ 2 9)\n(+ 10 3)"
       },
       "ocaml": {
-        "code": "7 + 5"
+        "code": "7 + 5\n3 + 4\n6 + 8\n2 + 9\n10 + 3"
       },
-      "answer": "12"
+      "answer": "12\n7\n14\n11\n13"
     },
     "ejercicio-4": {
-      "description": "La resta maneja diferencias. Raúl tiene 20 caramelos y da 6. Calcula 20 - 6, que da 14. Esta operación primitiva enseña cómo el funcional calcula sobrantes, como en distribución de recursos, manteniendo pureza y determinismo en un contexto real.",
+      "description": "La resta calcula sobrantes. Raúl distribuye caramelos, empezando con cantidades como 20, 15, 12, 8, o 10, y da 6, 4, 3, 2, o 5 respectivamente. Usa la operación primitiva de resta para determinar cuántos caramelos quedan, mostrando cómo el funcional maneja diferencias en distribución de recursos con pureza y determinismo.",
       "racket": {
-        "code": "(- 20 6)"
+        "code": "(- 20 6)\n(- 15 4)\n(- 12 3)\n(- 8 2)\n(- 10 5)"
       },
       "ocaml": {
-        "code": "20 - 6"
+        "code": "20 - 6\n15 - 4\n12 - 3\n8 - 2\n10 - 5"
       },
-      "answer": "14"
+      "answer": "14\n11\n9\n6\n5"
     },
     "ejercicio-5": {
-      "description": "El módulo verifica patrones. Ana organiza 10 libros en grupos de 3. Calcula 10 mod 3, que da 1, indicando que sobra 1 libro. Esta operación primitiva introduce cómo evaluamos restos, como en organización de objetos, con resultados fijos y sin efectos secundarios.",
+      "description": "El módulo verifica patrones. Ana organiza libros en grupos de diferentes tamaños, como 10 libros en grupos de 3, 8 en grupos de 2, o 7 en grupos de 4. Calcula el resto con el módulo para saber cuántos libros sobran, mostrando cómo el funcional evalúa restos en organización de objetos con resultados fijos y sin efectos secundarios.",
       "racket": {
-        "code": "(remainder 10 3)"
+        "code": "(remainder 10 3)\n(remainder 8 2)\n(remainder 7 4)\n(remainder 12 5)\n(remainder 9 3)"
       },
       "ocaml": {
-        "code": "10 mod 3"
+        "code": "10 mod 3\n8 mod 2\n7 mod 4\n12 mod 5\n9 mod 3"
       },
-      "answer": "1"
+      "answer": "1\n0\n3\n2\n0"
     },
     "ejercicio-6": {
-      "description": "La división distribuye recursos. Un chef usa 12 huevos para 3 personas. Calcula 12 / 3, que da 4, para saber cuántos huevos por persona. Esta operación primitiva muestra cómo el funcional resuelve problemas de reparto, como en recetas, con cálculos puros.",
+      "description": "La división distribuye recursos equitativamente. Un chef reparte huevos entre personas, como 12 huevos entre 3, 8 entre 2, o 15 entre 5. Usa la operación primitiva de división para calcular cuántos huevos recibe cada persona, mostrando cómo el funcional resuelve problemas de reparto, como en recetas, con cálculos puros y deterministas.",
       "racket": {
-        "code": "(/ 12 3)"
+        "code": "(/ 12 3)\n(/ 8 2)\n(/ 15 5)\n(/ 6 2)\n(/ 9 3)"
       },
       "ocaml": {
-        "code": "12 / 3"
+        "code": "12 / 3\n8 / 2\n15 / 5\n6 / 2\n9 / 3"
       },
-      "answer": "4"
+      "answer": "4\n4\n3\n3\n3"
     },
     "ejercicio-7": {
-      "description": "Combinamos múltiples operaciones para mayor complejidad. Un arquitecto calcula si el área de un cuadrado (lado 3, elevado al cuadrado con expt) menos 4 es mayor que 5. Calcula (> (- (expt 3 2) 4) 5), que da false. Esta expresión compuesta usa exponentes, resta y comparación, mostrando cómo el funcional combina primitivas para problemas avanzados, como diseño estructural, sin efectos secundarios.",
+      "description": "Combinamos operaciones para problemas complejos. Un arquitecto calcula si el área de cuadrados (lados como 3, 4, 2, 5, o 6, elevados al cuadrado) menos un ajuste (4, 3, 2, 5, o 6) es mayor que un límite (5, 7, 1, 10, o 15). Usa exponentes, resta y comparación para obtener resultados booleanos, mostrando cómo el funcional combina primitivas para diseño estructural con pureza.",
       "racket": {
-        "code": "(> (- (expt 3 2) 4) 5)"
+        "code": "(> (- (expt 3 2) 4) 5)\n(> (- (expt 4 2) 3) 7)\n(> (- (expt 2 2) 2) 1)\n(> (- (expt 5 2) 5) 10)\n(> (- (expt 6 2) 6) 15)"
       },
       "ocaml": {
-        "code": "( ( (3 ** 2.0) - 4 ) > 5 )"
+        "code": "( ( (3 ** 2.0) - 4 ) > 5 )\n( ( (4 ** 2.0) - 3 ) > 7 )\n( ( (2 ** 2.0) - 2 ) > 1 )\n( ( (5 ** 2.0) - 5 ) > 10 )\n( ( (6 ** 2.0) - 6 ) > 15 )"
       },
-      "answer": "#f"
+      "answer": "#f\n#t\n#t\n#t\n#t"
     }
   },
   "funciones": {
