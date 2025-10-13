@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ComparadorComponent implements OnInit, AfterViewInit {
   showCardsLeft = true;
+  answerSegmentado: string[] = [];
   // Referencias a los editores de código
   @ViewChild('racketEditor') racketEditorRef: any;
   @ViewChild('ocamlEditor') ocamlEditorRef: any;
@@ -65,6 +66,12 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       // Por defecto resalta la primera línea
       this.highlightLineRacket = 0;
       this.highlightLineOcaml = 0;
+      // Segmentar answer solo para los módulos requeridos
+      if (["paradigma-funcional", "expresiones"].includes(this.modulo) && this.answer) {
+        this.answerSegmentado = this.answer.split('\n');
+      } else {
+        this.answerSegmentado = [];
+      }
       this.actualizarExplicaciones();
     } else {
       this.racketLines = '';
@@ -76,7 +83,12 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.explicacionRacket = '';
       this.explicacionComparacion = '';
       this.explicacionOcaml = '';
+      this.answerSegmentado = [];
     }
+  }
+  getAnswerParcial(): string {
+    if (this.answerSegmentado.length === 0) return '';
+    return this.answerSegmentado.slice(0, this.highlightLineRacket + 1).join('\n');
   }
 
   // Actualiza las explicaciones según la línea resaltada
@@ -118,7 +130,12 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
     if (nueva >= 0 && nueva < this.maxLineRacket) {
       this.highlightLineRacket = nueva;
       this.highlightLineOcaml = Math.min(nueva, this.maxLineOcaml - 1);
-      this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1);
+      // Mostrar output en cada paso para los módulos requeridos
+      if (["paradigma-funcional", "expresiones"].includes(this.modulo)) {
+        this.mostrarOutput = true;
+      } else {
+        this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1);
+      }
       this.actualizarExplicaciones();
       // Alternar lado de los cards
       this.showCardsLeft = !this.showCardsLeft;
@@ -128,6 +145,7 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   abrirModal() {
     this.showModal = true;
     this.showCardsLeft = true;
+    this.mostrarOutput = true;
     this.actualizarExplicaciones();
   }
 
