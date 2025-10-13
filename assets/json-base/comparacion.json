@@ -1392,7 +1392,8 @@
           "      (+ n (sum-n (- n 1))))",
           ")",
           "(sum-n 4)"
-        ]
+        ],
+        "recursion": [5, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 2]
       },
       "ocaml": {
         "lines": [
@@ -1403,6 +1404,9 @@
           "    n + sum_n (n - 1)",
           "in",
           "sum_n 4"
+        ],
+        "recursion": [
+          6, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2
         ]
       },
       "explanations_racket": [
@@ -1426,7 +1430,7 @@
         "Similitudes: Ambas definen una función recursiva para sumar de 1 a n, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`, con `rec` explícito para recursión. OCaml infiere que `n` es entero, Racket es dinámico.",
         "Similitudes: Ambas verifican `n <= 0` con pureza funcional. Diferencias: Racket usa notación prefija `(<= n 0)`, OCaml usa infija `n <= 0`, más matemática.",
         "Similitudes: Ambas retornan 0 como caso base, esencial para detener la recursión. Diferencias: Racket integra el caso base en el `if`, OCaml usa `then` explícitamente.",
-        "Similitudes: Ambas manejan el caso recursivo sumando `n`. Diferencias: Racket usa `(+ n (sum-n (- n 1)))` en una línea, OCaml separa `else` y la recursión, requiriendo más líneas por estructura.",
+        "Similitudes: Ambas manejan el caso recursivo sumando `n`. Diferencias: Racket usa `(+ n ...)` en una línea, OCaml separa `else` y la recursión, requiriendo más líneas por estructura.",
         "Similitudes: Ambas son estructurales, sin lógica propia. Diferencias: Racket cierra la definición con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
         "Similitudes: Ambas llaman la función con 4, retornando 10. Diferencias: Racket usa `(sum-n 4)` con paréntesis, OCaml usa `sum_n 4`, más conciso en la invocación."
       ]
@@ -1441,7 +1445,8 @@
           "      (* base (power base (- exp 1))))",
           ")",
           "(power 2 4)"
-        ]
+        ],
+        "recursion": [5, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 2]
       },
       "ocaml": {
         "lines": [
@@ -1452,6 +1457,9 @@
           "    base * power base (exp - 1)",
           "in",
           "power 2 4"
+        ],
+        "recursion": [
+          6, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2
         ]
       },
       "explanations_racket": [
@@ -1490,7 +1498,8 @@
           "      (* n (factorial (- n 1))))",
           ")",
           "(factorial 4)"
-        ]
+        ],
+        "recursion": [5, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 2]
       },
       "ocaml": {
         "lines": [
@@ -1501,6 +1510,9 @@
           "    n * factorial (n - 1)",
           "in",
           "factorial 4"
+        ],
+        "recursion": [
+          6, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2
         ]
       },
       "explanations_racket": [
@@ -1541,6 +1553,10 @@
           "  )",
           ")",
           "(fibonacci 6)"
+        ],
+        "recursion": [
+          7, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2, 0, 1, 2,
+          0, 1, 3, 4, 0, 1, 2, 0, 1, 2, 0, 1, 3, 4, 0, 1, 2
         ]
       },
       "ocaml": {
@@ -1553,6 +1569,10 @@
           "    fibonacci (n - 2)",
           "in",
           "fibonacci 6"
+        ],
+        "recursion": [
+          7, 0, 1, 3, 4, 5, 0, 1, 3, 4, 5, 0, 1, 3, 4, 5, 0, 1, 3, 4, 5, 0, 1,
+          2, 0, 1, 2, 0, 1, 3, 4, 5, 0, 1, 2, 0, 1, 2, 0, 1, 3, 4, 5, 0, 1, 2
         ]
       },
       "explanations_racket": [
@@ -1580,7 +1600,7 @@
         "Similitudes: Ambas verifican `n <= 1` con pureza funcional. Diferencias: Racket usa notación prefija `(<= n 1)`, OCaml usa infija `n <= 1`, más matemática.",
         "Similitudes: Ambas retornan `n` como caso base (0 o 1). Diferencias: Racket integra el caso base en el `if`, OCaml usa `then` explícitamente.",
         "Similitudes: Ambas inician la recursión doble para `n > 1`. Diferencias: Racket divide la suma en dos líneas por formato prefijo, OCaml usa `else` para iniciar la recursión.",
-        "Similitudes: Ambas completan la recursión sumando dos llamadas. Diferencias: Racket cierra la suma en una línea separada, OCaml divide la suma por formato, pero la lógica es idéntica.",
+        "Similitudes: Ambas completan la recursión sumando dos llamadas. Diferencias: Racket cierra la suma en una línea separada, OCaml divide por formato, pero la lógica es idéntica.",
         "Similitudes: Ambas son estructurales, sin lógica propia. Diferencias: Racket cierra el `if`, OCaml cierra la suma, equilibrando el conteo de líneas.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la definición con `)`, OCaml usa `in` para la llamada.",
         "Similitudes: Ambas llaman la función con 6, retornando 8. Diferencias: Racket usa `(fibonacci 6)` con paréntesis, OCaml usa `fibonacci 6`, más conciso."
@@ -1598,6 +1618,9 @@
           "  )",
           ")",
           "(sum-digits 12345)"
+        ],
+        "recursion": [
+          7, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2
         ]
       },
       "ocaml": {
@@ -1610,6 +1633,10 @@
           "    sum_digits (n / 10)",
           "in",
           "sum_digits 12345"
+        ],
+        "recursion": [
+          7, 0, 1, 3, 4, 5, 0, 1, 3, 4, 5, 0, 1, 3, 4, 5, 0, 1, 3, 4, 5, 0, 1,
+          3, 4, 5, 0, 1, 2
         ]
       },
       "explanations_racket": [
@@ -1655,7 +1682,8 @@
           "  )",
           ")",
           "(product-odds 3)"
-        ]
+        ],
+        "recursion": [7, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2]
       },
       "ocaml": {
         "lines": [
@@ -1667,7 +1695,8 @@
           "    product_odds (n - 1)",
           "in",
           "product_odds 3"
-        ]
+        ],
+        "recursion": [7, 0, 1, 3, 4, 5, 0, 1, 3, 4, 5, 0, 1, 3, 4, 5, 0, 1, 2]
       },
       "explanations_racket": [
         "Define una función recursiva `product-odds` para calcular el producto de los primeros n números impares (1, 3, 5, ...). La sintaxis `(define (nombre params) cuerpo)` es funcional, como calcular el producto de valores alternados en un experimento matemático.",
@@ -1710,7 +1739,8 @@
           "      (+ 1 (count-digits (quotient n 10))))",
           ")",
           "(count-digits 1234)"
-        ]
+        ],
+        "recursion": [5, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 2]
       },
       "ocaml": {
         "lines": [
@@ -1721,6 +1751,9 @@
           "    1 + count_digits (n / 10)",
           "in",
           "count_digits 1234"
+        ],
+        "recursion": [
+          6, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2
         ]
       },
       "explanations_racket": [
