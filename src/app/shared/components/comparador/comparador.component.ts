@@ -145,7 +145,11 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   abrirModal() {
     this.showModal = true;
     this.showCardsLeft = true;
-    this.mostrarOutput = true;
+    if (["paradigma-funcional", "expresiones"].includes(this.modulo)) {
+      this.mostrarOutput = true;
+    } else {
+      this.mostrarOutput = false;
+    }
     this.actualizarExplicaciones();
   }
 
