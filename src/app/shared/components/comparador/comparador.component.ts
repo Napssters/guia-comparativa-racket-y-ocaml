@@ -1,3 +1,4 @@
+
 import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CodeEditorComponent } from '../code-editor/code-editor.component';
@@ -11,6 +12,24 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, CodeEditorComponent]
 })
 export class ComparadorComponent implements OnInit, AfterViewInit {
+  isPrevDisabled(): boolean {
+    if (this.modulo === 'recursion') {
+      return this.recursionStepIndex <= 0;
+    }
+    return this.highlightLineRacket <= 0;
+  }
+
+  isNextDisabled(): boolean {
+    if (this.modulo === 'recursion' && this.comparacionData && this.comparacionData['recursion'] && this.comparacionData['recursion'][this.ejercicio]) {
+      const info = this.comparacionData['recursion'][this.ejercicio];
+      const stepsR = info.racket && Array.isArray(info.racket.recursion) ? info.racket.recursion.length : 0;
+      const stepsO = info.ocaml && Array.isArray(info.ocaml.recursion) ? info.ocaml.recursion.length : 0;
+      const maxSteps = Math.max(stepsR, stepsO);
+      return this.recursionStepIndex >= maxSteps - 1;
+    }
+    return this.highlightLineRacket >= this.maxLineRacket - 1;
+  }
+  recursionStepIndex = 0;
   showCardsLeft = true;
   answerSegmentado: string[] = [];
   // Referencias a los editores de código
@@ -63,9 +82,18 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.ocamlLines = (info.ocaml && info.ocaml.lines) ? info.ocaml.lines.join('\n') : '';
       this.maxLineRacket = (info.racket && info.racket.lines) ? info.racket.lines.length : 1;
       this.maxLineOcaml = (info.ocaml && info.ocaml.lines) ? info.ocaml.lines.length : 1;
-      // Por defecto resalta la primera línea
-      this.highlightLineRacket = 0;
-      this.highlightLineOcaml = 0;
+      if (this.modulo === 'recursion' && info.racket && Array.isArray(info.racket.recursion)) {
+        this.recursionStepIndex = 0;
+        this.highlightLineRacket = info.racket.recursion[0] || 0;
+        if (info.ocaml && Array.isArray(info.ocaml.recursion)) {
+          this.highlightLineOcaml = info.ocaml.recursion[0] || 0;
+        } else {
+          this.highlightLineOcaml = 0;
+        }
+      } else {
+        this.highlightLineRacket = 0;
+        this.highlightLineOcaml = 0;
+      }
       // Segmentar answer solo para los módulos requeridos
       if (["paradigma-funcional", "expresiones"].includes(this.modulo) && this.answer) {
         this.answerSegmentado = this.answer.split('\n');
@@ -84,6 +112,7 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.explicacionComparacion = '';
       this.explicacionOcaml = '';
       this.answerSegmentado = [];
+      this.recursionStepIndex = 0;
     }
   }
   getAnswerParcial(): string {
@@ -99,24 +128,40 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.comparacionData[this.modulo][this.ejercicio]
     ) {
       const info = this.comparacionData[this.modulo][this.ejercicio];
-      const idx = this.highlightLineRacket;
-      // Explicación Racket
-      if (info.explanations_racket && info.explanations_racket[idx]) {
-        this.explicacionRacket = info.explanations_racket[idx];
+      // Modo recursion: usar el índice de línea real de cada lenguaje
+      if (this.modulo === 'recursion' && info.racket && Array.isArray(info.racket.recursion)) {
+        const idxR = info.racket.recursion[this.recursionStepIndex] || 0;
+        const idxO = (info.ocaml && Array.isArray(info.ocaml.recursion)) ? (info.ocaml.recursion[this.recursionStepIndex] || 0) : 0;
+        this.explicacionRacket = (info.explanations_racket && info.explanations_racket[idxR]) ? info.explanations_racket[idxR] : '';
+        this.explicacionOcaml = (info.explanations_ocaml && info.explanations_ocaml[idxO]) ? info.explanations_ocaml[idxO] : '';
+        // Comparación: mostrar la correspondiente a la línea de Racket, o la de OCaml si no existe
+        if (info.comparisons && info.comparisons[idxR]) {
+          this.explicacionComparacion = info.comparisons[idxR];
+        } else if (info.comparisons && info.comparisons[idxO]) {
+          this.explicacionComparacion = info.comparisons[idxO];
+        } else {
+          this.explicacionComparacion = '';
+        }
       } else {
-        this.explicacionRacket = '';
-      }
-      // Explicación OCaml
-      if (info.explanations_ocaml && info.explanations_ocaml[idx]) {
-        this.explicacionOcaml = info.explanations_ocaml[idx];
-      } else {
-        this.explicacionOcaml = '';
-      }
-      // Comparación
-      if (info.comparisons && info.comparisons[idx]) {
-        this.explicacionComparacion = info.comparisons[idx];
-      } else {
-        this.explicacionComparacion = '';
+        const idx = this.highlightLineRacket;
+        // Explicación Racket
+        if (info.explanations_racket && info.explanations_racket[idx]) {
+          this.explicacionRacket = info.explanations_racket[idx];
+        } else {
+          this.explicacionRacket = '';
+        }
+        // Explicación OCaml
+        if (info.explanations_ocaml && info.explanations_ocaml[idx]) {
+          this.explicacionOcaml = info.explanations_ocaml[idx];
+        } else {
+          this.explicacionOcaml = '';
+        }
+        // Comparación
+        if (info.comparisons && info.comparisons[idx]) {
+          this.explicacionComparacion = info.comparisons[idx];
+        } else {
+          this.explicacionComparacion = '';
+        }
       }
     } else {
       this.explicacionRacket = '';
@@ -126,19 +171,38 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   }
 
   cambiarLinea(delta: number) {
-    const nueva = this.highlightLineRacket + delta;
-    if (nueva >= 0 && nueva < this.maxLineRacket) {
-      this.highlightLineRacket = nueva;
-      this.highlightLineOcaml = Math.min(nueva, this.maxLineOcaml - 1);
-      // Mostrar output en cada paso para los módulos requeridos
-      if (["paradigma-funcional", "expresiones"].includes(this.modulo)) {
-        this.mostrarOutput = true;
-      } else {
-        this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1);
+    if (this.modulo === 'recursion' && this.comparacionData && this.comparacionData['recursion'] && this.comparacionData['recursion'][this.ejercicio]) {
+      const info = this.comparacionData['recursion'][this.ejercicio];
+      const recursionStepsRacket = info.racket && Array.isArray(info.racket.recursion) ? info.racket.recursion : [];
+      const recursionStepsOcaml = info.ocaml && Array.isArray(info.ocaml.recursion) ? info.ocaml.recursion : [];
+      let nuevoPaso = this.recursionStepIndex + delta;
+      if (nuevoPaso >= 0 && nuevoPaso < recursionStepsRacket.length) {
+        this.recursionStepIndex = nuevoPaso;
+        this.highlightLineRacket = recursionStepsRacket[nuevoPaso];
+        if (recursionStepsOcaml.length > 0) {
+          this.highlightLineOcaml = recursionStepsOcaml[nuevoPaso] || 0;
+        } else {
+          this.highlightLineOcaml = 0;
+        }
+        // Output solo si es el último paso
+        this.mostrarOutput = (nuevoPaso === recursionStepsRacket.length - 1);
+        this.actualizarExplicaciones();
+        this.showCardsLeft = !this.showCardsLeft;
       }
-      this.actualizarExplicaciones();
-      // Alternar lado de los cards
-      this.showCardsLeft = !this.showCardsLeft;
+    } else {
+      let nueva = this.highlightLineRacket + delta;
+      if (nueva >= 0 && nueva < this.maxLineRacket) {
+        this.highlightLineRacket = nueva;
+        this.highlightLineOcaml = Math.min(nueva, this.maxLineOcaml - 1);
+        // Mostrar output en cada paso para los módulos requeridos
+        if (["paradigma-funcional", "expresiones"].includes(this.modulo)) {
+          this.mostrarOutput = true;
+        } else {
+          this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1);
+        }
+        this.actualizarExplicaciones();
+        this.showCardsLeft = !this.showCardsLeft;
+      }
     }
   }
 
