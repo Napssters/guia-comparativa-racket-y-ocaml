@@ -21,54 +21,54 @@
       "answer": "1\n0\n1\n0\n1"
     },
     "ejercicio-3": {
-      "description": "Las expresiones funcionales son deterministas. Sofía gestiona una tienda y compara inventarios de productos, como 12 vs. 8 unidades, 5 vs. 10, o 15 vs. 7, para decidir cuál tiene más existencias. Usa la comparación mayor que, que retorna true si el primero es mayor, o false si no. Esta operación primitiva muestra cómo el funcional toma decisiones puras, como gestionar inventarios, sin alterar nada.",
+      "description": "Las expresiones funcionales son deterministas. Sofía gestiona una tienda y compara si el inventario total, después de sumar nuevas unidades, es mayor que el de la competencia, como 12 + 4 > 15, 5 + 5 > 12, o 15 + 3 > 10. Usa la comparación mayor que en expresiones compuestas, que retorna true si el resultado es mayor, o false si no. Esta operación primitiva muestra cómo el funcional toma decisiones puras en escenarios más elaborados, como gestionar inventarios con adiciones, sin alterar nada.",
       "racket": {
-        "code": "(> 12 8)\n(> 5 10)\n(> 15 7)\n(> 3 3)\n(> 9 4)"
+        "code": "(> (+ 12 4) 15)\n(> (+ 5 5) 12)\n(> (+ 15 3) 10)\n(> (+ 3 3) 6)\n(> (+ 9 6) 8)"
       },
       "ocaml": {
-        "code": "12 > 8\n5 > 10\n15 > 7\n3 > 3\n9 > 4"
+        "code": "12 + 4 > 15\n5 + 5 > 12\n15 + 3 > 10\n3 + 3 > 6\n9 + 6 > 8"
       },
       "answer": "#t\n#f\n#t\n#f\n#t"
     },
     "ejercicio-4": {
-      "description": "El funcional resuelve problemas prácticos. Luis reparte ganancias de proyectos entre equipos, como 10 dólares entre 2 personas, 12 entre 3, o 8 entre 4. Usa la operación primitiva de división para calcular cuánto recibe cada uno, obteniendo resultados como 5, 4, o 2. Esto muestra cómo el funcional realiza cálculos directos para distribuciones equitativas, manteniendo todo inmutable y predecible.",
+      "description": "El funcional resuelve problemas prácticos. Luis reparte ganancias netas, calculadas restando costos de las brutas, entre equipos, como (20 - 10) / 2, (15 - 3) / 4, o (18 - 10) / 2. Usa la operación primitiva de división en expresiones con sumas y restas para calcular cuánto recibe cada uno, obteniendo resultados como 5, 3, o 4. Esto muestra cómo el funcional realiza cálculos directos para distribuciones equitativas en escenarios más complejos, manteniendo todo inmutable y predecible.",
       "racket": {
-        "code": "(/ 10 2)\n(/ 12 3)\n(/ 8 4)\n(/ 15 5)\n(/ 6 2)"
+        "code": "(/ (- 20 10) 2)\n(/ (- 15 3) 4)\n(/ (- 18 10) 2)\n(/ (- 12 3) 3)\n(/ (- 24 4) 5)"
       },
       "ocaml": {
-        "code": "10 / 2\n12 / 3\n8 / 4\n15 / 5\n6 / 2"
+        "code": "(20 - 10) / 2\n(15 - 3) / 4\n(18 - 10) / 2\n(12 - 3) / 3\n(24 - 4) / 5"
       },
-      "answer": "5\n4\n2\n3\n3"
+      "answer": "5\n3\n4\n3\n4"
     },
     "ejercicio-5": {
-      "description": "Las comparaciones son esenciales en el funcional. Marta verifica si cajas de libros tienen el mismo número de unidades, como 5 vs. 5, 3 vs. 4, o 7 vs. 7. Usa la operación de igualdad, que retorna true si son iguales, o false si no. Esta expresión pura muestra cómo validar equivalencias, como en inventarios, con cálculos simples que no alteran el estado.",
+      "description": "Las comparaciones son esenciales en el funcional. Marta verifica si el resultado de cálculos más elaborados, involucrando sumas, restas y multiplicaciones, es igual a un valor esperado, como (5 + 3 - 1) = 7, (2 * 3) = 7, o ((4 * 2) + 1) = 9. Usa la operación de igualdad en expresiones compuestas, que retorna true si son iguales, o false si no. Esta expresión pura muestra cómo validar equivalencias en escenarios complejos, como en inventarios con operaciones múltiples, con cálculos que no alteran el estado.",
       "racket": {
-        "code": "(= 5 5)\n(= 3 4)\n(= 7 7)\n(= 2 2)\n(= 9 8)"
+        "code": "(= (- (+ 5 3) 1) 7)\n(= (* 2 3) 7)\n(= (+ (* 4 2) 1) 9)\n(= (- 10 3) 6)\n(= (* 5 1) 5)"
       },
       "ocaml": {
-        "code": "5 = 5\n3 = 4\n7 = 7\n2 = 2\n9 = 8"
+        "code": "(5 + 3 - 1) = 7\n(2 * 3) = 7\n((4 * 2) + 1) = 9\n(10 - 3) = 6\n(5 * 1) = 5"
       },
-      "answer": "#t\n#f\n#t\n#f\n#f"
+      "answer": "#t\n#f\n#t\n#f\n#t"
     },
     "ejercicio-6": {
-      "description": "Exploramos funciones matemáticas. Un excursionista mide desviaciones respecto a un punto base, como -5, -3, 4, -7 o 0 metros, y necesita distancias absolutas. Usa el valor absoluto para obtener valores positivos, como 5, 3, o 4. Esta operación primitiva enseña cómo el funcional maneja números negativos en mediciones, como en mapas, con resultados predecibles y sin efectos secundarios.",
+      "description": "Exploramos funciones matemáticas. Un excursionista mide desviaciones complejas respecto a un punto base, involucrando sumas, restas y multiplicaciones, como abs(5 + 3 - 10), abs(-2 * 3), o abs(4 - (1 + 6)), y necesita distancias absolutas. Usa el valor absoluto en expresiones anidadas para obtener valores positivos, como 2, 6, o 3. Esta operación primitiva enseña cómo el funcional maneja números negativos en mediciones más elaboradas, como en mapas con cálculos compuestos, con resultados predecibles y sin efectos secundarios.",
       "racket": {
-        "code": "(abs -5)\n(abs -3)\n(abs 4)\n(abs -7)\n(abs 0)"
+        "code": "(abs (- (+ 5 3) 10))\n(abs (* -2 3))\n(abs (- 4 (+ 1 6)))\n(abs 0)\n(abs (- (* 3 4) 15))"
       },
       "ocaml": {
-        "code": "abs (-5)\nabs (-3)\nabs 4\nabs (-7)\nabs 0"
+        "code": "abs (5 + 3 - 10)\nabs (-2 * 3)\nabs (4 - (1 + 6))\nabs 0\nabs ((3 * 4) - 15)"
       },
-      "answer": "5\n3\n4\n7\n0"
+      "answer": "2\n6\n3\n0\n3"
     },
     "ejercicio-7": {
-      "description": "El funcional aborda cálculos avanzados. Un ingeniero diseña cuadrados con áreas como 16, 25, 9, 4 o 36 metros cuadrados y necesita calcular los lados. Usa la raíz cuadrada para obtener valores como 4, 5, o 3. Esta operación primitiva muestra cómo resolver problemas reales, como diseño estructural, con expresiones puras y deterministas.",
+      "description": "El funcional aborda cálculos avanzados. Un ingeniero diseña estructuras y calcula la hipotenusa en triángulos rectángulos con lados como 3 y 4, 5 y 12, o 8 y 6 metros, usando expresiones complejas para las áreas. Usa la raíz cuadrada en composiciones anidadas con multiplicaciones y sumas para obtener valores como 5, 13, o 10. Esta operación primitiva muestra cómo resolver problemas reales y desafiantes, como diseño estructural con teorema de Pitágoras, con expresiones puras y deterministas.",
       "racket": {
-        "code": "(sqrt 16)\n(sqrt 25)\n(sqrt 9)\n(sqrt 4)\n(sqrt 36)"
+        "code": "(sqrt (+ (* 3 3) (* 4 4)))\n(sqrt (+ (* 5 5) (* 12 12)))\n(sqrt (+ (* 8 8) (* 6 6)))\n(sqrt (+ (* 7 7) (* 24 24)))\n(sqrt (+ (* 20 20) (* 21 21)))"
       },
       "ocaml": {
-        "code": "sqrt 16.0\nsqrt 25.0\nsqrt 9.0\nsqrt 4.0\nsqrt 36.0"
+        "code": "sqrt (3.0 *. 3.0 +. 4.0 *. 4.0)\nsqrt (5.0 *. 5.0 +. 12.0 *. 12.0)\nsqrt (8.0 *. 8.0 +. 6.0 *. 6.0)\nsqrt (7.0 *. 7.0 +. 24.0 *. 24.0)\nsqrt (20.0 *. 20.0 +. 21.0 *. 21.0)"
       },
-      "answer": "4\n5\n3\n2\n6"
+      "answer": "5\n13\n10\n25\n29"
     }
   },
   "expresiones": {
