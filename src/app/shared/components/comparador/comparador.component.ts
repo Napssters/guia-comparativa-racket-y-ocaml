@@ -209,12 +209,16 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   abrirModal() {
     this.showModal = true;
     this.showCardsLeft = true;
+    // Forzar recarga de datos y reinicio de índices
+    this.recursionStepIndex = 0;
+    this.highlightLineRacket = 0;
+    this.highlightLineOcaml = 0;
     if (["paradigma-funcional", "expresiones"].includes(this.modulo)) {
       this.mostrarOutput = true;
     } else {
       this.mostrarOutput = false;
     }
-    this.actualizarExplicaciones();
+    this.cargarComparacion();
   }
 
   cerrarModal() {
