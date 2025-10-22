@@ -1,0 +1,57 @@
+El software "Fundamentos de Bases de Datos" es una herramienta educativa integral diseñada para enseñar los 
+conceptos fundamentales de bases de datos, centrándose en el uso del lenguaje SQL. para adquirir o mejorar 
+sus habilidades en la gestión de bases de datos.
+
+La estructura del software está dividida en nueve módulos principales, cada uno abordando aspectos cruciales 
+del manejo de bases de datos con SQL:
+
+	1.  Crear y Eliminar Bases de Datos: En este módulo, los usuarios aprenden a crear nuevas bases de datos, 
+		mostrar las bases de datos existentes y eliminar las que ya no se necesitan. Las instrucciones son 
+		claras y están acompañadas de ejemplos prácticos.
+
+	2.  Crear y Eliminar Tablas: Este módulo guía a los usuarios a través del proceso de creación de tablas 
+		dentro de una base de datos y la eliminación de tablas existentes. Además de la sintaxis SQL, se 
+		cubren las mejores prácticas para definir esquemas de tablas que optimicen el rendimiento y la 
+		integridad de los datos.
+
+	3.  Crear y Obtener Registros: Enfocado en las operaciones básicas de manipulación de datos, los usuarios 
+		aprenden a insertar nuevos registros en una tabla, seleccionar y visualizar registros, aplicar 
+		condiciones para filtrar datos y eliminar registros específicos. Este módulo proporciona una base
+		sólida para cualquier interacción con datos almacenados en una base de datos.
+
+	4.  Primary Key y Foreign Key: Este módulo introduce los conceptos de claves primarias y foráneas, 
+		esenciales para la identificación única de registros dentro de una tabla y para establecer 
+		relaciones entre tablas, respectivamente. Se explica cómo definir y utilizar estas claves para 
+		mantener la integridad referencial en una base de datos.
+
+	5.  Manejo de Tipos de Datos: Los usuarios aprenden a trabajar con los diferentes tipos de datos 
+		disponibles en SQL, como enteros, decimales, cadenas de texto y fechas. Este conocimiento es crucial 
+		para la correcta definición de esquemas de tablas y la realización de operaciones precisas sobre los 
+		datos.
+
+	6.  Funciones en las Tablas: Este módulo cubre el uso de funciones SQL para ordenar registros, realizar 
+		operaciones matemáticas y agrupar datos. Estas funciones son herramientas poderosas para el análisis 
+		y la manipulación avanzada de datos.
+
+	7.  Alteraciones de las Tablas: Los usuarios aprenden cómo modificar la estructura de las tablas 
+		existentes, incluyendo la eliminación y adición de columnas, así como el renombramiento de tablas. 
+		Este módulo es esencial para el mantenimiento y evolución de bases de datos a medida que cambian los 
+		requisitos de almacenamiento de datos.
+
+	8.  Tipos de Joins y sus Usos: Aquí se exploran los diferentes tipos de operaciones join en SQL, 
+		incluyendo left join, right join e inner join. Estas operaciones son fundamentales para combinar datos 
+		de múltiples tablas y realizar análisis complejos.
+
+	9.  Creación de Subconsultas: Este módulo introduce a los usuarios a las subconsultas y su uso en 
+		operaciones de actualización y eliminación de registros. Además, se cubre el uso de los operadores 
+		EXISTS y NOT EXISTS para realizar comprobaciones de existencia de datos.
+
+Además de estos módulos, el software incluye una herramienta práctica adicional que permite a los usuarios 
+aplicar interactivamente lo aprendido en los módulos teóricos. Esta herramienta proporciona un entorno 
+simulado donde se pueden realizar consultas SQL, crear y manipular tablas, y experimentar con diferentes 
+tipos de operaciones y joins.
+
+La interfaz del software es intuitiva y fácil de usar, con botones interactivos en la vista principal de cada 
+módulo que despliegan automáticamente la documentación relevante cuando se presionan. Esta documentación 
+incluye explicaciones teóricas, ejemplos prácticos y ejercicios interactivos, proporcionando una comprensión 
+completa y aplicada del tema.
