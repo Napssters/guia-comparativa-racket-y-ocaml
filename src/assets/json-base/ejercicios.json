@@ -145,79 +145,79 @@
   },
   "funciones": {
     "ejercicio-1": {
-      "description": "¡Ahora definimos funciones! María diseña un jardín rectangular de 6 metros por 3 metros. Para calcular el área de césped, define una función que multiplique base por altura. Evalúa con 6 y 3. Esto muestra cómo las funciones encapsulan cálculos reutilizables, un salto desde expresiones simples.",
+      "description": "Un agricultor mide un terreno rectangular de 10 metros de largo por 7 metros de ancho para instalar un sistema de riego. Define una función que calcule el área multiplicando base por altura. Evalúa con 10 y 7. Este ejercicio introduce funciones básicas para cálculos geométricos simples, esenciales en planificación agrícola. La fórmula es base * altura. Paso a paso: 10 * 7 = 70 metros cuadrados, que representa el área a regar. El resultado esperado es 70, útil para estimar la cantidad de tuberías necesarias.",
       "racket": {
-        "code": "(define (rectangle-area base height)\n  (* base height)\n)\n(rectangle-area 6 3)"
+        "code": "(define (rectangle-area base height)\n  (* base height)\n)\n(rectangle-area 10 7)"
       },
       "ocaml": {
-        "code": "let rectangle_area base height =\n  base * height\nin\nrectangle_area 6 3"
+        "code": "let rectangle_area base height =\n  base * height\nin\nrectangle_area 10 7"
       },
-      "answer": "18"
+      "answer": "70"
     },
     "ejercicio-2": {
-      "description": "Las funciones hacen la lógica reusable. Un festival tiene eventos cada 3 horas. Para saber si a las 9 es hora de un evento, define una función que verifique si un número es múltiplo de otro usando módulo. Evalúa con 9 y 3. Esto introduce funciones booleanas para decisiones.",
+      "description": "Un organizador de eventos calcula cuántas veces se repite un espectáculo de luces cada 5 segundos en un período de 25 segundos, ajustando el resultado con un margen de 2 segundos por retrasos técnicos. Define una función que divida el tiempo total entre el intervalo y reste el margen. Evalúa con 25 y 5. Este ejercicio introduce división y resta, aumentando la complejidad al combinar dos operaciones. Paso a paso: 25 / 5 = 5 repeticiones, menos 2 segundos de margen da 5 - 2 = 3 repeticiones ajustadas. El resultado esperado es 3, útil para planificar cronogramas.",
       "racket": {
-        "code": "(define (multiple? x y)\n  (= (remainder x y) 0)\n)\n(multiple? 9 3)"
+        "code": "(define (adjusted-event-count total-time interval)\n  (let ((count (/ total-time interval))\n        (margin 2))\n    (- count margin))\n)\n(adjusted-event-count 25 5)"
       },
       "ocaml": {
-        "code": "let multiple x y =\n  x mod y = 0\nin\nmultiple 9 3"
+        "code": "let adjusted_event_count total_time interval =\n  let count = total_time / interval in\n  let margin = 2 in\n  count - margin\nin\nadjusted_event_count 25 5"
       },
-      "answer": "true"
+      "answer": "3"
     },
     "ejercicio-3": {
-      "description": "Las funciones pueden ser recursivas. En un videojuego, el daño de un hechizo es 2 elevado a 3. Define una función recursiva que calcule la potencia. Evalúa con base 2 y exponente 3. Esto muestra cómo la recursión reemplaza bucles en el funcional, manteniendo pureza.",
+      "description": "Un diseñador de videojuegos calcula el daño de un ataque basado en el nivel del personaje (nivel 8), usando la fórmula nivel^2 + 2 * nivel. Define una función que compute el cuadrado del nivel y sume el doble del nivel. Evalúa con 8. Este ejercicio añade exponentes y suma, aumentando la robustez con dos términos. Paso a paso: nivel = 8, cuadrado = 8 * 8 = 64, doble = 2 * 8 = 16, total = 64 + 16 = 80. El resultado esperado es 80, modelando un daño que crece no linealmente, común en mecánicas de juegos.",
       "racket": {
-        "code": "(define (power base exp)\n  (if (= exp 0)\n      1\n      (* base (power base (- exp 1)))\n  )\n)\n(power 2 3)"
+        "code": "(define (damage level)\n  (let ((square (* level level))\n        (double (* 2 level)))\n    (+ square double))\n)\n(damage 8)"
       },
       "ocaml": {
-        "code": "let rec power base exp =\n  if exp = 0 then\n    1\n  else\n    base * power base (exp - 1)\nin\npower 2 3"
+        "code": "let damage level =\n  let square = level * level in\n  let double = 2 * level in\n  square + double\nin\ndamage 8"
       },
-      "answer": "8"
+      "answer": "80"
     },
     "ejercicio-4": {
-      "description": "Funciones para promedios. Dos corredores recorren 5 y 7 kilómetros. Define una función que calcule el promedio de dos distancias. Evalúa con 5 y 7. Esto ilustra cómo las funciones simplifican cálculos repetitivos en problemas reales.",
+      "description": "Un ingeniero diseña un soporte triangular con catetos de 6 y 8 metros. Calcula la hipotenusa usando la fórmula de Pitágoras: sqrt(a^2 + b^2). Define una función que eleve al cuadrado ambos catetos, los sume y tome la raíz cuadrada. Evalúa con 6 y 8. Este ejercicio combina multiplicaciones, suma y raíz cuadrada, usando más operaciones que los anteriores. Paso a paso: a = 6, b = 8, a^2 = 36, b^2 = 64, suma = 36 + 64 = 100, raíz = sqrt(100) = 10. El resultado esperado es 10, crucial para diseño estructural.",
       "racket": {
-        "code": "(define (average a b)\n  (/ (+ a b) 2)\n)\n(average 5 7)"
+        "code": "(define (hypotenuse a b)\n  (let ((a-square (* a a))\n        (b-square (* b b)))\n    (sqrt (+ a-square b-square)))\n)\n(hypotenuse 6 8)"
       },
       "ocaml": {
-        "code": "let average a b =\n  (a + b) / 2\nin\naverage 5 7"
+        "code": "let hypotenuse a b =\n  let a_square = a *. a in\n  let b_square = b *. b in\n  sqrt (a_square +. b_square)\nin\nhypotenuse 6.0 8.0"
       },
-      "answer": "6"
+      "answer": "10"
     },
     "ejercicio-5": {
-      "description": "Funciones booleanas para validación. Un agricultor verifica si 75 grados Celsius está entre 1 y 100 para su invernadero. Define una función que use comparaciones lógicas. Evalúa con 75. Esto muestra cómo las funciones retornan valores lógicos reutilizables.",
+      "description": "Un chef diseña una olla esférica de radio 0.3 metros, calculando su volumen con la fórmula (4/3) * pi * r^3, donde pi = 3.14159. Define una función que compute el cubo del radio, lo multiplique por pi, y ajuste por la fracción 4/3. Evalúa con 0.3. Este ejercicio aumenta la complejidad con exponentes cúbicos, constantes y fracciones. Paso a paso: r = 0.3, r^3 = 0.3 * 0.3 * 0.3 = 0.027, pi * r^3 = 3.14159 * 0.027 ≈ 0.08482293, (4/3) * 0.08482293 ≈ 0.11309724. El resultado esperado es aproximadamente 0.11309724 metros cúbicos, útil para determinar capacidad.",
       "racket": {
-        "code": "(define (between-1-100? x)\n  (and (>= x 1) (<= x 100))\n)\n(between-1-100? 75)"
+        "code": "(define (sphere-volume r)\n  (let ((cube (* r r r))\n        (pi 3.14159)\n        (fraction (/ 4 3)))\n    (* fraction pi cube))\n)\n(sphere-volume 0.3)"
       },
       "ocaml": {
-        "code": "let between_1_100 x =\n  x >= 1 && x <= 100\nin\nbetween_1_100 75"
+        "code": "let sphere_volume r =\n  let cube = r *. r *. r in\n  let pi = 3.14159 in\n  let fraction = 4.0 /. 3.0 in\n  fraction *. pi *. cube\nin\nsphere_volume 0.3"
       },
-      "answer": "true"
+      "answer": "0.11309724"
     },
     "ejercicio-6": {
-      "description": "Funciones con constantes. Un pastelero calcula el área de un pastel circular con radio 3 metros, usando pi (3.14159). Define una función para el área del círculo. Evalúa con 3. Esto introduce cómo las funciones manejan cálculos con valores fijos.",
+      "description": "Un financiero calcula el valor futuro de 1000 dólares con una tasa de interés compuesto del 4% anual, aplicada mensualmente durante 3 años, ajustada por una tarifa fija de 50 dólares, usando la fórmula p * (1 + r/n)^(n*t) - fee. Define una función que compute el factor de interés, eleve al número de períodos, multiplique por el principal y reste la tarifa. Evalúa con 1000, 0.04, 12, 3. Este ejercicio combina exponentes, divisiones, multiplicaciones y resta, con cuatro parámetros. Paso a paso: p = 1000, r = 0.04, n = 12, t = 3, factor = 1 + 0.04/12 ≈ 1.00333333, períodos = 12 * 3 = 36, factor^36 ≈ 1.12749786, valor = 1000 * 1.12749786 ≈ 1127.49786, menos 50 = 1077.49786. El resultado esperado es aproximadamente 1077.49786 dólares.",
       "racket": {
-        "code": "(define (circle-area r)\n  (* 3.14159 (* r r))\n)\n(circle-area 3)"
+        "code": "(define (compound-interest p r n t)\n  (let ((rate-factor (+ 1 (/ r n)))\n        (periods (* n t))\n        (fee 50))\n    (- (* p (expt rate-factor periods)) fee))\n)\n(compound-interest 1000 0.04 12 3)"
       },
       "ocaml": {
-        "code": "let circle_area r =\n  3.14159 *. (r *. r)\nin\ncircle_area 3.0"
+        "code": "let compound_interest p r n t =\n  let rate_factor = 1.0 +. (r /. n) in\n  let periods = n *. t in\n  let fee = 50.0 in\n  (p *. (rate_factor ** periods)) -. fee\nin\ncompound_interest 1000.0 0.04 12.0 3.0"
       },
-      "answer": "28.27431"
+      "answer": "1077.49786"
     },
     "ejercicio-7": {
-      "description": "Funciones para conversiones. Un turista convierte 20 grados Celsius a Fahrenheit (C * 9/5 + 32). Define una función para esta conversión. Evalúa con 20. Esto muestra cómo las funciones encapsulan fórmulas para uso repetitivo.",
+      "description": "Un astrónomo calcula la distancia entre dos puntos estelares en un sistema tridimensional con coordenadas (x1, y1, z1) = (2, 3, 4) y (x2, y2, z2) = (5, 7, 8), usando la fórmula de distancia euclidiana 3D: sqrt((x2 - x1)^2 + (y2 - y1)^2 + (z2 - z1)^2). Define una función que compute las diferencias, sus cuadrados, la suma y la raíz cuadrada. Evalúa con 2, 3, 4, 5, 7, 8. Este ejercicio es el más robusto, con seis parámetros, múltiples restas, cuadrados, suma y raíz cuadrada, modelando geometría espacial avanzada. Paso a paso: x2 - x1 = 5 - 2 = 3, y2 - y1 = 7 - 3 = 4, z2 - z1 = 8 - 4 = 4, cuadrados: 3^2 = 9, 4^2 = 16, 4^2 = 16, suma = 9 + 16 + 16 = 41, raíz = sqrt(41) ≈ 6.403124237. El resultado esperado es aproximadamente 6.403124237, útil en astronomía y navegación.",
       "racket": {
-        "code": "(define (celsius-to-fahrenheit c)\n  (+ (* c 9/5) 32)\n)\n(celsius-to-fahrenheit 20)"
+        "code": "(define (distance-3d x1 y1 z1 x2 y2 z2)\n  (let ((dx (- x2 x1))\n        (dy (- y2 y1))\n        (dz (- z2 z1)))\n    (let ((dx-square (* dx dx))\n          (dy-square (* dy dy))\n          (dz-square (* dz dz)))\n      (sqrt (+ dx-square dy-square dz-square))))\n)\n(distance-3d 2 3 4 5 7 8)"
       },
       "ocaml": {
-        "code": "let celsius_to_fahrenheit c =\n  (c *. 9.0 /. 5.0) +. 32.0\nin\ncelsius_to_fahrenheit 20.0"
+        "code": "let distance_3d x1 y1 z1 x2 y2 z2 =\n  let dx = x2 -. x1 in\n  let dy = y2 -. y1 in\n  let dz = z2 -. z1 in\n  let dx_square = dx *. dx in\n  let dy_square = dy *. dy in\n  let dz_square = dz *. dz in\n  sqrt (dx_square +. dy_square +. dz_square)\nin\ndistance_3d 2.0 3.0 4.0 5.0 7.0 8.0"
       },
-      "answer": "68"
+      "answer": "6.403124237"
     }
   },
   "funciones-multiples": {
     "ejercicio-1": {
-      "description": "Ahora usamos múltiples parámetros. Un artista pinta un mural triangular con base 8 metros y altura 5 metros. Define una función que calcule el área (base * altura / 2). Evalúa con 8 y 5. Esto extiende las funciones para manejar varios inputs en cálculos reales.",
+      "description": "Un artista pinta un mural triangular con base 8 metros y altura 5 metros. Define una función que calcule el área (base * altura / 2). Evalúa con 8 y 5. Esto introduce funciones con múltiples parámetros para cálculos geométricos simples.",
       "racket": {
         "code": "(define (triangle-area base height)\n  (/ (* base height) 2)\n)\n(triangle-area 8 5)"
       },
@@ -227,17 +227,17 @@
       "answer": "20"
     },
     "ejercicio-2": {
-      "description": "Funciones con lógica compleja. Tres tareas toman 2, 3 y 4 minutos. Define una función que verifique si están en orden ascendente. Evalúa con 2, 3 y 4. Esto muestra cómo las funciones combinan comparaciones para decisiones más avanzadas.",
+      "description": "Tres tareas toman 2, 3 y 4 minutos. Define una función que verifique si están en orden ascendente estricto. Usa pasos intermedios para comparar los tiempos. Evalúa con 2, 3 y 4. Esto muestra cómo combinar comparaciones lógicas con múltiples parámetros.",
       "racket": {
-        "code": "(define (ascending? a b c)\n  (and (< a b) (< b c))\n)\n(ascending? 2 3 4)"
+        "code": "(define (ascending? a b c)\n  (let ((ab (< a b))\n        (bc (< b c)))\n    (and ab bc))\n)\n(ascending? 2 3 4)"
       },
       "ocaml": {
-        "code": "let ascending a b c =\n  a < b && b < c\nin\nascending 2 3 4"
+        "code": "let ascending a b c =\n  let ab = a < b in\n  let bc = b < c in\n  ab && bc\nin\nascending 2 3 4"
       },
       "answer": "true"
     },
     "ejercicio-3": {
-      "description": "Cálculos geométricos. Un estudiante camina de (1,2) a (4,6). Define una función para la distancia euclidiana: raíz de ((x2-x1)^2 + (y2-y1)^2). Evalúa con (1,2) y (4,6). Esto introduce funciones con múltiples parámetros para problemas espaciales.",
+      "description": "Un estudiante camina de (1,2) a (4,6). Define una función para la distancia euclidiana: raíz de ((x2-x1)^2 + (y2-y1)^2). Evalúa con (1,2) y (4,6). Esto introduce cálculos geométricos complejos con cuatro parámetros.",
       "racket": {
         "code": "(define (distance x1 y1 x2 y2)\n  (sqrt (+ (expt (- x2 x1) 2)\n           (expt (- y2 y1) 2))\n  )\n)\n(distance 1 2 4 6)"
       },
@@ -247,44 +247,44 @@
       "answer": "5"
     },
     "ejercicio-4": {
-      "description": "Comparaciones múltiples. En un torneo, los puntajes son 6, 8 y 4. Define una función que encuentre el máximo de tres valores. Evalúa con 6, 8 y 4. Esto muestra cómo las funciones manejan selecciones complejas de forma reusable.",
+      "description": "En un torneo, los puntajes son 6, 8 y 4. Define una función que encuentre el máximo de tres valores, usando pasos intermedios para comparar. Evalúa con 6, 8 y 4. Esto muestra cómo manejar selecciones complejas con múltiples parámetros.",
       "racket": {
-        "code": "(define (max-of-three a b c)\n  (max a (max b c))\n)\n(max-of-three 6 8 4)"
+        "code": "(define (max-of-three a b c)\n  (let ((bc (max b c))\n        (max-abc (max a bc)))\n    max-abc)\n)\n(max-of-three 6 8 4)"
       },
       "ocaml": {
-        "code": "let max_of_three a b c =\n  max a (max b c)\nin\nmax_of_three 6 8 4"
+        "code": "let max_of_three a b c =\n  let bc = max b c in\n  let max_abc = max a bc in\n  max_abc\nin\nmax_of_three 6 8 4"
       },
       "answer": "8"
     },
     "ejercicio-5": {
-      "description": "Promedios avanzados. Tres amigos gastan 10, 15 y 20 dólares. Define una función que calcule el promedio de tres valores. Evalúa con 10, 15 y 20. Esto extiende el concepto de funciones para manejar más datos en cálculos compartidos.",
+      "description": "Tres amigos gastan 10, 15 y 20 dólares. Define una función que calcule el promedio de tres valores, desglosando la suma y la división en pasos intermedios. Evalúa con 10, 15 y 20. Esto extiende los cálculos con múltiples parámetros para promedios robustos.",
       "racket": {
-        "code": "(define (average-three a b c)\n  (/ (+ a b c) 3)\n)\n(average-three 10 15 20)"
+        "code": "(define (average-three a b c)\n  (let ((sum (+ a b c))\n        (avg (/ sum 3)))\n    avg)\n)\n(average-three 10 15 20)"
       },
       "ocaml": {
-        "code": "let average_three a b c =\n  (a + b + c) / 3\nin\naverage_three 10 15 20"
+        "code": "let average_three a b c =\n  let sum = a + b + c in\n  let avg = sum / 3 in\n  avg\nin\naverage_three 10 15 20"
       },
       "answer": "15"
     },
     "ejercicio-6": {
-      "description": "Validación múltiple. Un laboratorio mide presiones 2, 3 y 4 kPa. Define una función que verifique si todas son positivas. Evalúa con 2, 3 y 4. Esto muestra cómo las funciones combinan condiciones lógicas para validaciones complejas.",
+      "description": "Un laboratorio mide presiones de 2, 3 y 4 kPa. Define una función que verifique si todas son positivas y están en orden ascendente, usando pasos intermedios para las validaciones. Evalúa con 2, 3 y 4. Esto combina múltiples validaciones lógicas con tres parámetros.",
       "racket": {
-        "code": "(define (all-positive? a b c)\n  (and (> a 0) (> b 0) (> c 0))\n)\n(all-positive? 2 3 4)"
+        "code": "(define (positive-and-ascending? a b c)\n  (let ((pos-a (> a 0))\n        (pos-b (> b 0))\n        (pos-c (> c 0))\n        (asc-ab (< a b))\n        (asc-bc (< b c)))\n    (and pos-a pos-b pos-c asc-ab asc-bc))\n)\n(positive-and-ascending? 2 3 4)"
       },
       "ocaml": {
-        "code": "let all_positive a b c =\n  a > 0 && b > 0 && c > 0\nin\nall_positive 2 3 4"
+        "code": "let positive_and_ascending a b c =\n  let pos_a = a > 0 in\n  let pos_b = b > 0 in\n  let pos_c = c > 0 in\n  let asc_ab = a < b in\n  let asc_bc = b < c in\n  pos_a && pos_b && pos_c && asc_ab && asc_bc\nin\npositive_and_ascending 2 3 4"
       },
       "answer": "true"
     },
     "ejercicio-7": {
-      "description": "Volumen de cajas. Una empresa calcula el volumen de una caja con dimensiones 3, 2 y 4 metros. Define una función que multiplique tres valores. Evalúa con 3, 2 y 4. Esto refuerza cómo las funciones manejan múltiples inputs para cálculos prácticos.",
+      "description": "Una empresa calcula el volumen útil de una caja con dimensiones 3, 2, 4 metros y un margen de 0.1 metros en cada lado. Define una función que calcule el volumen útil (largo - 2*margen) * (ancho - 2*margen) * (alto - 2*margen). Evalúa con 3, 2, 4 y 0.1. Esto combina múltiples parámetros y pasos para cálculos prácticos avanzados.",
       "racket": {
-        "code": "(define (cuboid-volume l w h)\n  (* l w h)\n)\n(cuboid-volume 3 2 4)"
+        "code": "(define (useful-cuboid-volume l w h margin)\n  (let ((adj-l (- l (* 2 margin)))\n        (adj-w (- w (* 2 margin)))\n        (adj-h (- h (* 2 margin)))\n        (lw (* adj-l adj-w))\n        (volume (* lw adj-h)))\n    volume)\n)\n(useful-cuboid-volume 3 2 4 0.1)"
       },
       "ocaml": {
-        "code": "let cuboid_volume l w h =\n  l *. w *. h\nin\ncuboid_volume 3.0 2.0 4.0"
+        "code": "let useful_cuboid_volume l w h margin =\n  let adj_l = l -. (2.0 *. margin) in\n  let adj_w = w -. (2.0 *. margin) in\n  let adj_h = h -. (2.0 *. margin) in\n  let lw = adj_l *. adj_w in\n  let volume = lw *. adj_h in\n  volume\nin\nuseful_cuboid_volume 3.0 2.0 4.0 0.1"
       },
-      "answer": "24"
+      "answer": "19.008"
     }
   },
   "condicionales": {
@@ -433,7 +433,7 @@
   },
   "listas": {
     "ejercicio-1": {
-      "description": "Las listas son esenciales en funcional. Una organizadora tiene tareas (1 2 3 4). Define una función recursiva para contar elementos. Evalúa con (1 2 3 4). Esto introduce listas y recursión para procesarlas.",
+      "description": "Una organizadora tiene tareas (1 2 3 4). Define una función recursiva para contar elementos en una lista. Evalúa con (1 2 3 4). Esto introduce listas y recursión básica para procesarlas, ideal para principiantes.",
       "racket": {
         "code": "(define (length lst)\n  (if (empty? lst)\n      0\n      (+ 1 (length (rest lst)))\n  )\n)\n(length '(1 2 3 4))"
       },
@@ -443,64 +443,64 @@
       "answer": "4"
     },
     "ejercicio-2": {
-      "description": "Acceder a listas. Un gerente prioriza la primera tarea de (5 6 7). Define una función para obtener el primer elemento. Evalúa con (5 6 7). Esto muestra cómo extraemos datos de listas.",
+      "description": "Un gerente prioriza las dos primeras tareas de (5 6 7 8 9). Define una función recursiva para obtener los dos primeros elementos de una lista, usando pasos intermedios para manejar casos vacíos y longitud. Evalúa con (5 6 7 8 9). Esto muestra cómo extraer múltiples datos con robustez.",
       "racket": {
-        "code": "(define (first-element lst)\n  (if (empty? lst)\n      null\n      (first lst)\n  )\n)\n(first-element '(5 6 7))"
+        "code": "(define (first-two-elements lst)\n  (let ((len (length lst)))\n    (if (< len 1)\n        null\n        (let ((first-el (first lst))\n              (rest-lst (rest lst)))\n          (if (empty? rest-lst)\n              (list first-el)\n              (list first-el (first rest-lst))))))\n)\n(first-two-elements '(5 6 7 8 9))"
       },
       "ocaml": {
-        "code": "let first_element lst =\n  if lst = [] then\n    None\n  else\n    Some (List.hd lst)\nin\nfirst_element [5; 6; 7]"
+        "code": "let rec first_two_elements lst =\n  let len = List.length lst in\n  if len < 1 then\n    []\n  else\n    let first_el = List.hd lst in\n    let rest_lst = List.tl lst in\n    if rest_lst = [] then\n      [first_el]\n    else\n      [first_el; List.hd rest_lst]\nin\nfirst_two_elements [5; 6; 7; 8; 9]"
+      },
+      "answer": "(5 6)"
+    },
+    "ejercicio-3": {
+      "description": "En una cola (1 2 3 4 5), el último cliente espera más. Define una función recursiva para obtener el último elemento, con pasos intermedios para verificar la longitud y manejar sublistas. Evalúa con (1 2 3 4 5). Esto introduce recursión más robusta para navegar listas largas.",
+      "racket": {
+        "code": "(define (last-element lst)\n  (let ((len (length lst)))\n    (if (< len 1)\n        null\n        (let ((rest-lst (rest lst))\n              (len-rest (length rest-lst)))\n          (if (= len-rest 0)\n              (first lst)\n              (last-element rest-lst)))))\n)\n(last-element '(1 2 3 4 5))"
+      },
+      "ocaml": {
+        "code": "let rec last_element lst =\n  let len = List.length lst in\n  if len < 1 then\n    None\n  else\n    let rest_lst = List.tl lst in\n    let len_rest = List.length rest_lst in\n    if len_rest = 0 then\n      Some (List.hd lst)\n    else\n      last_element rest_lst\nin\nlast_element [1; 2; 3; 4; 5]"
       },
       "answer": "5"
     },
-    "ejercicio-3": {
-      "description": "Último elemento. En una cola (1 2 3), el último cliente espera más. Define una función recursiva para obtener el último elemento. Evalúa con (1 2 3). Esto introduce recursión para navegar listas.",
-      "racket": {
-        "code": "(define (last-element lst)\n  (if (empty? (rest lst))\n      (first lst)\n      (last-element (rest lst))\n  )\n)\n(last-element '(1 2 3))"
-      },
-      "ocaml": {
-        "code": "let rec last_element lst =\n  if List.tl lst = [] then\n    List.hd lst\n  else\n    last_element (List.tl lst)\nin\nlast_element [1; 2; 3]"
-      },
-      "answer": "3"
-    },
     "ejercicio-4": {
-      "description": "Combinar listas. Un mercado une frutas (1 2) y verduras (3 4). Define una función recursiva para concatenar listas. Evalúa con (1 2) y (3 4). Esto muestra cómo construimos listas nuevas.",
+      "description": "Un mercado une frutas (1 2), verduras (3 4), y lácteos (5 6). Define una función recursiva para concatenar tres listas, con pasos intermedios para verificar longitud y combinar listas. Evalúa con (1 2), (3 4), (5 6). Esto aumenta la complejidad al manejar múltiples listas.",
       "racket": {
-        "code": "(define (append lst1 lst2)\n  (if (empty? lst1)\n      lst2\n      (cons (first lst1)\n            (append (rest lst1) lst2))\n  )\n)\n(append '(1 2) '(3 4))"
+        "code": "(define (append-three lst1 lst2 lst3)\n  (let ((len1 (length lst1))\n        (append12 (if (empty? lst1)\n                      lst2\n                      (cons (first lst1)\n                            (append-three (rest lst1) lst2 lst3)))))\n    (if (empty? append12)\n        lst3\n        (let ((first-12 (first append12))\n              (rest-12 (rest append12)))\n          (cons first-12 (append-three rest-12 lst3 '())))))\n)\n(append-three '(1 2) '(3 4) '(5 6))"
       },
       "ocaml": {
-        "code": "let rec append lst1 lst2 =\n  if lst1 = [] then\n    lst2\n  else\n    List.hd lst1 :: append (List.tl lst1) lst2\nin\nappend [1; 2] [3; 4]"
+        "code": "let rec append_three lst1 lst2 lst3 =\n  let len1 = List.length lst1 in\n  let append12 = if lst1 = [] then\n                   lst2\n                 else\n                   List.hd lst1 :: append_three (List.tl lst1) lst2 lst3 in\n  if append12 = [] then\n    lst3\n  else\n    let first_12 = List.hd append12 in\n    let rest_12 = List.tl append12 in\n    first_12 :: append_three rest_12 lst3 []\nin\nappend_three [1; 2] [3; 4] [5; 6]"
       },
-      "answer": "(1 2 3 4)"
+      "answer": "(1 2 3 4 5 6)"
     },
     "ejercicio-5": {
-      "description": "Eliminar elementos. Un estudiante completa la primera tarea de (1 2 3). Define una función para obtener el resto de la lista. Evalúa con (1 2 3). Esto muestra cómo manipulamos listas funcionalmente.",
+      "description": "Un estudiante completa la primera y última tarea de (1 2 3 4 5 6). Define una función recursiva para obtener los elementos intermedios (sin el primero ni el último), con pasos intermedios para longitud y sublistas. Evalúa con (1 2 3 4 5 6). Esto aumenta la robustez al manipular listas largas.",
       "racket": {
-        "code": "(define (rest-list lst)\n  (if (empty? lst)\n      null\n      (rest lst)\n  )\n)\n(rest-list '(1 2 3))"
+        "code": "(define (middle-elements lst)\n  (let ((len (length lst))\n        (rest-lst (if (empty? lst) null (rest lst))))\n    (if (< len 2)\n        null\n        (let ((len-rest (length rest-lst))\n              (middle-rest (if (empty? rest-lst) null (rest rest-lst))))\n          (if (<= len-rest 1)\n              null\n              (cons (first rest-lst) (middle-elements rest-lst))))))\n)\n(middle-elements '(1 2 3 4 5 6))"
       },
       "ocaml": {
-        "code": "let rest_list lst =\n  if lst = [] then\n    []\n  else\n    List.tl lst\nin\nrest_list [1; 2; 3]"
+        "code": "let rec middle_elements lst =\n  let len = List.length lst in\n  let rest_lst = if lst = [] then [] else List.tl lst in\n  if len < 2 then\n    []\n  else\n    let len_rest = List.length rest_lst in\n    let middle_rest = if rest_lst = [] then [] else List.tl rest_lst in\n    if len_rest <= 1 then\n      []\n    else\n      List.hd rest_lst :: middle_elements rest_lst\nin\nmiddle_elements [1; 2; 3; 4; 5; 6]"
       },
-      "answer": "(2 3)"
+      "answer": "(2 3 4 5)"
     },
     "ejercicio-6": {
-      "description": "Verificar listas vacías. Una aplicación notifica si la lista de tareas () está vacía. Define una función para esto. Evalúa con (). Esto introduce verificaciones de estructura en listas.",
+      "description": "Una aplicación verifica si todas las sublistas en ((1 2) () (3 4) ()) son vacías, con pasos intermedios para contar elementos y manejar sublistas recursivamente. Evalúa con ((1 2) () (3 4) ()). Esto combina recursión anidada y verificaciones complejas en listas de listas.",
       "racket": {
-        "code": "(define (empty-list? lst)\n  (empty? lst)\n)\n(empty-list? '())"
+        "code": "(define (all-empty? lst)\n  (let ((len (length lst))\n        (first-sublist (if (empty? lst) null (first lst)))\n        (rest-sublists (if (empty? lst) null (rest lst))))\n    (if (= len 0)\n        true\n        (let ((len-first (length first-sublist))\n              (rest-empty (all-empty? rest-sublists)))\n          (and (= len-first 0) rest-empty))))\n)\n(all-empty? '((1 2) () (3 4) ()))"
       },
       "ocaml": {
-        "code": "let empty_list lst =\n  lst = []\nin\nempty_list []"
+        "code": "let rec all_empty lst =\n  let len = List.length lst in\n  let first_sublist = if lst = [] then [] else List.hd lst in\n  let rest_sublists = if lst = [] then [] else List.tl lst in\n  if len = 0 then\n    true\n  else\n    let len_first = List.length first_sublist in\n    let rest_empty = all_empty rest_sublists in\n    len_first = 0 && rest_empty\nin\nall_empty [[1; 2]; []; [3; 4]; []]"
       },
-      "answer": "true"
+      "answer": "false"
     },
     "ejercicio-7": {
-      "description": "Añadir elementos. Un programador añade 0 a (1 2 3) para numerar desde cero. Define una función para añadir al inicio. Evalúa con 0 y (1 2 3). Esto muestra cómo construimos listas dinámicamente.",
+      "description": "Un programador transforma un elemento y lo añade a (1 2 3 4), multiplicándolo por 2 (0*2=0), con pasos intermedios para transformar, verificar longitud, y construir la lista recursivamente usando una función auxiliar. Evalúa con 0 y (1 2 3 4). Esto combina transformación, recursión y construcción de listas dinámicas.",
       "racket": {
-        "code": "(define (cons-element x lst)\n  (cons x lst)\n)\n(cons-element 0 '(1 2 3))"
+        "code": "(define (cons-transformed-aux x lst acc)\n  (let ((transformed (* x 2))\n        (len (length lst))\n        (new-lst (cons transformed lst)))\n    (if (empty? new-lst)\n        acc\n        (let ((first-el (first new-lst))\n              (rest-el (rest new-lst))\n              (len-rest (length rest-el)))\n          (cons-transformed-aux 0 rest-el (cons first-el acc))))\n)\n(define (cons-transformed x lst)\n  (cons-transformed-aux x lst null)\n)\n(cons-transformed 0 '(1 2 3 4))"
       },
       "ocaml": {
-        "code": "let cons_element x lst =\n  x :: lst\nin\ncons_element 0 [1; 2; 3]"
+        "code": "let rec cons_transformed_aux x lst acc =\n  let transformed = x * 2 in\n  let len = List.length lst in\n  let new_lst = transformed :: lst in\n  if new_lst = [] then\n    List.rev acc\n  else\n    let first_el = List.hd new_lst in\n    let rest_el = List.tl new_lst in\n    let len_rest = List.length rest_el in\n    cons_transformed_aux 0 rest_el (first_el :: acc)\nlet cons_transformed x lst =\n  cons_transformed_aux x lst []\nin\ncons_transformed 0 [1; 2; 3; 4]"
       },
-      "answer": "(0 1 2 3)"
+      "answer": "(0 1 2 3 4)"
     }
   },
   "funciones-orden-superior": {

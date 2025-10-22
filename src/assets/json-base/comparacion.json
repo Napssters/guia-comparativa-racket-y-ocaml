@@ -510,13 +510,13 @@
   },
   "funciones": {
     "ejercicio-1": {
-      "title": "Área de un rectángulo",
+      "title": "Calcular el Área de un Terreno Rectangular",
       "racket": {
         "lines": [
           "(define (rectangle-area base height)",
           "  (* base height)",
           ")",
-          "(rectangle-area 6 3)"
+          "(rectangle-area 10 7)"
         ]
       },
       "ocaml": {
@@ -524,259 +524,344 @@
           "let rectangle_area base height =",
           "  base * height",
           "in",
-          "rectangle_area 6 3"
+          "rectangle_area 10 7"
         ]
       },
       "explanations_racket": [
-        "Esta línea define una función llamada `rectangle-area` que toma dos parámetros, `base` y `height`, usando la sintaxis `(define (nombre params) cuerpo)`. En Racket, las funciones son ciudadanos de primera clase en el paradigma funcional, permitiendo abstracción y reutilización. Esta línea prepara la función para calcular el área de un rectángulo, como imaginar medir un terreno rectangular para saber cuánto césped necesitas.",
-        "Esta línea calcula el área multiplicando `base` por `height` con la función `*`. La notación prefija `(* base height)` refleja la filosofía Lisp de Racket, donde las operaciones son funciones explícitas. La expresión es pura, siempre retorna el mismo valor para los mismos argumentos, sin efectos secundarios, como calcular el área sin modificar el terreno.",
-        "Esta línea cierra la definición de la función con un paréntesis, siguiendo la sintaxis de Racket que requiere paréntesis balanceados para estructurar el código. Es una convención estructural, no ejecuta lógica, pero es esencial para completar la definición.",
-        "Esta línea llama a la función `rectangle-area` con argumentos 6 y 3, evaluando `(* 6 3)` para dar 18. Es un ejemplo práctico que muestra cómo usar la función definida, como medir un terreno de 6 metros por 3 metros para obtener el área total."
+        "Esta línea crea una función llamada `rectangle-area` que toma dos números, `base` y `height`, para calcular el área de un rectángulo. Imagina que eres un agricultor midiendo un terreno para saber cuánta manguera necesitas para el riego. En Racket, `(define (nombre params) cuerpo)` es como escribir una receta que puedes usar cada vez que quieras calcular un área.",
+        "Aquí multiplicamos `base` por `height` con `(* base height)`, como medir un terreno de 10 metros de largo por 7 de ancho para obtener el área. En Racket, usamos paréntesis porque todo se escribe como una lista, lo que hace que las operaciones sean claras y ordenadas. Esta línea es el corazón del cálculo.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta. No hace cálculos, pero es necesaria para que Racket entienda que la función está completa.",
+        "Esta línea usa la función con los números 10 y 7, calculando `10 * 7 = 70`. Es como probar la receta con un terreno específico para saber que el área es 70 metros cuadrados, útil para planificar el riego."
       ],
       "explanations_ocaml": [
-        "Esta línea define una función `rectangle_area` con parámetros `base` y `height` usando la sintaxis `let nombre params = cuerpo`. En OCaml, las funciones son fundamentales en el paradigma funcional, promoviendo inmutabilidad y abstracción. Esta línea establece una función para calcular el área de un rectángulo, como planificar el espacio para una alfombra rectangular.",
-        "Esta línea multiplica `base` por `height` usando el operador `*` en notación infija, que es intuitiva para principiantes por su similitud con la matemática estándar. La expresión es pura, siempre produce el mismo resultado sin efectos secundarios, alineándose con la filosofía funcional de OCaml, como calcular el área sin alterar el espacio.",
-        "Esta línea usa `in` para introducir el contexto donde se usa la función definida, una característica de OCaml que separa la definición de su uso. No ejecuta lógica, pero es crucial para la estructura del programa, permitiendo evaluar la función en la siguiente línea.",
-        "Esta línea llama a `rectangle_area` con argumentos 6 y 3, evaluando `6 * 3` para dar 18. Es un ejemplo práctico que muestra cómo invocar la función, como calcular el área de una alfombra de 6 metros por 3 metros."
+        "Esta línea crea una función `rectangle_area` que toma `base` y `height`, como si quisieras calcular el tamaño de un terreno para sembrar. En OCaml, `let nombre params = cuerpo` es como hacer una receta sencilla para calcular áreas. La función está lista para recibir dos números y multiplicarlos.",
+        "Aquí multiplicamos `base` por `height` con `base * height`, como contar el espacio de un terreno de 10 por 7 metros. En OCaml, escribimos `*` como en matemáticas, lo que lo hace fácil de entender. Esta línea hace el cálculo principal y da el resultado.",
+        "Esta línea usa `in` para decir que vamos a usar la función después, como preparar la receta antes de probarla. Es una regla de OCaml para organizar el código, no hace cálculos, pero es importante para la estructura.",
+        "Esta línea aplica la función con 10 y 7, calculando `10 * 7 = 70`. Es como usar la receta para confirmar que el terreno tiene 70 metros cuadrados, perfecto para planificar cuánto material necesitas."
       ],
       "comparisons": [
-        "Similitudes: Ambas líneas definen una función con dos parámetros para calcular el área, siguiendo el principio funcional de abstracción. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, reflejando su herencia Lisp y estructura explícita. OCaml usa `let nombre params = cuerpo`, más concisa y sin paréntesis, alineándose con la sintaxis ML. El tipado dinámico de Racket contrasta con el estático de OCaml, que infiere que `base` y `height` son enteros.",
-        "Similitudes: Ambas calculan el área con multiplicación, manteniendo pureza funcional. Diferencias: Racket usa notación prefija `(* base height)`, enfatizando que `*` es una función, mientras que OCaml usa notación infija `base * height`, más matemática y legible. La semántica es idéntica, pero OCaml es más compacto.",
-        "Similitudes: Ambas líneas son estructurales, cerrando o preparando la definición. Diferencias: Racket usa un paréntesis de cierre `)`, parte de su sintaxis Lisp, mientras que OCaml usa `in` para indicar el contexto de uso, reflejando su enfoque ML. En este caso, OCaml requiere `in` para la llamada, mientras que Racket no necesita una palabra clave equivalente.",
-        "Similitudes: Ambas llaman la función con 6 y 3, dando 18, mostrando cómo usar la función definida. Diferencias: Racket usa notación prefija `(rectangle-area 6 3)` con paréntesis, mientras que OCaml usa `rectangle_area 6 3` sin paréntesis, más simple. Ambos lenguajes logran el mismo resultado, pero OCaml es más conciso en la invocación."
+        "Similitudes: Ambas líneas crean una función que calcula el área de un rectángulo tomando dos números, usando el mismo nombre y propósito. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, como una lista clara, mientras que OCaml usa `let nombre params = cuerpo`, más corto y sin paréntesis. Racket no necesita especificar si los números son enteros, pero OCaml asume que `base` y `height` son enteros automáticamente.",
+        "Similitudes: Ambas multiplican `base` por `height` para obtener el área, dando el mismo resultado. Diferencias: Racket usa `(* base height)` con paréntesis, porque en Racket `*` es como una instrucción, mientras que OCaml usa `base * height`, que se ve como una multiplicación matemática. OCaml es más corto y parece más familiar para principiantes.",
+        "Similitudes: Ambas son partes estructurales del código, sin cálculos. Diferencias: Racket cierra la función con `)`, porque todo en Racket usa paréntesis, mientras que OCaml usa `in` para indicar que viene el uso de la función, una diferencia en cómo organizan el código.",
+        "Similitudes: Ambas aplican la función con 10 y 7, dando 70. Diferencias: Racket escribe `(rectangle-area 10 7)` con paréntesis, mientras que OCaml escribe `rectangle_area 10 7`, más simple y sin paréntesis. Ambos logran lo mismo, pero OCaml se ve más limpio."
       ]
     },
     "ejercicio-2": {
-      "title": "Verificar múltiplo",
+      "title": "Contar Eventos Ajustados por Retrasos",
       "racket": {
         "lines": [
-          "(define (multiple? x y)",
-          "  (= (remainder x y) 0)",
+          "(define (adjusted-event-count total-time interval)",
+          "  (let ((count (/ total-time interval))",
+          "        (margin 2))",
+          "    (- count margin)))",
           ")",
-          "(multiple? 9 3)"
+          "(adjusted-event-count 25 5)"
         ]
       },
       "ocaml": {
-        "lines": ["let multiple x y =", "  x mod y = 0", "in", "multiple 9 3"]
+        "lines": [
+          "let adjusted_event_count total_time interval =",
+          "  let count = total_time / interval in",
+          "  let margin = 2 in",
+          "  count - margin",
+          "in",
+          "adjusted_event_count 25 5"
+        ]
       },
       "explanations_racket": [
-        "Define una función `multiple?` que toma dos parámetros, `x` y `y`, para verificar si `x` es múltiplo de `y`. La sintaxis `(define (nombre params) cuerpo)` es estándar en Racket, promoviendo abstracción funcional. Es como decidir si un número de caramelos se puede dividir equitativamente entre niños.",
-        "Evalúa si el resto de `x` dividido por `y` es 0 usando `remainder` y `=`, retornando #t si `x` es múltiplo de `y`. La expresión es pura, sin efectos secundarios, y usa notación prefija. Este cálculo es como verificar si 9 caramelos se dividen perfectamente entre 3 niños.",
-        "Cierra la definición de la función con un paréntesis, necesario para la sintaxis de Racket. No ejecuta lógica, pero completa la estructura de la función.",
-        "Llama a `multiple?` con 9 y 3, evaluando `(= (remainder 9 3) 0)` para dar #t, ya que 9 es múltiplo de 3. Es un ejemplo práctico para mostrar la función en acción."
+        "Esta línea crea una función llamada `adjusted-event-count` que toma dos números: `total-time` (el tiempo total) y `interval` (cada cuánto ocurre algo). Imagina que organizas un espectáculo de luces que parpadea cada 5 segundos durante 25 segundos. En Racket, `(define (nombre params) cuerpo)` es como escribir una receta para contar los parpadeos.",
+        "Aquí comenzamos un bloque `let` para crear dos cajas temporales: `count` guarda el resultado de dividir `total-time` por `interval` (como dividir 25 entre 5 para saber cuántas veces parpadea la luz). Es como anotar el primer paso en una libreta para no perder el cálculo.",
+        "Esta línea define `margin` como 2, un ajuste por retrasos técnicos, como anotar en la libreta que restarás 2 parpadeos por posibles demoras.",
+        "Esta línea resta `margin` (2) de `count` con `(- count margin)` para obtener el resultado final, como ajustar el conteo de parpadeos. Los paréntesis en Racket mantienen todo claro y ordenado.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta. No hace cálculos, pero es necesaria para completar la función.",
+        "Esta línea usa la función con 25 y 5, calculando `(25 / 5) - 2 = 3`. Es como probar la receta para saber que la luz parpadea 3 veces después de ajustar por retrasos."
       ],
       "explanations_ocaml": [
-        "Define una función `multiple` con parámetros `x` y `y` para verificar si `x` es múltiplo de `y`, usando `let nombre params = cuerpo`. En OCaml, las funciones son inmutables y puras, ideales para abstracción. Es como comprobar si un número de galletas se reparte equitativamente.",
-        "Evalúa si `x` mod `y` es 0 usando el operador `mod` y `=`, retornando true si `x` es múltiplo. La notación infija es intuitiva, y la expresión es pura, como verificar si 9 galletas se dividen entre 3 personas.",
-        "Usa `in` para introducir el contexto de la llamada, una característica estructural de OCaml que separa definición y uso, sin lógica propia.",
-        "Llama a `multiple` con 9 y 3, evaluando `9 mod 3 = 0` para dar true. Es un ejemplo claro para mostrar cómo usar la función."
+        "Esta línea crea una función `adjusted_event_count` que toma `total_time` y `interval`, como contar cuántas veces suena una alarma en 25 segundos si suena cada 5 segundos. En OCaml, `let nombre params = cuerpo` es como hacer una receta clara para este cálculo.",
+        "Usamos `let count = total_time / interval in` para guardar la división en una caja llamada `count`, como calcular cuántas veces suena la alarma (25 / 5 = 5). El `in` dice que este valor se usará después.",
+        "Esta línea guarda el número 2 en una caja llamada `margin`, como anotar un ajuste por retrasos. El `in` indica que este valor se usará en el siguiente paso.",
+        "Aquí restamos `margin` (2) de `count` con `count - margin`, como ajustar el conteo de alarmas. La notación se ve como una resta normal, fácil de entender.",
+        "Esta línea usa `in` para conectar la función con su uso, como decir 'ahora probemos la receta'. Es una regla de OCaml para organizar el código, sin cálculos.",
+        "Esta línea aplica la función con 25 y 5, dando `(25 / 5) - 2 = 3`, como confirmar que la alarma suena 3 veces después del ajuste."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función con dos parámetros para verificar múltiplos, promoviendo abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más compacto. OCaml infiere tipos enteros, Racket es dinámico.",
-        "Similitudes: Ambas verifican si el resto es 0, retornando un booleano, con pureza funcional. Diferencias: Racket usa `remainder` y `=` en notación prefija, más explícita, mientras que OCaml usa `mod` y `=` infijos, más concisos. `remainder` puede dar negativos, `mod` no, pero aquí es idéntico.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con 9 y 3, dando verdadero. Diferencias: Racket usa `(multiple? 9 3)`, OCaml usa `multiple 9 3`, más simple."
+        "Similitudes: Ambas crean una función que toma dos números para contar eventos ajustados, usando el mismo nombre. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, como una lista, mientras que OCaml usa `let nombre params = cuerpo`, más directo. OCaml asume enteros para los parámetros, Racket no especifica tipos.",
+        "Similitudes: Ambas guardan la división en una variable local `count` usando `let`, como una libreta temporal. Diferencias: Racket escribe `(let ((count (/ total-time interval)))` con paréntesis dobles, mientras que OCaml usa `let count = total_time / interval in`, más simple y con `in` para conectar.",
+        "Similitudes: Ambas guardan el valor 2 en `margin` con `let`. Diferencias: Racket incluye `margin` en el mismo `let` que `count`, usando `(margin 2)`, mientras que OCaml usa una línea separada `let margin = 2 in`, lo que hace el código más largo pero claro.",
+        "Similitudes: Ambas restan `margin` de `count` para el resultado final. Diferencias: Racket usa `(- count margin)` con paréntesis, mientras que OCaml usa `count - margin`, como una resta matemática. Ambos dan el mismo resultado, pero OCaml es más intuitivo para principiantes.",
+        "Similitudes: Ambas son estructurales, sin cálculos. Diferencias: Racket cierra la función con `)`, mientras que OCaml usa `in` para indicar que viene la llamada de la función, una diferencia en la organización.",
+        "Similitudes: Ambas aplican la función con 25 y 5, dando 3. Diferencias: Racket usa `(adjusted-event-count 25 5)` con paréntesis, mientras que OCaml usa `adjusted_event_count 25 5`, más corto y sin paréntesis."
       ]
     },
     "ejercicio-3": {
-      "title": "Calcular potencia",
+      "title": "Calcular Daño de Ataque en un Videojuego",
       "racket": {
         "lines": [
-          "(define (power base exp)",
-          "  (if (= exp 0)",
-          "      1",
-          "      (* base (power base (- exp 1)))",
-          "  )",
+          "(define (damage level)",
+          "  (let ((square (* level level))",
+          "        (double (* 2 level)))",
+          "    (+ square double)))",
           ")",
-          "(power 2 3)"
+          "(damage 8)"
         ]
       },
       "ocaml": {
         "lines": [
-          "let rec power base exp =",
-          "  if exp = 0 then",
-          "    1",
-          "  else",
-          "    base * power base (exp - 1)",
+          "let damage level =",
+          "  let square = level * level in",
+          "  let double = 2 * level in",
+          "  square + double",
           "in",
-          "power 2 3"
+          "damage 8"
         ]
       },
       "explanations_racket": [
-        "Define una función recursiva `power` con parámetros `base` y `exp` para calcular `base` elevado a `exp`. La sintaxis `(define (nombre params) cuerpo)` introduce abstracción funcional, como calcular cuánto crece una inversión con interés compuesto.",
-        "Inicia un condicional `if` que verifica si `exp` es 0. En Racket, `if` es una expresión pura que evalúa una condición, alineándose con el paradigma funcional.",
-        "Si `exp` es 0, retorna 1 (caso base), ya que cualquier número elevado a 0 es 1. Esto evita recursión infinita, como decidir que sin crecimiento, el valor base es 1.",
-        "Si `exp` no es 0, multiplica `base` por el resultado de `power` con `exp - 1`, usando recursión. Es como calcular 2^3 como 2 * 2^2, repitiendo hasta el caso base.",
-        "Cierra el bloque `if`, necesario para la sintaxis de Racket, estructurando la lógica condicional.",
-        "Cierra la definición de la función, completando la estructura de Racket.",
-        "Llama a `power` con 2 y 3, calculando 2^3 = 8, mostrando la recursión en acción."
+        "Esta línea crea una función `damage` que toma un número `level`, como el nivel de un personaje en un videojuego. Imagina que eres un diseñador calculando cuánto daño hace un ataque. En Racket, `(define (nombre params) cuerpo)` es como hacer una receta para calcular el daño según el nivel.",
+        "Aquí comenzamos un bloque `let` para crear dos cajas temporales: `square` guarda el cuadrado del nivel (`level * level`), como calcular la fuerza base del ataque. Es como anotar el primer paso en una libreta.",
+        "Esta línea define `double` como `2 * level`, un bono extra por el nivel, como escribir el segundo paso en la libreta para no mezclar los números.",
+        "Aquí sumamos `square` y `double` con `(+ square double)` para obtener el daño total, como combinar la fuerza base y el bono para el ataque final. Los paréntesis en Racket mantienen todo claro.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta. No hace cálculos, pero es necesaria para completar la función.",
+        "Esta línea usa la función con el nivel 8, calculando `(8 * 8) + (2 * 8) = 64 + 16 = 80`. Es como probar la receta para saber cuánto daño hace un personaje de nivel 8."
       ],
       "explanations_ocaml": [
-        "Define una función recursiva `power` con `let rec` para calcular `base` elevado a `exp`. `let rec` indica recursión en OCaml, promoviendo pureza y abstracción, como modelar el crecimiento de una población.",
-        "Inicia un condicional `if` para verificar si `exp` es 0, usando notación infija `exp = 0`. En OCaml, `if` es una expresión pura, esencial en el paradigma funcional.",
-        "Retorna 1 si `exp` es 0 (caso base), ya que cualquier número elevado a 0 es 1, previniendo recursión infinita.",
-        "Introduce la rama `else` para el caso recursivo, necesaria en OCaml para completar el condicional, ya que todos los caminos deben retornar un valor.",
-        "Multiplica `base` por `power base (exp - 1)`, usando recursión para calcular la potencia, como 2^3 = 2 * 2^2, hasta llegar al caso base.",
-        "Usa `in` para introducir el contexto de la llamada, una convención estructural de OCaml.",
-        "Llama a `power` con 2 y 3, dando 2^3 = 8, demostrando la recursión."
+        "Esta línea crea una función `damage` que toma `level`, como el nivel de un héroe en un juego. En OCaml, `let nombre params = cuerpo` es como hacer una receta para calcular el daño del ataque. La función está lista para recibir un número y procesarlo.",
+        "Usamos `let square = level * level in` para guardar el cuadrado del nivel en una caja llamada `square`, como calcular la fuerza principal del ataque. El `in` dice que este valor se usará después.",
+        "Esta línea guarda el doble del nivel (`2 * level`) en una caja llamada `double`, como un extra por la experiencia del héroe. El `in` indica que este valor se usará en el siguiente paso.",
+        "Aquí sumamos `square` y `double` con `square + double`, como combinar la fuerza base y el extra para el daño total. En OCaml, la suma se escribe como en matemáticas, fácil de entender.",
+        "Esta línea usa `in` para conectar la función con su uso, como decir 'ahora probemos la receta'. Es una regla de OCaml para organizar el código.",
+        "Esta línea aplica la función con 8, dando `(8 * 8) + (2 * 8) = 64 + 16 = 80`, como confirmar el daño de un héroe de nivel 8."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función recursiva para calcular potencias, promoviendo abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`, con `rec` explícito para recursión. OCaml infiere tipos, Racket es dinámico.",
-        "Similitudes: Ambas verifican si `exp` es 0 con una expresión pura. Diferencias: Racket usa `if` con notación prefija `(= exp 0)`, OCaml usa infija `exp = 0`, más matemática.",
-        "Similitudes: Ambas retornan 1 como caso base, esencial para recursión. Diferencias: Racket integra el caso base en el `if`, OCaml usa `then` explícitamente, más estructurado.",
-        "Similitudes: Ambas manejan el caso recursivo. Diferencias: Racket incluye la recursión en el `if`, mientras que OCaml usa `else`, requiriendo una línea extra para estructura, lo que refleja la necesidad de OCaml de explicitar todas las ramas.",
-        "Similitudes: Ambas son estructurales para el condicional. Diferencias: Racket cierra el `if` con `)`, OCaml usa una línea para la recursión, haciendo que OCaml tenga más líneas aquí.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra la función con `)`, OCaml usa `in` para la llamada, alineándose con sus filosofías.",
-        "Similitudes: Ambas llaman la función con 2 y 3, dando 8. Diferencias: Racket usa `(power 2 3)`, OCaml usa `power 2 3`, más conciso."
+        "Similitudes: Ambas crean una función que calcula el daño según el nivel, usando el mismo nombre y propósito. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml asume que `level` es un entero, Racket no especifica tipos.",
+        "Similitudes: Ambas guardan el cuadrado del nivel en `square` usando `let`, como una libreta temporal. Diferencias: Racket usa `(let ((square (* level level)))` con paréntesis dobles, mientras que OCaml usa `let square = level * level in`, más simple y con `in`.",
+        "Similitudes: Ambas guardan el doble del nivel en `double` con `let`. Diferencias: Racket incluye `double` en el mismo `let` que `square`, mientras que OCaml usa una línea separada `let double = 2 * level in`, haciendo el código más largo pero claro.",
+        "Similitudes: Ambas suman `square` y `double` para el resultado final. Diferencias: Racket usa `(+ square double)` con paréntesis, mientras que OCaml usa `square + double`, como una suma matemática. Ambos dan el mismo resultado, pero OCaml es más intuitivo.",
+        "Similitudes: Ambas son estructurales, sin cálculos. Diferencias: Racket cierra la función con `)`, mientras que OCaml usa `in` para la llamada, una diferencia en la organización.",
+        "Similitudes: Ambas aplican la función con 8, dando 80. Diferencias: Racket usa `(damage 8)` con paréntesis, mientras que OCaml usa `damage 8`, más corto."
       ]
     },
     "ejercicio-4": {
-      "title": "Promedio de dos distancias",
+      "title": "Calcular la Hipotenusa de un Triángulo",
       "racket": {
         "lines": [
-          "(define (average a b)",
-          "  (/ (+ a b) 2)",
+          "(define (hypotenuse a b)",
+          "  (let ((a-square (* a a))",
+          "        (b-square (* b b)))",
+          "    (sqrt (+ a-square b-square)))",
           ")",
-          "(average 5 7)"
+          "(hypotenuse 6 8)"
         ]
       },
       "ocaml": {
-        "lines": ["let average a b =", "  (a + b) / 2", "in", "average 5 7"]
+        "lines": [
+          "let hypotenuse a b =",
+          "  let a_square = a *. a in",
+          "  let b_square = b *. b in",
+          "  sqrt (a_square +. b_square)",
+          "in",
+          "hypotenuse 6.0 8.0"
+        ]
       },
       "explanations_racket": [
-        "Define una función `average` con parámetros `a` y `b` para calcular el promedio de dos distancias. La sintaxis `(define (nombre params) cuerpo)` es típica de Racket, promoviendo abstracción funcional, como calcular el punto medio entre dos ubicaciones.",
-        "Calcula el promedio sumando `a` y `b` con `+`, dividiendo por 2 con `/`. La notación prefija `(/ (+ a b) 2)` es pura, siempre da el mismo resultado, como encontrar el punto intermedio en un viaje.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `average` con 5 y 7, evaluando `(/ (+ 5 7) 2)` = 6, mostrando cómo usar la función en un caso práctico."
+        "Esta línea crea una función `hypotenuse` que toma dos números, `a` y `b`, los lados de un triángulo. Imagina que eres un ingeniero diseñando un puente y necesitas la longitud de un soporte diagonal. En Racket, `(define (nombre params) cuerpo)` es como hacer una receta para este cálculo.",
+        "Aquí comenzamos un bloque `let` para crear dos cajas: `a-square` guarda el cuadrado de `a` (`a * a`), como calcular una parte de la fórmula de Pitágoras. Es como anotar el primer paso en una libreta.",
+        "Esta línea define `b-square` como `b * b`, el cuadrado del otro lado, como el segundo paso en la libreta para mantener los cálculos organizados.",
+        "Aquí sumamos `a-square` y `b-square` con `(+ a-square b-square)`, luego tomamos la raíz cuadrada con `sqrt`, como encontrar la longitud del soporte diagonal. Los paréntesis en Racket hacen que todo esté claro.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta. No hace cálculos, pero es necesaria.",
+        "Esta línea usa la función con 6 y 8, calculando `sqrt((6 * 6) + (8 * 8)) = sqrt(36 + 64) = 10`. Es como probar la receta para un triángulo con lados de 6 y 8 metros."
       ],
       "explanations_ocaml": [
-        "Define una función `average` con parámetros `a` y `b` para calcular el promedio, usando `let nombre params = cuerpo`. En OCaml, las funciones son puras, ideales para abstracción, como hallar el punto medio entre dos distancias.",
-        "Suma `a` y `b` con `+`, divide por 2 con `/`, usando notación infija `(a + b) / 2`. La expresión es pura, como calcular el promedio de dos recorridos sin alterar datos.",
-        "Usa `in` para introducir el contexto de la llamada, una característica estructural de OCaml.",
-        "Llama a `average` con 5 y 7, dando `(5 + 7) / 2` = 6, demostrando la función."
+        "Esta línea crea una función `hypotenuse` que toma `a` y `b`, como los lados de un triángulo para un soporte. En OCaml, `let nombre params = cuerpo` es como hacer una receta para calcular la longitud diagonal. La función está lista para recibir dos números.",
+        "Usamos `let a_square = a *. a in` para guardar el cuadrado de `a` en una caja llamada `a_square`, como un paso de la fórmula de Pitágoras. El `*.` es para números con decimales, y `in` dice que usaremos este valor después.",
+        "Esta línea guarda el cuadrado de `b` (`b *. b`) en `b_square`, como otro paso de la fórmula. El `in` indica que este valor se usará a continuación.",
+        "Aquí sumamos `a_square` y `b_square` con `+.`, luego tomamos la raíz cuadrada con `sqrt`, como calcular la longitud final del soporte. En OCaml, usamos `+.` para sumas con decimales, y la notación es como en matemáticas.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta para probarla. Es una regla de OCaml para organizar el código.",
+        "Esta línea aplica la función con 6.0 y 8.0, dando `sqrt((6.0 * 6.0) + (8.0 * 8.0)) = 10`. Es como confirmar la longitud del soporte para un triángulo de 6 y 8 metros."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para promediar dos valores, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`, más conciso. OCaml infiere tipos enteros, Racket es dinámico.",
-        "Similitudes: Ambas calculan el promedio con suma y división, manteniendo pureza. Diferencias: Racket usa notación prefija `(/ (+ a b) 2)`, OCaml usa infija `(a + b) / 2`, más matemática. OCaml requiere paréntesis para prioridad.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada.",
-        "Similitudes: Ambas llaman la función con 5 y 7, dando 6. Diferencias: Racket usa `(average 5 7)`, OCaml usa `average 5 7`, más simple."
+        "Similitudes: Ambas crean una función que calcula la hipotenusa con dos números, usando el mismo nombre. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml requiere números con decimales (6.0, 8.0), Racket acepta enteros.",
+        "Similitudes: Ambas guardan el cuadrado de `a` en `a_square` usando `let`. Diferencias: Racket usa `(let ((a-square (* a a)))` con paréntesis, mientras que OCaml usa `let a_square = a *. a in`, con `*.` para decimales y `in` para conectar.",
+        "Similitudes: Ambas guardan el cuadrado de `b` en `b_square`. Diferencias: Racket incluye `b-square` en el mismo `let`, mientras que OCaml usa una línea separada `let b_square = b *. b in`, más clara pero más larga.",
+        "Similitudes: Ambas suman los cuadrados y toman la raíz cuadrada. Diferencias: Racket usa `(sqrt (+ a-square b-square))` con paréntesis, mientras que OCaml usa `sqrt (a_square +. b_square)` con `+.` para decimales. OCaml es más parecido a una fórmula matemática.",
+        "Similitudes: Ambas son estructurales, sin cálculos. Diferencias: Racket cierra la función con `)`, mientras que OCaml usa `in` para la llamada, una diferencia en la organización.",
+        "Similitudes: Ambas aplican la función con 6 y 8, dando 10. Diferencias: Racket usa `(hypotenuse 6 8)` con enteros, mientras que OCaml usa `hypotenuse 6.0 8.0` con decimales, porque OCaml es más estricto con los tipos."
       ]
     },
     "ejercicio-5": {
-      "title": "Validar rango 1-100",
+      "title": "Calcular el Volumen de una Olla Esférica",
       "racket": {
         "lines": [
-          "(define (between-1-100? x)",
-          "  (and (>= x 1) (<= x 100))",
+          "(define (sphere-volume r)",
+          "  (let ((cube (* r r r))",
+          "        (pi 3.14159)",
+          "        (fraction (/ 4 3)))",
+          "    (* fraction pi cube)))",
           ")",
-          "(between-1-100? 75)"
+          "(sphere-volume 0.3)"
         ]
       },
       "ocaml": {
         "lines": [
-          "let between_1_100 x =",
-          "  x >= 1 && x <= 100",
+          "let sphere_volume r =",
+          "  let cube = r *. r *. r in",
+          "  let pi = 3.14159 in",
+          "  let fraction = 4.0 /. 3.0 in",
+          "  fraction *. pi *. cube",
           "in",
-          "between_1_100 75"
+          "sphere_volume 0.3"
         ]
       },
       "explanations_racket": [
-        "Define una función `between-1-100?` que verifica si `x` está entre 1 y 100. La sintaxis `(define (nombre params) cuerpo)` promueve abstracción funcional, como comprobar si una puntuación está en un rango válido.",
-        "Evalúa si `x` es mayor o igual a 1 y menor o igual a 100 usando `and`, `>=`, y `<=`, retornando #t si ambas condiciones son ciertas. La expresión es pura, como validar una calificación escolar.",
-        "Cierra la definición de la función, parte de la sintaxis de Racket.",
-        "Llama a `between-1-100?` con 75, dando #t porque 75 está en el rango, mostrando el uso práctico."
+        "Esta línea crea una función `sphere-volume` que toma un número `r` (radio), como si fueras un chef diseñando una olla redonda. En Racket, `(define (nombre params) cuerpo)` es como hacer una receta para calcular cuánto cabe en la olla.",
+        "Aquí comenzamos un bloque `let` para crear tres cajas: `cube` guarda el cubo del radio (`r * r * r`), como calcular una parte de la fórmula del volumen. Es como anotar el primer paso en una libreta.",
+        "Esta línea define `pi` como 3.14159, una constante para cálculos circulares, como un número mágico en la receta.",
+        "Esta línea define `fraction` como `4/3`, otro paso de la fórmula, como anotar una proporción en la libreta.",
+        "Aquí multiplicamos `fraction`, `pi`, y `cube` con `(* fraction pi cube)` para obtener el volumen, como mezclar todos los ingredientes para saber cuánto cabe en la olla. Los paréntesis mantienen todo ordenado.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta. No hace cálculos, pero es necesaria.",
+        "Esta línea usa la función con 0.3, calculando `(4/3) * 3.14159 * (0.3 * 0.3 * 0.3) ≈ 0.11309724`. Es como probar la receta para una olla con radio de 0.3 metros."
       ],
       "explanations_ocaml": [
-        "Define una función `between_1_100` para verificar si `x` está entre 1 y 100, usando `let nombre params = cuerpo`. Es una abstracción funcional, como validar un puntaje en un juego.",
-        "Evalúa `x >= 1 && x <= 100` con operadores infijos, retornando true si ambas condiciones son ciertas. La expresión es pura, ideal para verificaciones lógicas.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `between_1_100` con 75, dando true, demostrando la función."
+        "Esta línea crea una función `sphere_volume` que toma `r`, como calcular el espacio en una olla esférica. En OCaml, `let nombre params = cuerpo` es como hacer una receta para el volumen. La función está lista para recibir un número.",
+        "Usamos `let cube = r *. r *. r in` para guardar el cubo del radio en `cube`, como un paso de la fórmula. El `*.` es para números con decimales, y `in` dice que usaremos este valor después.",
+        "Esta línea guarda 3.14159 en `pi`, como un número especial para cálculos de círculos. El `in` indica que se usará a continuación.",
+        "Esta línea guarda `4.0 / 3.0` en `fraction`, como otro paso de la fórmula. El `/.` es para divisiones con decimales.",
+        "Aquí multiplicamos `fraction`, `pi`, y `cube` con `fraction *. pi *. cube`, como combinar los pasos para el volumen final. En OCaml, usamos `*.` para multiplicaciones con decimales.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta. Es una regla de OCaml.",
+        "Esta línea aplica la función con 0.3, dando `(4.0 / 3.0) * 3.14159 * (0.3 * 0.3 * 0.3) ≈ 0.11309724`, como confirmar el volumen de la olla."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para validar un rango, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml infiere tipos, Racket es dinámico.",
-        "Similitudes: Ambas verifican el rango con operadores lógicos, retornando un booleano puro. Diferencias: Racket usa `and`, `>=`, `<=` en notación prefija, OCaml usa `&&`, `>=`, `<=` infijos, más concisos.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con 75, dando verdadero. Diferencias: Racket usa `(between-1-100? 75)`, OCaml usa `between_1_100 75`, más simple."
+        "Similitudes: Ambas crean una función que calcula el volumen de una esfera, usando el mismo nombre. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml requiere decimales (0.3), Racket acepta números sin especificar tipo.",
+        "Similitudes: Ambas guardan el cubo del radio en `cube` usando `let`. Diferencias: Racket usa `(let ((cube (* r r r)))` con paréntesis, mientras que OCaml usa `let cube = r *. r *. r in` con `*.` para decimales y `in` para conectar.",
+        "Similitudes: Ambas guardan 3.14159 en `pi`. Diferencias: Racket incluye `pi` en el mismo `let`, mientras que OCaml usa una línea separada `let pi = 3.14159 in`, más clara pero más larga.",
+        "Similitudes: Ambas guardan `4/3` en `fraction`. Diferencias: Racket usa `(/ 4 3)` como fracción, mientras que OCaml usa `4.0 /. 3.0` con decimales y `/.` para división.",
+        "Similitudes: Ambas multiplican `fraction`, `pi`, y `cube` para el volumen. Diferencias: Racket usa `(* fraction pi cube)` con paréntesis, mientras que OCaml usa `fraction *. pi *. cube` con `*.` para decimales, más parecido a una fórmula matemática.",
+        "Similitudes: Ambas son estructurales, sin cálculos. Diferencias: Racket cierra la función con `)`, mientras que OCaml usa `in` para la llamada.",
+        "Similitudes: Ambas aplican la función con 0.3, dando ≈0.11309724. Diferencias: Racket usa `(sphere-volume 0.3)`, OCaml usa `sphere_volume 0.3` con decimal explícito."
       ]
     },
     "ejercicio-6": {
-      "title": "Área de un círculo",
+      "title": "Calcular Interés Compuesto con Tarifa",
       "racket": {
         "lines": [
-          "(define (circle-area r)",
-          "  (* 3.14159 (* r r))",
+          "(define (compound-interest p r n t)",
+          "  (let ((rate-factor (+ 1 (/ r n)))",
+          "        (periods (* n t))",
+          "        (fee 50))",
+          "    (- (* p (expt rate-factor periods)) fee)))",
           ")",
-          "(circle-area 3)"
+          "(compound-interest 1000 0.04 12 3)"
         ]
       },
       "ocaml": {
         "lines": [
-          "let circle_area r =",
-          "  3.14159 *. (r *. r)",
+          "let compound_interest p r n t =",
+          "  let rate_factor = 1.0 +. (r /. n) in",
+          "  let periods = n *. t in",
+          "  let fee = 50.0 in",
+          "  (p *. (rate_factor ** periods)) -. fee",
           "in",
-          "circle_area 3.0"
+          "compound_interest 1000.0 0.04 12.0 3.0"
         ]
       },
       "explanations_racket": [
-        "Define una función `circle-area` que toma un parámetro `r` (radio) para calcular el área de un círculo. La sintaxis `(define (nombre params) cuerpo)` es funcional, como medir el área de una pizza redonda.",
-        "Calcula π * r² usando `*` y la constante 3.14159, con notación prefija `(* 3.14159 (* r r))`. La expresión es pura, ideal para cálculos matemáticos precisos.",
-        "Cierra la definición de la función, requerida por Racket.",
-        "Llama a `circle-area` con radio 3, dando aproximadamente 28.27431, mostrando la función en acción."
+        "Esta línea crea una función `compound-interest` que toma cuatro números: `p` (dinero inicial), `r` (tasa de interés), `n` (veces que se aplica al año), y `t` (años). Imagina que eres un financiero calculando cuánto crecerá 1000 dólares. En Racket, `(define (nombre params) cuerpo)` es como una receta para este cálculo.",
+        "Aquí comenzamos un bloque `let` para crear tres cajas: `rate-factor` guarda `1 + (r / n)`, como el crecimiento por período. Es como anotar el primer paso en una libreta.",
+        "Esta línea define `periods` como `n * t`, como contar cuántas veces se aplica el interés, un segundo paso en la libreta.",
+        "Esta línea define `fee` como 50, una tarifa fija que se resta al final, como un tercer paso en la libreta.",
+        "Aquí multiplicamos `p` por `rate-factor` elevado a `periods` con `(expt rate-factor periods)`, luego restamos `fee`, como calcular el dinero final menos la tarifa. Los paréntesis mantienen todo ordenado.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta. No hace cálculos, pero es necesaria.",
+        "Esta línea usa la función con 1000, 0.04, 12, y 3, dando ≈1077.49786. Es como probar la receta para saber cuánto dinero tendrás después de 3 años."
       ],
       "explanations_ocaml": [
-        "Define una función `circle_area` con parámetro `r` para calcular el área, usando `let nombre params = cuerpo`. Es una abstracción funcional, como calcular el área de un plato redondo.",
-        "Calcula π * r² con `*.` (multiplicación de flotantes) y 3.14159, usando notación infija `3.14159 *. (r *. r)`. La expresión es pura, y OCaml requiere tipos flotantes explícitos.",
-        "Usa `in` para introducir la llamada, parte de la estructura de OCaml.",
-        "Llama a `circle_area` con 3.0, dando aproximadamente 28.27431, demostrando la función."
+        "Esta línea crea una función `compound_interest` que toma `p`, `r`, `n`, y `t`, como calcular cuánto crecerá un ahorro. En OCaml, `let nombre params = cuerpo` es como una receta para este cálculo financiero.",
+        "Usamos `let rate_factor = 1.0 +. (r /. n) in` para guardar el factor de crecimiento por período, como un paso de la fórmula. Los operadores `+.` y `/.` son para decimales, y `in` dice que usaremos este valor después.",
+        "Esta línea guarda `n * t` en `periods`, como contar los períodos de interés. El `*.` es para multiplicaciones con decimales.",
+        "Esta línea guarda 50.0 en `fee`, como una tarifa que se resta al final. El `in` organiza el cálculo.",
+        "Aquí multiplicamos `p` por `rate-factor` elevado a `periods` con `(rate_factor ** periods)`, luego restamos `fee` con `-.`, como calcular el dinero final. En OCaml, usamos operadores para decimales.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta. Es una regla de OCaml.",
+        "Esta línea aplica la función con 1000.0, 0.04, 12.0, y 3.0, dando ≈1077.49786, como confirmar el crecimiento del dinero."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para calcular el área de un círculo, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml requiere `r` como flotante.",
-        "Similitudes: Ambas calculan π * r², manteniendo pureza. Diferencias: Racket usa `*` en notación prefija, OCaml usa `*.` infijo para flotantes, requiriendo paréntesis para prioridad.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con radio 3, dando el mismo resultado. Diferencias: Racket usa `(circle-area 3)`, OCaml usa `circle_area 3.0`, con notación de flotante explícita."
+        "Similitudes: Ambas crean una función para calcular interés compuesto, usando el mismo nombre y cuatro parámetros. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml requiere decimales (1000.0, 0.04), Racket acepta números sin especificar tipo.",
+        "Similitudes: Ambas guardan el factor de interés en `rate_factor` con `let`. Diferencias: Racket usa `(let ((rate-factor (+ 1 (/ r n))))` con paréntesis, mientras que OCaml usa `let rate_factor = 1.0 +. (r /. n) in` con operadores para decimales y `in`.",
+        "Similitudes: Ambas guardan `n * t` en `periods`. Diferencias: Racket incluye `periods` en el mismo `let`, mientras que OCaml usa una línea separada `let periods = n *. t in`, más clara pero más larga.",
+        "Similitudes: Ambas guardan 50 en `fee`. Diferencias: Racket usa `(fee 50)`, OCaml usa `let fee = 50.0 in` con decimal explícito.",
+        "Similitudes: Ambas calculan `p * (rate-factor ^ periods) - fee`. Diferencias: Racket usa `(* p (expt rate-factor periods))` y `(- ... fee)` con paréntesis, mientras que OCaml usa `(p *. (rate_factor ** periods)) -. fee` con operadores para decimales, más parecido a matemáticas.",
+        "Similitudes: Ambas son estructurales, sin cálculos. Diferencias: Racket cierra la función con `)`, mientras que OCaml usa `in` para la llamada.",
+        "Similitudes: Ambas aplican la función con los mismos valores, dando ≈1077.49786. Diferencias: Racket usa `(compound-interest 1000 0.04 12 3)`, OCaml usa `compound_interest 1000.0 0.04 12.0 3.0` con decimales."
       ]
     },
     "ejercicio-7": {
-      "title": "Convertir Celsius a Fahrenheit",
+      "title": "Calcular Distancia entre Estrellas en 3D",
       "racket": {
         "lines": [
-          "(define (celsius-to-fahrenheit c)",
-          "  (+ (* c 9/5) 32)",
+          "(define (distance-3d x1 y1 z1 x2 y2 z2)",
+          "  (let ((dx (- x2 x1))",
+          "        (dy (- y2 y1))",
+          "        (dz (- z2 z1)))",
+          "    (let ((dx-square (* dx dx))",
+          "          (dy-square (* dy dy))",
+          "          (dz-square (* dz dz)))",
+          "      (sqrt (+ dx-square dy-square dz-square))))",
           ")",
-          "(celsius-to-fahrenheit 20)"
+          "(distance-3d 2 3 4 5 7 8)"
         ]
       },
       "ocaml": {
         "lines": [
-          "let celsius_to_fahrenheit c =",
-          "  (c *. 9.0 /. 5.0) +. 32.0",
+          "let distance_3d x1 y1 z1 x2 y2 z2 =",
+          "  let dx = x2 -. x1 in",
+          "  let dy = y2 -. y1 in",
+          "  let dz = z2 -. z1 in",
+          "  let dx_square = dx *. dx in",
+          "  let dy_square = dy *. dy in",
+          "  let dz_square = dz *. dz in",
+          "  sqrt (dx_square +. dy_square +. dz_square)",
           "in",
-          "celsius_to_fahrenheit 20.0"
+          "distance_3d 2.0 3.0 4.0 5.0 7.0 8.0"
         ]
       },
       "explanations_racket": [
-        "Define una función `celsius-to-fahrenheit` con parámetro `c` para convertir grados Celsius a Fahrenheit. La sintaxis `(define (nombre params) cuerpo)` promueve abstracción funcional, como ajustar un termómetro.",
-        "Calcula la conversión con la fórmula c * 9/5 + 32, usando notación prefija `(+ (* c 9/5) 32)`. La expresión es pura, ideal para cálculos precisos, como convertir 20°C a 68°F.",
-        "Cierra la definición de la función, parte de la sintaxis de Racket.",
-        "Llama a `celsius-to-fahrenheit` con 20, dando 68, mostrando la conversión."
+        "Esta línea crea una función `distance-3d` que toma seis números (coordenadas de dos puntos en el espacio: `x1, y1, z1` y `x2, y2, z2`). Imagina que eres un astrónomo midiendo la distancia entre dos estrellas. En Racket, `(define (nombre params) cuerpo)` es como una receta para este cálculo complejo.",
+        "Aquí comenzamos un bloque `let` para crear tres cajas: `dx` guarda la diferencia `x2 - x1`, como medir cuánto se mueven las estrellas en la dirección horizontal. Es como anotar el primer paso en una libreta.",
+        "Esta línea define `dy` como `y2 - y1`, la diferencia en la dirección vertical, como un segundo paso en la libreta.",
+        "Esta línea define `dz` como `z2 - z1`, la diferencia en profundidad, completando las diferencias en las tres direcciones.",
+        "Aquí comenzamos otro bloque `let` para crear tres cajas más: `dx-square` guarda el cuadrado de `dx`, como calcular una parte de la fórmula de distancia. Es como un nuevo paso en la libreta.",
+        "Esta línea define `dy-square` como el cuadrado de `dy`, la diferencia vertical al cuadrado, como otro paso.",
+        "Esta línea define `dz-square` como el cuadrado de `dz`, la diferencia en profundidad al cuadrado, completando los cuadrados.",
+        "Aquí sumamos `dx-square`, `dy-square`, y `dz-square` con `(+ dx-square dy-square dz-square)`, luego tomamos la raíz cuadrada con `sqrt`, como encontrar la distancia final entre las estrellas. Los paréntesis mantienen todo claro.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta. No hace cálculos, pero es necesaria.",
+        "Esta línea usa la función con las coordenadas (2, 3, 4) y (5, 7, 8), dando ≈6.403124237. Es como probar la receta para medir la distancia entre dos estrellas."
       ],
       "explanations_ocaml": [
-        "Define una función `celsius_to_fahrenheit` con parámetro `c` para convertir Celsius a Fahrenheit, usando `let nombre params = cuerpo`. Es una abstracción funcional, como configurar un termostato.",
-        "Calcula c * 9.0 / 5.0 + 32.0 con operadores `*.`, `/.`, y `+.`, usando notación infija para flotantes. La expresión es pura, y OCaml requiere tipos flotantes explícitos.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `celsius_to_fahrenheit` con 20.0, dando 68.0, demostrando la conversión."
+        "Esta línea crea una función `distance_3d` que toma seis números, las coordenadas de dos puntos, como medir la distancia entre dos planetas. En OCaml, `let nombre params = cuerpo` es como una receta para este cálculo.",
+        "Usamos `let dx = x2 -. x1 in` para guardar la diferencia horizontal en `dx`, como un paso de la fórmula. El `-.` es para restas con decimales, y `in` dice que usaremos este valor.",
+        "Esta línea guarda la diferencia vertical en `dy`, como medir cuánto se mueve un planeta hacia arriba.",
+        "Esta línea guarda la diferencia en profundidad en `dz`, completando las diferencias en las tres direcciones.",
+        "Usamos `let dx_square = dx *. dx in` para guardar el cuadrado de `dx`, como un paso para la fórmula de distancia.",
+        "Esta línea guarda el cuadrado de `dy` en `dy_square`, como otro paso.",
+        "Esta línea guarda el cuadrado de `dz` en `dz_square`, completando los cuadrados.",
+        "Aquí sumamos `dx_square`, `dy_square`, y `dz_square` con `+.`, luego tomamos la raíz cuadrada con `sqrt`, como calcular la distancia final. En OCaml, usamos `+.` para sumas con decimales.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta.",
+        "Esta línea aplica la función con (2.0, 3.0, 4.0) y (5.0, 7.0, 8.0), dando ≈6.403124237, como confirmar la distancia entre planetas."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para convertir temperaturas, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml requiere flotantes explícitos.",
-        "Similitudes: Ambas aplican la fórmula c * 9/5 + 32, manteniendo pureza. Diferencias: Racket usa `*`, `/`, `+` en notación prefija con `9/5` como fracción, mientras que OCaml usa `*.`, `/.`, `+.` infijos con valores flotantes `9.0`, `5.0`, `32.0`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con 20, dando 68. Diferencias: Racket usa `(celsius-to-fahrenheit 20)`, OCaml usa `celsius_to_fahrenheit 20.0`, con flotante explícito."
+        "Similitudes: Ambas crean una función que calcula la distancia 3D con seis parámetros, usando el mismo nombre. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml requiere decimales (2.0, 3.0, etc.), Racket acepta enteros.",
+        "Similitudes: Ambas guardan la diferencia horizontal en `dx` con `let`. Diferencias: Racket usa `(let ((dx (- x2 x1)))` con paréntesis, mientras que OCaml usa `let dx = x2 -. x1 in` con `-.` para decimales y `in`.",
+        "Similitudes: Ambas guardan la diferencia vertical en `dy`. Diferencias: Racket incluye `dy` en el mismo `let`, mientras que OCaml usa una línea separada, más clara pero más larga.",
+        "Similitudes: Ambas guardan la diferencia en profundidad en `dz`. Diferencias: Como antes, Racket usa un solo `let`, OCaml usa líneas separadas.",
+        "Similitudes: Ambas guardan el cuadrado de `dx` en `dx_square`. Diferencias: Racket usa un segundo `let` con paréntesis, OCaml usa una nueva línea con `*.` para decimales.",
+        "Similitudes: Ambas guardan el cuadrado de `dy`. Diferencias: Racket incluye `dy-square` en el segundo `let`, OCaml usa una línea separada.",
+        "Similitudes: Ambas guardan el cuadrado de `dz`. Diferencias: Igual que con `dy-square`, OCaml usa más líneas, Racket es más compacto.",
+        "Similitudes: Ambas suman los cuadrados y toman la raíz cuadrada. Diferencias: Racket usa `(sqrt (+ dx-square dy-square dz-square))` con paréntesis, mientras que OCaml usa `sqrt (dx_square +. dy_square +. dz_square)` con `+.` para decimales, más matemático.",
+        "Similitudes: Ambas son estructurales, sin cálculos. Diferencias: Racket cierra la función con `)`, mientras que OCaml usa `in` para la llamada.",
+        "Similitudes: Ambas aplican la función con las mismas coordenadas, dando ≈6.403124237. Diferencias: Racket usa `(distance-3d 2 3 4 5 7 8)` con enteros, OCaml usa `distance_3d 2.0 3.0 4.0 5.0 7.0 8.0` con decimales."
       ]
     }
   },
   "funciones-multiples": {
     "ejercicio-1": {
-      "title": "Área de un triángulo",
+      "title": "Calcular el Área de un Mural Triangular",
       "racket": {
         "lines": [
           "(define (triangle-area base height)",
@@ -794,30 +879,32 @@
         ]
       },
       "explanations_racket": [
-        "Define una función `triangle-area` que toma dos parámetros, `base` y `height`, para calcular el área de un triángulo. La sintaxis `(define (nombre params) cuerpo)` es estándar en Racket, promoviendo abstracción funcional para encapsular cálculos, como medir el área de una carpa triangular.",
-        "Calcula el área con la fórmula `(base * height) / 2`, usando notación prefija `(/ (* base height) 2)`. La expresión es pura, siempre retorna el mismo valor sin efectos secundarios, alineándose con el paradigma funcional. Es como dividir un terreno triangular por la mitad para saber cuánto material necesitas.",
-        "Cierra la definición de la función con un paréntesis, una convención estructural de Racket necesaria para completar la sintaxis.",
-        "Llama a `triangle-area` con `base` 8 y `height` 5, evaluando `(/ (* 8 5) 2)` = 20, mostrando cómo usar la función para un caso práctico, como calcular el área de un triángulo en un proyecto de construcción."
+        "Esta línea crea una función `triangle-area` que toma dos parámetros, `base` y `height`, para calcular el área de un triángulo. Imagina que eres un artista pintando un mural triangular de 8 metros de base y 5 de altura. En Racket, `(define (nombre params) cuerpo)` es como escribir una receta sencilla para saber cuánta pintura necesitas.",
+        "Aquí multiplicamos `base` por `height` con `(* base height)` y dividimos por 2 con `(/ ... 2)`, como calcular el área (base * altura / 2). Los paréntesis organizan la operación en una línea clara, dando el resultado final.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta. No hace cálculos, pero es necesaria para completar la función.",
+        "Esta línea aplica la función con 8 y 5, dando `(8 * 5) / 2 = 20`. Es como probar la receta para confirmar que el mural requiere pintura para 20 metros cuadrados."
       ],
       "explanations_ocaml": [
-        "Define una función `triangle_area` con parámetros `base` y `height` para calcular el área de un triángulo, usando `let nombre params = cuerpo`. En OCaml, las funciones son inmutables y puras, ideales para abstracción, como calcular el área de una vela triangular para un barco.",
-        "Calcula `(base * height) / 2` usando operadores de flotantes `*.` y `/.`, con notación infija `(base *. height) /. 2.0`. La expresión es pura, garantizando el mismo resultado sin alterar estado. Es como medir la superficie de una vela para saber cuánta tela usar.",
-        "Usa `in` para introducir el contexto de la llamada, una característica estructural de OCaml que separa la definición de su uso, sin lógica propia.",
-        "Llama a `triangle_area` con 8.0 y 5.0, evaluando `(8.0 *. 5.0) /. 2.0` = 20.0, demostrando la función en un contexto práctico."
+        "Esta línea crea una función `triangle_area` que toma `base` y `height`, como calcular el área de un mural triangular. En OCaml, `let nombre params = cuerpo` es como una receta sencilla. La función está lista para recibir dos números.",
+        "Aquí multiplicamos `base` por `height` con `base *. height` y dividimos por 2.0 con `/.`, como calcular el área (base * altura / 2). El `*.` y `/.` son para números con decimales, dando un resultado preciso.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta antes de probarla. Es una regla de OCaml, sin cálculos.",
+        "Esta línea aplica la función con 8.0 y 5.0, dando `(8.0 * 5.0) / 2.0 = 20.0`. Es como confirmar el área del mural para planificar la pintura."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función con dos parámetros para calcular el área de un triángulo, promoviendo abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, reflejando su herencia Lisp, mientras que OCaml usa `let nombre params = cuerpo`, más conciso. OCaml requiere argumentos flotantes explícitos, mientras que Racket es dinámico y acepta enteros o fracciones.",
-        "Similitudes: Ambas aplican la fórmula `(base * height) / 2`, manteniendo pureza funcional. Diferencias: Racket usa notación prefija `(/ (* base height) 2)`, más explícita, mientras que OCaml usa `*.` y `/.` en notación infija `(base *. height) /. 2.0`, requiriendo flotantes y paréntesis para prioridad, lo que es más matemático pero específico en tipos.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con 8 y 5, dando 20. Diferencias: Racket usa `(triangle-area 8 5)`, mientras que OCaml usa `triangle_area 8.0 5.0`, requiriendo flotantes explícitos, lo que hace a OCaml más estricto en tipado."
+        "Similitudes: Ambas crean una función que calcula el área de un triángulo con dos parámetros, con el mismo propósito y resultado (20). Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml requiere decimales (8.0, 5.0), Racket acepta enteros.",
+        "Similitudes: Ambas realizan la multiplicación y división en una línea, dando el mismo resultado. Diferencias: Racket usa `(/ (* base height) 2)` con notación prefija y paréntesis, mientras que OCaml usa `(base *. height) /. 2.0` con notación infija, más parecida a matemáticas. OCaml usa operadores `*.` y `/.` para decimales.",
+        "Similitudes: Ambas son estructurales, sin cálculos. Diferencias: Racket cierra la función con `)`, mientras que OCaml usa `in` para conectar con la evaluación.",
+        "Similitudes: Ambas aplican la función con 8 y 5, dando 20. Diferencias: Racket usa `(triangle-area 8 5)` con paréntesis y enteros, mientras que OCaml usa `triangle_area 8.0 5.0` sin paréntesis y con decimales."
       ]
     },
     "ejercicio-2": {
-      "title": "Verificar orden ascendente",
+      "title": "Verificar si Tres Tiempos de Tareas Están en Orden Ascendente",
       "racket": {
         "lines": [
           "(define (ascending? a b c)",
-          "  (and (< a b) (< b c))",
+          "  (let ((ab (< a b))",
+          "        (bc (< b c)))",
+          "    (and ab bc))",
           ")",
           "(ascending? 2 3 4)"
         ]
@@ -825,37 +912,46 @@
       "ocaml": {
         "lines": [
           "let ascending a b c =",
-          "  a < b && b < c",
+          "  let ab = a < b in",
+          "  let bc = b < c in",
+          "  ab && bc",
           "in",
           "ascending 2 3 4"
         ]
       },
       "explanations_racket": [
-        "Define una función `ascending?` que toma tres parámetros (`a`, `b`, `c`) para verificar si están en orden ascendente. La sintaxis `(define (nombre params) cuerpo)` permite abstracción funcional, como comprobar si tres notas musicales forman una escala ascendente.",
-        "Evalúa si `a < b` y `b < c` usando `and` y `<`, retornando #t si ambas condiciones son ciertas. La expresión es pura, sin efectos secundarios, ideal para verificaciones lógicas en el paradigma funcional, como ordenar alturas de plantas.",
-        "Cierra la definición de la función, necesaria para la sintaxis de Racket.",
-        "Llama a `ascending?` con 2, 3, 4, evaluando `(and (< 2 3) (< 3 4))` = #t, mostrando que los números están en orden ascendente."
+        "Esta línea crea una función `ascending?` que toma tres parámetros, `a`, `b`, `c`, como tiempos de tareas (2, 3, 4 minutos). Imagina que eres un organizador verificando si las tareas toman tiempos crecientes. En Racket, `(define (nombre params) cuerpo)` es como una receta para esta validación lógica.",
+        "Aquí comenzamos un bloque `let` para crear una variable `ab` que guarda si `a` es menor que `b` con `(< a b)`. Es como anotar en una libreta si la primera tarea es más corta que la segunda.",
+        "Esta línea define `bc` como `(< b c)`, verificando si `b` es menor que `c`. Es como anotar si la segunda tarea es más corta que la tercera.",
+        "Aquí combinamos `ab` y `bc` con `and` para verificar que ambas condiciones son ciertas, retornando `true` si los tiempos están en orden ascendente. Es como revisar la libreta para confirmar el orden.",
+        "Esta línea cierra la definición de la función con un paréntesis, como poner el punto final en la receta.",
+        "Esta línea aplica la función con 2, 3, 4, verificando `2 < 3` y `3 < 4`, dando `true`. Es como probar la receta para confirmar el orden ascendente."
       ],
       "explanations_ocaml": [
-        "Define una función `ascending` con tres parámetros (`a`, `b`, `c`) para verificar orden ascendente, usando `let nombre params = cuerpo`. En OCaml, las funciones son puras, ideales para lógica, como verificar si tres temperaturas suben progresivamente.",
-        "Evalúa `a < b && b < c` con operadores infijos `<` y `&&`, retornando true si ambas condiciones son ciertas. La expresión es pura, alineándose con el paradigma funcional, como comprobar el orden de pasos en una carrera.",
-        "Usa `in` para introducir el contexto de la llamada, una convención estructural de OCaml.",
-        "Llama a `ascending` con 2, 3, 4, dando true, demostrando que los números están en orden."
+        "Esta línea crea una función `ascending` que toma `a`, `b`, `c`, como tiempos de tareas. En OCaml, `let nombre params = cuerpo` es como una receta para verificar si los tiempos crecen. La función está lista para tres números.",
+        "Aquí definimos `ab` como `a < b`, verificando si `a` es menor que `b`. Es como anotar si la primera tarea es más corta que la segunda. El `in` indica que usaremos este valor después.",
+        "Esta línea define `bc` como `b < c`, verificando si `b` es menor que `c`. Es como anotar si la segunda tarea es más corta que la tercera.",
+        "Aquí combinamos `ab` y `bc` con `&&`, retornando `true` si ambas son ciertas. Es como revisar las anotaciones para confirmar el orden ascendente.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta. No hace cálculos.",
+        "Esta línea aplica la función con 2, 3, 4, verificando `2 < 3` y `3 < 4`, dando `true`. Es como confirmar el orden de las tareas."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función con tres parámetros para verificar orden ascendente, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`, más conciso. OCaml infiere tipos enteros, Racket es dinámico.",
-        "Similitudes: Ambas evalúan dos comparaciones con un operador lógico, retornando un booleano puro. Diferencias: Racket usa `and` y `<` en notación prefija, más explícita, mientras que OCaml usa `&&` y `<` infijos, más matemáticos y concisos.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con 2, 3, 4, dando verdadero. Diferencias: Racket usa `(ascending? 2 3 4)`, OCaml usa `ascending 2 3 4`, más simple."
+        "Similitudes: Ambas crean una función que verifica si tres números están en orden ascendente, con el mismo propósito y resultado (`true`). Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis y `ascending?` (con ? para booleano), mientras que OCaml usa `let nombre params = cuerpo` y `ascending`, más corto.",
+        "Similitudes: Ambas definen una variable para `a < b`. Diferencias: Racket usa `(let ((ab (< a b)))` con paréntesis y notación prefija, mientras que OCaml usa `let ab = a < b in` con notación infija y `in` para conectar pasos.",
+        "Similitudes: Ambas definen una variable para `b < c`. Diferencias: Racket incluye `bc` en el mismo `let`, mientras OCaml usa una línea separada `let bc = b < c in`, más clara para principiantes.",
+        "Similitudes: Ambas combinan las condiciones con un operador lógico (`and` en Racket, `&&` en OCaml). Diferencias: Racket usa `(and ab bc)` con paréntesis, mientras que OCaml usa `ab && bc`, más simple y matemático.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml usa `in` para la evaluación.",
+        "Similitudes: Ambas aplican la función con 2, 3, 4, dando `true`. Diferencias: Racket usa `(ascending? 2 3 4)` con paréntesis, OCaml usa `ascending 2 3 4`, más corto."
       ]
     },
     "ejercicio-3": {
-      "title": "Distancia euclidiana",
+      "title": "Calcular la Distancia Euclidiana entre Dos Puntos",
       "racket": {
         "lines": [
           "(define (distance x1 y1 x2 y2)",
           "  (sqrt (+ (expt (- x2 x1) 2)",
-          "           (expt (- y2 y1) 2)))",
+          "           (expt (- y2 y1) 2))",
+          "  )",
           ")",
           "(distance 1 2 4 6)"
         ]
@@ -870,33 +966,37 @@
         ]
       },
       "explanations_racket": [
-        "Define una función `distance` con cuatro parámetros (`x1`, `y1`, `x2`, `y2`) para calcular la distancia euclidiana entre dos puntos. La sintaxis `(define (nombre params) cuerpo)` promueve abstracción funcional, como medir la distancia entre dos ciudades en un mapa.",
-        "Calcula la raíz cuadrada de la suma de las diferencias al cuadrado, usando `sqrt`, `+`, `expt`, y `-` en notación prefija. La primera parte `(expt (- x2 x1) 2)` calcula (x2 - x1)^2, como medir la diferencia horizontal entre puntos.",
-        "Continúa con `(expt (- y2 y1) 2)`, suma ambos términos y aplica `sqrt`, formando la fórmula √((x2 - x1)^2 + (y2 - y1)^2). La expresión es pura, ideal para cálculos geométricos precisos.",
-        "Cierra la definición de la función, necesaria para la sintaxis de Racket.",
-        "Llama a `distance` con (1, 2) y (4, 6), dando aproximadamente 5, mostrando la función en acción."
+        "Esta línea crea una función `distance` que toma cuatro parámetros, `x1`, `y1`, `x2`, `y2`, como coordenadas de dos puntos (1,2) y (4,6). Imagina que eres un estudiante midiendo cuánto caminaste entre esos puntos. En Racket, `(define (nombre params) cuerpo)` es como una receta para calcular la distancia euclidiana.",
+        "Aquí calculamos la raíz cuadrada con `sqrt` de una suma. La suma incluye `(expt (- x2 x1) 2)`, que calcula el cuadrado de la diferencia horizontal (x2-x1). Es como medir cuánto te moviste en horizontal.",
+        "Esta línea agrega `(expt (- y2 y1) 2)`, el cuadrado de la diferencia vertical (y2-y1), completando la fórmula `sqrt((x2-x1)^2 + (y2-y1)^2)`. Es como medir el movimiento vertical y combinarlo.",
+        "Esta línea cierra el bloque `sqrt` con un paréntesis, asegurando que la suma se calcule primero. No hace cálculos, pero organiza la fórmula.",
+        "Esta línea cierra la definición de la función con otro paréntesis, como el punto final de la receta.",
+        "Esta línea aplica la función con 1, 2, 4, 6, dando `sqrt((4-1)^2 + (6-2)^2) = sqrt(9 + 16) = 5`. Es como probar la receta para medir la caminata."
       ],
       "explanations_ocaml": [
-        "Define una función `distance` con cuatro parámetros para calcular la distancia euclidiana, usando `let nombre params = cuerpo`. Es una abstracción funcional, como calcular la distancia entre dos puntos en un GPS.",
-        "Calcula (x2 - x1)^2 con `-.` y `**` (exponenciación de flotantes), usando notación infija `(x2 -. x1) ** 2.0`. Esta línea inicia la fórmula, combinando operaciones aritméticas puras.",
-        "Completa con `(y2 -. y1) ** 2.0`, suma con `+.`, y aplica `sqrt`, formando √((x2 - x1)^2 + (y2 - y1)^2). La expresión es pura, requiriendo flotantes explícitos en OCaml.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `distance` con (1.0, 2.0) y (4.0, 6.0), dando aproximadamente 5.0."
+        "Esta línea crea una función `distance` que toma `x1`, `y1`, `x2`, `y2`, como coordenadas. En OCaml, `let nombre params = cuerpo` es como una receta para calcular la distancia. La función está lista para cuatro números.",
+        "Aquí calculamos la raíz cuadrada con `sqrt` de una suma. `(x2 -. x1) ** 2.0` calcula el cuadrado de la diferencia horizontal, usando `-.` y `**` para decimales. Es como medir el movimiento horizontal.",
+        "Esta línea agrega `(y2 -. y1) ** 2.0` con `+.`, completando la fórmula `sqrt((x2-x1)^2 + (y2-y1)^2)`. Es como medir el movimiento vertical y sumarlo.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta. No hace cálculos.",
+        "Esta línea aplica la función con 1.0, 2.0, 4.0, 6.0, dando `sqrt((4.0-1.0)^2 + (6.0-2.0)^2) = 5.0`. Es como confirmar la distancia de la caminata."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función con cuatro parámetros para calcular distancia euclidiana, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml requiere flotantes explícitos.",
-        "Similitudes: Ambas inician la fórmula calculando (x2 - x1)^2, manteniendo pureza. Diferencias: Racket usa `expt` y `-` en notación prefija, OCaml usa `-.` y `**` infijos, más matemáticos. OCaml requiere flotantes (2.0).",
-        "Similitudes: Ambas completan la fórmula con (y2 - y1)^2 and `sqrt`, puras. Diferencias: Racket combina ambas partes en una línea con notación prefija, más compacta aquí, mientras que OCaml separa en dos líneas por formato infijo, requiriendo `+.`.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con los mismos puntos, dando ~5. Diferencias: Racket usa `(distance 1 2 4 6)`, OCaml usa `distance 1.0 2.0 4.0 6.0`, con flotantes explícitos."
+        "Similitudes: Ambas crean una función que calcula la distancia euclidiana con cuatro parámetros, con el mismo propósito y resultado (5). Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml requiere decimales, Racket acepta enteros.",
+        "Similitudes: Ambas calculan el cuadrado de la diferencia horizontal dentro de una raíz. Diferencias: Racket usa `(expt (- x2 x1) 2)` con notación prefija, mientras que OCaml usa `(x2 -. x1) ** 2.0` con notación infija y operadores `-.` y `**` para decimales.",
+        "Similitudes: Ambas suman el cuadrado de la diferencia vertical para completar la fórmula. Diferencias: Racket usa `(+ ...)` con paréntesis, mientras que OCaml usa `+.` para suma con decimales, más intuitiva como ecuación matemática.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el bloque `sqrt` con `)`, OCaml usa `in` para la evaluación.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml no necesita un cierre adicional aquí.",
+        "Similitudes: Ambas aplican la función con 1, 2, 4, 6, dando 5. Diferencias: Racket usa `(distance 1 2 4 6)` con paréntesis y enteros, OCaml usa `distance 1.0 2.0 4.0 6.0` con decimales."
       ]
     },
     "ejercicio-4": {
-      "title": "Máximo de tres valores",
+      "title": "Encontrar el Máximo de Tres Puntajes en un Torneo",
       "racket": {
         "lines": [
           "(define (max-of-three a b c)",
-          "  (max a (max b c))",
+          "  (let ((bc (max b c))",
+          "        (max-abc (max a bc)))",
+          "    max-abc)",
           ")",
           "(max-of-three 6 8 4)"
         ]
@@ -904,36 +1004,46 @@
       "ocaml": {
         "lines": [
           "let max_of_three a b c =",
-          "  max a (max b c)",
+          "  let bc = max b c in",
+          "  let max_abc = max a bc in",
+          "  max_abc",
           "in",
           "max_of_three 6 8 4"
         ]
       },
       "explanations_racket": [
-        "Define una función `max-of-three` con tres parámetros (`a`, `b`, `c`) para encontrar el máximo. La sintaxis `(define (nombre params) cuerpo)` es funcional, como elegir el mayor de tres puntajes en un juego.",
-        "Usa la función `max` para comparar `a` con el máximo de `b` y `c`, en notación prefija `(max a (max b c))`. La expresión es pura, retornando siempre el mismo valor, como seleccionar la puntuación más alta.",
-        "Cierra la definición de la función, requerida por Racket.",
-        "Llama a `max-of-three` con 6, 8, 4, dando 8, mostrando la función en acción."
+        "Esta línea crea una función `max-of-three` que toma tres parámetros, `a`, `b`, `c`, como puntajes en un torneo (6, 8, 4). Imagina que eres un juez buscando el puntaje más alto. En Racket, `(define (nombre params) cuerpo)` es como una receta para esta comparación.",
+        "Aquí comenzamos un bloque `let` y definimos `bc` como `(max b c)`, que encuentra el mayor entre `b` y `c`. Es como anotar en una libreta cuál de los dos últimos puntajes es mayor.",
+        "Esta línea define `max-abc` como `(max a bc)`, comparando `a` con el resultado anterior. Es como decidir si el primer puntaje supera al mayor de los otros dos.",
+        "Aquí retornamos `max-abc`, el puntaje más alto. Es como entregar el resultado final de la comparación.",
+        "Esta línea cierra la definición de la función con un paréntesis, como el punto final de la receta.",
+        "Esta línea aplica la función con 6, 8, 4, dando `max(6, max(8, 4)) = max(6, 8) = 8`. Es como probar la receta para encontrar el puntaje más alto."
       ],
       "explanations_ocaml": [
-        "Define una función `max_of_three` con tres parámetros para hallar el máximo, usando `let nombre params = cuerpo`. Es una abstracción funcional, como encontrar el mayor tiempo en una carrera.",
-        "Usa el operador `max` para comparar `a` con el máximo de `b` y `c`, en notación infija `max a (max b c)`. La expresión es pura, ideal para comparaciones lógicas.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `max_of_three` con 6, 8, 4, dando 8, demostrando la función."
+        "Esta línea crea una función `max_of_three` que toma `a`, `b`, `c`, como puntajes. En OCaml, `let nombre params = cuerpo` es como una receta para encontrar el máximo. La función está lista para tres números.",
+        "Aquí definimos `bc` como `max b c`, que encuentra el mayor entre `b` y `c`. Es como anotar cuál de los dos últimos puntajes es mayor. El `in` indica que usaremos este valor.",
+        "Esta línea define `max_abc` como `max a bc`, comparando `a` con el resultado anterior. Es como verificar si el primer puntaje es mayor.",
+        "Aquí retornamos `max_abc`, el puntaje más alto. Es como entregar el resultado final.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta.",
+        "Esta línea aplica la función con 6, 8, 4, dando `max(6, max(8, 4)) = 8`. Es como confirmar el puntaje más alto."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para encontrar el máximo de tres valores, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`, más conciso.",
-        "Similitudes: Ambas usan `max` para comparar valores, manteniendo pureza. Diferencias: Racket usa notación prefija `(max a (max b c))`, OCaml usa infija `max a (max b c)`, más matemática.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con 6, 8, 4, dando 8. Diferencias: Racket usa `(max-of-three 6 8 4)`, OCaml usa `max_of_three 6 8 4`, más simple."
+        "Similitudes: Ambas crean una función que encuentra el máximo de tres números, con el mismo propósito y resultado (8). Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml asume enteros, Racket no especifica tipos.",
+        "Similitudes: Ambas definen una variable para el máximo de `b` y `c`. Diferencias: Racket usa `(let ((bc (max b c)))` con paréntesis, mientras que OCaml usa `let bc = max b c in` con notación infija y `in`.",
+        "Similitudes: Ambas comparan `a` con el máximo anterior. Diferencias: Racket incluye `max-abc` en el mismo `let`, mientras que OCaml usa una línea separada `let max_abc = max a bc in`, más clara.",
+        "Similitudes: Ambas retornan el resultado final (`max-abc`). Diferencias: Racket usa `max-abc` dentro del `let`, OCaml lo retorna directamente.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas aplican la función con 6, 8, 4, dando 8. Diferencias: Racket usa `(max-of-three 6 8 4)` con paréntesis, OCaml usa `max_of_three 6 8 4`, más corto."
       ]
     },
     "ejercicio-5": {
-      "title": "Promedio de tres valores",
+      "title": "Calcular el Promedio de Tres Gastos de Amigos",
       "racket": {
         "lines": [
           "(define (average-three a b c)",
-          "  (/ (+ a b c) 3)",
+          "  (let ((sum (+ a b c))",
+          "        (avg (/ sum 3)))",
+          "    avg)",
           ")",
           "(average-three 10 15 20)"
         ]
@@ -941,102 +1051,160 @@
       "ocaml": {
         "lines": [
           "let average_three a b c =",
-          "  (a + b + c) / 3",
+          "  let sum = a + b + c in",
+          "  let avg = sum / 3 in",
+          "  avg",
           "in",
           "average_three 10 15 20"
         ]
       },
       "explanations_racket": [
-        "Define una función `average-three` con tres parámetros para calcular el promedio. La sintaxis `(define (nombre params) cuerpo)` es funcional, como promediar notas de tres exámenes.",
-        "Calcula `(a + b + c) / 3` con notación prefija `(/ (+ a b c) 3)`, una expresión pura para obtener el promedio, como calcular el promedio de tres carreras.",
-        "Cierra la definición de la función, necesaria para Racket.",
-        "Llama a `average-three` con 10, 15, 20, dando 15, mostrando la función."
+        "Esta línea crea una función `average-three` que toma tres parámetros, `a`, `b`, `c`, como gastos de amigos (10, 15, 20 dólares). Imagina que quieres saber cuánto gastaron en promedio. En Racket, `(define (nombre params) cuerpo)` es como una receta para calcular promedios.",
+        "Aquí comenzamos un bloque `let` y definimos `sum` como `(+ a b c)`, sumando los tres gastos. Es como anotar en una libreta el total gastado por los amigos.",
+        "Esta línea define `avg` como `(/ sum 3)`, dividiendo la suma por 3 para obtener el promedio. Es como calcular cuánto le toca a cada amigo si dividen el total.",
+        "Aquí retornamos `avg`, el promedio final. Es como entregar el resultado de la división.",
+        "Esta línea cierra la definición de la función con un paréntesis, como el punto final de la receta.",
+        "Esta línea aplica la función con 10, 15, 20, dando `(10 + 15 + 20) / 3 = 15`. Es como probar la receta para confirmar el promedio."
       ],
       "explanations_ocaml": [
-        "Define una función `average_three` con tres parámetros para promediar, usando `let nombre params = cuerpo`. Es una abstracción funcional, como promediar tiempos de tres pruebas.",
-        "Calcula `(a + b + c) / 3` con notación infija `(a + b + c) / 3`, una expresión pura para el promedio, como hallar el promedio de distancias recorridas.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `average_three` con 10, 15, 20, dando 15, demostrando la función."
+        "Esta línea crea una función `average_three` que toma `a`, `b`, `c`, como gastos. En OCaml, `let nombre params = cuerpo` es como una receta para promedios. La función está lista para tres números.",
+        "Aquí definimos `sum` como `a + b + c`, sumando los gastos. Es como anotar el total en una libreta. El `in` indica que usaremos este valor.",
+        "Esta línea define `avg` como `sum / 3`, dividiendo la suma por 3. Es como calcular el promedio por amigo.",
+        "Aquí retornamos `avg`, el promedio final. Es como entregar el resultado.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta.",
+        "Esta línea aplica la función con 10, 15, 20, dando `(10 + 15 + 20) / 3 = 15`. Es como confirmar el promedio."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para promediar tres valores, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas calculan el promedio con suma y división, manteniendo pureza. Diferencias: Racket usa notación prefija `(/ (+ a b c) 3)`, OCaml usa infija `(a + b + c) / 3`, más matemática.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con 10, 15, 20, dando 15. Diferencias: Racket usa `(average-three 10 15 20)`, OCaml usa `average_three 10 15 20`, más simple."
+        "Similitudes: Ambas crean una función que calcula el promedio de tres números, con el mismo propósito y resultado (15). Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml asume enteros, Racket no especifica tipos.",
+        "Similitudes: Ambas suman los tres parámetros en una variable `sum`. Diferencias: Racket usa `(let ((sum (+ a b c)))` con paréntesis, mientras que OCaml usa `let sum = a + b + c in` con notación infija y `in`.",
+        "Similitudes: Ambas dividen la suma por 3 para el promedio. Diferencias: Racket usa `(/ sum 3)` en el `let`, mientras que OCaml usa `let avg = sum / 3 in`, más clara.",
+        "Similitudes: Ambas retornan el promedio (`avg`). Diferencias: Racket usa `avg` dentro del `let`, OCaml lo retorna directamente.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas aplican la función con 10, 15, 20, dando 15. Diferencias: Racket usa `(average-three 10 15 20)` con paréntesis, OCaml usa `average_three 10 15 20`, más corto."
       ]
     },
     "ejercicio-6": {
-      "title": "Verificar positivos",
+      "title": "Verificar si Tres Presiones Son Positivas y Ascendentes",
       "racket": {
         "lines": [
-          "(define (all-positive? a b c)",
-          "  (and (> a 0) (> b 0) (> c 0))",
+          "(define (positive-and-ascending? a b c)",
+          "  (let ((pos-a (> a 0))",
+          "        (pos-b (> b 0))",
+          "        (pos-c (> c 0))",
+          "        (asc-ab (< a b))",
+          "        (asc-bc (< b c)))",
+          "    (and pos-a pos-b pos-c asc-ab asc-bc))",
           ")",
-          "(all-positive? 2 3 4)"
+          "(positive-and-ascending? 2 3 4)"
         ]
       },
       "ocaml": {
         "lines": [
-          "let all_positive a b c =",
-          "  a > 0 && b > 0 && c > 0",
+          "let positive_and_ascending a b c =",
+          "  let pos_a = a > 0 in",
+          "  let pos_b = b > 0 in",
+          "  let pos_c = c > 0 in",
+          "  let asc_ab = a < b in",
+          "  let asc_bc = b < c in",
+          "  pos_a && pos_b && pos_c && asc_ab && asc_bc",
           "in",
-          "all_positive 2 3 4"
+          "positive_and_ascending 2 3 4"
         ]
       },
       "explanations_racket": [
-        "Define una función `all-positive?` con tres parámetros para verificar si todos son positivos. La sintaxis `(define (nombre params) cuerpo)` es funcional, como comprobar si tres medidas son válidas.",
-        "Evalúa si `a`, `b`, y `c` son mayores que 0 usando `and` y `>`, retornando #t si todas las condiciones son ciertas. Es una expresión pura, como verificar si tres temperaturas están sobre cero.",
-        "Cierra la definición de la función, necesaria para Racket.",
-        "Llama a `all-positive?` con 2, 3, 4, dando #t, mostrando que todos son positivos."
+        "Esta línea crea una función `positive-and-ascending?` que toma tres parámetros, `a`, `b`, `c`, como presiones (2, 3, 4 kPa). Imagina que eres un científico verificando si todas son positivas y en orden ascendente. En Racket, `(define (nombre params) cuerpo)` es como una receta para esta validación compleja.",
+        "Aquí comenzamos un bloque `let` y definimos `pos-a` como `> a 0`, verificando si `a` es positivo. Es como anotar si la primera presión es válida.",
+        "Esta línea define `pos-b` como `> b 0`, verificando si `b` es positivo. Es como chequear la segunda presión.",
+        "Esta línea define `pos-c` como `> c 0`, verificando si `c` es positivo. Es como confirmar la tercera presión.",
+        "Esta línea define `asc-ab` como `(< a b)`, verificando si `a` es menor que `b`. Es como anotar si la primera presión es menor que la segunda.",
+        "Esta línea define `asc-bc` como `(< b c)`, verificando si `b` es menor que `c`. Es como confirmar el orden ascendente.",
+        "Aquí combinamos todas las condiciones con `and`, retornando `true` si todas son ciertas. Es como revisar la libreta para confirmar positividad y orden.",
+        "Esta línea cierra la definición de la función con un paréntesis, como el punto final de la receta.",
+        "Esta línea aplica la función con 2, 3, 4, verificando `2 > 0`, `3 > 0`, `4 > 0`, `2 < 3`, `3 < 4`, dando `true`. Es como probar la receta."
       ],
       "explanations_ocaml": [
-        "Define una función `all_positive` con tres parámetros para verificar si todos son positivos, usando `let nombre params = cuerpo`. Es una abstracción funcional, como validar tres cantidades.",
-        "Evalúa `a > 0 && b > 0 && c > 0` con operadores infijos, retornando true si todas son ciertas. Es una expresión pura, como comprobar si tres valores son válidos.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `all_positive` con 2, 3, 4, dando true, demostrando la función."
+        "Esta línea crea una función `positive_and_ascending` que toma `a`, `b`, `c`, como presiones. En OCaml, `let nombre params = cuerpo` es como una receta para verificar positividad y orden. La función está lista para tres números.",
+        "Aquí definimos `pos_a` como `a > 0`, verificando si `a` es positivo. Es como anotar si la primera presión es válida. El `in` indica que usaremos este valor.",
+        "Esta línea define `pos_b` como `b > 0`, verificando la segunda presión.",
+        "Esta línea define `pos_c` como `c > 0`, verificando la tercera presión.",
+        "Esta línea define `asc_ab` como `a < b`, verificando el orden entre la primera y segunda presión.",
+        "Esta línea define `asc_bc` como `b < c`, verificando el orden entre la segunda y tercera presión.",
+        "Aquí combinamos todas las condiciones con `&&`, retornando `true` si todas son ciertas. Es como revisar todas las anotaciones.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta.",
+        "Esta línea aplica la función con 2, 3, 4, verificando todas las condiciones, dando `true`. Es como confirmar la validez y orden de las presiones."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para verificar si tres valores son positivos, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas evalúan tres comparaciones con un operador lógico, retornando un booleano puro. Diferencias: Racket usa `and` y `>` en notación prefija, OCaml usa `&&` y `>` infijos, más concisos.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con 2, 3, 4, dando verdadero. Diferencias: Racket usa `(all-positive? 2 3 4)`, OCaml usa `all_positive 2 3 4`, más simple."
+        "Similitudes: Ambas crean una función que verifica positividad y orden ascendente, con el mismo propósito y resultado (`true`). Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis y `positive-and-ascending?` (con ? para booleano), mientras que OCaml usa `let nombre params = cuerpo` y `positive_and_ascending`.",
+        "Similitudes: Ambas verifican si `a` es positivo. Diferencias: Racket usa `(let ((pos-a (> a 0)))` con paréntesis, OCaml usa `let pos_a = a > 0 in` con notación infija y `in`.",
+        "Similitudes: Ambas verifican si `b` es positivo. Diferencias: Racket incluye `pos-b` en el mismo `let`, OCaml usa una línea separada `let pos_b = b > 0 in`.",
+        "Similitudes: Ambas verifican si `c` es positivo. Diferencias: Racket usa el mismo `let`, OCaml usa `let pos_c = c > 0 in`.",
+        "Similitudes: Ambas verifican si `a < b`. Diferencias: Racket usa `(< a b)`, OCaml usa `a < b` con `in`.",
+        "Similitudes: Ambas verifican si `b < c`. Diferencias: Racket usa `(< b c)`, OCaml usa `b < c` con `in`.",
+        "Similitudes: Ambas combinan condiciones con un operador lógico (`and` en Racket, `&&` en OCaml). Diferencias: Racket usa `(and ...)` con paréntesis, OCaml usa `&&` con notación infija.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas aplican la función con 2, 3, 4, dando `true`. Diferencias: Racket usa `(positive-and-ascending? 2 3 4)` con paréntesis, OCaml usa `positive_and_ascending 2 3 4`."
       ]
     },
     "ejercicio-7": {
-      "title": "Volumen de una caja",
+      "title": "Calcular el Volumen Útil de una Caja con Márgenes",
       "racket": {
         "lines": [
-          "(define (cuboid-volume l w h)",
-          "  (* l w h)",
+          "(define (useful-cuboid-volume l w h margin)",
+          "  (let ((adj-l (- l (* 2 margin)))",
+          "        (adj-w (- w (* 2 margin)))",
+          "        (adj-h (- h (* 2 margin)))",
+          "        (lw (* adj-l adj-w))",
+          "        (volume (* lw adj-h)))",
+          "    volume)",
           ")",
-          "(cuboid-volume 3 2 4)"
+          "(useful-cuboid-volume 3 2 4 0.1)"
         ]
       },
       "ocaml": {
         "lines": [
-          "let cuboid_volume l w h =",
-          "  l *. w *. h",
+          "let useful_cuboid_volume l w h margin =",
+          "  let adj_l = l -. (2.0 *. margin) in",
+          "  let adj_w = w -. (2.0 *. margin) in",
+          "  let adj_h = h -. (2.0 *. margin) in",
+          "  let lw = adj_l *. adj_w in",
+          "  let volume = lw *. adj_h in",
+          "  volume",
           "in",
-          "cuboid_volume 3.0 2.0 4.0"
+          "useful_cuboid_volume 3.0 2.0 4.0 0.1"
         ]
       },
       "explanations_racket": [
-        "Define una función `cuboid-volume` con tres parámetros (`l`, `w`, `h`) para calcular el volumen de una caja. La sintaxis `(define (nombre params) cuerpo)` es funcional, como medir el espacio en una caja de almacenamiento.",
-        "Calcula el volumen con `l * w * h` usando notación prefija `(* l w h)`, una expresión pura para obtener el volumen, como calcular cuánto cabe en una caja.",
-        "Cierra la definición de la función, necesaria para Racket.",
-        "Llama a `cuboid-volume` con 3, 2, 4, dando 24, mostrando la función."
+        "Esta línea crea una función `useful-cuboid-volume` que toma cuatro parámetros, `l`, `w`, `h`, `margin`, como dimensiones de una caja (3, 2, 4 metros) y un margen (0.1 metros). Imagina que eres una empresa calculando el volumen útil de una caja, descontando márgenes en cada lado. En Racket, `(define (nombre params) cuerpo)` es como una receta compleja.",
+        "Aquí comenzamos un bloque `let` y definimos `adj-l` como `(- l (* 2 margin))`, restando el doble del margen al largo. Es como anotar el largo útil después de descontar espacio en ambos lados.",
+        "Esta línea define `adj-w` como `(- w (* 2 margin))`, ajustando el ancho. Es como calcular el ancho útil.",
+        "Esta línea define `adj-h` como `(- h (* 2 margin))`, ajustando la altura. Es como obtener la altura útil.",
+        "Esta línea define `lw` como `(* adj-l adj-w)`, multiplicando largo y ancho ajustados. Es como calcular el área útil de la base.",
+        "Esta línea define `volume` como `(* lw adj-h)`, multiplicando el área por la altura ajustada. Es como obtener el volumen útil final.",
+        "Aquí retornamos `volume`, el resultado final. Es como entregar el volumen útil de la caja.",
+        "Esta línea cierra la definición de la función con un paréntesis, como el punto final de la receta.",
+        "Esta línea aplica la función con 3, 2, 4, 0.1, dando `(3-2*0.1) * (2-2*0.1) * (4-2*0.1) = 2.8 * 1.8 * 3.8 = 19.008`. Es como probar la receta."
       ],
       "explanations_ocaml": [
-        "Define una función `cuboid_volume` con tres parámetros para calcular el volumen, usando `let nombre params = cuerpo`. Es una abstracción funcional, como medir una caja de envío.",
-        "Calcula `l * w * h` con operadores de flotantes `*.`, usando notación infija `l *. w *. h`. Es una expresión pura, requiriendo flotantes explícitos en OCaml.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `cuboid_volume` con 3.0, 2.0, 4.0, dando 24.0, demostrando la función."
+        "Esta línea crea una función `useful_cuboid_volume` que toma `l`, `w`, `h`, `margin`, como dimensiones y un margen. En OCaml, `let nombre params = cuerpo` es como una receta para calcular el volumen útil. La función está lista para cuatro números.",
+        "Aquí definimos `adj_l` como `l -. (2.0 *. margin)`, restando el doble del margen al largo. Es como anotar el largo útil. El `-.` y `*.` son para decimales.",
+        "Esta línea define `adj_w` como `w -. (2.0 *. margin)`, ajustando el ancho útil.",
+        "Esta línea define `adj_h` como `h -. (2.0 *. margin)`, ajustando la altura útil.",
+        "Esta línea define `lw` como `adj_l *. adj_w`, calculando el área útil de la base.",
+        "Esta línea define `volume` como `lw *. adj_h`, calculando el volumen útil final.",
+        "Aquí retornamos `volume`, el resultado final.",
+        "Esta línea usa `in` para conectar la función con su uso, como preparar la receta.",
+        "Esta línea aplica la función con 3.0, 2.0, 4.0, 0.1, dando `2.8 * 1.8 * 3.8 = 19.008`. Es como confirmar el volumen útil."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para calcular el volumen de una caja, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml requiere flotantes.",
-        "Similitudes: Ambas calculan el volumen con multiplicación, manteniendo pureza. Diferencias: Racket usa `*` en notación prefija, OCaml usa `*.` infijo, requiriendo flotantes y más explícito en tipado.",
-        "Similitudes: Ambas son estructurales, sin lógica. Diferencias: Racket cierra con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con 3, 2, 4, dando 24. Diferencias: Racket usa `(cuboid-volume 3 2 4)`, OCaml usa `cuboid_volume 3.0 2.0 4.0`, con flotantes explícitos."
+        "Similitudes: Ambas crean una función que calcula el volumen útil de una caja con cuatro parámetros, con el mismo propósito y resultado (19.008). Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, mientras que OCaml usa `let nombre params = cuerpo`, más corto. OCaml requiere decimales, Racket acepta enteros.",
+        "Similitudes: Ambas ajustan el largo restando el doble del margen. Diferencias: Racket usa `(- l (* 2 margin))` con paréntesis, OCaml usa `l -. (2.0 *. margin)` con notación infija y operadores `-.`, `*.`.",
+        "Similitudes: Ambas ajustan el ancho. Diferencias: Racket incluye `adj-w` en el mismo `let`, OCaml usa `let adj_w = ... in`.",
+        "Similitudes: Ambas ajustan la altura. Diferencias: Racket usa el mismo `let`, OCaml usa una línea separada.",
+        "Similitudes: Ambas calculan el área de la base. Diferencias: Racket usa `(* adj-l adj-w)`, OCaml usa `adj_l *. adj_w` con `*.`.",
+        "Similitudes: Ambas calculan el volumen final. Diferencias: Racket usa `(* lw adj-h)`, OCaml usa `lw *. adj_h`.",
+        "Similitudes: Ambas retornan el volumen. Diferencias: Racket usa `volume` en el `let`, OCaml lo retorna directamente.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas aplican la función con 3, 2, 4, 0.1, dando 19.008. Diferencias: Racket usa `(useful-cuboid-volume 3 2 4 0.1)` con paréntesis, OCaml usa `useful_cuboid_volume 3.0 2.0 4.0 0.1`."
       ]
     }
   },
@@ -1883,16 +2051,18 @@
   },
   "listas": {
     "ejercicio-1": {
-      "title": "Contar elementos de una lista",
+      "title": "Contar Elementos en una Lista de Tareas",
       "racket": {
         "lines": [
           "(define (length lst)",
           "  (if (empty? lst)",
           "      0",
           "      (+ 1 (length (rest lst))))",
+          "  )",
           ")",
           "(length '(1 2 3 4))"
-        ]
+        ],
+        "recursion": [6, 0, 1, 3, 0, 1, 3, 0, 1, 3, 0, 1, 2]
       },
       "ocaml": {
         "lines": [
@@ -1903,299 +2073,549 @@
           "    1 + length (List.tl lst)",
           "in",
           "length [1; 2; 3; 4]"
-        ]
+        ],
+        "recursion": [6, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2]
       },
       "explanations_racket": [
-        "Define una función recursiva `length` que calcula la cantidad de elementos en una lista `lst`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como contar cuántas tareas hay en una agenda.",
-        "Inicia un condicional `if` con `(empty? lst)`, verificando si la lista está vacía, una expresión pura para el caso base en el paradigma funcional.",
-        "Si la lista está vacía, retorna 0, como una agenda sin tareas.",
-        "Si la lista no está vacía, suma 1 a la longitud del resto de la lista (`rest lst`), usando recursión pura, como contar una tarea y seguir con las demás.",
-        "Cierra la definición de la función, necesaria para la sintaxis de Racket.",
-        "Llama a `length` con `'(1 2 3 4)`, dando 4, mostrando cómo la recursión cuenta los elementos."
+        "Define una función `length` que toma una lista `lst`, como las tareas de una organizadora (1 2 3 4). En Racket, `(define (nombre params) cuerpo)` es como escribir una receta para contar cuántas tareas hay.",
+        "Inicia un condicional `if` que verifica si la lista está vacía con `(empty? lst)`. Es como preguntar si la organizadora tiene tareas pendientes.",
+        "Si la lista está vacía, retorna 0, indicando que no hay tareas. Es el caso base para detener la cuenta.",
+        "Si la lista no está vacía, suma 1 al conteo de la lista sin su primer elemento con `(length (rest lst))`. Es como contar una tarea y pasar a las restantes.",
+        "Cierra el bloque `if`, necesario para la sintaxis de Racket, como cerrar un paso en la receta.",
+        "Cierra la definición de la función con un paréntesis, como el punto final de la receta.",
+        "Llama a `length` con la lista `(1 2 3 4)`, contando 4 elementos, como confirmar cuántas tareas tiene la organizadora."
       ],
       "explanations_ocaml": [
-        "Define una función recursiva `length` para contar los elementos de una lista, usando `let rec nombre params = cuerpo`. El `rec` habilita recursión, ideal para listas inmutables, como contar los ítems en un inventario.",
-        "Inicia un condicional `if` con `lst = []`, verificando si la lista está vacía, una expresión pura para el caso base.",
-        "Si la lista es vacía (`[]`), retorna 0, como un inventario sin ítems.",
-        "Introduce la rama `else`, necesaria en OCaml, para manejar la recursión en listas no vacías.",
-        "Suma 1 a la longitud de la cola (`List.tl lst`), usando recursión pura, como contar un ítem y continuar con los demás.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `length` con `[1; 2; 3; 4]`, dando 4, demostrando la recursión."
+        "Define una función recursiva `length` que toma una lista `lst`. En OCaml, `let rec nombre params = cuerpo` indica recursión, como una receta para contar tareas de una organizadora.",
+        "Inicia un condicional `if` con `lst = []` para verificar si la lista está vacía. Es como preguntar si no hay tareas.",
+        "Si la lista está vacía, retorna 0, el caso base, indicando cero tareas.",
+        "Introduce la rama `else`, necesaria en OCaml para el caso no vacío, preparando el conteo.",
+        "Suma 1 al conteo de la lista sin su primer elemento con `length (List.tl lst)`, como contar una tarea y continuar con las demás.",
+        "Usa `in` para conectar la definición con la llamada, una regla estructural de OCaml.",
+        "Llama a `length` con `[1; 2; 3; 4]`, contando 4 elementos, como confirmar el total de tareas."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función recursiva para contar elementos en una lista, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`, con `rec` explícito. OCaml infiere que `lst` es una lista, Racket es dinámico.",
-        "Similitudes: Ambas verifican si la lista está vacía con pureza funcional. Diferencias: Racket usa `(empty? lst)` en notación prefija, OCaml usa `lst = []` infija, más matemática.",
-        "Similitudes: Ambas retornan 0 para la lista vacía. Diferencias: Racket integra el caso base en el `if`, OCaml usa `then` explícitamente.",
-        "Similitudes: Ambas suman 1 en la recursión. Diferencias: Racket usa `(rest lst)` para la cola, OCaml usa `List.tl lst`, que es más explícito al requerir el módulo `List`.",
-        "Similitudes: Ambas son estructurales, sin lógica propia. Diferencias: Racket cierra la definición con `)`, OCaml usa `in`, aumentando el conteo de líneas en OCaml.",
-        "Similitudes: Ambas llaman la función con una lista de 4 elementos, dando 4. Diferencias: Racket usa `'(1 2 3 4)` con comillas, OCaml usa `[1; 2; 3; 4]` con punto y coma, reflejando sintaxis de listas distintas."
+        "Similitudes: Ambas definen una función para contar elementos en una lista, con recursión pura y resultado 4. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo` con `rec` explícito. OCaml usa `;` para listas, Racket usa espacios.",
+        "Similitudes: Ambas verifican si la lista está vacía. Diferencias: Racket usa `(empty? lst)` con notación prefija, OCaml usa `lst = []` con notación infija, más intuitiva.",
+        "Similitudes: Ambas retornan 0 como caso base. Diferencias: Racket lo hace directamente en el `if`, OCaml usa `then` explícitamente.",
+        "Similitudes: Ambas suman 1 al conteo recursivo. Diferencias: Racket usa `(+ 1 (length (rest lst)))` con paréntesis, OCaml usa `1 + length (List.tl lst)` con notación infija y `else`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `if` con `)`, OCaml usa `in` para la evaluación.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas llaman la función con una lista de 4 elementos, dando 4. Diferencias: Racket usa `(length '(1 2 3 4))` con comillas, OCaml usa `length [1; 2; 3; 4]` con corchetes y `;`."
       ]
     },
     "ejercicio-2": {
-      "title": "Obtener el primer elemento",
+      "title": "Obtener los Dos Primeros Elementos de una Lista de Tareas",
       "racket": {
         "lines": [
-          "(define (first-element lst)",
-          "  (if (empty? lst)",
-          "      null",
-          "      (first lst))",
+          "(define (first-two-elements lst)",
+          "  (let ((len (length lst)))",
+          "    (if (< len 1)",
+          "        null",
+          "        (let ((first-el (first lst))",
+          "              (rest-lst (rest lst)))",
+          "          (if (empty? rest-lst)",
+          "              (list first-el)",
+          "              (list first-el (first rest-lst)))))",
+          "  )",
           ")",
-          "(first-element '(5 6 7))"
+          "(first-two-elements '(5 6 7 8 9))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let first_element lst =",
-          "  if lst = [] then",
-          "    None",
+          "let rec first_two_elements lst =",
+          "  let len = List.length lst in",
+          "  if len < 1 then",
+          "    []",
           "  else",
-          "    Some (List.hd lst)",
+          "    let first_el = List.hd lst in",
+          "    let rest_lst = List.tl lst in",
+          "    if rest_lst = [] then",
+          "      [first_el]",
+          "    else",
+          "      [first_el; List.hd rest_lst]",
           "in",
-          "first_element [5; 6; 7]"
+          "first_two_elements [5; 6; 7; 8; 9]"
         ]
       },
       "explanations_racket": [
-        "Define una función `first-element` para obtener el primer elemento de una lista `lst`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como identificar la primera tarea en una lista de pendientes.",
-        "Inicia un condicional `if` con `(empty? lst)`, verificando si la lista está vacía, una expresión pura para el caso base.",
-        "Si la lista está vacía, retorna `null`, indicando que no hay primer elemento, como una lista de tareas vacía.",
-        "Si la lista no está vacía, retorna el primer elemento con `(first lst)`, como tomar la primera tarea de la lista.",
-        "Cierra la definición de la función, necesaria para la sintaxis de Racket.",
-        "Llama a `first-element` con `'(5 6 7)`, dando 5, mostrando el acceso directo al primer elemento."
+        "Define una función `first-two-elements` que toma una lista `lst`, como tareas de un gerente (5 6 7 8 9). En Racket, `(define (nombre params) cuerpo)` es como una receta para priorizar las dos primeras tareas.",
+        "Usa `let` para calcular la longitud de la lista con `(length lst)`, como contar cuántas tareas hay antes de priorizar.",
+        "Inicia un condicional `if` para verificar si la lista tiene menos de 1 elemento con `(< len 1)`, como asegurarse de que hay tareas.",
+        "Si la lista está vacía, retorna `null`, indicando que no hay tareas para priorizar.",
+        "Define `first-el` como `(first lst)`, tomando la primera tarea, como anotar la tarea inicial.",
+        "Define `rest-lst` como `(rest lst)`, obteniendo la lista sin el primer elemento, como pasar a las tareas restantes.",
+        "Verifica si `rest-lst` está vacía con `(empty? rest-lst)`, como preguntar si hay más tareas.",
+        "Si `rest-lst` está vacía, retorna una lista con solo `first-el`, como priorizar solo la primera tarea si no hay más.",
+        "Si `rest-lst` no está vacía, retorna una lista con `first-el` y el primer elemento de `rest-lst`, como priorizar las dos primeras tareas.",
+        "Cierra el bloque `let` y el `if`, necesario para la sintaxis de Racket.",
+        "Cierra la definición de la función con un paréntesis, como el punto final de la receta.",
+        "Llama a `first-two-elements` con `(5 6 7 8 9)`, retornando `(5 6)`, como seleccionar las dos primeras tareas."
       ],
       "explanations_ocaml": [
-        "Define una función `first_element` para obtener el primer elemento, usando `let nombre params = cuerpo`. Es funcional, como seleccionar el primer artículo en un inventario.",
-        "Inicia un condicional `if` con `lst = []`, verificando si la lista está vacía, una expresión pura para el caso base.",
-        "Si la lista es vacía (`[]`), retorna `None`, usando el tipo `option` para indicar que no hay elemento, como un inventario vacío.",
-        "Introduce la rama `else`, necesaria en OCaml, para manejar listas no vacías.",
-        "Retorna `Some (List.hd lst)`, envolviendo el primer elemento en el constructor `Some`, como confirmar que hay un artículo disponible.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `first_element` con `[5; 6; 7]`, dando `Some 5`, mostrando el acceso al primer elemento."
+        "Define una función `first_two_elements` que toma una lista `lst`. En OCaml, `let rec nombre params = cuerpo` permite recursión, aunque aquí no se usa, como una receta para priorizar tareas.",
+        "Usa `let` para calcular la longitud con `List.length lst`, como contar las tareas del gerente.",
+        "Inicia un condicional `if` con `len < 1` para verificar si la lista está vacía, como confirmar si hay tareas.",
+        "Si la lista está vacía, retorna `[]`, indicando que no hay tareas.",
+        "Introduce la rama `else`, necesaria en OCaml para el caso no vacío.",
+        "Define `first_el` como `List.hd lst`, tomando la primera tarea.",
+        "Define `rest_lst` como `List.tl lst`, obteniendo las tareas restantes.",
+        "Verifica si `rest_lst` está vacía con `rest_lst = []`, como preguntar si hay más tareas.",
+        "Si `rest_lst` está vacía, retorna `[first_el]`, como priorizar solo la primera tarea.",
+        "Introduce `else` para el caso donde hay más tareas.",
+        "Retorna una lista con `first_el` y el primer elemento de `rest_lst`, como priorizar las dos primeras tareas.",
+        "Usa `in` para conectar la definición con la llamada, una regla de OCaml.",
+        "Llama a `first_two_elements` con `[5; 6; 7; 8; 9]`, retornando `[5; 6]`."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para obtener el primer elemento de una lista, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)` y no es recursiva, OCaml usa `let nombre params = cuerpo` sin `rec`. OCaml usa el tipo `option`, Racket es dinámico.",
-        "Similitudes: Ambas verifican si la lista está vacía con pureza. Diferencias: Racket usa `(empty? lst)` prefija, OCaml usa `lst = []` infija.",
-        "Similitudes: Ambas manejan el caso de la lista vacía. Diferencias: Racket retorna `null`, OCaml retorna `None`, reflejando el manejo de tipos en OCaml.",
-        "Similitudes: Ambas retornan el primer elemento si la lista no está vacía. Diferencias: Racket usa `(first lst)`, OCaml usa `Some (List.hd lst)`, con `Some` para tipado seguro.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`, aumentando el conteo de líneas en OCaml.",
-        "Similitudes: Ambas llaman la función con una lista de 3 elementos, retornando el primer elemento. Diferencias: Racket usa `'(5 6 7)` y retorna 5, OCaml usa `[5; 6; 7]` y retorna `Some 5`, debido al tipo `option`."
+        "Similitudes: Ambas extraen los dos primeros elementos de una lista, con el mismo propósito y resultado `(5 6)`. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`, aunque aquí no hay recursión. OCaml usa `;` para listas, Racket usa espacios.",
+        "Similitudes: Ambas calculan la longitud de la lista. Diferencias: Racket usa `(length lst)` con paréntesis, OCaml usa `List.length lst` con notación infija.",
+        "Similitudes: Ambas verifican si la lista está vacía. Diferencias: Racket usa `(< len 1)` con notación prefija, OCaml usa `len < 1` con notación infija.",
+        "Similitudes: Ambas retornan una lista vacía si no hay elementos. Diferencias: Racket usa `null`, OCaml usa `[]`.",
+        "Similitudes: Ambas manejan el caso no vacío. Diferencias: Racket incluye esta lógica en el `let`, OCaml usa `else` explícitamente.",
+        "Similitudes: Ambas extraen el primer elemento. Diferencias: Racket usa `(first lst)`, OCaml usa `List.hd lst`.",
+        "Similitudes: Ambas obtienen el resto de la lista. Diferencias: Racket usa `(rest lst)`, OCaml usa `List.tl lst`.",
+        "Similitudes: Ambas verifican si el resto está vacío. Diferencias: Racket usa `(empty? rest-lst)`, OCaml usa `rest_lst = []`.",
+        "Similitudes: Ambas retornan una lista con el primer elemento si el resto está vacío. Diferencias: Racket usa `(list first-el)`, OCaml usa `[first_el]`.",
+        "Similitudes: Ambas manejan el caso con más elementos. Diferencias: Racket usa `(list first-el (first rest-lst))`, OCaml usa `[first_el; List.hd rest_lst]` con `;`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `let` con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas llaman la función con una lista de 5 elementos, dando `(5 6)`. Diferencias: Racket usa `(first-two-elements '(5 6 7 8 9))`, OCaml usa `first_two_elements [5; 6; 7; 8; 9]`."
       ]
     },
     "ejercicio-3": {
-      "title": "Obtener el último elemento",
+      "title": "Obtener el Último Elemento de una Cola",
       "racket": {
         "lines": [
           "(define (last-element lst)",
-          "  (if (empty? (rest lst))",
-          "      (first lst)",
-          "      (last-element (rest lst)))",
+          "  (let ((len (length lst)))",
+          "    (if (< len 1)",
+          "        null",
+          "        (let ((rest-lst (rest lst))",
+          "              (len-rest (length rest-lst)))",
+          "          (if (= len-rest 0)",
+          "              (first lst)",
+          "              (last-element rest-lst)))))",
+          "  )",
           ")",
-          "(last-element '(1 2 3))"
-        ]
+          "(last-element '(1 2 3 4 5))"
+        ],
+        "recursion": [11, 0, 1, 2, 4, 5, 6, 8, 0, 1, 2, 4, 5, 6, 8, 0, 1, 2, 4, 5, 6, 8, 0, 1, 2, 4, 5, 6, 7]
       },
       "ocaml": {
         "lines": [
           "let rec last_element lst =",
-          "  if List.tl lst = [] then",
-          "    List.hd lst",
+          "  let len = List.length lst in",
+          "  if len < 1 then",
+          "    None",
           "  else",
-          "    last_element (List.tl lst)",
+          "    let rest_lst = List.tl lst in",
+          "    let len_rest = List.length rest_lst in",
+          "    if len_rest = 0 then",
+          "      Some (List.hd lst)",
+          "    else",
+          "      last_element rest_lst",
           "in",
-          "last_element [1; 2; 3]"
-        ]
+          "last_element [1; 2; 3; 4; 5]"
+        ],
+        "recursion": [12, 0, 1, 2, 4, 5, 6, 7, 10, 0, 1, 2, 4, 5, 6, 7, 10, 0, 1, 2, 4, 5, 6, 7, 10, 0, 1, 2, 4, 5, 6, 7, 8]
       },
       "explanations_racket": [
-        "Define una función recursiva `last-element` para obtener el último elemento de una lista. La sintaxis `(define (nombre params) cuerpo)` es funcional, como encontrar al último cliente en una cola.",
-        "Inicia un condicional `if` con `(empty? (rest lst))`, verificando si la lista tiene un solo elemento (su resto es vacío), una expresión pura para el caso base.",
-        "Si la lista tiene un solo elemento, retorna `(first lst)`, el último elemento, como el único cliente en la cola.",
-        "Si la lista tiene más elementos, llama a `last-element` con el resto (`rest lst`), usando recursión pura, como avanzar al siguiente cliente en la cola.",
-        "Cierra la definición de la función, necesaria para la sintaxis de Racket.",
-        "Llama a `last-element` con `'(1 2 3)`, dando 3, mostrando la recursión."
+        "Define una función `last-element` que toma una lista `lst`, como clientes en una cola (1 2 3 4 5). En Racket, `(define (nombre params) cuerpo)` es como una receta para encontrar al último cliente.",
+        "Usa `let` para calcular la longitud de la lista con `(length lst)`, como contar cuántos clientes hay.",
+        "Verifica si la lista está vacía con `(< len 1)`, como preguntar si no hay clientes.",
+        "Si la lista está vacía, retorna `null`, indicando que no hay último cliente.",
+        "Define `rest-lst` como `(rest lst)`, obteniendo la lista sin el primer cliente.",
+        "Define `len-rest` como `(length rest-lst)`, contando los clientes restantes.",
+        "Verifica si `rest-lst` tiene longitud 0 con `(= len-rest 0)`, como preguntar si solo queda un cliente.",
+        "Si `rest-lst` está vacía, retorna `(first lst)`, el último cliente.",
+        "Si `rest-lst` no está vacía, llama recursivamente a `last-element` con `rest-lst`, como avanzar en la cola.",
+        "Cierra el bloque `let` y el `if`, necesario para la sintaxis de Racket.",
+        "Cierra la definición de la función con un paréntesis.",
+        "Llama a `last-element` con `(1 2 3 4 5)`, retornando `5`, el último cliente."
       ],
       "explanations_ocaml": [
-        "Define una función recursiva `last_element` para obtener el último elemento, usando `let rec nombre params = cuerpo`. Es funcional, como identificar la última tarea en una lista.",
-        "Inicia un condicional `if` con `List.tl lst = []`, verificando si la lista tiene un solo elemento, una expresión pura para el caso base.",
-        "Si la lista tiene un solo elemento, retorna `List.hd lst`, el último elemento, como la última tarea.",
-        "Introduce la rama `else`, necesaria en OCaml, para manejar la recursión en listas con más elementos.",
-        "Llama a `last_element` con la cola (`List.tl lst`), usando recursión pura, como pasar a la siguiente tarea.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `last_element` con `[1; 2; 3]`, dando 3, demostrando la recursión."
+        "Define una función recursiva `last_element` que toma una lista `lst`. En OCaml, `let rec nombre params = cuerpo` habilita recursión, como una receta para encontrar al último cliente.",
+        "Usa `let` para calcular la longitud con `List.length lst`, como contar clientes.",
+        "Verifica si la lista está vacía con `len < 1`, como preguntar si no hay clientes.",
+        "Si la lista está vacía, retorna `None`, indicando que no hay último cliente.",
+        "Introduce la rama `else`, necesaria en OCaml para el caso no vacío.",
+        "Define `rest_lst` como `List.tl lst`, obteniendo los clientes restantes.",
+        "Define `len_rest` como `List.length rest_lst`, contando los clientes restantes.",
+        "Verifica si `rest_lst` tiene longitud 0 con `len_rest = 0`.",
+        "Si `rest_lst` está vacía, retorna `Some (List.hd lst)`, el último cliente.",
+        "Introduce `else` para el caso recursivo.",
+        "Llama recursivamente a `last_element` con `rest_lst`, como avanzar en la cola.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `last_element` con `[1; 2; 3; 4; 5]`, retornando `Some 5`."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función recursiva para obtener el último elemento, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`. OCaml infiere tipos, Racket asume listas no vacías.",
-        "Similitudes: Ambas verifican si la lista tiene un solo elemento con pureza. Diferencias: Racket usa `(empty? (rest lst))` prefija, OCaml usa `List.tl lst = []` infija, más explícita con el módulo `List`.",
-        "Similitudes: Ambas retornan el primer elemento como caso base. Diferencias: Racket usa `(first lst)`, OCaml usa `List.hd lst`, requiriendo el módulo `List`.",
-        "Similitudes: Ambas manejan la recursión con la cola. Diferencias: Racket usa `(rest lst)`, OCaml usa `List.tl lst`, pero OCaml requiere `else` explícito, aumentando líneas.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con una lista de 3 elementos, dando 3. Diferencias: Racket usa `'(1 2 3)`, OCaml usa `[1; 2; 3]` con punto y coma."
+        "Similitudes: Ambas encuentran el último elemento de una lista con recursión, dando `5`. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`. OCaml retorna `Some 5`, Racket retorna `5` directamente.",
+        "Similitudes: Ambas calculan la longitud de la lista. Diferencias: Racket usa `(length lst)`, OCaml usa `List.length lst`.",
+        "Similitudes: Ambas verifican si la lista está vacía. Diferencias: Racket usa `(< len 1)`, OCaml usa `len < 1`.",
+        "Similitudes: Ambas retornan un valor nulo si la lista está vacía. Diferencias: Racket usa `null`, OCaml usa `None`.",
+        "Similitudes: Ambas manejan el caso no vacío. Diferencias: Racket lo hace en el `let`, OCaml usa `else`.",
+        "Similitudes: Ambas obtienen el resto de la lista. Diferencias: Racket usa `(rest lst)`, OCaml usa `List.tl lst`.",
+        "Similitudes: Ambas calculan la longitud del resto. Diferencias: Racket usa `(length rest-lst)`, OCaml usa `List.length rest_lst`.",
+        "Similitudes: Ambas verifican si el resto está vacío. Diferencias: Racket usa `(= len-rest 0)`, OCaml usa `len_rest = 0`.",
+        "Similitudes: Ambas retornan el primer elemento si el resto está vacío. Diferencias: Racket usa `(first lst)`, OCaml usa `Some (List.hd lst)`.",
+        "Similitudes: Ambas manejan el caso recursivo. Diferencias: Racket usa `(last-element rest-lst)`, OCaml usa `last_element rest_lst` con `else`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `let` con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la función con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas llaman la función con una lista de 5 elementos, dando `5`. Diferencias: Racket usa `(last-element '(1 2 3 4 5))`, OCaml usa `last_element [1; 2; 3; 4; 5]`."
       ]
     },
     "ejercicio-4": {
-      "title": "Concatenar dos listas",
+      "title": "Concatenar Tres Listas de un Mercado",
       "racket": {
         "lines": [
-          "(define (append lst1 lst2)",
-          "  (if (empty? lst1)",
-          "      lst2",
-          "      (cons (first lst1)",
-          "            (append (rest lst1) lst2))",
+          "(define (append-three lst1 lst2 lst3)",
+          "  (let ((len1 (length lst1))",
+          "        (append12 (if (empty? lst1)",
+          "                      lst2",
+          "                      (cons (first lst1)",
+          "                            (append-three (rest lst1) lst2 lst3)))))",
+          "    (if (empty? append12)",
+          "        lst3",
+          "        (let ((first-12 (first append12))",
+          "              (rest-12 (rest append12)))",
+          "          (cons first-12 (append-three rest-12 lst3 '())))))",
           "  )",
           ")",
-          "(append '(1 2) '(3 4))"
-        ]
+          "(append-three '(1 2) '(3 4) '(5 6))"
+        ],
+        "recursion": [13, 0, 1, 2, 4, 5, 0, 2, 4, 5, 0, 2, 3, 6, 8, 10, 6, 8, 10, 6, 7]
       },
       "ocaml": {
         "lines": [
-          "let rec append lst1 lst2 =",
-          "  if lst1 = [] then",
-          "    lst2",
+          "let rec append_three lst1 lst2 lst3 =",
+          "  let len1 = List.length lst1 in",
+          "  let append12 = if lst1 = [] then",
+          "                   lst2",
+          "                 else",
+          "                   List.hd lst1 :: append_three (List.tl lst1) lst2 lst3 in",
+          "  if append12 = [] then",
+          "    lst3",
           "  else",
-          "    List.hd lst1 :: append (List.tl lst1) lst2",
+          "    let first_12 = List.hd append12 in",
+          "    let rest_12 = List.tl append12 in",
+          "    first_12 :: append_three rest_12 lst3 []",
           "in",
-          "append [1; 2] [3; 4]"
-        ]
+          "append_three [1; 2] [3; 4] [5; 6]"
+        ],
+        "recursion": [13, 0, 1, 2, 4, 5, 0, 2, 4, 5, 0, 2, 3, 6, 8, 9, 10, 11, 6, 8, 9, 10, 11, 6, 7]
       },
       "explanations_racket": [
-        "Define una función recursiva `append` para concatenar dos listas `lst1` y `lst2`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como unir dos listas de productos en un mercado.",
-        "Inicia un condicional `if` con `(empty? lst1)`, verificando si la primera lista está vacía, una expresión pura para el caso base.",
-        "Si `lst1` está vacía, retorna `lst2`, como devolver la segunda lista si la primera no tiene productos.",
-        "Si `lst1` no está vacía, construye una nueva lista con el primer elemento de `lst1` (`first lst1`) y la concatenación del resto (`append (rest lst1) lst2`), usando `cons` y recursión pura.",
-        "Completa la construcción de la lista recursiva, como añadir un producto y continuar uniendo.",
-        "Cierra el bloque `if`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, requerida por Racket.",
-        "Llama a `append` con `'(1 2)` y `'(3 4)`, dando `(1 2 3 4)`, mostrando la recursión."
+        "Define una función `append-three` que toma tres listas `lst1`, `lst2`, `lst3`, como frutas (1 2), verduras (3 4), y lácteos (5 6). Es como una receta para combinar productos en una lista.",
+        "Usa `let` para calcular la longitud de `lst1` con `(length lst1)`, como contar los productos de frutas.",
+        "Define `append12` con un `if` que verifica si `lst1` está vacía con `(empty? lst1)`.",
+        "Si `lst1` está vacía, usa `lst2`, como pasar a las verduras si no hay frutas.",
+        "Si `lst1` no está vacía, usa `cons` para añadir el primer elemento de `lst1` y llama recursivamente a `append-three` con el resto de `lst1`, como combinar una fruta con el resto.",
+        "Cierra el `if` de `append12`, necesario para la sintaxis.",
+        "Verifica si `append12` está vacía con `(empty? append12)`, como preguntar si frutas y verduras se agotaron.",
+        "Si `append12` está vacía, retorna `lst3`, como usar solo los lácteos.",
+        "Define `first-12` como `(first append12)`, tomando el primer elemento combinado.",
+        "Define `rest-12` como `(rest append12)`, obteniendo el resto combinado.",
+        "Usa `cons` para añadir `first-12` y llama recursivamente a `append-three` con `rest-12` y una lista vacía, como seguir combinando productos.",
+        "Cierra el bloque `let` y el `if`, necesario para Racket.",
+        "Cierra la definición de la función con un paréntesis.",
+        "Llama a `append-three` con `(1 2)`, `(3 4)`, `(5 6)`, dando `(1 2 3 4 5 6)`."
       ],
       "explanations_ocaml": [
-        "Define una función recursiva `append` para concatenar dos listas, usando `let rec nombre params = cuerpo`. Es funcional, como combinar dos listas de tareas.",
-        "Inicia un condicional `if` con `lst1 = []`, verificando si la primera lista está vacía, una expresión pura para el caso base.",
-        "Si `lst1` es vacía (`[]`), retorna `lst2`, como devolver la segunda lista de tareas.",
-        "Introduce la rama `else`, necesaria en OCaml, para manejar la recursión.",
-        "Construye una lista con el primer elemento de `lst1` (`List.hd lst1`) y la concatenación de la cola (`append (List.tl lst1) lst2`), usando `::` y recursión pura.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `append` con `[1; 2]` y `[3; 4]`, dando `[1; 2; 3; 4]`, demostrando la recursión."
+        "Define una función recursiva `append_three` que toma tres listas. En OCaml, `let rec nombre params = cuerpo` habilita recursión, como una receta para combinar productos.",
+        "Usa `let` para calcular la longitud de `lst1` con `List.length lst1`.",
+        "Define `append12` con un `if` que verifica si `lst1` está vacía con `lst1 = []`.",
+        "Si `lst1` está vacía, usa `lst2`, como pasar a las verduras.",
+        "Introduce `else` para el caso no vacío.",
+        "Añade el primer elemento de `lst1` con `::` y llama recursivamente a `append_three` con el resto de `lst1`.",
+        "Verifica si `append12` está vacía con `append12 = []`.",
+        "Si `append12` está vacía, retorna `lst3`.",
+        "Introduce `else` para el caso no vacío.",
+        "Define `first_12` como `List.hd append12`, tomando el primer elemento combinado.",
+        "Define `rest_12` como `List.tl append12`, obteniendo el resto.",
+        "Añade `first_12` con `::` y llama recursivamente a `append_three` con `rest_12` y una lista vacía.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `append_three` con `[1; 2]`, `[3; 4]`, `[5; 6]`, dando `[1; 2; 3; 4; 5; 6]`."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función recursiva para concatenar dos listas, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`. OCaml infiere tipos de lista, Racket es dinámico.",
-        "Similitudes: Ambas verifican si la primera lista está vacía con pureza. Diferencias: Racket usa `(empty? lst1)` prefija, OCaml usa `lst1 = []` infija.",
-        "Similitudes: Ambas retornan `lst2` para el caso base. Diferencias: Racket usa `lst2` directamente, OCaml usa `lst2` en el contexto de `if`.",
-        "Similitudes: Ambas construyen una nueva lista con la cabeza de `lst1`. Diferencias: Racket usa `(cons (first lst1) ...)` prefija, OCaml usa `List.hd lst1 :: ...` infija, más concisa.",
-        "Similitudes: Ambas completan la recursión con la cola de `lst1`. Diferencias: Racket usa `(rest lst1)`, OCaml usa `List.tl lst1`, requiriendo el módulo `List`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `if`, OCaml usa `in`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con dos listas, dando `(1 2 3 4)`. Diferencias: Racket usa `'(1 2)` y `'(3 4)`, OCaml usa `[1; 2]` y `[3; 4]` con punto y coma."
+        "Similitudes: Ambas concatenan tres listas, dando `(1 2 3 4 5 6)`. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`.",
+        "Similitudes: Ambas calculan la longitud de `lst1`. Diferencias: Racket usa `(length lst1)`, OCaml usa `List.length lst1`.",
+        "Similitudes: Ambas verifican si `lst1` está vacía. Diferencias: Racket usa `(empty? lst1)`, OCaml usa `lst1 = []`.",
+        "Similitudes: Ambas usan `lst2` si `lst1` está vacía. Diferencias: Racket usa `lst2` directamente, OCaml usa `lst2` en el `if`.",
+        "Similitudes: Ambas manejan el caso no vacío. Diferencias: Racket usa `(cons ...)` en el `if`, OCaml usa `::` con `else`.",
+        "Similitudes: Ambas combinan el primer elemento de `lst1` recursivamente. Diferencias: Racket usa `(cons (first lst1) ...`, OCaml usa `List.hd lst1 :: ...`.",
+        "Similitudes: Ambas verifican si `append12` está vacía. Diferencias: Racket usa `(empty? append12)`, OCaml usa `append12 = []`.",
+        "Similitudes: Ambas retornan `lst3` si `append12` está vacía. Diferencias: Racket usa `lst3` directamente, OCaml usa `lst3` en el `if`.",
+        "Similitudes: Ambas manejan el caso no vacío de `append12`. Diferencias: Racket usa `let`, OCaml usa `else`.",
+        "Similitudes: Ambas extraen el primer elemento de `append12`. Diferencias: Racket usa `(first append12)`, OCaml usa `List.hd append12`.",
+        "Similitudes: Ambas obtienen el resto de `append12`. Diferencias: Racket usa `(rest append12)`, OCaml usa `List.tl append12`.",
+        "Similitudes: Ambas combinan el primer elemento recursivamente. Diferencias: Racket usa `(cons first-12 ...)`, OCaml usa `first_12 :: ...`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `let` con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas llaman la función con tres listas, dando `(1 2 3 4 5 6)`. Diferencias: Racket usa `(append-three '(1 2) '(3 4) '(5 6))`, OCaml usa `append_three [1; 2] [3; 4] [5; 6]`."
       ]
     },
     "ejercicio-5": {
-      "title": "Obtener el resto de la lista",
+      "title": "Obtener Elementos Intermedios de una Lista de Tareas",
       "racket": {
         "lines": [
-          "(define (rest-list lst)",
-          "  (if (empty? lst)",
-          "      null",
-          "      (rest lst))",
+          "(define (middle-elements lst)",
+          "  (let ((len (length lst))",
+          "        (rest-lst (if (empty? lst) null (rest lst))))",
+          "    (if (< len 2)",
+          "        null",
+          "        (let ((len-rest (length rest-lst))",
+          "              (middle-rest (if (empty? rest-lst) null (rest rest-lst))))",
+          "          (if (<= len-rest 1)",
+          "              null",
+          "              (cons (first rest-lst) (middle-elements rest-lst)))))",
+          "  )",
           ")",
-          "(rest-list '(1 2 3))"
-        ]
+          "(middle-elements '(1 2 3 4 5 6))"
+        ],
+        "recursion": [12, 0, 1, 3, 5, 6, 7, 9, 0, 1, 3, 5, 6, 7, 9, 0, 1, 3, 5, 6, 7, 9, 0, 1, 3, 5, 6, 7, 8]
       },
       "ocaml": {
         "lines": [
-          "let rest_list lst =",
-          "  if lst = [] then",
+          "let rec middle_elements lst =",
+          "  let len = List.length lst in",
+          "  let rest_lst = if lst = [] then [] else List.tl lst in",
+          "  if len < 2 then",
           "    []",
           "  else",
-          "    List.tl lst",
+          "    let len_rest = List.length rest_lst in",
+          "    let middle_rest = if rest_lst = [] then [] else List.tl rest_lst in",
+          "    if len_rest <= 1 then",
+          "      []",
+          "    else",
+          "      List.hd rest_lst :: middle_elements rest_lst",
           "in",
-          "rest_list [1; 2; 3]"
-        ]
+          "middle_elements [1; 2; 3; 4; 5; 6]"
+        ],
+        "recursion": [13, 0, 1, 2, 3, 5, 6, 7, 8, 11, 0, 1, 2, 3, 5, 6, 7, 8, 11, 0, 1, 2, 3, 5, 6, 7, 8, 11, 0, 1, 2, 3, 5, 6, 7, 8, 9]
       },
       "explanations_racket": [
-        "Define una función `rest-list` para obtener el resto de una lista (sin el primer elemento). La sintaxis `(define (nombre params) cuerpo)` es funcional, como eliminar la primera tarea completada de una lista.",
-        "Inicia un condicional `if` con `(empty? lst)`, verificando si la lista está vacía, una expresión pura para el caso base.",
-        "Si la lista está vacía, retorna `null`, como una lista de tareas vacía.",
-        "Si la lista no está vacía, retorna el resto (`rest lst`), como eliminar la primera tarea y devolver las restantes.",
-        "Cierra la definición de la función, necesaria para la sintaxis de Racket.",
-        "Llama a `rest-list` con `'(1 2 3)`, dando `(2 3)`, mostrando la manipulación de la lista."
+        "Define una función `middle-elements` que toma una lista `lst`, como tareas de un estudiante (1 2 3 4 5 6). Es como una receta para obtener tareas intermedias, sin la primera ni la última.",
+        "Usa `let` para calcular la longitud de la lista con `(length lst)`, como contar todas las tareas.",
+        "Define `rest-lst` con un `if` que retorna `null` si la lista está vacía o `(rest lst)` si no, como obtener las tareas sin la primera.",
+        "Verifica si la lista tiene menos de 2 elementos con `(< len 2)`, como asegurar que hay suficientes tareas.",
+        "Si la lista tiene menos de 2 elementos, retorna `null`, indicando que no hay tareas intermedias.",
+        "Define `len-rest` como `(length rest-lst)`, contando las tareas restantes.",
+        "Define `middle-rest` como el resto de `rest-lst`, como eliminar la primera tarea restante.",
+        "Verifica si `rest-lst` tiene 1 o menos elementos con `(<= len-rest 1)`.",
+        "Si `rest-lst` tiene 1 o menos elementos, retorna `null`, indicando que no hay intermedios.",
+        "Si hay más elementos, usa `cons` para añadir el primer elemento de `rest-lst` y llama recursivamente a `middle-elements`, como construir la lista intermedia.",
+        "Cierra el bloque `let` y el `if`, necesario para Racket.",
+        "Cierra la definición de la función con un paréntesis.",
+        "Llama a `middle-elements` con `(1 2 3 4 5 6)`, dando `(2 3 4 5)`."
       ],
       "explanations_ocaml": [
-        "Define una función `rest_list` para obtener el resto de una lista, usando `let nombre params = cuerpo`. Es funcional, como quitar el primer artículo de un inventario.",
-        "Inicia un condicional `if` con `lst = []`, verificando si la lista está vacía, una expresión pura para el caso base.",
-        "Si la lista es vacía (`[]`), retorna `[]`, como un inventario vacío.",
-        "Introduce la rama `else`, necesaria en OCaml, para manejar listas no vacías.",
-        "Retorna la cola de la lista (`List.tl lst`), como devolver los artículos restantes.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `rest_list` con `[1; 2; 3]`, dando `[2; 3]`, mostrando la manipulación."
+        "Define una función recursiva `middle_elements` que toma una lista `lst`. En OCaml, `let rec nombre params = cuerpo` habilita recursión, como una receta para tareas intermedias.",
+        "Usa `let` para calcular la longitud con `List.length lst`.",
+        "Define `rest_lst` con un `if` que retorna `[]` si la lista está vacía o `List.tl lst` si no.",
+        "Verifica si la lista tiene menos de 2 elementos con `len < 2`.",
+        "Si la lista tiene menos de 2 elementos, retorna `[]`.",
+        "Introduce `else` para el caso con más elementos.",
+        "Define `len_rest` como `List.length rest_lst`, contando las tareas restantes.",
+        "Define `middle_rest` como el resto de `rest_lst` con `List.tl rest_lst`.",
+        "Verifica si `rest_lst` tiene 1 o menos elementos con `len_rest <= 1`.",
+        "Si `rest_lst` tiene 1 o menos elementos, retorna `[]`.",
+        "Introduce `else` para el caso recursivo.",
+        "Añade el primer elemento de `rest_lst` con `::` y llama recursivamente a `middle_elements`.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `middle_elements` con `[1; 2; 3; 4; 5; 6]`, dando `[2; 3; 4; 5]`."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para obtener el resto de una lista, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)` y no es recursiva, OCaml usa `let nombre params = cuerpo` sin `rec`. OCaml infiere tipos, Racket es dinámico.",
-        "Similitudes: Ambas verifican si la lista está vacía con pureza. Diferencias: Racket usa `(empty? lst)` prefija, OCaml usa `lst = []` infija.",
-        "Similitudes: Ambas retornan la lista vacía para el caso base. Diferencias: Racket usa `null`, OCaml usa `[]`.",
-        "Similitudes: Ambas retornan la cola si la lista no está vacía. Diferencias: Racket usa `(rest lst)`, OCaml usa `List.tl lst`, requiriendo el módulo `List`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`, aumentando líneas en OCaml.",
-        "Similitudes: Ambas llaman la función con una lista de 3 elementos, dando `(2 3)`. Diferencias: Racket usa `'(1 2 3)`, OCaml usa `[1; 2; 3]` con punto y coma."
+        "Similitudes: Ambas obtienen los elementos intermedios de una lista, dando `(2 3 4 5)`. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`.",
+        "Similitudes: Ambas calculan la longitud de la lista. Diferencias: Racket usa `(length lst)`, OCaml usa `List.length lst`.",
+        "Similitudes: Ambas obtienen el resto de la lista. Diferencias: Racket usa `(rest lst)`, OCaml usa `List.tl lst`.",
+        "Similitudes: Ambas verifican si la lista tiene menos de 2 elementos. Diferencias: Racket usa `(< len 2)`, OCaml usa `len < 2`.",
+        "Similitudes: Ambas retornan una lista vacía si no hay suficientes elementos. Diferencias: Racket usa `null`, OCaml usa `[]`.",
+        "Similitudes: Ambas manejan el caso con más elementos. Diferencias: Racket usa `let`, OCaml usa `else`.",
+        "Similitudes: Ambas calculan la longitud del resto. Diferencias: Racket usa `(length rest-lst)`, OCaml usa `List.length rest_lst`.",
+        "Similitudes: Ambas obtienen el resto del resto. Diferencias: Racket usa `(rest rest-lst)`, OCaml usa `List.tl rest_lst`.",
+        "Similitudes: Ambas verifican si el resto tiene 1 o menos elementos. Diferencias: Racket usa `(<= len-rest 1)`, OCaml usa `len_rest <= 1`.",
+        "Similitudes: Ambas retornan una lista vacía si no hay intermedios. Diferencias: Racket usa `null`, OCaml usa `[]`.",
+        "Similitudes: Ambas manejan el caso recursivo. Diferencias: Racket usa `(cons ...)`, OCaml usa `::` con `else`.",
+        "Similitudes: Ambas combinan el primer elemento del resto recursivamente. Diferencias: Racket usa `(cons (first rest-lst) ...)`, OCaml usa `List.hd rest_lst :: ...`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `let` con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas llaman la función con una lista de 6 elementos, dando `(2 3 4 5)`. Diferencias: Racket usa `(middle-elements '(1 2 3 4 5 6))`, OCaml usa `middle_elements [1; 2; 3; 4; 5; 6]`."
       ]
     },
     "ejercicio-6": {
-      "title": "Verificar si una lista está vacía",
+      "title": "Verificar si Todas las Sublistas Están Vacías",
       "racket": {
         "lines": [
-          "(define (empty-list? lst)",
-          "  (empty? lst))",
-          "(empty-list? '())"
-        ]
+          "(define (all-empty? lst)",
+          "  (let ((len (length lst))",
+          "        (first-sublist (if (empty? lst) null (first lst)))",
+          "        (rest-sublists (if (empty? lst) null (rest lst))))",
+          "    (if (= len 0)",
+          "        true",
+          "        (let ((len-first (length first-sublist))",
+          "              (rest-empty (all-empty? rest-sublists)))",
+          "          (and (= len-first 0) rest-empty))))",
+          "  )",
+          ")",
+          "(all-empty? '((1 2) () (3 4) ()))"
+        ],
+        "recursion": [11, 0, 1, 2, 3, 4, 6, 7, 8, 0, 1, 2, 3, 4, 6, 7, 8, 0, 1, 2, 3, 4, 6, 7, 8, 0, 1, 2, 3, 4, 5]
       },
       "ocaml": {
-        "lines": ["let empty_list lst =", "  lst = []", "in", "empty_list []"]
+        "lines": [
+          "let rec all_empty lst =",
+          "  let len = List.length lst in",
+          "  let first_sublist = if lst = [] then [] else List.hd lst in",
+          "  let rest_sublists = if lst = [] then [] else List.tl lst in",
+          "  if len = 0 then",
+          "    true",
+          "  else",
+          "    let len_first = List.length first_sublist in",
+          "    let rest_empty = all_empty rest_sublists in",
+          "    len_first = 0 && rest_empty",
+          "in",
+          "all_empty [[1; 2]; []; [3; 4]; []]"
+        ],
+        "recursion": [11, 0, 1, 2, 3, 4, 6, 7, 8, 9, 0, 1, 2, 3, 4, 6, 7, 8, 9, 0, 1, 2, 3, 4, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
       },
       "explanations_racket": [
-        "Define una función `empty-list?` para verificar si una lista está vacía. La sintaxis `(define (nombre params) cuerpo)` es funcional, como comprobar si una bandeja de tareas está vacía.",
-        "Usa `(empty? lst)` para retornar `#t` si la lista está vacía, o `#f` si no, una expresión pura sin recursión.",
-        "Llama a `empty-list?` con `'()`, dando `#t`, mostrando la verificación directa."
+        "Define una función `all-empty?` que toma una lista de listas `lst`, como sublistas de tareas ((1 2) () (3 4) ()). Es como una receta para verificar si todas las sublistas están vacías.",
+        "Usa `let` para calcular la longitud de la lista con `(length lst)`, como contar cuántas sublistas hay.",
+        "Define `first-sublist` con un `if` que retorna `null` si la lista está vacía o `(first lst)` si no, como tomar la primera sublista de tareas.",
+        "Define `rest-sublists` como `(rest lst)` si no está vacía, como obtener las sublistas restantes.",
+        "Verifica si la lista tiene longitud 0 con `(= len 0)`, como preguntar si no hay sublistas.",
+        "Si la lista está vacía, retorna `true`, indicando que todas las sublistas están vacías por definición.",
+        "Define `len-first` como `(length first-sublist)`, contando los elementos de la primera sublista.",
+        "Define `rest-empty` como `(all-empty? rest-sublists)`, verificando recursivamente las sublistas restantes.",
+        "Combina con `and` para verificar si `len-first` es 0 y `rest-empty` es `true`, como confirmar que todas las sublistas están vacías.",
+        "Cierra el bloque `let` y el `if`, necesario para Racket.",
+        "Cierra la definición de la función con un paréntesis.",
+        "Llama a `all-empty?` con `((1 2) () (3 4) ())`, dando `false` porque no todas las sublistas están vacías."
       ],
       "explanations_ocaml": [
-        "Define una función `empty_list` para verificar si una lista está vacía, usando `let nombre params = cuerpo`. Es funcional, como confirmar si un buzón está vacío.",
-        "Compara `lst` con `[]` usando `lst = []`, retornando `true` si la lista está vacía, o `false` si no, una expresión pura sin recursión.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `empty_list` con `[]`, dando `true`, mostrando la verificación."
+        "Define una función recursiva `all_empty` que toma una lista de listas. En OCaml, `let rec nombre params = cuerpo` habilita recursión, como una receta para verificar sublistas vacías.",
+        "Usa `let` para calcular la longitud con `List.length lst`.",
+        "Define `first_sublist` con un `if` que retorna `[]` si la lista está vacía o `List.hd lst` si no.",
+        "Define `rest_sublists` como `List.tl lst` si no está vacía.",
+        "Verifica si la lista tiene longitud 0 con `len = 0`.",
+        "Si la lista está vacía, retorna `true`.",
+        "Introduce `else` para el caso con sublistas.",
+        "Define `len_first` como `List.length first_sublist`, contando los elementos de la primera sublista.",
+        "Define `rest_empty` como `all_empty rest_sublists`, verificando recursivamente.",
+        "Combina con `&&` para verificar si `len_first` es 0 y `rest_empty` es `true`.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `all_empty` con `[[1; 2]; []; [3; 4]; []]`, dando `false`."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para verificar si una lista está vacía, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. Racket usa nombres con `?` para predicados, OCaml no.",
-        "Similitudes: Ambas verifican la lista vacía con pureza, sin recursión. Diferencias: Racket usa `(empty? lst)` prefija, OCaml usa `lst = []` infija, más matemática.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket no usa líneas adicionales, OCaml usa `in`, aumentando el conteo de líneas.",
-        "Similitudes: Ambas llaman la función con una lista vacía, dando verdadero. Diferencias: Racket usa `'()` y retorna `#t`, OCaml usa `[]` y retorna `true`."
+        "Similitudes: Ambas verifican si todas las sublistas están vacías, dando `false`. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo`.",
+        "Similitudes: Ambas calculan la longitud de la lista. Diferencias: Racket usa `(length lst)`, OCaml usa `List.length lst`.",
+        "Similitudes: Ambas obtienen la primera sublista. Diferencias: Racket usa `(first lst)`, OCaml usa `List.hd lst`.",
+        "Similitudes: Ambas obtienen las sublistas restantes. Diferencias: Racket usa `(rest lst)`, OCaml usa `List.tl lst`.",
+        "Similitudes: Ambas verifican si la lista está vacía. Diferencias: Racket usa `(= len 0)`, OCaml usa `len = 0`.",
+        "Similitudes: Ambas retornan `true` si la lista está vacía. Diferencias: Racket usa `true`, OCaml usa `true` en el `if`.",
+        "Similitudes: Ambas manejan el caso con sublistas. Diferencias: Racket usa `let`, OCaml usa `else`.",
+        "Similitudes: Ambas calculan la longitud de la primera sublista. Diferencias: Racket usa `(length first-sublist)`, OCaml usa `List.length first_sublist`.",
+        "Similitudes: Ambas verifican recursivamente las sublistas restantes. Diferencias: Racket usa `(all-empty? rest-sublists)`, OCaml usa `all_empty rest_sublists`.",
+        "Similitudes: Ambas combinan las condiciones con un operador lógico. Diferencias: Racket usa `(and ...)`, OCaml usa `&&`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `let` con `)`, OCaml usa `in`.",
+        "Similitudes: Ambas llaman la función con una lista de listas, dando `false`. Diferencias: Racket usa `(all-empty? '((1 2) () (3 4) ()))`, OCaml usa `all_empty [[1; 2]; []; [3; 4]; []]`."
       ]
     },
     "ejercicio-7": {
-      "title": "Añadir un elemento al inicio",
+      "title": "Añadir un Elemento Transformado a una Lista",
       "racket": {
         "lines": [
-          "(define (cons-element x lst)",
-          "  (cons x lst))",
-          "(cons-element 0 '(1 2 3))"
-        ]
+          "(define (cons-transformed-aux x lst acc)",
+          "  (let ((transformed (* x 2))",
+          "        (len (length lst))",
+          "        (new-lst (cons transformed lst)))",
+          "    (if (empty? new-lst)",
+          "        acc",
+          "        (let ((first-el (first new-lst))",
+          "              (rest-el (rest new-lst))",
+          "              (len-rest (length rest-el)))",
+          "          (cons-transformed-aux 0 rest-el (cons first-el acc))))",
+          ")",
+          "(define (cons-transformed x lst)",
+          "  (cons-transformed-aux x lst null)",
+          ")",
+          "(cons-transformed 0 '(1 2 3 4))"
+        ],
+        "recursion": [14, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
       },
       "ocaml": {
         "lines": [
-          "let cons_element x lst =",
-          "  x :: lst",
+          "let rec cons_transformed_aux x lst acc =",
+          "  let transformed = x * 2 in",
+          "  let len = List.length lst in",
+          "  let new_lst = transformed :: lst in",
+          "  if new_lst = [] then",
+          "    List.rev acc",
+          "  else",
+          "    let first_el = List.hd new_lst in",
+          "    let rest_el = List.tl new_lst in",
+          "    let len_rest = List.length rest_el in",
+          "    cons_transformed_aux 0 rest_el (first_el :: acc)",
+          "let cons_transformed x lst =",
+          "  cons_transformed_aux x lst []",
           "in",
-          "cons_element 0 [1; 2; 3]"
-        ]
+          "cons_transformed 0 [1; 2; 3; 4]"
+        ],
+        "recursion": [14, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5]
       },
       "explanations_racket": [
-        "Define una función `cons-element` para añadir un elemento `x` al inicio de una lista `lst`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como agregar una nueva tarea al principio de una lista.",
-        "Usa `(cons x lst)` para construir una nueva lista con `x` como primer elemento seguido de `lst`, una operación pura sin recursión.",
-        "Llama a `cons-element` con 0 y `'(1 2 3)`, dando `(0 1 2 3)`, mostrando la construcción de la lista."
+        "Define una función auxiliar `cons-transformed-aux` que toma un elemento `x`, una lista `lst`, y un acumulador `acc`. Es como una receta para que un programador transforme un elemento (0*2=0) y lo añada a una lista como (1 2 3 4).",
+        "Inicia un bloque `let` para definir variables intermedias, como anotar pasos en una libreta para organizar el cálculo.",
+        "Define `transformed` como `(* x 2)`, duplicando el elemento, como calcular el nuevo valor a añadir.",
+        "Define `len` como `(length lst)`, contando los elementos de la lista original para verificar su tamaño.",
+        "Define `new-lst` como `(cons transformed lst)`, añadiendo el elemento transformado al inicio de la lista, como preparar una lista temporal.",
+        "Inicia un condicional `if` para verificar si `new-lst` está vacía con `(empty? new-lst)`, como preguntar si la lista temporal está completa.",
+        "Si `new-lst` está vacía, retorna `acc`, la lista acumulada con los elementos procesados, como entregar el resultado final.",
+        "Inicia otro bloque `let` para definir más variables intermedias, como continuar anotando pasos detallados.",
+        "Define `first-el` como `(first new-lst)`, tomando el primer elemento de la lista temporal, como seleccionar el siguiente elemento a procesar.",
+        "Define `rest-el` como `(rest new-lst)`, obteniendo el resto de la lista temporal, como avanzar a los elementos restantes.",
+        "Define `len-rest` como `(length rest-el)`, contando los elementos restantes para verificar si hay más que procesar.",
+        "Llama recursivamente a `cons-transformed-aux` con 0, `rest-el`, y un acumulador que incluye `first-el` usando `(cons first-el acc)`, como continuar construyendo la lista.",
+        "Cierra el bloque `let` y el `if`, necesario para la sintaxis de Racket, como cerrar un paso en la receta.",
+        "Cierra la definición de `cons-transformed-aux` con un paréntesis, como el punto final de la receta auxiliar.",
+        "Define la función principal `cons-transformed` que toma `x` y `lst`, inicializando la recursión con un acumulador vacío, como preparar el inicio del proceso.",
+        "Llama a `cons-transformed-aux` con `x`, `lst`, y `null`, como iniciar la receta con un acumulador vacío.",
+        "Cierra la definición de `cons-transformed` con un paréntesis, necesario para la sintaxis de Racket.",
+        "Llama a `cons-transformed` con 0 y `(1 2 3 4)`, retornando `(0 1 2 3 4)`, como completar la lista transformada."
       ],
       "explanations_ocaml": [
-        "Define una función `cons_element` para añadir un elemento al inicio, usando `let nombre params = cuerpo`. Es funcional, como añadir un artículo al frente de un inventario.",
-        "Usa `x :: lst` para construir una nueva lista con `x` como cabeza y `lst` como cola, una operación pura sin recursión.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml.",
-        "Llama a `cons_element` con 0 y `[1; 2; 3]`, dando `[0; 1; 2; 3]`, mostrando la construcción."
+        "Define una función auxiliar recursiva `cons_transformed_aux` que toma `x`, `lst`, y `acc`. En OCaml, `let rec nombre params = cuerpo` habilita recursión, como una receta para transformar y añadir un elemento.",
+        "Define `transformed` como `x * 2`, duplicando el elemento, como calcular el nuevo valor a añadir.",
+        "Define `len` como `List.length lst`, contando los elementos de la lista original.",
+        "Define `new_lst` como `transformed :: lst`, añadiendo el elemento transformado al inicio, como preparar una lista temporal.",
+        "Inicia un condicional `if` para verificar si `new_lst` está vacía con `new_lst = []`, como preguntar si la lista temporal está completa.",
+        "Si `new_lst` está vacía, retorna `List.rev acc`, invirtiendo el acumulador para obtener el orden correcto, como entregar el resultado final.",
+        "Introduce la rama `else` para manejar el caso donde `new_lst` no está vacía, preparando la recursión.",
+        "Define `first_el` como `List.hd new_lst`, tomando el primer elemento de la lista temporal.",
+        "Define `rest_el` como `List.tl new_lst`, obteniendo el resto de la lista temporal.",
+        "Define `len_rest` como `List.length rest_el`, contando los elementos restantes.",
+        "Llama recursivamente a `cons_transformed_aux` con 0, `rest_el`, y un acumulador con `first_el` usando `first_el :: acc`, como continuar construyendo la lista.",
+        "Define la función principal `cons_transformed` que inicializa la recursión con un acumulador vacío.",
+        "Llama a `cons_transformed_aux` con `x`, `lst`, y `[]`, como iniciar la receta con un acumulador vacío.",
+        "Usa `in` para conectar la definición de `cons_transformed` con la llamada, una regla estructural de OCaml.",
+        "Llama a `cons_transformed` con 0 y `[1; 2; 3; 4]`, retornando `[0; 1; 2; 3; 4]`."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para añadir un elemento al inicio de una lista, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml infiere tipos, Racket es dinámico.",
-        "Similitudes: Ambas construyen una nueva lista con el elemento y la lista original, sin recursión. Diferencias: Racket usa `(cons x lst)` prefija, OCaml usa `x :: lst` infija, más concisa.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket no usa líneas adicionales, OCaml usa `in`, aumentando el conteo de líneas.",
-        "Similitudes: Ambas llaman la función con 0 y una lista de 3 elementos, dando `(0 1 2 3)`. Diferencias: Racket usa `'(1 2 3)`, OCaml usa `[1; 2; 3]` con punto y coma."
+        "Similitudes: Ambas definen una función auxiliar recursiva para añadir un elemento transformado, dando `(0 1 2 3 4)`. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let rec nombre params = cuerpo` con `rec` explícito para recursión.",
+        "Similitudes: Ambas calculan el elemento transformado multiplicando por 2. Diferencias: Racket usa `(* x 2)` con notación prefija, OCaml usa `x * 2` con notación infija, más matemática.",
+        "Similitudes: Ambas calculan la longitud de la lista original para verificar su tamaño. Diferencias: Racket usa `(length lst)`, OCaml usa `List.length lst` con notación de módulo.",
+        "Similitudes: Ambas añaden el elemento transformado al inicio de la lista. Diferencias: Racket usa `(cons transformed lst)` con notación prefija, OCaml usa `transformed :: lst` con notación infija.",
+        "Similitudes: Ambas verifican si la lista temporal está vacía. Diferencias: Racket usa `(empty? new-lst)` con notación prefija, OCaml usa `new_lst = []` con notación infija.",
+        "Similitudes: Ambas retornan el acumulador si la lista está vacía. Diferencias: Racket usa `acc` directamente, OCaml usa `List.rev acc` para corregir el orden debido a la construcción de la lista.",
+        "Similitudes: Ambas manejan el caso no vacío para continuar la recursión. Diferencias: Racket usa un `let` anidado para definir variables, OCaml usa `else` explícitamente para estructurar la lógica.",
+        "Similitudes: Ambas extraen el primer elemento de la lista temporal. Diferencias: Racket usa `(first new-lst)`, OCaml usa `List.hd new_lst` con notación de módulo.",
+        "Similitudes: Ambas obtienen el resto de la lista temporal. Diferencias: Racket usa `(rest new-lst)`, OCaml usa `List.tl new_lst`.",
+        "Similitudes: Ambas calculan la longitud del resto de la lista para verificar si hay más elementos. Diferencias: Racket usa `(length rest-el)`, OCaml usa `List.length rest_el`.",
+        "Similitudes: Ambas llaman recursivamente a la función auxiliar con un acumulador actualizado. Diferencias: Racket usa `(cons-transformed-aux 0 rest-el (cons first-el acc))` con notación prefija, OCaml usa `cons_transformed_aux 0 rest_el (first_el :: acc)` con notación infija.",
+        "Similitudes: Ambas definen una función principal que inicializa la recursión. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo` sin necesidad de `rec` en la función principal.",
+        "Similitudes: Ambas inicializan la recursión con un acumulador vacío. Diferencias: Racket usa `null` como acumulador inicial, OCaml usa `[]`, reflejando diferencias en la sintaxis de listas vacías.",
+        "Similitudes: Ambas son líneas estructurales necesarias para completar la definición. Diferencias: Racket cierra la función auxiliar y principal con `)`, OCaml usa `in` para conectar la definición principal con la llamada.",
+        "Similitudes: Ambas llaman la función principal con 0 y una lista de 4 elementos, retornando `(0 1 2 3 4)`. Diferencias: Racket usa `(cons-transformed 0 '(1 2 3 4))` con comillas y paréntesis, OCaml usa `cons_transformed 0 [1; 2; 3; 4]` con corchetes y `;` para listas."
       ]
     }
   },

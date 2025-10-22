@@ -13,17 +13,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ComparadorComponent implements OnInit, AfterViewInit {
   isPrevDisabled(): boolean {
-    if (this.modulo === 'recursion') {
+    const recCheck = this.getRecursionInfo();
+    if (recCheck) {
       return this.recursionStepIndex <= 0;
     }
     return this.highlightLineRacket <= 0;
   }
 
   isNextDisabled(): boolean {
-    if (this.modulo === 'recursion' && this.comparacionData && this.comparacionData['recursion'] && this.comparacionData['recursion'][this.ejercicio]) {
-      const info = this.comparacionData['recursion'][this.ejercicio];
-      const stepsR = info.racket && Array.isArray(info.racket.recursion) ? info.racket.recursion.length : 0;
-      const stepsO = info.ocaml && Array.isArray(info.ocaml.recursion) ? info.ocaml.recursion.length : 0;
+    const recCheck = this.getRecursionInfo();
+    if (recCheck) {
+      const stepsR = recCheck.racket && Array.isArray(recCheck.racket.recursion) ? recCheck.racket.recursion.length : 0;
+      const stepsO = recCheck.ocaml && Array.isArray(recCheck.ocaml.recursion) ? recCheck.ocaml.recursion.length : 0;
       const maxSteps = Math.max(stepsR, stepsO);
       return this.recursionStepIndex >= maxSteps - 1;
     }
@@ -82,14 +83,12 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.ocamlLines = (info.ocaml && info.ocaml.lines) ? info.ocaml.lines.join('\n') : '';
       this.maxLineRacket = (info.racket && info.racket.lines) ? info.racket.lines.length : 1;
       this.maxLineOcaml = (info.ocaml && info.ocaml.lines) ? info.ocaml.lines.length : 1;
-      if (this.modulo === 'recursion' && info.racket && Array.isArray(info.racket.recursion)) {
+      // Inicializar índices si el ejercicio define arrays de pasos (recursion), aplicable a otros módulos como 'listas'
+      const recCheck = this.getRecursionInfo();
+      if (recCheck) {
         this.recursionStepIndex = 0;
-        this.highlightLineRacket = info.racket.recursion[0] || 0;
-        if (info.ocaml && Array.isArray(info.ocaml.recursion)) {
-          this.highlightLineOcaml = info.ocaml.recursion[0] || 0;
-        } else {
-          this.highlightLineOcaml = 0;
-        }
+        this.highlightLineRacket = (recCheck.racket && Array.isArray(recCheck.racket.recursion)) ? (recCheck.racket.recursion[0] || 0) : 0;
+        this.highlightLineOcaml = (recCheck.ocaml && Array.isArray(recCheck.ocaml.recursion)) ? (recCheck.ocaml.recursion[0] || 0) : 0;
       } else {
         this.highlightLineRacket = 0;
         this.highlightLineOcaml = 0;
@@ -128,17 +127,18 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.comparacionData[this.modulo][this.ejercicio]
     ) {
       const info = this.comparacionData[this.modulo][this.ejercicio];
-      // Modo recursion: usar el índice de línea real de cada lenguaje
-      if (this.modulo === 'recursion' && info.racket && Array.isArray(info.racket.recursion)) {
-        const idxR = info.racket.recursion[this.recursionStepIndex] || 0;
-        const idxO = (info.ocaml && Array.isArray(info.ocaml.recursion)) ? (info.ocaml.recursion[this.recursionStepIndex] || 0) : 0;
-        this.explicacionRacket = (info.explanations_racket && info.explanations_racket[idxR]) ? info.explanations_racket[idxR] : '';
-        this.explicacionOcaml = (info.explanations_ocaml && info.explanations_ocaml[idxO]) ? info.explanations_ocaml[idxO] : '';
-        // Comparación: mostrar la correspondiente a la línea de Racket, o la de OCaml si no existe
-        if (info.comparisons && info.comparisons[idxR]) {
-          this.explicacionComparacion = info.comparisons[idxR];
-        } else if (info.comparisons && info.comparisons[idxO]) {
-          this.explicacionComparacion = info.comparisons[idxO];
+      // Si el ejercicio define arrays de pasos (recursion), usarlos para mapear explicaciones
+      const recInfo = this.getRecursionInfo();
+      if (recInfo) {
+        const idxR = recInfo.racket && Array.isArray(recInfo.racket.recursion) ? (recInfo.racket.recursion[this.recursionStepIndex] || 0) : 0;
+        const idxO = recInfo.ocaml && Array.isArray(recInfo.ocaml.recursion) ? (recInfo.ocaml.recursion[this.recursionStepIndex] || 0) : 0;
+        this.explicacionRacket = (recInfo.explanations_racket && recInfo.explanations_racket[idxR]) ? recInfo.explanations_racket[idxR] : '';
+        this.explicacionOcaml = (recInfo.explanations_ocaml && recInfo.explanations_ocaml[idxO]) ? recInfo.explanations_ocaml[idxO] : '';
+        // Comparación: preferir la correspondiente a la línea de Racket, o la de OCaml si no existe
+        if (recInfo.comparisons && recInfo.comparisons[idxR]) {
+          this.explicacionComparacion = recInfo.comparisons[idxR];
+        } else if (recInfo.comparisons && recInfo.comparisons[idxO]) {
+          this.explicacionComparacion = recInfo.comparisons[idxO];
         } else {
           this.explicacionComparacion = '';
         }
@@ -171,21 +171,27 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   }
 
   cambiarLinea(delta: number) {
-    if (this.modulo === 'recursion' && this.comparacionData && this.comparacionData['recursion'] && this.comparacionData['recursion'][this.ejercicio]) {
-      const info = this.comparacionData['recursion'][this.ejercicio];
-      const recursionStepsRacket = info.racket && Array.isArray(info.racket.recursion) ? info.racket.recursion : [];
-      const recursionStepsOcaml = info.ocaml && Array.isArray(info.ocaml.recursion) ? info.ocaml.recursion : [];
+    const recInfo = this.getRecursionInfo();
+    if (recInfo) {
+      const recursionStepsRacket = recInfo.racket && Array.isArray(recInfo.racket.recursion) ? recInfo.racket.recursion : [];
+      const recursionStepsOcaml = recInfo.ocaml && Array.isArray(recInfo.ocaml.recursion) ? recInfo.ocaml.recursion : [];
+      const maxSteps = Math.max(recursionStepsRacket.length, recursionStepsOcaml.length);
       let nuevoPaso = this.recursionStepIndex + delta;
-      if (nuevoPaso >= 0 && nuevoPaso < recursionStepsRacket.length) {
+      if (nuevoPaso >= 0 && nuevoPaso < maxSteps) {
         this.recursionStepIndex = nuevoPaso;
-        this.highlightLineRacket = recursionStepsRacket[nuevoPaso];
-        if (recursionStepsOcaml.length > 0) {
-          this.highlightLineOcaml = recursionStepsOcaml[nuevoPaso] || 0;
+        // Si no hay índice para Racket en ese paso, usar el último conocido o 0
+        if (recursionStepsRacket[nuevoPaso] !== undefined) {
+          this.highlightLineRacket = recursionStepsRacket[nuevoPaso];
         } else {
-          this.highlightLineOcaml = 0;
+          this.highlightLineRacket = recursionStepsRacket.length > 0 ? recursionStepsRacket[recursionStepsRacket.length - 1] : 0;
         }
-        // Output solo si es el último paso
-        this.mostrarOutput = (nuevoPaso === recursionStepsRacket.length - 1);
+        if (recursionStepsOcaml[nuevoPaso] !== undefined) {
+          this.highlightLineOcaml = recursionStepsOcaml[nuevoPaso];
+        } else {
+          this.highlightLineOcaml = recursionStepsOcaml.length > 0 ? recursionStepsOcaml[recursionStepsOcaml.length - 1] : 0;
+        }
+        // Output si es el último paso del mayor de los arrays
+        this.mostrarOutput = (nuevoPaso === maxSteps - 1);
         this.actualizarExplicaciones();
         this.showCardsLeft = !this.showCardsLeft;
       }
@@ -237,5 +243,19 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
 
   onOverlayClick(event: MouseEvent) {
     this.cerrarModal();
+  }
+
+  // Devuelve la entrada del JSON para el ejercicio actual si define arrays de pasos (recursion)
+  getRecursionInfo(): any | null {
+    if (!this.comparacionData || !this.modulo || !this.ejercicio) return null;
+    const moduleData = this.comparacionData[this.modulo];
+    if (!moduleData) return null;
+    const exercise = moduleData[this.ejercicio];
+    if (!exercise) return null;
+    // Considerar válido si racket.recursion o ocaml.recursion es un array
+    if ((exercise.racket && Array.isArray(exercise.racket.recursion)) || (exercise.ocaml && Array.isArray(exercise.ocaml.recursion))) {
+      return exercise;
+    }
+    return null;
   }
 }
