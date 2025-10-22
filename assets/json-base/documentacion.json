@@ -744,6 +744,10 @@
           {
             "title": "Aplicar lambda",
             "code": "((lambda (x) (* x 2)) 3) ; Resultado: 6"
+          },
+          {
+            "title": "Usar let para Definir Variables Locales y Duplicar un Valor",
+            "code": "(let ((x 3)) (* x 2)) ; Resultado: 6"
           }
         ],
         "ocaml": [
