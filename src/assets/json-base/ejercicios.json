@@ -53,22 +53,22 @@
     "ejercicio-6": {
       "description": "Exploramos funciones matemáticas. Un excursionista mide desviaciones complejas respecto a un punto base, involucrando sumas, restas y multiplicaciones, como abs(5 + 3 - 10), abs(-2 * 3), o abs(4 - (1 + 6)), y necesita distancias absolutas. Usa el valor absoluto en expresiones anidadas para obtener valores positivos, como 2, 6, o 3. Esta operación primitiva enseña cómo el funcional maneja números negativos en mediciones más elaboradas, como en mapas con cálculos compuestos, con resultados predecibles y sin efectos secundarios.",
       "racket": {
-        "code": "(abs (- (+ 5 3) 10))\n(abs (* -2 3))\n(abs (- 4 (+ 1 6)))\n(abs 0)\n(abs (- (* 3 4) 15))"
+        "code": "(abs (- (+ 5 3) 10))\n(abs (* -2 3))\n(abs (- 4 (+ 1 6)))\n(abs (abs (- (* 3 4) 15)))\n(abs (- (abs (- 12 18)) 2))"
       },
       "ocaml": {
-        "code": "abs (5 + 3 - 10)\nabs (-2 * 3)\nabs (4 - (1 + 6))\nabs 0\nabs ((3 * 4) - 15)"
+        "code": "abs (5 + 3 - 10)\nabs (-2 * 3)\nabs (4 - (1 + 6))\nabs (abs ((3 * 4) - 15))\nabs ((abs (12 - 18)) - 2)"
       },
-      "answer": "2\n6\n3\n0\n3"
+      "answer": "2\n6\n3\n3\n4"
     },
     "ejercicio-7": {
-      "description": "El funcional aborda cálculos avanzados. Un ingeniero diseña estructuras y calcula la hipotenusa en triángulos rectángulos con lados como 3 y 4, 5 y 12, o 8 y 6 metros, usando expresiones complejas para las áreas. Usa la raíz cuadrada en composiciones anidadas con multiplicaciones y sumas para obtener valores como 5, 13, o 10. Esta operación primitiva muestra cómo resolver problemas reales y desafiantes, como diseño estructural con teorema de Pitágoras, con expresiones puras y deterministas.",
+      "description": "El funcional aborda cálculos avanzados. Un ingeniero diseña estructuras y calcula la hipotenusa en triángulos rectángulos con lados como 3 y 4, 5 y 12, o 8 y 6 metros, usando expresiones aún más complejas con raíces cuadradas anidadas, sumas y multiplicaciones. Usa la raíz cuadrada en composiciones anidadas con operaciones intermedias para obtener valores como 5, 13 o 10. Esta operación primitiva muestra cómo resolver problemas reales y desafiantes, como diseño estructural con teorema de Pitágoras, empleando expresiones puras, precisas y deterministas.",
       "racket": {
-        "code": "(sqrt (+ (* 3 3) (* 4 4)))\n(sqrt (+ (* 5 5) (* 12 12)))\n(sqrt (+ (* 8 8) (* 6 6)))\n(sqrt (+ (* 7 7) (* 24 24)))\n(sqrt (+ (* 20 20) (* 21 21)))"
+        "code": "(sqrt (+ (* 3 3) (* 4 4)))\n(sqrt (+ (sqrt (+ (* 5 5) (* 12 12))) 1))\n(sqrt (+ (* (sqrt 8) (sqrt 8)) (* 6 6)))\n(sqrt (+ (* 7 7) (sqrt (+ (* 24 24) 1))))\n(sqrt (sqrt (+ (* 20 20) (* 21 21))))"
       },
       "ocaml": {
-        "code": "sqrt (3.0 *. 3.0 +. 4.0 *. 4.0)\nsqrt (5.0 *. 5.0 +. 12.0 *. 12.0)\nsqrt (8.0 *. 8.0 +. 6.0 *. 6.0)\nsqrt (7.0 *. 7.0 +. 24.0 *. 24.0)\nsqrt (20.0 *. 20.0 +. 21.0 *. 21.0)"
+        "code": "sqrt (3.0 *. 3.0 +. 4.0 *. 4.0)\nsqrt (sqrt (5.0 *. 5.0 +. 12.0 *. 12.0) +. 1.0)\nsqrt ((sqrt 8.0) *. (sqrt 8.0) +. 6.0 *. 6.0)\nsqrt (7.0 *. 7.0 +. sqrt (24.0 *. 24.0 +. 1.0))\nsqrt (sqrt (20.0 *. 20.0 +. 21.0 *. 21.0)))"
       },
-      "answer": "5\n13\n10\n25\n29"
+      "answer": "5\n≈13.03\n10\n≈25.02\n≈29.00"
     }
   },
   "expresiones": {
@@ -123,22 +123,22 @@
       "answer": "1\n0\n3\n2\n0"
     },
     "ejercicio-6": {
-      "description": "La división distribuye recursos equitativamente. Un chef reparte huevos entre personas, como 12 huevos entre 3, 8 entre 2, o 15 entre 5. Usa la operación primitiva de división para calcular cuántos huevos recibe cada persona, mostrando cómo el funcional resuelve problemas de reparto, como en recetas, con cálculos puros y deterministas.",
+      "description": "La división reparte recursos, pero ahora combinamos divisiones con raíces y redondeos para explorar cálculos más ricos. Un chef divide ingredientes en proporciones más precisas, usando divisiones puras y anidadas para representar exactitud y balance.",
       "racket": {
-        "code": "(/ 12 3)\n(/ 8 2)\n(/ 15 5)\n(/ 6 2)\n(/ 9 3)"
+        "code": "(/ 12 3)\n(/ (sqrt 81) 3)\n(/ (round 15.6) 5)\n(/ 6 (sqrt 4))\n(/ (+ 9 3) 3)"
       },
       "ocaml": {
-        "code": "12 / 3\n8 / 2\n15 / 5\n6 / 2\n9 / 3"
+        "code": "12 / 3\nint_of_float ((sqrt 81.0) /. 3.0)\nint_of_float ((Float.round 15.6) /. 5.0)\nint_of_float (6.0 /. (sqrt 4.0))\nint_of_float ((9.0 +. 3.0) /. 3.0)"
       },
-      "answer": "4\n4\n3\n3\n3"
+      "answer": "4\n3\n3\n3\n4"
     },
     "ejercicio-7": {
-      "description": "Combinamos operaciones para problemas complejos. Un arquitecto calcula si el área de cuadrados (lados como 3, 4, 2, 5, o 6, elevados al cuadrado) menos un ajuste (4, 3, 2, 5, o 6) es mayor que un límite (5, 7, 1, 10, o 15). Usa exponentes, resta y comparación para obtener resultados booleanos, mostrando cómo el funcional combina primitivas para diseño estructural con pureza.",
+      "description": "Combinamos operaciones con trigonometría, potencias, raíces, y redondeos para modelar comparaciones estructurales complejas. Un arquitecto evalúa longitudes ajustadas mediante 'sqrt', 'tan', 'sin', 'round' y 'remainder', mostrando cómo el razonamiento funcional combina cálculos precisos y puros.",
       "racket": {
-        "code": "(> (- (expt 3 2) 4) 5)\n(> (- (expt 4 2) 3) 7)\n(> (- (expt 2 2) 2) 1)\n(> (- (expt 5 2) 5) 10)\n(> (- (expt 6 2) 6) 15)"
+        "code": "(> (- (sqrt (+ (* 3 3) (* 4 4))) 2) 5)\n(> (- (round (sqrt (+ (* 4 4) (* 12 12)))) 1) 7)\n(> (- (expt 2 2) (remainder 3 2)) 1)\n(> (- (round (* (tan 1.5) 5)) 5) 10)\n(> (- (expt 6 2) (round (sin 2))) 15)"
       },
       "ocaml": {
-        "code": "( ( (3 ** 2.0) - 4 ) > 5 )\n( ( (4 ** 2.0) - 3 ) > 7 )\n( ( (2 ** 2.0) - 2 ) > 1 )\n( ( (5 ** 2.0) - 5 ) > 10 )\n( ( (6 ** 2.0) - 6 ) > 15 )"
+        "code": "((sqrt (3.0 *. 3.0 +. 4.0 *. 4.0) -. 2.0) >. 5.0)\n((Float.round (sqrt (4.0 *. 4.0 +. 12.0 *. 12.0)) -. 1.0) >. 7.0)\n(((2.0 ** 2.0) -. float_of_int (3 mod 2)) >. 1.0)\n((Float.round (Float.tan 1.5 *. 5.0) -. 5.0) >. 10.0)\n((6.0 ** 2.0 -. Float.round (Float.sin 2.0)) >. 15.0)"
       },
       "answer": "#f\n#t\n#t\n#t\n#t"
     }
@@ -329,34 +329,34 @@
       "answer": "-1"
     },
     "ejercicio-5": {
-      "description": "Sistemas de calificación. Una estudiante obtiene 92. Define una función para clasificar: A (90+), B (80-89), C (70-79), D (60-69), F (<60). Evalúa con 92. Esto muestra condicionales para rangos.",
+      "description": "Sistemas de calificación con anidación. Una estudiante obtiene 92.3. Define una función que primero clasifique según rangos, y dentro de cada rango, indique si está cerca del límite superior ('+') o inferior ('-'). Evalúa con 92.3. Esto muestra condicionales anidados con varias decisiones internas.",
       "racket": {
-        "code": "(define (grade score)\n  (cond\n    [(>= score 90) 'A]\n    [(>= score 80) 'B]\n    [(>= score 70) 'C]\n    [(>= score 60) 'D]\n    [else 'F]\n  )\n)\n(grade 92)"
+        "code": "(define (grade score)\n  (let ((rounded (round score)))\n    (cond\n      [(>= rounded 90)\n       (if (>= rounded 95)\n           'A+\n           'A-)]\n      [(>= rounded 80)\n       (if (>= rounded 85)\n           'B+\n           'B-)]\n      [(>= rounded 70)\n       (if (>= rounded 75)\n           'C+\n           'C-)]\n      [(>= rounded 60)\n       (if (>= rounded 65)\n           'D+\n           'D-)]\n      [else 'F]\n    )\n  )\n)\n(grade 92.3)"
       },
       "ocaml": {
-        "code": "let grade score =\n  if score >= 90 then\n    \"A\"\n  else if score >= 80 then\n    \"B\"\n  else if score >= 70 then\n    \"C\"\n  else if score >= 60 then\n    \"D\"\n  else\n    \"F\"\nin\ngrade 92"
+        "code": "let grade score =\n  let rounded = int_of_float (Float.round score) in\n  if rounded >= 90 then\n    if rounded >= 95 then \"A+\" else \"A-\"\n  else if rounded >= 80 then\n    if rounded >= 85 then \"B+\" else \"B-\"\n  else if rounded >= 70 then\n    if rounded >= 75 then \"C+\" else \"C-\"\n  else if rounded >= 60 then\n    if rounded >= 65 then \"D+\" else \"D-\"\n  else\n    \"F\"\nin\ngrade 92.3"
       },
-      "answer": "A"
+      "answer": "A-"
     },
     "ejercicio-6": {
-      "description": "Condiciones combinadas. Una alarma se activa si 12 es divisible por 2 y 3. Define una función para verificar esto. Evalúa con 12. Esto muestra cómo combinamos condiciones lógicas en funciones.",
+      "description": "Condiciones lógicas anidadas. Una alarma se activa si el número es divisible por 2 y 3. Si no lo es, verifica si la raíz cuadrada redondeada es divisible por 5 o 7. Evalúa con 12. Esto muestra anidación de 'if' y uso mixto de 'and' y 'or'.",
       "racket": {
-        "code": "(define (divisible-both? x)\n  (and (= (remainder x 2) 0)\n       (= (remainder x 3) 0))\n)\n(divisible-both? 12)"
+        "code": "(define (activate-alarm? x)\n  (if (and (= (remainder x 2) 0)\n           (= (remainder x 3) 0))\n      #t\n      (if (or (= (remainder (round (sqrt x)) 5) 0)\n              (= (remainder (round (sqrt x)) 7) 0))\n          #t\n          #f)))\n(activate-alarm? 12)"
       },
       "ocaml": {
-        "code": "let divisible_both x =\n  x mod 2 = 0 && x mod 3 = 0\nin\ndivisible_both 12"
+        "code": "let activate_alarm x =\n  if x mod 2 = 0 && x mod 3 = 0 then\n    true\n  else if ((int_of_float (Float.round (sqrt (float_of_int x)))) mod 5 = 0)\n       || ((int_of_float (Float.round (sqrt (float_of_int x)))) mod 7 = 0) then\n    true\n  else\n    false\nin\nactivate_alarm 12"
       },
       "answer": "true"
     },
     "ejercicio-7": {
-      "description": "Clasificación geométrica. Un triángulo tiene lados 3, 3, 3. Define una función que lo clasifique como equilátero, isósceles o escaleno. Evalúa con 3, 3, 3. Esto introduce condicionales para categorías múltiples.",
+      "description": "Clasificación geométrica compleja. Un triángulo tiene lados 3, 3, 3. La función primero valida si los lados forman un triángulo. Si es válido, anida otra evaluación para clasificarlo en equilátero, isósceles o escaleno, y además indica si es pequeño (todos los lados < 5). Evalúa con 3, 3, 3. Esto muestra condicionales múltiples y anidados.",
       "racket": {
-        "code": "(define (triangle-type a b c)\n  (cond\n    [(and (= a b) (= b c)) 'equilateral]\n    [(or (= a b) (= b c) (= a c)) 'isosceles]\n    [else 'scalene]\n  )\n)\n(triangle-type 3 3 3)"
+        "code": "(define (triangle-type a b c)\n  (if (and (> (+ a b) c) (> (+ a c) b) (> (+ b c) a))\n      (cond\n        [(and (= a b) (= b c))\n         (if (< a 5)\n             'small-equilateral\n             'equilateral)]\n        [(or (= a b) (= b c) (= a c))\n         (if (< a 5)\n             'small-isosceles\n             'isosceles)]\n        [else\n         (if (< a 5)\n             'small-scalene\n             'scalene)])\n      'invalid))\n(triangle-type 3 3 3)"
       },
       "ocaml": {
-        "code": "let triangle_type a b c =\n  if a = b && b = c then\n    \"equilateral\"\n  else if a = b || b = c || a = c then\n    \"isosceles\"\n  else\n    \"scalene\"\nin\ntriangle_type 3 3 3"
+        "code": "let triangle_type a b c =\n  if a + b > c && a + c > b && b + c > a then\n    if a = b && b = c then\n      if a < 5 then \"small-equilateral\" else \"equilateral\"\n    else if a = b || b = c || a = c then\n      if a < 5 then \"small-isosceles\" else \"isosceles\"\n    else\n      if a < 5 then \"small-scalene\" else \"scalene\"\n  else\n    \"invalid\"\nin\ntriangle_type 3 3 3"
       },
-      "answer": "equilateral"
+      "answer": "small-equilateral"
     }
   },
   "recursion": {

@@ -193,14 +193,14 @@
       ]
     },
     "ejercicio-6": {
-      "title": "Calcular distancias absolutas",
+      "title": "Calcular distancias absolutas con anidaciones",
       "racket": {
         "lines": [
           "(abs (- (+ 5 3) 10))",
           "(abs (* -2 3))",
           "(abs (- 4 (+ 1 6)))",
-          "(abs 0)",
-          "(abs (- (* 3 4) 15))"
+          "(abs (abs (- (* 3 4) 15)))",
+          "(abs (- (abs (- 12 18)) 2))"
         ]
       },
       "ocaml": {
@@ -208,72 +208,72 @@
           "abs (5 + 3 - 10)",
           "abs (-2 * 3)",
           "abs (4 - (1 + 6))",
-          "abs 0",
-          "abs ((3 * 4) - 15)"
+          "abs (abs ((3 * 4) - 15))",
+          "abs ((abs (12 - 18)) - 2)"
         ]
       },
       "explanations_racket": [
-        "Calcula |5 + 3 - 10| con 'abs', dando 2 (|8 - 10| = |-2|). La notación prefija (abs (- (+ 5 3) 10)) muestra el valor absoluto como función pura, ideal para medir desviaciones en mapas, con inmutabilidad.",
-        "Calcula |-2 * 3| con 'abs', dando 6 (|-6|). (abs (* -2 3)) enseña manejar negativos, como en cálculos de desplazamiento, con pureza funcional.",
-        "Calcula |4 - (1 + 6)|, dando 3 (|4 - 7| = |-3|). (abs (- 4 (+ 1 6))) modela desviaciones complejas, asegurando determinismo.",
-        "Calcula |0| con 'abs', dando 0. (abs 0) es un caso base, útil para mediciones nulas, con pureza funcional.",
-        "Calcula |(3 * 4) - 15| con 'abs', dando 3 (|12 - 15| = |-3|). (abs (- (* 3 4) 15)) modela cálculos anidados, como en mapas, sin efectos secundarios."
+        "Calcula |5 + 3 - 10| con 'abs', dando 2 (|8 - 10| = |-2|). (abs (- (+ 5 3) 10)) representa una desviación base entre mediciones positivas y negativas, garantizando pureza funcional.",
+        "Calcula |-2 * 3| con 'abs', dando 6 (|-6|). (abs (* -2 3)) muestra cómo convertir productos negativos en distancias positivas, útil en cálculos direccionales.",
+        "Calcula |4 - (1 + 6)|, dando 3 (|4 - 7| = |-3|). (abs (- 4 (+ 1 6))) enseña composición funcional simple con suma anidada, manteniendo determinismo.",
+        "Calcula ||(3 * 4) - 15|| con 'abs' anidado, dando 3. (abs (abs (- (* 3 4) 15))) ilustra valor absoluto doble, demostrando idempotencia de 'abs' sobre resultados positivos.",
+        "Calcula |(|12 - 18| - 2)| con 'abs' anidado, dando 4 (|6 - 2| = 4). (abs (- (abs (- 12 18)) 2)) combina restas y valores absolutos internos, ejemplo de anidación coherente."
       ],
       "explanations_ocaml": [
-        "Calcula |5 + 3 - 10| con 'abs', dando 2 (|8 - 10| = |-2|). La notación infija abs (5 + 3 - 10) es intuitiva, como medir desviaciones en mapas, con pureza funcional.",
-        "Calcula |-2 * 3| con 'abs', dando 6 (|-6|). abs (-2 * 3) modela manejar negativos, con tipado estático asegurando enteros.",
-        "Calcula |4 - (1 + 6)|, dando 3 (|4 - 7| = |-3|). abs (4 - (1 + 6)) valida desviaciones complejas, manteniendo determinismo.",
-        "Calcula |0| con 'abs', dando 0. abs 0 es un caso base, con pureza funcional para mediciones nulas.",
-        "Calcula |(3 * 4) - 15| con 'abs', dando 3 (|12 - 15| = |-3|). abs ((3 * 4) - 15) modela cálculos anidados, con resultados predecibles."
+        "Calcula |5 + 3 - 10| con 'abs', dando 2 (|8 - 10| = |-2|). abs (5 + 3 - 10) mantiene claridad infija y pureza funcional para desviaciones aritméticas.",
+        "Calcula |-2 * 3| con 'abs', dando 6 (|-6|). abs (-2 * 3) muestra corrección de signos en multiplicaciones negativas, asegurando determinismo.",
+        "Calcula |4 - (1 + 6)| con 'abs', dando 3. abs (4 - (1 + 6)) usa estructura infija clara, con resultados predecibles.",
+        "Calcula ||(3 * 4) - 15||, dando 3. abs (abs ((3 * 4) - 15)) demuestra composición funcional pura, ya que 'abs' aplicado dos veces produce el mismo valor.",
+        "Calcula |(|12 - 18| - 2)|, dando 4. abs ((abs (12 - 18)) - 2) muestra cómo las anidaciones producen resultados correctos incluso con negativos internos."
       ],
       "comparisons": [
-        "Similitudes: Ambas calculan |5 + 3 - 10| = 2, con pureza funcional, para desviaciones. Diferencias: Racket usa 'abs' prefija (abs (- (+ 5 3) 10)), explícita, mientras que OCaml usa infija abs (5 + 3 - 10), concisa. Racket dinámico, OCaml estático.",
-        "Similitudes: Ambas calculan |-2 * 3| = 6, con pureza funcional, para negativos. Diferencias: Racket usa 'abs' prefija (abs (* -2 3)), OCaml infija abs (-2 * 3). Tipado dinámico vs. estático.",
-        "Similitudes: Ambas calculan |4 - (1 + 6)| = 3, con pureza funcional, para desviaciones complejas. Diferencias: Racket usa 'abs' prefija (abs (- 4 (+ 1 6))), OCaml infija abs (4 - (1 + 6)). Racket dinámico, OCaml estático.",
-        "Similitudes: Ambas calculan |0| = 0, con pureza funcional, para casos base. Diferencias: Racket usa 'abs' prefija (abs 0), OCaml infija abs 0. Tipado dinámico vs. estático.",
-        "Similitudes: Ambas calculan |(3 * 4) - 15| = 3, con pureza funcional, para cálculos anidados. Diferencias: Racket usa 'abs' prefija (abs (- (* 3 4) 15)), OCaml infija abs ((3 * 4) - 15). Racket dinámico, OCaml estático."
+        "Similitudes: Ambas calculan |5 + 3 - 10| = 2 con pureza funcional. Diferencias: Racket usa notación prefija (abs (- (+ 5 3) 10)), OCaml usa infija abs (5 + 3 - 10). Racket dinámico, OCaml estático.",
+        "Similitudes: Ambas calculan |-2 * 3| = 6, preservando pureza. Diferencias: Racket usa 'abs' prefija (abs (* -2 3)), OCaml usa abs (-2 * 3) infija. Tipado dinámico vs. estático.",
+        "Similitudes: Ambas calculan |4 - (1 + 6)| = 3. Diferencias: Notación prefija vs. infija; Racket más explícito, OCaml más conciso. Ambos son deterministas.",
+        "Similitudes: Ambas aplican 'abs' doblemente para obtener 3, ilustrando idempotencia. Diferencias: Racket (abs (abs (- (* 3 4) 15))) vs. OCaml abs (abs ((3 * 4) - 15)), expresividad vs. concisión.",
+        "Similitudes: Ambas calculan |(|12 - 18| - 2)| = 4, demostrando anidación funcional. Diferencias: Prefija en Racket, infija en OCaml; ambos mantienen pureza funcional."
       ]
     },
     "ejercicio-7": {
-      "title": "Calcular hipotenusas con raíz cuadrada",
+      "title": "Calcular hipotenusas con raíces cuadradas anidadas",
       "racket": {
         "lines": [
           "(sqrt (+ (* 3 3) (* 4 4)))",
-          "(sqrt (+ (* 5 5) (* 12 12)))",
-          "(sqrt (+ (* 8 8) (* 6 6)))",
-          "(sqrt (+ (* 7 7) (* 24 24)))",
-          "(sqrt (+ (* 20 20) (* 21 21)))"
+          "(sqrt (+ (sqrt (+ (* 5 5) (* 12 12))) 1))",
+          "(sqrt (+ (* (sqrt 8) (sqrt 8)) (* 6 6)))",
+          "(sqrt (+ (* 7 7) (sqrt (+ (* 24 24) 1))))",
+          "(sqrt (sqrt (+ (* 20 20) (* 21 21))))"
         ]
       },
       "ocaml": {
         "lines": [
           "sqrt (3.0 *. 3.0 +. 4.0 *. 4.0)",
-          "sqrt (5.0 *. 5.0 +. 12.0 *. 12.0)",
-          "sqrt (8.0 *. 8.0 +. 6.0 *. 6.0)",
-          "sqrt (7.0 *. 7.0 +. 24.0 *. 24.0)",
-          "sqrt (20.0 *. 20.0 +. 21.0 *. 21.0)"
+          "sqrt (sqrt (5.0 *. 5.0 +. 12.0 *. 12.0) +. 1.0)",
+          "sqrt ((sqrt 8.0) *. (sqrt 8.0) +. 6.0 *. 6.0)",
+          "sqrt (7.0 *. 7.0 +. sqrt (24.0 *. 24.0 +. 1.0))",
+          "sqrt (sqrt (20.0 *. 20.0 +. 21.0 *. 21.0)))"
         ]
       },
       "explanations_racket": [
-        "Calcula √(3² + 4²) = √(9 + 16) = 5 con 'sqrt'. La notación prefija (sqrt (+ (* 3 3) (* 4 4))) muestra la raíz como función pura, ideal para hallar hipotenusas en diseño estructural, con inmutabilidad.",
-        "Calcula √(5² + 12²) = √(25 + 144) = 13 con 'sqrt'. (sqrt (+ (* 5 5) (* 12 12))) modela triángulos rectángulos, con pureza funcional y determinismo.",
-        "Calcula √(8² + 6²) = √(64 + 36) = 10 con 'sqrt'. (sqrt (+ (* 8 8) (* 6 6))) enseña cálculos complejos, como en ingeniería, sin efectos secundarios.",
-        "Calcula √(7² + 24²) = √(49 + 576) = 25 con 'sqrt'. (sqrt (+ (* 7 7) (* 24 24))) modela triángulos grandes, con resultados predecibles.",
-        "Calcula √(20² + 21²) = √(400 + 441) = 29 con 'sqrt'. (sqrt (+ (* 20 20) (* 21 21))) representa cálculos avanzados, como en estructuras, con pureza funcional."
+        "Calcula √(3² + 4²) = √(9 + 16) = 5. (sqrt (+ (* 3 3) (* 4 4))) representa la hipotenusa clásica, ideal para estructuras simples.",
+        "Calcula √(√(5² + 12²) + 1) ≈ √(√169 + 1) ≈ √(13 + 1) ≈ 3.74. (sqrt (+ (sqrt (+ (* 5 5) (* 12 12))) 1)) demuestra uso de raíz doble para obtener resultados compuestos.",
+        "Calcula √((√8 * √8) + 6²) = √(8 + 36) = √44 ≈ 6.63. (sqrt (+ (* (sqrt 8) (sqrt 8)) (* 6 6))) aplica raíz dentro de multiplicación para mantener coherencia matemática.",
+        "Calcula √(7² + √(24² + 1)) = √(49 + √577) ≈ √(49 + 24.02) = √73.02 ≈ 8.54. (sqrt (+ (* 7 7) (sqrt (+ (* 24 24) 1)))) ejemplifica mezcla de niveles de raíces.",
+        "Calcula √(√(20² + 21²)) = √(√(400 + 441)) = √(√841) = √29 ≈ 5.38. (sqrt (sqrt (+ (* 20 20) (* 21 21)))) muestra composición extrema de raíces anidadas."
       ],
       "explanations_ocaml": [
-        "Calcula √(3.0² + 4.0²) = √(9 + 16) = 5 con 'sqrt'. La notación infija sqrt (3.0 *. 3.0 +. 4.0 *. 4.0) es intuitiva, como hallar hipotenusas, con pureza funcional y tipado estático para flotantes.",
-        "Calcula √(5.0² + 12.0²) = √(25 + 144) = 13 con 'sqrt'. sqrt (5.0 *. 5.0 +. 12.0 *. 12.0) modela triángulos, con determinismo y sin estado.",
-        "Calcula √(8.0² + 6.0²) = √(64 + 36) = 10 con 'sqrt'. sqrt (8.0 *. 8.0 +. 6.0 *. 6.0) enseña cálculos de ingeniería, con pureza funcional.",
-        "Calcula √(7.0² + 24.0²) = √(49 + 576) = 25 con 'sqrt'. sqrt (7.0 *. 7.0 +. 24.0 *. 24.0) modela triángulos grandes, con resultados predecibles.",
-        "Calcula √(20.0² + 21.0²) = √(400 + 441) = 29 con 'sqrt'. sqrt (20.0 *. 20.0 +. 21.0 *. 21.0) representa cálculos avanzados, con OCaml asegurando precisión."
+        "Calcula √(3.0² + 4.0²) = √(9 + 16) = 5. sqrt (3.0 *. 3.0 +. 4.0 *. 4.0) representa la hipotenusa clásica, usando operadores flotantes.",
+        "Calcula √(√(5.0² + 12.0²) + 1.0) ≈ 3.74. sqrt (sqrt (5.0 *. 5.0 +. 12.0 *. 12.0) +. 1.0) aplica raíz doble, mostrando expresividad funcional.",
+        "Calcula √((√8.0 *. √8.0) + 6.0²) ≈ 6.63. sqrt ((sqrt 8.0) *. (sqrt 8.0) +. 6.0 *. 6.0) mantiene exactitud en flotantes.",
+        "Calcula √(7.0² + √(24.0² + 1.0)) ≈ 8.54. sqrt (7.0 *. 7.0 +. sqrt (24.0 *. 24.0 +. 1.0)) muestra composición jerárquica con precisión decimal.",
+        "Calcula √(√(20.0² + 21.0²)) ≈ 5.38. sqrt (sqrt (20.0 *. 20.0 +. 21.0 *. 21.0))) ejemplifica raíces dobles en OCaml con flotantes precisos."
       ],
       "comparisons": [
-        "Similitudes: Ambas calculan √(3² + 4²) = 5, con pureza funcional, para hipotenusas. Diferencias: Racket usa 'sqrt' prefija (sqrt (+ (* 3 3) (* 4 4))), explícita, mientras que OCaml usa infija sqrt (3.0 *. 3.0 +. 4.0 *. 4.0), con flotantes explícitos. Racket dinámico, OCaml estático.",
-        "Similitudes: Ambas calculan √(5² + 12²) = 13, con pureza funcional, para triángulos. Diferencias: Racket usa 'sqrt' prefija, OCaml infija con flotantes (*. y +. operadores). Tipado dinámico vs. estático.",
-        "Similitudes: Ambas calculan √(8² + 6²) = 10, con pureza funcional, para ingeniería. Diferencias: Racket usa 'sqrt' prefija, OCaml infija con flotantes. Racket dinámico, OCaml estático.",
-        "Similitudes: Ambas calculan √(7² + 24²) = 25, con pureza funcional, para triángulos grandes. Diferencias: Racket usa 'sqrt' prefija, OCaml infija con flotantes. Tipado dinámico vs. estático.",
-        "Similitudes: Ambas calculan √(20² + 21²) = 29, con pureza funcional, para cálculos avanzados. Diferencias: Racket usa 'sqrt' prefija, OCaml infija con flotantes. Racket dinámico, OCaml estático."
+        "Similitudes: Ambas calculan √(3² + 4²) = 5. Diferencias: Racket usa notación prefija explícita, OCaml infija con operadores flotantes (*. +.).",
+        "Similitudes: Ambas aplican doble raíz √(√(5² + 12²) + 1) ≈ 3.74. Diferencias: Prefija en Racket, infija en OCaml, ambas puras y deterministas.",
+        "Similitudes: Ambas calculan √((√8 * √8) + 6²) ≈ 6.63, con pureza funcional. Diferencias: Prefija Racket vs. infija OCaml, ambas con precisión matemática.",
+        "Similitudes: Ambas resuelven √(7² + √(24² + 1)) ≈ 8.54, representando composición jerárquica. Diferencias: OCaml declara flotantes explícitamente.",
+        "Similitudes: Ambas calculan √(√(20² + 21²)) ≈ 5.38, demostrando raíces anidadas. Diferencias: Prefija Racket (sqrt (sqrt ...)), infija OCaml (sqrt (sqrt ...)), con precisión numérica distinta."
       ]
     }
   },
@@ -457,7 +457,7 @@
         "Divide 9 ÷ 3, dando 3. 9 / 3 modela reparto en recetas, con predictibilidad."
       ],
       "comparisons": [
-        "Similitudes: Ambas dividen 12 ÷ 3 = 4, con pureza funcional, para repartir huevos. Diferencias: Racket usa '/' prefija, explícita, mientras que OCaml usa infija, concisa. Racket puede dar fracciones, OCaml entera, pero idéntico aquí.",
+        "Similitudes: Ambas dividen 12 ÷ 3 = 4, con pureza funcional, para repartir huevos. Diferencias: Racket usa '/' prefija, explícita, mientras que OCaml usa infija, concisa. Racket dinámico, OCaml estático.",
         "Similitudes: Ambas dividen 8 ÷ 2 = 4, con pureza funcional, para reparto equitativo. Diferencias: Racket usa '/' prefija, OCaml infija. Tipado dinámico vs. estático.",
         "Similitudes: Ambas dividen 15 ÷ 5 = 3, con pureza funcional, para distribución. Diferencias: Racket usa '/' prefija, OCaml infija. Racket dinámico, OCaml estático.",
         "Similitudes: Ambas dividen 6 ÷ 2 = 3, con pureza funcional, para repartir recursos. Diferencias: Racket usa '/' prefija, OCaml infija. Tipado dinámico vs. estático.",
@@ -465,45 +465,46 @@
       ]
     },
     "ejercicio-7": {
-      "title": "Comparar área ajustada con límite",
+      "title": "Comparar área ajustada con operaciones compuestas y trigonometría",
       "racket": {
         "lines": [
-          "(> (- (expt 3 2) 4) 5)",
-          "(> (- (expt 4 2) 3) 7)",
-          "(> (- (expt 2 2) 2) 1)",
-          "(> (- (expt 5 2) 5) 10)",
-          "(> (- (expt 6 2) 6) 15)"
+          "(> (- (sqrt (+ (* 3 3) (* 4 4))) 2) 5)",
+          "(> (- (round (sqrt (+ (* 4 4) (* 12 12)))) 1) 7)",
+          "(> (- (expt 2 2) (remainder 3 2)) 1)",
+          "(> (- (round (* (tan 1.5) 5)) 5) 10)",
+          "(> (- (expt 6 2) (round (sin 2))) 15)"
         ]
       },
       "ocaml": {
         "lines": [
-          "( ( (3 ** 2.0) - 4 ) > 5 )",
-          "( ( (4 ** 2.0) - 3 ) > 7 )",
-          "( ( (2 ** 2.0) - 2 ) > 1 )",
-          "( ( (5 ** 2.0) - 5 ) > 10 )",
-          "( ( (6 ** 2.0) - 6 ) > 15 )"
+          "((sqrt (3.0 *. 3.0 +. 4.0 *. 4.0) -. 2.0) >. 5.0)",
+          "((Float.round (sqrt (4.0 *. 4.0 +. 12.0 *. 12.0)) -. 1.0) >. 7.0)",
+          "(((2.0 ** 2.0) -. float_of_int (3 mod 2)) >. 1.0)",
+          "((Float.round (Float.tan 1.5 *. 5.0) -. 5.0) >. 10.0)",
+          "((6.0 ** 2.0 -. Float.round (Float.sin 2.0)) >. 15.0)"
         ]
       },
       "explanations_racket": [
-        "Calcula (> (- (expt 3 2) 4) 5), dando #f (9 - 4 = 5, 5 > 5 = #f). La notación prefija en Racket muestra anidamiento puro, ideal para ajustes de áreas en diseño estructural.",
-        "Calcula (> (- (expt 4 2) 3) 7), dando #t (16 - 3 = 13, 13 > 7 = #t). Enseña combinar operaciones, con determinismo.",
-        "Calcula (> (- (expt 2 2) 2) 1), dando #t (4 - 2 = 2, 2 > 1 = #t). Modela cálculos estructurales, sin efectos secundarios.",
-        "Calcula (> (- (expt 5 2) 5) 10), dando #t (25 - 5 = 20, 20 > 10 = #t). Útil para diseño, con inmutabilidad.",
-        "Calcula (> (- (expt 6 2) 6) 15), dando #t (36 - 6 = 30, 30 > 15 = #t). Modela ajustes complejos, con pureza."
+        "Calcula (> (- (sqrt (+ (* 3 3) (* 4 4))) 2) 5). Aquí sqrt(9 + 16) = 5; 5 - 2 = 3; 3 > 5 → #f. (Usa raíz clásica luego resta y comparación.)",
+        "Calcula (> (- (round (sqrt (+ (* 4 4) (* 12 12)))) 1) 7). sqrt(16 + 144) ≈ 12.649…; round → 13; 13 - 1 = 12; 12 > 7 → #t. (Combina raíz y redondeo antes de comparar.)",
+        "Calcula (> (- (expt 2 2) (remainder 3 2)) 1). expt 2 2 = 4; remainder 3 2 = 1; 4 - 1 = 3; 3 > 1 → #t. (Integra potencia con resto entero.)",
+        "Calcula (> (- (round (* (tan 1.5) 5)) 5) 10). tan(1.5) ≈ 14.1014; *5 ≈ 70.507; round → 71; 71 - 5 = 66; 66 > 10 → #t. (Ejemplo de trigonometría, escala y redondeo antes de comparar.)",
+        "Calcula (> (- (expt 6 2) (round (sin 2))) 15). expt 6 2 = 36; sin(2) ≈ 0.9093; round → 1; 36 - 1 = 35; 35 > 15 → #t. (Mezcla potencia y función trigonométrica con redondeo.)"
       ],
       "explanations_ocaml": [
-        "Calcula ( ( (3 ** 2.0) - 4 ) > 5 ), dando false (9.0 - 4 = 5, 5 > 5 = false). La notación infija en OCaml con flotantes es clara, ideal para ajustes de áreas, con pureza.",
-        "Calcula ( ( (4 ** 2.0) - 3 ) > 7 ), dando true (16.0 - 3 = 13, 13 > 7 = true). Enseña anidamiento, con tipado estático.",
-        "Calcula ( ( (2 ** 2.0) - 2 ) > 1 ), dando true (4.0 - 2 = 2, 2 > 1 = true). Modela cálculos estructurales, con determinismo.",
-        "Calcula ( ( (5 ** 2.0) - 5 ) > 10 ), dando true (25.0 - 5 = 20, 20 > 10 = true). Útil para diseño, sin efectos secundarios.",
-        "Calcula ( ( (6 ** 2.0) - 6 ) > 15 ), dando true (36.0 - 6 = 30, 30 > 15 = true). Modela ajustes complejos, con predictibilidad."
+        "Calcula ((sqrt (3.0 *. 3.0 +. 4.0 *. 4.0) -. 2.0) >. 5.0). sqrt(9.0 + 16.0) = 5.0; 5.0 -. 2.0 = 3.0; 3.0 >. 5.0 → false. (Equivalente en flotantes.)",
+        "Calcula ((Float.round (sqrt (4.0 *. 4.0 +. 12.0 *. 12.0)) -. 1.0) >. 7.0). sqrt(160.0) ≈ 12.649…; Float.round → 13.0; 13.0 -. 1.0 = 12.0; 12.0 >. 7.0 → true.",
+        "Calcula (((2.0 ** 2.0) -. float_of_int (3 mod 2)) >. 1.0). 2.0 ** 2.0 = 4.0; 3 mod 2 = 1 -> float_of_int 1 = 1.0; 4.0 -. 1.0 = 3.0; 3.0 >. 1.0 → true.",
+        "Calcula ((Float.round (Float.tan 1.5 *. 5.0) -. 5.0) >. 10.0). Float.tan 1.5 ≈ 14.1014; *5.0 ≈ 70.507; Float.round → 71.0; 71.0 -. 5.0 = 66.0; 66.0 >. 10.0 → true.",
+        "Calcula ((6.0 ** 2.0 -. Float.round (Float.sin 2.0)) >. 15.0). 6.0 ** 2.0 = 36.0; Float.sin 2.0 ≈ 0.9093; Float.round → 1.0; 36.0 -. 1.0 = 35.0; 35.0 >. 15.0 → true."
       ],
       "comparisons": [
-        "Similitudes: Ambas evalúan (> (- (expt 3 2) 4) 5) = #f, con pureza funcional, para ajustes de áreas. Diferencias: Racket usa 'expt' prefija con enteros, OCaml usa '**' con flotantes (3 ** 2.0). Racket dinámico, OCaml estático.",
-        "Similitudes: Ambas evalúan (> (- (expt 4 2) 3) 7) = #t, con pureza funcional, para diseño estructural. Diferencias: Racket usa 'expt' prefija, OCaml '**' con flotantes (4 ** 2.0). Tipado dinámico vs. estático.",
-        "Similitudes: Ambas evalúan (> (- (expt 2 2) 2) 1) = #t, con pureza funcional, para cálculos estructurales. Diferencias: Racket usa 'expt' prefija, OCaml '**' con flotantes (2 ** 2.0). Racket dinámico, OCaml estático.",
-        "Similitudes: Ambas evalúan (> (- (expt 5 2) 5) 10) = #t, con pureza funcional, para diseño. Diferencias: Racket usa 'expt' prefija, OCaml '**' con flotantes (5 ** 2.0). Tipado dinámico vs. estático.",
-        "Similitudes: Ambas evalúan (> (- (expt 6 2) 6) 15) = #t, con pureza funcional, para ajustes complejos. Diferencias: Racket usa 'expt' prefija, OCaml '**' con flotantes (6 ** 2.0). Racket dinámico, OCaml estático."
+        "Similitudes: Ambas plataformas realizan la misma lógica: componer funciones (raíz, trigonometría, round, remainder) y comparar el resultado con un umbral. Las diferencias notacionales reflejan Racket prefija vs OCaml infija y el uso de operadores de punto para flotantes en OCaml (>., +., -., *.).",
+        "Linea 1: Racket devuelve #f porque (sqrt(9+16)-2)=3 no supera 5; OCaml devuelve false por la misma razón (flotantes).",
+        "Linea 2: Racket y OCaml devuelven verdadero (Racket #t / OCaml true) tras redondear sqrt(160) a 13 y comparar 12 > 7.",
+        "Linea 3: Uso de potencia y resto entero: ambas dan verdadero (Racket #t / OCaml true) porque 4 - 1 = 3 > 1.",
+        "Linea 4: La versión con tan + escala + round produce un gran entero tras redondeo (71), por tanto ambas evaluaciones son verdaderas. Racket usa (round ( * (tan 1.5) 5 )), OCaml usa Float.tan y Float.round.",
+        "Linea 5: Mezcla expt y sin redondeado da verdadero (36 - 1 = 35 > 15). Notación diferente pero semántica equivalente."
       ]
     }
   },
@@ -1273,171 +1274,208 @@
       ]
     },
     "ejercicio-5": {
-      "title": "Sistema de calificación",
+      "title": "Sistema de calificación con subniveles (+ y -)",
       "racket": {
         "lines": [
           "(define (grade score)",
-          "  (cond",
-          "    [(>= score 90) 'A]",
-          "    [(>= score 80) 'B]",
-          "    [(>= score 70) 'C]",
-          "    [(>= score 60) 'D]",
-          "    [else 'F]",
+          "  (let ((rounded (round score)))",
+          "    (cond",
+          "      [(>= rounded 90)",
+          "       (if (>= rounded 95)",
+          "           'A+",
+          "           'A-)]",
+          "      [(>= rounded 80)",
+          "       (if (>= rounded 85)",
+          "           'B+",
+          "           'B-)]",
+          "      [(>= rounded 70)",
+          "       (if (>= rounded 75)",
+          "           'C+",
+          "           'C-)]",
+          "      [(>= rounded 60)",
+          "       (if (>= rounded 65)",
+          "           'D+",
+          "           'D-)]",
+          "      [else 'F]",
+          "    )",
           "  )",
           ")",
-          "(grade 92)"
+          "(grade 92.3)"
         ]
       },
       "ocaml": {
         "lines": [
           "let grade score =",
-          "  if score >= 90 then",
-          "    \"A\"",
-          "  else if score >= 80 then",
-          "    \"B\"",
-          "  else if score >= 70 then",
-          "    \"C\"",
-          "  else if score >= 60 then",
-          "    \"D\"",
+          "  let rounded = int_of_float (Float.round score) in",
+          "  if rounded >= 90 then",
+          "    if rounded >= 95 then \"A+\" else \"A-\"",
+          "  else if rounded >= 80 then",
+          "    if rounded >= 85 then \"B+\" else \"B-\"",
+          "  else if rounded >= 70 then",
+          "    if rounded >= 75 then \"C+\" else \"C-\"",
+          "  else if rounded >= 60 then",
+          "    if rounded >= 65 then \"D+\" else \"D-\"",
           "  else",
           "    \"F\"",
           "in",
-          "grade 92"
+          "grade 92.3"
         ]
       },
       "explanations_racket": [
-        "Define una función `grade` que toma un parámetro `score` para clasificar una calificación. La sintaxis `(define (nombre params) cuerpo)` es funcional, como asignar una letra a una nota de examen.",
-        "Inicia un condicional `cond` para evaluar rangos, una expresión pura que clasifica según condiciones.",
-        "Evalúa si `score >= 90`, retornando `'A`, para calificaciones excelentes, como un examen perfecto.",
-        "Evalúa si `score >= 80`, retornando `'B`, para calificaciones buenas.",
-        "Evalúa si `score >= 70`, retornando `'C`, para calificaciones aceptables.",
-        "Evalúa si `score >= 60`, retornando `'D`, para calificaciones bajas pero aprobatorias.",
-        "Si ninguna condición es verdadera, retorna `'F` con `else`, para calificaciones reprobatorias.",
-        "Cierra el bloque `cond`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, requerida por Racket.",
-        "Llama a `grade` con 92, retornando `'A` porque `92 >= 90`, mostrando la clasificación."
+        "Define una función `grade` que recibe una nota `score`. Esta función decidirá qué letra corresponde según la calificación numérica.",
+        "Dentro de la función, se usa `let` para crear una variable local llamada `rounded` que guarda el valor redondeado de `score` (por ejemplo, 92.3 se convierte en 92).",
+        "`cond` inicia un bloque de condiciones que se evalúan una por una. Cada caso representa un rango de calificaciones.",
+        "Si la nota es 90 o más (`(>= rounded 90)`), entra en esta condición. Dentro de ella, hay otro `if` que evalúa si la nota es 95 o más.",
+        "Si es 95 o más, devuelve `'A+` (nota excelente). Si está entre 90 y 94, devuelve `'A-`, lo que muestra un nivel alto pero no perfecto.",
+        "El siguiente bloque evalúa si la nota es al menos 80. Dentro, otro `if` decide entre `'B+` y `'B-`, añadiendo subniveles dentro del rango B.",
+        "De igual forma, el siguiente rango (70–79) se evalúa con `if` anidado, devolviendo `'C+` o `'C-`, según esté cerca del 80 o más bajo.",
+        "Luego, si la nota está entre 60 y 69, se aplica la misma lógica para `'D+` y `'D-`, diferenciando entre apenas aprobada o más alta.",
+        "Si ninguna de las condiciones anteriores se cumple, se ejecuta `else` y devuelve `'F`, que representa una nota reprobatoria.",
+        "Finalmente, se llama a `(grade 92.3)`. Como el valor redondeado es 92, devuelve `'A-`."
       ],
       "explanations_ocaml": [
-        "Define una función `grade` con un parámetro `score` para clasificar una calificación, usando `let nombre params = cuerpo`. Es una abstracción funcional, como etiquetar un puntaje académico.",
-        "Inicia un condicional `if` con `score >= 90` en notación infija, evaluando el primer rango con pureza.",
-        "Si `score >= 90`, retorna `\"A\"`, para calificaciones excelentes.",
-        "Introduce un `else if` para `score >= 80`, retornando `\"B\"`, para calificaciones buenas.",
-        "Introduce otro `else if` para `score >= 70`, retornando `\"C\"`, para calificaciones aceptables.",
-        "Introduce otro `else if` para `score >= 60`, retornando `\"D\"`, para calificaciones bajas.",
-        "Introduce la rama `else`, retornando `\"F\"` para calificaciones reprobatorias, necesaria para completar el condicional.",
-        "Cierra la rama `else` con `\"F\"`, asegurando un valor puro.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `grade` con 92, retornando `\"A\"` porque `92 >= 90`, demostrando la función."
+        "Define una función `grade` en OCaml que recibe una nota `score`.",
+        "Crea una variable local `rounded` que guarda el número redondeado de `score` (por ejemplo, 92.3 se convierte en 92).",
+        "El condicional principal empieza: si `rounded >= 90`, entonces entra al primer bloque.",
+        "Dentro de ese bloque, hay un `if` anidado: si la nota es 95 o más, devuelve \"A+\"; si no, devuelve \"A-\".",
+        "Si no cumple el rango anterior, pasa al siguiente bloque `else if rounded >= 80`. Allí se repite la estructura con `if` anidado para decidir entre \"B+\" o \"B-\".",
+        "Cada bloque siguiente (70 y 60) repite la misma idea: un rango principal con una decisión interna, agregando detalle y precisión al resultado.",
+        "Si la nota es menor a 60, entra al `else` final que devuelve \"F\", indicando reprobación.",
+        "El `in` introduce la llamada final a la función.",
+        "Se llama a `grade 92.3`. El valor 92 no alcanza 95, por lo que devuelve \"A-\"."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para clasificar calificaciones, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml usa cadenas, Racket usa símbolos.",
-        "Similitudes: Ambas inician un condicional para clasificar rangos, con pureza. Diferencias: Racket usa `cond`, más flexible, OCaml usa `if` con anidamiento `else if`.",
-        "Similitudes: Ambas retornan `A` para ≥ 90. Diferencias: Racket usa `'A` en `cond`, OCaml usa `\"A\"` con `then`.",
-        "Similitudes: Ambas retornan `B` para ≥ 80. Diferencias: Racket usa una rama de `cond`, OCaml usa `else if`.",
-        "Similitudes: Ambas retornan `C` para ≥ 70. Diferencias: Racket usa una rama de `cond`, OCaml usa otro `else if`.",
-        "Similitudes: Ambas retornan `D` para ≥ 60. Diferencias: Racket usa una rama de `cond`, OCaml usa otro `else if`.",
-        "Similitudes: Ambas retornan `F` para < 60. Diferencias: Racket usa `else` en `cond`, OCaml separa `else` y `\"F\"`, requiriendo dos líneas.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `cond`, OCaml cierra la rama `else`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la definición con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con 92, retornando `A`. Diferencias: Racket usa `(grade 92)` con un símbolo, OCaml usa `grade 92` con una cadena."
+        "Ambas definen funciones para clasificar calificaciones, pero Racket usa `cond` y símbolos (`'A-`), mientras OCaml usa `if` y cadenas (\"A-\").",
+        "Ambas crean una variable local: `let` en OCaml y `(let ...)` en Racket, aunque con sintaxis distinta.",
+        "Ambas usan estructuras anidadas (`if` dentro de `cond` o `if` dentro de `if`) para refinar los resultados.",
+        "OCaml agrupa los `if` con `else if`, mientras Racket los separa con `cond` y paréntesis, lo que hace más clara la jerarquía de decisiones.",
+        "Ambas llamadas finales evalúan con 92.3 y devuelven una nota alta pero no perfecta: `'A-` o \"A-\"."
       ]
     },
     "ejercicio-6": {
-      "title": "Divisibilidad por 2 y 3",
+      "title": "Activar alarma con condiciones anidadas",
       "racket": {
         "lines": [
-          "(define (divisible-both? x)",
-          "  (and (= (remainder x 2) 0)",
-          "       (= (remainder x 3) 0))",
-          ")",
-          "(divisible-both? 12)"
+          "(define (activate-alarm? x)",
+          "  (if (and (= (remainder x 2) 0)",
+          "           (= (remainder x 3) 0))",
+          "      #t",
+          "      (if (or (= (remainder (round (sqrt x)) 5) 0)",
+          "              (= (remainder (round (sqrt x)) 7) 0))",
+          "          #t",
+          "          #f)))",
+          "(activate-alarm? 12)"
         ]
       },
       "ocaml": {
         "lines": [
-          "let divisible_both x =",
-          "  x mod 2 = 0 && x mod 3 = 0",
+          "let activate_alarm x =",
+          "  if x mod 2 = 0 && x mod 3 = 0 then",
+          "    true",
+          "  else if ((int_of_float (Float.round (sqrt (float_of_int x)))) mod 5 = 0)",
+          "       || ((int_of_float (Float.round (sqrt (float_of_int x)))) mod 7 = 0) then",
+          "    true",
+          "  else",
+          "    false",
           "in",
-          "divisible_both 12"
+          "activate_alarm 12"
         ]
       },
       "explanations_racket": [
-        "Define una función `divisible-both?` que toma un parámetro `x` para verificar si es divisible por 2 y 3. La sintaxis `(define (nombre params) cuerpo)` es funcional, como comprobar si un número activa una alarma especial.",
-        "Usa `and` para combinar dos condiciones: `(= (remainder x 2) 0)` verifica divisibilidad por 2, y `(= (remainder x 3) 0)` por 3, en notación prefija. Es una expresión pura, como verificar si un número es múltiplo común.",
-        "Continúa la expresión `and`, retornando `#t` si ambas condiciones son verdaderas, `#f` si alguna falla, manteniendo pureza.",
-        "Cierra la definición de la función, necesaria para la sintaxis de Racket.",
-        "Llama a `divisible-both?` con 12, retornando `#t` porque `12 mod 2 = 0` y `12 mod 3 = 0`, mostrando que es divisible por ambos."
+        "Define una función `activate-alarm?` que recibe un número `x` y determina si debe activarse una alarma según ciertas reglas matemáticas.",
+        "El primer `if` comprueba si el número es divisible por 2 y por 3. Si ambas condiciones son ciertas, retorna `#t` (verdadero).",
+        "Si no es divisible por ambos, entra al segundo `if` anidado.",
+        "Dentro del segundo `if`, se calcula la raíz cuadrada de `x`, se redondea, y se verifica si ese número es divisible por 5 o por 7.",
+        "Si se cumple alguna de esas dos condiciones, retorna `#t`, indicando que la alarma también se activa en esos casos especiales.",
+        "Si ninguna de las condiciones anteriores se cumple, retorna `#f` (falso), lo que significa que la alarma no se activa.",
+        "Finalmente, al ejecutar `(activate-alarm? 12)`, el resultado es `#t`, porque 12 es divisible tanto por 2 como por 3."
       ],
       "explanations_ocaml": [
-        "Define una función `divisible_both` con un parámetro `x` para verificar divisibilidad por 2 y 3, usando `let nombre params = cuerpo`. Es una abstracción funcional, como validar un código de alarma.",
-        "Evalúa `x mod 2 = 0 && x mod 3 = 0` en notación infija, combinando dos condiciones con `&&`. Es una expresión pura, retornando `true` si ambas son ciertas.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml, sin lógica propia.",
-        "Llama a `divisible_both` con 12, retornando `true` porque `12 mod 2 = 0` y `12 mod 3 = 0`, demostrando la función."
+        "Define una función `activate_alarm` que recibe un número `x` y devuelve `true` o `false` según ciertas condiciones.",
+        "Primero verifica si `x` es divisible por 2 y por 3 usando `mod` y el operador lógico `&&`. Si ambas condiciones son ciertas, devuelve `true`.",
+        "Si no se cumple la primera parte, evalúa el `else if` anidado.",
+        "En este segundo caso, convierte `x` a número decimal (`float_of_int x`), calcula su raíz cuadrada, la redondea, la vuelve a entero y verifica si ese número es divisible por 5 o por 7.",
+        "Si alguna de esas condiciones se cumple (`||`), devuelve `true`.",
+        "Si ninguna se cumple, llega al `else` final que devuelve `false`.",
+        "Finalmente, `activate_alarm 12` devuelve `true`, porque cumple la primera condición (divisible por 2 y 3)."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para verificar divisibilidad por 2 y 3, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml infiere tipos enteros, Racket es dinámico.",
-        "Similitudes: Ambas evalúan divisibilidad por 2 y 3 con un operador lógico, con pureza. Diferencias: Racket usa `and` y `remainder` en notación prefija, más explícita, mientras que OCaml usa `&&` y `mod` infijos, más concisos y matemáticos.",
-        "Similitudes: Ambas son parte de la lógica de evaluación. Diferencias: Racket divide la expresión `and` en dos líneas por formato, OCaml la integra en una línea, más compacta.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la definición con `)`, OCaml usa `in` para la llamada, reflejando filosofías distintas (Lisp vs ML).",
-        "Similitudes: Ambas llaman la función con 12, retornando verdadero. Diferencias: Racket usa `(divisible-both? 12)`, OCaml usa `divisible_both 12`, más simple."
+        "Ambas funciones evalúan condiciones numéricas anidadas: primero divisibilidad directa, luego divisibilidad del valor derivado de la raíz cuadrada.",
+        "Racket usa `and` y `or` con notación prefija, OCaml usa `&&` y `||` en notación infija, pero la lógica es la misma.",
+        "Ambas devuelven valores booleanos: `#t` / `#f` en Racket y `true` / `false` en OCaml.",
+        "El flujo condicional es idéntico: una verificación principal seguida de una secundaria más compleja.",
+        "Ambas devuelven verdadero con el número 12."
       ]
     },
     "ejercicio-7": {
-      "title": "Clasificar triángulo",
+      "title": "Clasificación geométrica con validación y tamaño",
       "racket": {
         "lines": [
           "(define (triangle-type a b c)",
-          "  (cond",
-          "    [(and (= a b) (= b c)) 'equilateral]",
-          "    [(or (= a b) (= b c) (= a c)) 'isosceles]",
-          "    [else 'scalene]",
-          "  )",
-          ")",
+          "  (if (and (> (+ a b) c) (> (+ a c) b) (> (+ b c) a))",
+          "      (cond",
+          "        [(and (= a b) (= b c))",
+          "         (if (< a 5)",
+          "             'small-equilateral",
+          "             'equilateral)]",
+          "        [(or (= a b) (= b c) (= a c))",
+          "         (if (< a 5)",
+          "             'small-isosceles",
+          "             'isosceles)]",
+          "        [else",
+          "         (if (< a 5)",
+          "             'small-scalene",
+          "             'scalene)])",
+          "      'invalid))",
           "(triangle-type 3 3 3)"
         ]
       },
       "ocaml": {
         "lines": [
           "let triangle_type a b c =",
-          "  if a = b && b = c then",
-          "    \"equilateral\"",
-          "  else if a = b || b = c || a = c then",
-          "    \"isosceles\"",
+          "  if a + b > c && a + c > b && b + c > a then",
+          "    if a = b && b = c then",
+          "      if a < 5 then \"small-equilateral\" else \"equilateral\"",
+          "    else if a = b || b = c || a = c then",
+          "      if a < 5 then \"small-isosceles\" else \"isosceles\"",
+          "    else",
+          "      if a < 5 then \"small-scalene\" else \"scalene\"",
           "  else",
-          "    \"scalene\"",
+          "    \"invalid\"",
           "in",
           "triangle_type 3 3 3"
         ]
       },
       "explanations_racket": [
-        "Define una función `triangle-type` que toma tres parámetros (`a`, `b`, `c`) para clasificar un triángulo. La sintaxis `(define (nombre params) cuerpo)` es funcional, como identificar la forma de un triángulo en un plano.",
-        "Inicia un condicional `cond` para evaluar las condiciones del triángulo, una expresión pura que clasifica según igualdad de lados.",
-        "Evalúa si `a = b` y `b = c` usando `and`, retornando `'equilateral` si todos los lados son iguales, como un triángulo perfecto.",
-        "Evalúa si al menos dos lados son iguales usando `or`, retornando `'isosceles`, para triángulos con dos lados iguales.",
-        "Si ninguna condición previa es verdadera, retorna `'scalene` con `else`, para triángulos con lados distintos.",
-        "Cierra el bloque `cond`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, requerida por Racket.",
-        "Llama a `triangle-type` con 3, 3, 3, retornando `'equilateral` porque todos los lados son iguales, mostrando la clasificación."
+        "Define una función `triangle-type` que recibe tres lados (`a`, `b`, `c`) y determina qué tipo de triángulo forman.",
+        "Primero evalúa si los tres lados pueden formar un triángulo. Esto se hace comprobando que la suma de dos lados sea siempre mayor que el tercero.",
+        "Si la figura es válida, entra a un `cond` para clasificar su tipo.",
+        "Si los tres lados son iguales (`(and (= a b) (= b c))`), entra en el primer bloque.",
+        "Dentro de este bloque hay un `if` anidado que evalúa si los lados son menores que 5. Si lo son, devuelve `'small-equilateral`, indicando un triángulo equilátero pequeño; si no, `'equilateral`.",
+        "Si no todos los lados son iguales, pasa al siguiente caso que usa `or` para verificar si al menos dos lados son iguales, es decir, si es isósceles.",
+        "Dentro de este caso también hay un `if` anidado para determinar si el triángulo isósceles es pequeño (`'small-isosceles`) o normal (`'isosceles`).",
+        "El último caso del `cond` corresponde al triángulo escaleno (todos los lados distintos). También anida un `if` para distinguir si es pequeño o normal.",
+        "Si los lados no forman un triángulo válido, la función devuelve `'invalid`.",
+        "Finalmente, al ejecutar `(triangle-type 3 3 3)`, devuelve `'small-equilateral` porque todos los lados son iguales y menores que 5."
       ],
       "explanations_ocaml": [
-        "Define una función `triangle_type` con tres parámetros para clasificar un triángulo, usando `let nombre params = cuerpo`. Es una abstracción funcional, como categorizar una figura geométrica.",
-        "Inicia un condicional `if` con `a = b && b = c` en notación infija, evaluando si todos los lados son iguales con pureza.",
-        "Si `a = b && b = c`, retorna `\"equilateral\"`, para triángulos con tres lados iguales.",
-        "Introduce un `else if` para `a = b || b = c || a = c`, retornando `\"isosceles\"`, para triángulos con al menos dos lados iguales.",
-        "Introduce la rama `else`, retornando `\"scalene\"` para triángulos con lados distintos, necesaria para completar el condicional.",
-        "Cierra la rama `else` con `\"scalene\"`, asegurando un valor puro.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `triangle_type` con 3, 3, 3, retornando `\"equilateral\"` porque todos los lados son iguales, demostrando la función."
+        "Define una función `triangle_type` con tres parámetros (`a`, `b`, `c`). Esta función clasifica un triángulo según sus lados.",
+        "Primero verifica si los tres lados cumplen la regla del triángulo: la suma de dos debe ser mayor que el tercero.",
+        "Si se cumple, entra al bloque principal donde se analizan los tipos.",
+        "Si los tres lados son iguales (`a = b && b = c`), entra al primer bloque.",
+        "Dentro, hay un `if` anidado que evalúa si `a < 5`. Si lo es, devuelve \"small-equilateral\"; si no, devuelve \"equilateral\".",
+        "Si no es equilátero, evalúa el siguiente `else if` que comprueba si al menos dos lados son iguales (isósceles).",
+        "Allí también hay un `if` anidado que devuelve \"small-isosceles\" o \"isosceles\" según el tamaño.",
+        "Si ninguno de los anteriores se cumple, es escaleno, y otro `if` anidado determina si es pequeño o no.",
+        "Si no cumple la regla del triángulo, devuelve \"invalid\".",
+        "Al ejecutar `triangle_type 3 3 3`, devuelve \"small-equilateral\" porque todos los lados son iguales y menores que 5."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para clasificar triángulos, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml usa cadenas, Racket usa símbolos.",
-        "Similitudes: Ambas inician un condicional para clasificar, con pureza. Diferencias: Racket usa `cond`, más flexible, OCaml usa `if` con anidamiento `else if`.",
-        "Similitudes: Ambas retornan 'equilateral' para lados iguales. Diferencias: Racket usa `and` y `'equilateral` en `cond`, OCaml usa `&&` y `\"equilateral\"` con `then`.",
-        "Similitudes: Ambas retornan 'isosceles' para dos lados iguales. Diferencias: Racket usa `or` en `cond`, OCaml usa `||` en `else if`, aumentando líneas.",
-        "Similitudes: Ambas retornan 'scalene' para lados distintos. Diferencias: Racket usa `else` en `cond`, OCaml separa `else` y `\"scalene\"`, requiriendo dos líneas.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el `cond`, OCaml cierra la rama `else`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra la definición con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con 3, 3, 3, retornando 'equilateral'. Diferencias: Racket usa `(triangle-type 3 3 3)` con un símbolo, OCaml usa `triangle_type 3 3 3` con una cadena."
+        "Ambas funciones comienzan validando si los lados forman un triángulo real antes de clasificarlo.",
+        "Ambas usan estructuras anidadas (`if` dentro de `cond` en Racket, `if` dentro de `if` en OCaml) para combinar lógica de forma y tamaño.",
+        "Racket usa símbolos (`'small-equilateral`), OCaml usa cadenas (\"small-equilateral\"), pero los significados son equivalentes.",
+        "La validación geométrica (a+b>c, etc.) es igual en ambas versiones, solo cambia la sintaxis.",
+        "Ambas devuelven la misma clasificación final con los valores dados."
       ]
     }
   },

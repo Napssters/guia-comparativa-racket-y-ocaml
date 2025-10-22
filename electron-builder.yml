@@ -1,3 +1,4 @@
+buildDependenciesFromSource: false
 directories:
   output: dist_electron
 
@@ -6,6 +7,9 @@ files:
   - main.js
   - loading.html
   - icono.ico
+  # Excluir dependencias nativas/wasm de Tailwind que causan error en electron-builder
+  - "!node_modules/@tailwindcss/oxide-wasm32-wasi/**"
+  - "!node_modules/@emnapi/core/**"
 
 appId: com.guia-comparativa-racket-y-ocaml.electron
 productName: "Guia Comparativa Racket y OCaml"
