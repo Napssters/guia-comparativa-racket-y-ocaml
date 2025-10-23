@@ -2630,365 +2630,528 @@
   },
   "funciones-orden-superior": {
     "ejercicio-1": {
-      "title": "Duplicar elementos de una lista con map",
+      "title": "Aplicar descuento a precios con map",
       "racket": {
         "lines": [
-          "(define (double-list lst)",
-          "  (map (lambda (x) (* x 2))",
-          "       lst",
+          "(define (apply-discount lst)",
+          "  (if (empty? lst)",
+          "      '()",
+          "      (map (lambda (x) (* x 0.85)) lst)",
           "  )",
           ")",
-          "(double-list '(2 3 4))"
+          "(apply-discount '(100 200 300))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let double_list lst =",
-          "  List.map (fun x -> x * 2) lst",
+          "let apply_discount lst =",
+          "  if lst = [] then",
+          "    []",
+          "  else",
+          "    List.map (fun x -> x *. 0.85) lst",
           "in",
-          "double_list [2; 3; 4]"
+          "apply_discount [100; 200; 300]"
         ]
       },
       "explanations_racket": [
-        "Define una función `double-list` que toma una lista `lst` para duplicar cada elemento. La sintaxis `(define (nombre params) cuerpo)` es funcional, ideal para transformaciones puras, como duplicar precios en una tienda.",
-        "Usa `map` para aplicar una función anónima `(lambda (x) (* x 2))` que multiplica cada elemento por 2, retornando una nueva lista. `map` es una función de alto orden pura, como un cajero que ajusta cada precio sin cambiar el original.",
-        "Pasa la lista `lst` como argumento a `map`, asegurando que la transformación se aplique a todos los elementos.",
-        "Cierra el bloque de `map`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `double-list` con `'(2 3 4)`, retornando `(4 6 8)`, mostrando cómo `map` transforma la lista."
+        "Define una función llamada `apply-discount` que toma una lista `lst` (como precios de productos). En Racket, `(define (nombre params) cuerpo)` es como nombrar una receta para procesar datos, asegurando que no modificamos los precios originales.",
+        "Verifica si la lista está vacía con `(empty? lst)`. Es como revisar si el carrito de compras está vacío antes de aplicar descuentos.",
+        "Si la lista está vacía, devuelve `()` (una lista vacía). Esto evita errores, como intentar descontar nada.",
+        "Si la lista no está vacía, usa `map` para aplicar una función anónima `(lambda (x) (* x 0.85))` a cada precio, multiplicándolo por 0.85 (descuento del 15%). `map` es como un asistente que ajusta cada precio uno por uno, creando una nueva lista.",
+        "Cierra la condición `if` y la función, siguiendo las reglas de Racket con paréntesis.",
+        "Cierra la definición de la función, completando la 'receta'.",
+        "Llama a `apply-discount` con la lista `(100 200 300)`, dando `(85.0 170.0 255.0)`, como mostrar los precios finales tras el descuento."
       ],
       "explanations_ocaml": [
-        "Define una función `double_list` para duplicar cada elemento de una lista, usando `let nombre params = cuerpo`. En OCaml, las listas son inmutables, ideales para transformaciones puras, como ajustar precios en un catálogo.",
-        "Usa `List.map` para aplicar `(fun x -> x * 2)` a cada elemento, retornando una nueva lista. `List.map` es una función de alto orden pura, como un sistema que duplica valores sin alterar el original.",
-        "Usa `in` para introducir la llamada, una convención estructural de OCaml que separa definición y uso.",
-        "Llama a `double_list` con `[2; 3; 4]`, retornando `[4; 6; 8]`, demostrando la transformación funcional."
+        "Define una función `apply_discount` que toma una lista `lst`. En OCaml, `let nombre params = cuerpo` es como crear una instrucción para procesar datos, manteniendo los precios originales intactos.",
+        "Verifica si la lista está vacía con `lst = []`. Es como comprobar si no hay productos en el carrito.",
+        "Si la lista está vacía, devuelve `[]` (lista vacía). Esto previene problemas al procesar nada.",
+        "Si la lista no está vacía, introduce la rama `else`, requerida en OCaml para completar la condición.",
+        "Usa `List.map` para aplicar `(fun x -> x *. 0.85)` a cada elemento, multiplicando por 0.85 para el descuento. `List.map` es como un empleado que ajusta cada precio, creando una nueva lista.",
+        "Usa `in` para conectar la definición con la llamada, una regla de OCaml.",
+        "Llama a `apply_discount` con `[100; 200; 300]`, dando `[85.0; 170.0; 255.0]`, mostrando los precios con descuento."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para duplicar elementos usando `map`, promoviendo abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml infiere que `lst` es una lista de enteros, Racket es dinámico.",
-        "Similitudes: Ambas usan una función de alto orden (`map`/`List.map`) para aplicar una transformación pura. Diferencias: Racket usa `(lambda (x) (* x 2))` en notación prefija, OCaml usa `(fun x -> x * 2)` infija, más matemática. OCaml requiere `List.map` para el módulo `List`.",
-        "Similitudes: Ambas pasan la lista como argumento, con pureza. Diferencias: Racket usa `lst` en una línea separada por formato, OCaml integra `lst` en la línea de `List.map`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el bloque `map`, OCaml usa `in`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`, aumentando el conteo de líneas.",
-        "Similitudes: Ambas llaman la función con una lista de 3 elementos, dando `(4 6 8)`. Diferencias: Racket usa `'(2 3 4)` con comillas, OCaml usa `[2; 3; 4]` con punto y coma."
+        "Similitudes: Ambas funciones aplican un descuento usando `map`, creando una nueva lista sin cambiar la original. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, OCaml usa `let nombre params = cuerpo` más lineal. OCaml infiere tipos (lista de enteros a flotantes).",
+        "Similitudes: Ambas verifican si la lista está vacía para robustez. Diferencias: Racket usa `(empty? lst)` prefija, OCaml usa `lst = []` infija, más intuitiva para matemáticas.",
+        "Similitudes: Ambas devuelven una lista vacía para casos extremos. Diferencias: Racket usa `'()`, OCaml usa `[]`, reflejando notaciones de lista distintas.",
+        "Similitudes: Ambas transforman la lista con una función anónima. Diferencias: Racket usa `(lambda (x) (* x 0.85))` prefija, OCaml usa `(fun x -> x *. 0.85)` infija con `*.` para flotantes. OCaml requiere `List.map` por su módulo `List`.",
+        "Similitudes: Ambas cierran la lógica condicional. Diferencias: Racket usa paréntesis, OCaml usa `else` explícito y `in`.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in` para separar definición y llamada.",
+        "Similitudes: Ambas llaman la función con listas idénticas, dando `(85.0 170.0 255.0)`. Diferencias: Racket usa `'(100 200 300)` con comillas, OCaml usa `[100; 200; 300]` con punto y coma."
       ]
     },
     "ejercicio-2": {
-      "title": "Filtrar números pares con filter",
+      "title": "Filtrar productos con stock y precio específicos",
       "racket": {
         "lines": [
-          "(define (even-numbers lst)",
-          "  (filter (lambda (x) (= (remainder x 2) 0))",
-          "          lst",
+          "(define (filter-stock lst)",
+          "  (if (empty? lst)",
+          "      '()",
+          "      (filter (lambda (x) (and (> x 5) (< x 50))) lst)",
           "  )",
           ")",
-          "(even-numbers '(1 2 3 4))"
+          "(filter-stock '(10 60 30 40 70))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let even_numbers lst =",
-          "  List.filter (fun x -> x mod 2 = 0) lst",
+          "let filter_stock lst =",
+          "  if lst = [] then",
+          "    []",
+          "  else",
+          "    List.filter (fun x -> x > 5 && x < 50) lst",
           "in",
-          "even_numbers [1; 2; 3; 4]"
+          "filter_stock [10; 60; 30; 40; 70]"
         ]
       },
       "explanations_racket": [
-        "Define una función `even-numbers` para filtrar números pares de una lista. La sintaxis `(define (nombre params) cuerpo)` es funcional, como seleccionar tallas pares en un almacén.",
-        "Usa `filter` para aplicar `(lambda (x) (= (remainder x 2) 0))`, que verifica si un número es par, retornando una nueva lista con solo los pares. `filter` es una función de alto orden pura, como un filtro que selecciona solo ciertos productos.",
-        "Pasa la lista `lst` a `filter`, asegurando que se evalúe cada elemento.",
-        "Cierra el bloque de `filter`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `even-numbers` con `'(1 2 3 4)`, retornando `(2 4)`, mostrando el filtrado funcional."
+        "Define una función `filter-stock` que toma una lista `lst` (como cantidades en un inventario). `(define (nombre params) cuerpo)` es como crear una regla para elegir productos.",
+        "Verifica si la lista está vacía con `(empty? lst)`, como revisar si el almacén está vacío.",
+        "Si está vacía, devuelve `()` (lista vacía), evitando errores.",
+        "Usa `filter` para aplicar `(lambda (x) (and (> x 5) (< x 50)))`, seleccionando números entre 5 y 50. Es como un filtro que elige productos con stock adecuado y precio bajo.",
+        "Cierra la condición `if` y la función con paréntesis.",
+        "Cierra la definición de la función, completando la regla.",
+        "Llama a `filter-stock` con `(10 60 30 40 70)`, dando `(10 30 40)`, como mostrar los productos seleccionados."
       ],
       "explanations_ocaml": [
-        "Define una función `even_numbers` para filtrar números pares, usando `let nombre params = cuerpo`. Es una operación pura, como elegir solo los artículos en oferta de un catálogo.",
-        "Usa `List.filter` para aplicar `(fun x -> x mod 2 = 0)`, seleccionando los pares. `List.filter` es una función de alto orden pura, como un tamiz que selecciona ciertos elementos.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `even_numbers` con `[1; 2; 3; 4]`, retornando `[2; 4]`, demostrando el filtrado."
+        "Define una función `filter_stock` que toma una lista `lst`. `let nombre params = cuerpo` es como escribir una instrucción para seleccionar productos.",
+        "Verifica si la lista está vacía con `lst = []`, como comprobar si no hay productos.",
+        "Si está vacía, devuelve `[]` (lista vacía), previniendo errores.",
+        "Introduce la rama `else`, necesaria en OCaml para manejar el caso no vacío.",
+        "Usa `List.filter` para aplicar `(fun x -> x > 5 && x < 50)`, seleccionando números entre 5 y 50. Es como un tamiz que elige productos específicos.",
+        "Usa `in` para conectar la definición con la llamada, una regla de OCaml.",
+        "Llama a `filter_stock` con `[10; 60; 30; 40; 70]`, dando `[10; 30; 40]`, mostrando los productos seleccionados."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para filtrar números pares usando `filter`, con abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas usan una función de alto orden (`filter`/`List.filter`) para seleccionar elementos puros. Diferencias: Racket usa `(lambda (x) (= (remainder x 2) 0))` prefija, OCaml usa `(fun x -> x mod 2 = 0)` infija, más matemática. OCaml requiere `List.filter`.",
-        "Similitudes: Ambas pasan la lista como argumento, con pureza. Diferencias: Racket usa `lst` en una línea separada, OCaml la integra en `List.filter`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el bloque `filter`, OCaml usa `in`.",
+        "Similitudes: Ambas filtran elementos usando `filter`, con pureza funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas verifican listas vacías. Diferencias: Racket usa `(empty? lst)`, OCaml usa `lst = []`.",
+        "Similitudes: Ambas devuelven lista vacía para casos extremos. Diferencias: Racket usa `'()`, OCaml usa `[]`.",
+        "Similitudes: Ambas usan `filter`/`List.filter` con un predicado compuesto. Diferencias: Racket usa `(and (> x 5) (< x 50))` prefija, OCaml usa `x > 5 && x < 50` infija. OCaml requiere `List.filter`.",
+        "Similitudes: Ambas cierran la lógica condicional. Diferencias: Racket usa paréntesis, OCaml usa `else` y `in`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con una lista de 4 elementos, dando `(2 4)`. Diferencias: Racket usa `'(1 2 3 4)`, OCaml usa `[1; 2; 3; 4]`."
+        "Similitudes: Ambas llaman la función con listas idénticas, dando `(10 30 40)`. Diferencias: Racket usa `'(10 60 30 40 70)`, OCaml usa `[10; 60; 30; 40; 70]`."
       ]
     },
     "ejercicio-3": {
-      "title": "Elevar al cuadrado con map",
+      "title": "Filtrar y elevar al cuadrado costos",
       "racket": {
         "lines": [
-          "(define (square-list lst)",
-          "  (map (lambda (x) (* x x))",
-          "       lst",
+          "(define (process-costs lst)",
+          "  (if (empty? lst)",
+          "      '()",
+          "      (let ((filtered (filter (lambda (x) (> (abs x) 3)) lst)))",
+          "        (map (lambda (x) (* (abs x) (abs x))) filtered)",
+          "      )",
           "  )",
           ")",
-          "(square-list '(2 3 4))"
+          "(process-costs '(2 3 -4 5 -6))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let square_list lst =",
-          "  List.map (fun x -> x * x) lst",
+          "let process_costs lst =",
+          "  if lst = [] then",
+          "    []",
+          "  else",
+          "    let filtered = List.filter (fun x -> abs x > 3) lst in",
+          "    List.map (fun x -> (abs x) * (abs x)) filtered",
           "in",
-          "square_list [2; 3; 4]"
+          "process_costs [2; 3; -4; 5; -6]"
         ]
       },
       "explanations_racket": [
-        "Define una función `square-list` para calcular el cuadrado de cada elemento de una lista. La sintaxis `(define (nombre params) cuerpo)` es funcional, como calcular áreas de cuadrados a partir de sus lados.",
-        "Usa `map` para aplicar `(lambda (x) (* x x))` a cada elemento, retornando una nueva lista. `map` es una función de alto orden pura, como transformar medidas en áreas sin modificar la lista.",
-        "Pasa la lista `lst` a `map`, asegurando que todos los elementos se transformen.",
-        "Cierra el bloque de `map`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `square-list` con `'(2 3 4)`, retornando `(4 9 16)`, mostrando la transformación."
+        "Define una función `process-costs` que toma una lista `lst` (como costos). `(define (nombre params) cuerpo)` es como crear un proceso para analizar costos.",
+        "Verifica si la lista está vacía con `(empty? lst)`, como revisar si no hay costos registrados.",
+        "Si está vacía, devuelve `()` (lista vacía), evitando errores.",
+        "Usa `let` para almacenar el resultado de `filter` en `filtered`. `filter` aplica `(lambda (x) (> (abs x) 3))`, seleccionando valores cuyo valor absoluto es mayor a 3. Es como elegir costos significativos.",
+        "Aplica `map` con `(lambda (x) (* (abs x) (abs x)))` a la lista filtrada, calculando el cuadrado de valores absolutos. Es como calcular el impacto al cuadrado de los costos seleccionados.",
+        "Cierra la condición `let` y `if`, siguiendo la sintaxis de Racket.",
+        "Cierra la definición de la función con paréntesis.",
+        "Llama a `process-costs` con `(2 3 -4 5 -6)`, dando `(16 25 36)`, mostrando los costos procesados."
       ],
       "explanations_ocaml": [
-        "Define una función `square_list` para calcular el cuadrado de cada elemento, usando `let nombre params = cuerpo`. Es una operación pura, como calcular pesos al cuadrado en un inventario.",
-        "Usa `List.map` para aplicar `(fun x -> x * x)` a cada elemento. `List.map` es una función de alto orden pura, como transformar valores en cálculos derivados.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `square_list` con `[2; 3; 4]`, retornando `[4; 9; 16]`, demostrando la transformación."
+        "Define una función `process_costs` que toma una lista `lst`. `let nombre params = cuerpo` es como escribir un procedimiento para costos.",
+        "Verifica si la lista está vacía con `lst = []`, como comprobar si no hay datos.",
+        "Si está vacía, devuelve `[]` (lista vacía), previniendo errores.",
+        "Introduce la rama `else`, necesaria en OCaml.",
+        "Usa `let filtered = ...` para guardar el resultado de `List.filter` con `(fun x -> abs x > 3)`, seleccionando valores absolutos mayores a 3. Es como elegir costos relevantes.",
+        "Aplica `List.map` con `(fun x -> (abs x) * (abs x))` a la lista filtrada, calculando cuadrados. Es como procesar los costos seleccionados.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `process_costs` con `[2; 3; -4; 5; -6]`, dando `[16; 25; 36]`, mostrando los resultados."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para calcular cuadrados usando `map`, con abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas usan `map`/`List.map` para aplicar una transformación pura. Diferencias: Racket usa `(lambda (x) (* x x))` prefija, OCaml usa `(fun x -> x * x)` infija, más matemática. OCaml requiere `List.map`.",
-        "Similitudes: Ambas pasan la lista como argumento, con pureza. Diferencias: Racket usa `lst` en una línea separada, OCaml la integra en `List.map`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el bloque `map`, OCaml usa `in`.",
+        "Similitudes: Ambas filtran y transforman listas usando `filter` y `map`. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas verifican listas vacías. Diferencias: Racket usa `(empty? lst)`, OCaml usa `lst = []`.",
+        "Similitudes: Ambas devuelven lista vacía para casos extremos. Diferencias: Racket usa `'()`, OCaml usa `[]`.",
+        "Similitudes: Ambas filtran con un predicado basado en valor absoluto. Diferencias: Racket usa `(let ((filtered ...)))` con paréntesis, OCaml usa `let filtered = ... in` más lineal.",
+        "Similitudes: Ambas aplican `map` para calcular cuadrados. Diferencias: Racket usa `(lambda (x) (* (abs x) (abs x)))` prefija, OCaml usa `(fun x -> (abs x) * (abs x))` infija.",
+        "Similitudes: Ambas cierran la lógica condicional. Diferencias: Racket usa paréntesis, OCaml usa `in`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con una lista de 3 elementos, dando `(4 9 16)`. Diferencias: Racket usa `'(2 3 4)`, OCaml usa `[2; 3; 4]`."
+        "Similitudes: Ambas llaman la función con listas idénticas, dando `(16 25 36)`. Diferencias: Racket usa `'(2 3 -4 5 -6)`, OCaml usa `[2; 3; -4; 5; -6]`."
       ]
     },
     "ejercicio-4": {
-      "title": "Filtrar números mayores a 10 con filter",
+      "title": "Sumar transacciones mayores a un umbral",
       "racket": {
         "lines": [
-          "(define (greater-than-ten lst)",
-          "  (filter (lambda (x) (> x 10))",
-          "          lst",
+          "(define (sum-transactions threshold lst)",
+          "  (if (empty? lst)",
+          "      0",
+          "      (foldl + 0 (filter (lambda (x) (> x threshold)) lst))",
           "  )",
           ")",
-          "(greater-than-ten '(5 12 8 15))"
+          "(sum-transactions 100 '(100 -50 200 -30 150))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let greater_than_ten lst =",
-          "  List.filter (fun x -> x > 10) lst",
+          "let sum_transactions threshold lst =",
+          "  if lst = [] then",
+          "    0",
+          "  else",
+          "    List.fold_left (+) 0 (List.filter (fun x -> x > threshold) lst)",
           "in",
-          "greater_than_ten [5; 12; 8; 15]"
+          "sum_transactions 100 [100; -50; 200; -30; 150]"
         ]
       },
       "explanations_racket": [
-        "Define una función `greater-than-ten` para filtrar números mayores a 10. La sintaxis `(define (nombre params) cuerpo)` es funcional, como seleccionar asistentes mayores de 10 años para un evento.",
-        "Usa `filter` para aplicar `(lambda (x) (> x 10))`, que verifica si un número es mayor a 10, retornando una nueva lista. `filter` es una función de alto orden pura, como un guardia que solo deja pasar a ciertos asistentes.",
-        "Pasa la lista `lst` a `filter`, evaluando cada elemento.",
-        "Cierra el bloque de `filter`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `greater-than-ten` con `'(5 12 8 15)`, retornando `(12 15)`, mostrando el filtrado."
+        "Define una función `sum-transactions` que toma un `threshold` (umbral) y una lista `lst` (como transacciones). `(define (nombre params) cuerpo)` es como crear una calculadora de totales.",
+        "Verifica si la lista está vacía con `(empty? lst)`, como revisar si no hay transacciones.",
+        "Si está vacía, devuelve `0`, evitando errores en el cálculo.",
+        "Usa `foldl` para sumar (`+`) los elementos filtrados por `(filter (lambda (x) (> x threshold)) lst)`, seleccionando transacciones mayores al umbral. Es como sumar solo las transacciones grandes.",
+        "Cierra la condición `if` y la función con paréntesis.",
+        "Cierra la definición de la función.",
+        "Llama a `sum-transactions` con umbral `100` y lista `(100 -50 200 -30 150)`, dando `350` (200 + 150)."
       ],
       "explanations_ocaml": [
-        "Define una función `greater_than_ten` para filtrar números mayores a 10, usando `let nombre params = cuerpo`. Es una operación pura, como elegir participantes con cierta edad mínima.",
-        "Usa `List.filter` para aplicar `(fun x -> x > 10)`, seleccionando los números mayores a 10. `List.filter` es una función de alto orden pura, como un filtro que selecciona ciertos registros.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `greater_than_ten` con `[5; 12; 8; 15]`, retornando `[12; 15]`, demostrando el filtrado."
+        "Define una función `sum_transactions` que toma `threshold` y `lst`. `let nombre params = cuerpo` es como programar una calculadora de transacciones.",
+        "Verifica si la lista está vacía con `lst = []`, como comprobar si no hay datos.",
+        "Si está vacía, devuelve `0`, previniendo errores.",
+        "Introduce la rama `else`, necesaria en OCaml.",
+        "Usa `List.fold_left (+) 0` para sumar los elementos filtrados por `List.filter (fun x -> x > threshold)`, seleccionando transacciones mayores al umbral. Es como calcular el total de transacciones relevantes.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `sum_transactions` con `100` y `[100; -50; 200; -30; 150]`, dando `350`."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para filtrar números mayores a 10 usando `filter`, con abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas usan `filter`/`List.filter` para seleccionar elementos puros. Diferencias: Racket usa `(lambda (x) (> x 10))` prefija, OCaml usa `(fun x -> x > 10)` infija. OCaml requiere `List.filter`.",
-        "Similitudes: Ambas pasan la lista como argumento, con pureza. Diferencias: Racket usa `lst` en una línea separada, OCaml la integra en `List.filter`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el bloque `filter`, OCaml usa `in`.",
+        "Similitudes: Ambas suman transacciones usando `filter` y `fold`, con pureza funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas verifican listas vacías. Diferencias: Racket usa `(empty? lst)`, OCaml usa `lst = []`.",
+        "Similitudes: Ambas devuelven `0` para listas vacías. Diferencias: Notación idéntica, pero Racket usa `'()` para listas vacías en otros contextos.",
+        "Similitudes: Ambas usan `filter` y `fold` para procesar datos. Diferencias: Racket usa `(foldl + 0 ...)` prefija, OCaml usa `List.fold_left (+) 0` infija. OCaml requiere módulos `List`.",
+        "Similitudes: Ambas cierran la lógica condicional. Diferencias: Racket usa paréntesis, OCaml usa `else` y `in`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con una lista de 4 elementos, dando `(12 15)`. Diferencias: Racket usa `'(5 12 8 15)`, OCaml usa `[5; 12; 8; 15]`."
+        "Similitudes: Ambas llaman la función con umbral y lista idéntica, dando `350`. Diferencias: Racket usa `'(100 -50 200 -30 150)`, OCaml usa `[100; -50; 200; -30; 150]`."
       ]
     },
     "ejercicio-5": {
-      "title": "Transformar con map y condicional para valores absolutos",
+      "title": "Procesar valores financieros con currying",
       "racket": {
         "lines": [
-          "(define (abs-list lst)",
-          "  (map (lambda (x)",
-          "         (if (< x 0)",
-          "             (- x)",
-          "             x))",
-          "       lst",
+          "(define (make-financial-processor threshold)",
+          "  (lambda (lst)",
+          "    (if (empty? lst)",
+          "        0",
+          "        (foldl + 0",
+          "               (filter (lambda (x) (> x threshold))",
+          "                       (map abs lst))",
+          "        )",
+          "    )",
           "  )",
           ")",
-          "(abs-list '(-2 3 -4))"
+          "((make-financial-processor 150) '(-200 300 -100 400))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let abs_list lst =",
-          "  List.map (fun x ->",
-          "              if x < 0 then",
-          "                -x",
-          "              else",
-          "                x",
-          "           ) lst",
+          "let make_financial_processor threshold =",
+          "  fun lst ->",
+          "    if lst = [] then",
+          "      0",
+          "    else",
+          "      List.fold_left (+) 0",
+          "        (List.filter (fun x -> x > threshold)",
+          "           (List.map abs lst))",
           "in",
-          "abs_list [-2; 3; -4]"
+          "make_financial_processor 150 [-200; 300; -100; 400]"
         ]
       },
       "explanations_racket": [
-        "Define una función `abs-list` para transformar una lista tomando el valor absoluto de cada elemento. La sintaxis `(define (nombre params) cuerpo)` es funcional, como corregir errores en un reporte financiero.",
-        "Usa `map` para aplicar una función anónima `(lambda (x) ...)` a cada elemento, retornando una nueva lista. `map` es una función de alto orden pura.",
-        "Inicia un condicional `if` con `(< x 0)`, verificando si el elemento es negativo, una expresión pura para decidir la transformación.",
-        "Si el elemento es negativo, retorna su opuesto `(- x)`, como corregir un valor negativo en el reporte.",
-        "Si el elemento no es negativo, retorna el mismo valor `x`, manteniendo el valor original.",
-        "Cierra el bloque de `if` y `lambda`, necesario para la sintaxis de Racket.",
-        "Pasa la lista `lst` a `map`, aplicando la transformación a todos los elementos.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `abs-list` con `'(-2 3 -4)`, retornando `(2 3 4)`, mostrando la transformación."
+        "Define una función `make-financial-processor` que toma un `threshold` (umbral) y devuelve otra función. `(define (nombre params) cuerpo)` es como crear una máquina configurable para procesar finanzas, como ajustar un filtro de transacciones.",
+        "Crea una función anónima `(lambda (lst) ...)` que procesará una lista. Es como ajustar la máquina para trabajar con datos específicos.",
+        "Verifica si la lista está vacía con `(empty? lst)`, como revisar si no hay transacciones para procesar.",
+        "Si la lista está vacía, devuelve `0`, evitando errores en el cálculo.",
+        "Usa `foldl` con `+` y valor inicial `0` para sumar los elementos filtrados, que son seleccionados por `filter` de los resultados de `map`. Es como sumar transacciones válidas después de ajustarlas.",
+        "Aplica `filter` con `(lambda (x) (> x threshold))` para seleccionar valores mayores al umbral, como elegir transacciones significativas.",
+        "Aplica `map` con `abs` para convertir cada valor a positivo, como corregir números negativos en un reporte financiero.",
+        "Cierra la condición `if` y la función anónima con paréntesis, siguiendo la sintaxis de Racket.",
+        "Cierra la definición de la función anónima.",
+        "Cierra la definición de la función principal con paréntesis.",
+        "Crea una función con umbral `150` y la aplica a la lista `(-200 300 -100 400)`, dando `700` (200 + 300 + 400), como calcular el total de transacciones válidas."
       ],
       "explanations_ocaml": [
-        "Define una función `abs_list` para calcular el valor absoluto de cada elemento, usando `let nombre params = cuerpo`. Es una operación pura, como ajustar valores en un informe.",
-        "Usa `List.map` para aplicar una función anónima `(fun x -> ...)` a cada elemento. `List.map` es una función de alto orden pura.",
-        "Inicia un condicional `if` con `x < 0`, verificando si el elemento es negativo, una expresión pura.",
-        "Si el elemento es negativo, retorna `-x`, como corregir un valor en el informe.",
-        "Introduce `else` para manejar el caso no negativo, una convención requerida en OCaml.",
-        "Retorna `x` si no es negativo, manteniendo el valor original.",
-        "Cierra el bloque de la función anónima, aplicando la transformación a `lst`.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `abs_list` con `[-2; 3; -4]`, retornando `[2; 3; 4]`, demostrando la transformación."
+        "Define una función `make_financial_processor` que toma `threshold` y devuelve otra función. `let nombre params = cuerpo` es como programar una calculadora ajustable para finanzas.",
+        "Crea una función anónima con `fun lst ->`, que procesará una lista. Es como configurar la calculadora para una lista específica.",
+        "Verifica si la lista está vacía con `lst = []`, como comprobar si no hay datos financieros.",
+        "Si la lista está vacía, devuelve `0`, previniendo errores.",
+        "Introduce la rama `else`, requerida en OCaml para manejar el caso no vacío.",
+        "Usa `List.fold_left` con `(+) 0` para sumar los elementos filtrados por `List.filter`, que selecciona valores mayores al umbral de los resultados de `List.map`. Es como procesar transacciones en pasos.",
+        "Aplica `List.filter` con `(fun x -> x > threshold)` para elegir valores mayores al umbral.",
+        "Aplica `List.map` con `abs` para convertir valores a positivos, como ajustar un reporte.",
+        "Usa `in` para conectar la definición con la llamada, una regla de OCaml.",
+        "Crea una función con umbral `150` y la aplica a `[-200; 300; -100; 400]`, dando `700`, mostrando el total de transacciones válidas."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para calcular valores absolutos usando `map`, con abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas usan `map`/`List.map` para aplicar una función pura. Diferencias: Racket usa `(lambda (x) ...)` prefija, OCaml usa `(fun x -> ...)` infija. OCaml requiere `List.map`.",
-        "Similitudes: Ambas verifican si el elemento es negativo con pureza. Diferencias: Racket usa `(< x 0)` prefija, OCaml usa `x < 0` infija.",
-        "Similitudes: Ambas retornan el opuesto para negativos. Diferencias: Racket usa `(- x)` prefija, OCaml usa `-x` infija.",
-        "Similitudes: Ambas retornan el valor original para no negativos. Diferencias: OCaml requiere `else` explícito, Racket lo integra en el `if`.",
-        "Similitudes: Ambas cierran el condicional dentro de la función anónima. Diferencias: Racket usa paréntesis, OCaml usa indentación y `)`.",
-        "Similitudes: Ambas pasan la lista a `map`/`List.map`. Diferencias: Racket usa `lst` en una línea separada, OCaml la integra.",
+        "Similitudes: Ambas usan currying para crear una función que devuelve otra, procesando listas con pureza funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas crean funciones anónimas para procesar listas. Diferencias: Racket usa `(lambda (lst) ...)`, OCaml usa `fun lst ->`.",
+        "Similitudes: Ambas verifican si la lista está vacía. Diferencias: Racket usa `(empty? lst)`, OCaml usa `lst = []`.",
+        "Similitudes: Ambas devuelven `0` para listas vacías. Diferencias: Notación idéntica, pero contextos distintos.",
+        "Similitudes: Ambas usan un pipeline de `map`, `filter`, y `fold` para procesar datos. Diferencias: Racket usa `(foldl + 0 ...)` prefija, OCaml usa `List.fold_left (+) 0` infija. OCaml requiere módulos `List`.",
+        "Similitudes: Ambas filtran valores con un predicado. Diferencias: Racket usa `(lambda (x) (> x threshold))`, OCaml usa `(fun x -> x > threshold)`.",
+        "Similitudes: Ambas aplican valor absoluto con `map`. Diferencias: Racket usa `(map abs lst)`, OCaml usa `List.map abs lst`.",
+        "Similitudes: Ambas cierran la lógica anidada. Diferencias: Racket usa paréntesis, OCaml usa indentación y `in`.",
+        "Similitudes: Ambas cierran la función anónima. Diferencias: Racket usa paréntesis, OCaml usa `in`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con una lista de 3 elementos, dando `(2 3 4)`. Diferencias: Racket usa `'(-2 3 -4)`, OCaml usa `[-2; 3; -4]`."
+        "Similitudes: Ambas aplican la función con umbral `150` y lista idéntica, dando `700`. Diferencias: Racket usa `'(-200 300 -100 400)`, OCaml usa `[-200; 300; -100; 400]`."
       ]
     },
     "ejercicio-6": {
-      "title": "Filtrar números positivos con filter",
+      "title": "Procesar ventas estructuradas con filter, map y fold",
       "racket": {
         "lines": [
-          "(define (positive-numbers lst)",
-          "  (filter (lambda (x) (> x 0))",
-          "          lst",
+          "(define (process-sales pred extractor lst)",
+          "  (if (empty? lst)",
+          "      0",
+          "      (foldl + 0",
+          "             (map extractor",
+          "                  (filter pred lst))",
+          "      )",
           "  )",
           ")",
-          "(positive-numbers '(-1 2 -3 4))"
+          "(process-sales",
+          "  (lambda (p) (and (string=? (cdr p) \"venta\") (> (car p) 0)))",
+          "  car",
+          "  '((200 . \"venta\") (-50 . \"devolucion\") (300 . \"venta\") (-20 . \"devolucion\")))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let positive_numbers lst =",
-          "  List.filter (fun x -> x > 0) lst",
+          "let process_sales pred extractor lst =",
+          "  if lst = [] then",
+          "    0",
+          "  else",
+          "    List.fold_left (+) 0",
+          "      (List.map extractor",
+          "         (List.filter pred lst))",
           "in",
-          "positive_numbers [-1; 2; -3; 4]"
+          "process_sales",
+          "  (fun (m, t) -> t = \"venta\" && m > 0)",
+          "  fst",
+          "  [(200, \"venta\"); (-50, \"devolucion\"); (300, \"venta\"); (-20, \"devolucion\")]"
         ]
       },
       "explanations_racket": [
-        "Define una función `positive-numbers` para filtrar números positivos. La sintaxis `(define (nombre params) cuerpo)` es funcional, como seleccionar ganancias positivas en un reporte contable.",
-        "Usa `filter` para aplicar `(lambda (x) (> x 0))`, que verifica si un número es positivo, retornando una nueva lista. `filter` es una función de alto orden pura, como elegir solo los ingresos positivos.",
-        "Pasa la lista `lst` a `filter`, evaluando cada elemento.",
-        "Cierra el bloque de `filter`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `positive-numbers` con `'(-1 2 -3 4)`, retornando `(2 4)`, mostrando el filtrado."
+        "Define una función `process-sales` que toma un `pred` (regla de selección), un `extractor` (para obtener datos) y una lista `lst` de parejas (monto, tipo). `(define (nombre params) cuerpo)` es como crear un sistema para sumar ventas.",
+        "Verifica si la lista está vacía con `(empty? lst)`, como revisar si no hay registros de ventas.",
+        "Si la lista está vacía, devuelve `0`, evitando errores en la suma.",
+        "Usa `foldl` con `+` y valor inicial `0` para sumar los resultados de `map`, que aplica `extractor` a las parejas seleccionadas por `filter` con `pred`. Es como calcular el total de ventas válidas.",
+        "Aplica `map` con `extractor` (como `car`) para extraer montos de las parejas filtradas, como tomar solo los valores numéricos.",
+        "Aplica `filter` con `pred` para seleccionar parejas que cumplan la condición, como elegir solo ventas positivas.",
+        "Cierra la condición `if` y el bloque de `foldl` con paréntesis.",
+        "Cierra la definición de la función con paréntesis.",
+        "Llama a `process-sales` con un predicado, `car` como extractora, y una lista de parejas, dando `500` (200 + 300).",
+        "Define el predicado `(lambda (p) (and (string=? (cdr p) \"venta\") (> (car p) 0)))`, que verifica si la pareja tiene tipo \"venta\" y monto positivo. Es como una regla para identificar ventas válidas.",
+        "Usa `car` como `extractor` para obtener el monto de cada pareja, como extraer el número de un registro.",
+        "Pasa la lista de parejas `((200 . \"venta\") ...)` estructurada como pares en Racket, como un registro de transacciones."
       ],
       "explanations_ocaml": [
-        "Define una función `positive_numbers` para filtrar números positivos, usando `let nombre params = cuerpo`. Es una operación pura, como seleccionar valores positivos en un balance.",
-        "Usa `List.filter` para aplicar `(fun x -> x > 0)`, seleccionando los positivos. `List.filter` es una función de alto orden pura, como un filtro que elige ciertos valores.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `positive_numbers` con `[-1; 2; -3; 4]`, retornando `[2; 4]`, demostrando el filtrado."
+        "Define una función `process_sales` que toma `pred`, `extractor` y `lst` (parejas de monto y tipo). `let nombre params = cuerpo` es como programar un sistema para calcular ventas.",
+        "Verifica si la lista está vacía con `lst = []`, como comprobar si no hay registros.",
+        "Si la lista está vacía, devuelve `0`, previniendo errores en la suma.",
+        "Introduce la rama `else`, necesaria en OCaml para manejar el caso no vacío.",
+        "Usa `List.fold_left` con `(+) 0` para sumar los resultados de `List.map`, que aplica `extractor` a las parejas filtradas por `List.filter` con `pred`. Es como sumar montos de ventas válidas.",
+        "Aplica `List.map` con `extractor` (como `fst`) para extraer montos de las parejas filtradas.",
+        "Aplica `List.filter` con `pred` para seleccionar parejas que cumplan la condición.",
+        "Usa `in` para conectar la definición con la llamada, una regla de OCaml.",
+        "Llama a `process_sales` con un predicado, `fst` como extractora, y la lista de parejas, dando `500`.",
+        "Define el predicado `(fun (m, t) -> t = \"venta\" && m > 0)`, que verifica si la pareja tiene tipo \"venta\" y monto positivo.",
+        "Usa `fst` como `extractor` para obtener el monto de cada pareja.",
+        "Pasa la lista de parejas `[(200, \"venta\") ...]` estructurada como tuplas en OCaml."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para filtrar números positivos usando `filter`, con abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas usan `filter`/`List.filter` para seleccionar elementos puros. Diferencias: Racket usa `(lambda (x) (> x 0))` prefija, OCaml usa `(fun x -> x > 0)` infija. OCaml requiere `List.filter`.",
-        "Similitudes: Ambas pasan la lista como argumento, con pureza. Diferencias: Racket usa `lst` en una línea separada, OCaml la integra en `List.filter`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el bloque `filter`, OCaml usa `in`.",
+        "Similitudes: Ambas procesan parejas usando `filter`, `map` y `fold` para sumar montos, con pureza funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, OCaml usa `let nombre params = cuerpo` más lineal.",
+        "Similitudes: Ambas verifican si la lista está vacía. Diferencias: Racket usa `(empty? lst)`, OCaml usa `lst = []`.",
+        "Similitudes: Ambas devuelven `0` para listas vacías. Diferencias: Notación idéntica, pero Racket usa `'()` en otros contextos.",
+        "Similitudes: Ambas usan un pipeline de `filter`, `map` y `fold`. Diferencias: Racket usa `(foldl + 0 ...)` prefija, OCaml usa `List.fold_left (+) 0` infija. OCaml requiere módulos `List`.",
+        "Similitudes: Ambas aplican `map` con una función extractora. Diferencias: Racket usa `(map extractor ...)`, OCaml usa `List.map extractor ...`.",
+        "Similitudes: Ambas filtran con un predicado personalizado. Diferencias: Racket usa `(filter pred lst)`, OCaml usa `List.filter pred lst`.",
+        "Similitudes: Ambas cierran la lógica anidada. Diferencias: Racket usa paréntesis, OCaml usa indentación y `in`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con una lista de 4 elementos, dando `(2 4)`. Diferencias: Racket usa `'(-1 2 -3 4)`, OCaml usa `[-1; 2; -3; 4]`."
+        "Similitudes: Ambas llaman la función con predicado, extractora y lista idéntica, dando `500`. Diferencias: Racket usa `'(200 . \"venta\")` con notación de par, OCaml usa `(200, \"venta\")` con tuplas."
       ]
     },
     "ejercicio-7": {
-      "title": "Incrementar elementos con map",
+      "title": "Procesar calificaciones anidadas con map, filter y fold",
       "racket": {
         "lines": [
-          "(define (increment-list lst)",
-          "  (map (lambda (x) (+ x 1))",
-          "       lst",
+          "(define (process-grades lst)",
+          "  (if (empty? lst)",
+          "      '()",
+          "      (filter (lambda (avg) (> avg 80))",
+          "              (map (lambda (sublst)",
+          "                     (if (empty? sublst)",
+          "                         0",
+          "                         (let ((approved (filter (lambda (g) (> g 70)) sublst)))",
+          "                           (if (empty? approved)",
+          "                               0",
+          "                               (/ (foldl + 0 approved) (length approved)))",
+          "                         )",
+          "                     )",
+          "                   lst)",
+          "              )",
+          "      )",
           "  )",
           ")",
-          "(increment-list '(10 11 12))"
+          "(process-grades '((70 80 90) (60 85 95) (50 60)))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let increment_list lst =",
-          "  List.map (fun x -> x + 1) lst",
+          "let process_grades lst =",
+          "  if lst = [] then",
+          "    []",
+          "  else",
+          "    List.filter (fun avg -> avg > 80)",
+          "      (List.map (fun sublst ->",
+          "                   if sublst = [] then",
+          "                     0",
+          "                   else",
+          "                     let approved = List.filter (fun g -> g > 70) sublst in",
+          "                     if approved = [] then",
+          "                       0",
+          "                     else",
+          "                       (List.fold_left (+) 0 approved) / (List.length approved)",
+          "                ) lst",
+          "      )",
           "in",
-          "increment_list [10; 11; 12]"
+          "process_grades [[70; 80; 90]; [60; 85; 95]; [50; 60]]"
         ]
       },
       "explanations_racket": [
-        "Define una función `increment-list` para sumar 1 a cada elemento de una lista. La sintaxis `(define (nombre params) cuerpo)` es funcional, como incrementar las edades de estudiantes en una escuela.",
-        "Usa `map` para aplicar `(lambda (x) (+ x 1))` a cada elemento, retornando una nueva lista. `map` es una función de alto orden pura, como un registro que actualiza edades sin modificar el original.",
-        "Pasa la lista `lst` a `map`, aplicando la transformación a todos los elementos.",
-        "Cierra el bloque de `map`, necesario para la sintaxis de Racket.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `increment-list` con `'(10 11 12)`, retornando `(11 12 13)`, mostrando la transformación."
+        "Define una función `process-grades` que toma una lista `lst` de sublistas (calificaciones por estudiante). `(define (nombre params) cuerpo)` es como crear un sistema para evaluar estudiantes.",
+        "Verifica si la lista está vacía con `(empty? lst)`, como revisar si no hay estudiantes registrados.",
+        "Si la lista está vacía, devuelve `()` (lista vacía), evitando errores.",
+        "Usa `filter` con `(lambda (avg) (> avg 80))` para seleccionar promedios mayores a 80, aplicados a los resultados de `map`. Es como elegir estudiantes destacados.",
+        "Aplica `map` con `(lambda (sublst) ...)` a cada sublista para calcular el promedio de calificaciones aprobadas (>70).",
+        "Verifica si la sublista está vacía con `(empty? sublst)`, como comprobar si un estudiante no tiene calificaciones.",
+        "Si la sublista está vacía, devuelve `0` como promedio, previniendo errores.",
+        "Usa `let` para almacenar las calificaciones aprobadas, filtradas con `(filter (lambda (g) (> g 70)) sublst)`, como seleccionar solo notas válidas.",
+        "Verifica si no hay calificaciones aprobadas con `(empty? approved)`.",
+        "Si no hay calificaciones aprobadas, devuelve `0` como promedio.",
+        "Calcula el promedio dividiendo la suma de calificaciones aprobadas (`foldl + 0 approved`) por su cantidad (`length approved`). Es como promediar las notas válidas de un estudiante.",
+        "Cierra la condición `if` y la función anónima de `map`.",
+        "Cierra el bloque de `map` y `filter`.",
+        "Cierra la condición `if` y la definición de la función.",
+        "Cierra la definición de la función con paréntesis.",
+        "Llama a `process-grades` con `((70 80 90) (60 85 95) (50 60))`, dando `(85 90)`, mostrando los promedios de estudiantes destacados."
       ],
       "explanations_ocaml": [
-        "Define una función `increment_list` para sumar 1 a cada elemento, usando `let nombre params = cuerpo`. Es una operación pura, como actualizar edades en un sistema escolar.",
-        "Usa `List.map` para aplicar `(fun x -> x + 1)` a cada elemento. `List.map` es una función de alto orden pura, como un programa que ajusta valores sin alterar la lista original.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `increment_list` con `[10; 11; 12]`, retornando `[11; 12; 13]`, demostrando la transformación."
+        "Define una función `process_grades` que toma una lista `lst` de sublistas. `let nombre params = cuerpo` es como programar un sistema escolar para evaluar calificaciones.",
+        "Verifica si la lista está vacía con `lst = []`, como comprobar si no hay estudiantes.",
+        "Si la lista está vacía, devuelve `[]` (lista vacía), previniendo errores.",
+        "Introduce la rama `else`, necesaria en OCaml para manejar el caso no vacío.",
+        "Usa `List.filter` con `(fun avg -> avg > 80)` para seleccionar promedios mayores a 80, aplicados a los resultados de `List.map`.",
+        "Aplica `List.map` con `(fun sublst -> ...)` para calcular el promedio de calificaciones aprobadas por estudiante.",
+        "Verifica si la sublista está vacía con `sublst = []`, como revisar si un estudiante no tiene notas.",
+        "Si la sublista está vacía, devuelve `0` como promedio.",
+        "Introduce `else` para manejar sublistas no vacías.",
+        "Usa `let approved = ...` para guardar las calificaciones aprobadas, filtradas con `List.filter (fun g -> g > 70) sublst`.",
+        "Verifica si no hay calificaciones aprobadas con `approved = []`.",
+        "Si no hay aprobadas, devuelve `0` como promedio.",
+        "Introduce `else` para calcular el promedio.",
+        "Calcula el promedio con `(List.fold_left (+) 0 approved) / (List.length approved)`, sumando las calificaciones aprobadas y dividiendo por su cantidad.",
+        "Cierra la función anónima de `List.map`.",
+        "Cierra el bloque de `List.map` y `List.filter`.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `process_grades` con `[[70; 80; 90]; [60; 85; 95]; [50; 60]]`, dando `[85; 90]`, mostrando los promedios destacados."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para incrementar elementos usando `map`, con abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas usan `map`/`List.map` para aplicar una transformación pura. Diferencias: Racket usa `(lambda (x) (+ x 1))` prefija, OCaml usa `(fun x -> x + 1)` infija. OCaml requiere `List.map`.",
-        "Similitudes: Ambas pasan la lista como argumento, con pureza. Diferencias: Racket usa `lst` en una línea separada, OCaml la integra en `List.map`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra el bloque `map`, OCaml usa `in`.",
+        "Similitudes: Ambas procesan listas anidadas usando `filter`, `map` y `fold` para calcular promedios, con pureza funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, OCaml usa `let nombre params = cuerpo` más lineal.",
+        "Similitudes: Ambas verifican si la lista está vacía. Diferencias: Racket usa `(empty? lst)`, OCaml usa `lst = []`.",
+        "Similitudes: Ambas devuelven una lista vacía para casos extremos. Diferencias: Racket usa `'()`, OCaml usa `[]`.",
+        "Similitudes: Ambas filtran promedios mayores a 80. Diferencias: Racket usa `(filter (lambda (avg) (> avg 80)))`, OCaml usa `List.filter (fun avg -> avg > 80)`.",
+        "Similitudes: Ambas mapean sublistas para calcular promedios. Diferencias: Racket usa `(map (lambda (sublst) ...))`, OCaml usa `List.map (fun sublst -> ...)`.",
+        "Similitudes: Ambas verifican si la sublista está vacía. Diferencias: Racket usa `(empty? sublst)`, OCaml usa `sublst = []`.",
+        "Similitudes: Ambas devuelven `0` para sublistas vacías. Diferencias: Notación idéntica, pero contextos distintos.",
+        "Similitudes: Ambas filtran calificaciones aprobadas. Diferencias: Racket usa `(let ((approved ...)))` con paréntesis, OCaml usa `let approved = ... in` más lineal.",
+        "Similitudes: Ambas verifican si no hay calificaciones aprobadas. Diferencias: Racket usa `(empty? approved)`, OCaml usa `approved = []`.",
+        "Similitudes: Ambas devuelven `0` si no hay calificaciones aprobadas. Diferencias: Notación idéntica.",
+        "Similitudes: Ambas calculan promedios con suma y división. Diferencias: Racket usa `(foldl + 0 ...)/(length ...)`, OCaml usa `List.fold_left (+) 0 .../List.length ...`.",
+        "Similitudes: Ambas cierran la lógica anidada de `map`. Diferencias: Racket usa paréntesis, OCaml usa indentación.",
+        "Similitudes: Ambas cierran el bloque de `filter` y `map`. Diferencias: Racket usa paréntesis, OCaml usa paréntesis e indentación.",
+        "Similitudes: Ambas cierran la lógica condicional. Diferencias: Racket usa paréntesis, OCaml usa `in`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con una lista de 3 elementos, dando `(11 12 13)`. Diferencias: Racket usa `'(10 11 12)`, OCaml usa `[10; 11; 12]`."
+        "Similitudes: Ambas llaman la función con listas anidadas idénticas, dando `(85 90)`. Diferencias: Racket usa `'((70 80 90) ...)`, OCaml usa `[[70; 80; 90]; ...]` con punto y coma."
       ]
     }
   },
   "tipos-datos-simples": {
     "ejercicio-1": {
-      "title": "Suma de valores en una tupla",
+      "title": "Suma de tuplas con validación",
       "racket": {
         "lines": [
           "(define (sum-tuple t)",
-          "  (+ (car t) (cdr t))",
+          "  (if (and (pair? t) (number? (car t)) (number? (cdr t)))",
+          "      (+ (car t) (cdr t))",
+          "      (error \"Input must be a pair of numbers\"))",
           ")",
           "(sum-tuple '(5 . 3))"
         ]
       },
       "ocaml": {
-        "lines": ["let sum_tuple (a, b) =", "  a + b", "in", "sum_tuple (5, 3)"]
+        "lines": [
+          "let sum_tuple (a, b) =",
+          "  if (is_int a && is_int b) || (is_float a && is_float b) then",
+          "    a +. (float_of_int b)",
+          "  else",
+          "    failwith \"Input must be a pair of numbers\"",
+          "in",
+          "sum_tuple (5, 3)"
+        ]
       },
       "explanations_racket": [
-        "Define una función `sum-tuple` que toma una tupla `t` para sumar sus valores. La sintaxis `(define (nombre params) cuerpo)` es funcional, ideal para manejar estructuras simples como tuplas, como sumar horas de trabajo registradas.",
-        "Suma el primer elemento (`car t`) con el segundo (`cdr t`) usando `+`, en notación prefija. La expresión es pura, siempre retorna el mismo resultado, como calcular el total de horas sin modificar el registro.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `sum-tuple` con `'(5 . 3)`, evaluando 5 + 3 = 8, mostrando cómo usar la función para un registro de horas."
+        "Define una función `sum-tuple` que toma una tupla `t`. `(define (nombre params) cuerpo)` es como crear una receta para sumar dos valores, como horas trabajadas.",
+        "Verifica si `t` es una tupla válida con `(pair? t)` y si ambos elementos son números con `(number? (car t))` y `(number? (cdr t))`. Es como asegurarse de que tienes un par de valores numéricos antes de sumarlos.",
+        "Si la validación pasa, suma el primer elemento (`car t`) y el segundo (`cdr t`). Es como sumar las horas de dos turnos.",
+        "Si la validación falla, lanza un error con un mensaje. Es como alertar que los datos no son correctos.",
+        "Cierra la definición de la función con paréntesis, una regla de Racket.",
+        "Llama a `sum-tuple` con la tupla `(5 . 3)`, dando `8`, como calcular el total de horas trabajadas."
       ],
       "explanations_ocaml": [
-        "Define una función `sum_tuple` que desestructura una tupla `(a, b)` para sumar sus valores, usando `let nombre params = cuerpo`. En OCaml, las tuplas son inmutables, ideales para datos estructurados, como sumar horas en un informe.",
-        "Suma `a` y `b` con `+`, en notación infija. La expresión es pura, como calcular el total de horas sin alterar el informe.",
-        "Usa `in` para introducir el contexto de la llamada, una característica de OCaml que separa definición y uso.",
-        "Llama a `sum_tuple` con `(5, 3)`, evaluando 5 + 3 = 8, demostrando la función."
+        "Define una función `sum_tuple` que toma una tupla `(a, b)`. `let nombre params = cuerpo` es como escribir una instrucción para sumar valores.",
+        "Verifica si ambos elementos son enteros (`is_int`) o flotantes (`is_float`) usando `||` para permitir ambos casos. Es como confirmar que los valores son numéricos.",
+        "Si son válidos, suma `a` y `b` usando `+.`, convirtiendo `b` a flotante si es necesario. Es como sumar dos cantidades en un cálculo.",
+        "Si la validación falla, usa `else` para manejar el caso inválido, una regla de OCaml.",
+        "Lanza un error con `failwith` si los datos no son correctos, como mostrar un mensaje de error en un sistema.",
+        "Usa `in` para conectar la definición con la llamada, una regla de OCaml.",
+        "Llama a `sum_tuple` con `(5, 3)`, dando `8`, mostrando el resultado de la suma."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para sumar valores en una tupla, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml desestructura directamente en parámetros, Racket usa `car`/`cdr`.",
-        "Similitudes: Ambas suman los dos valores, manteniendo pureza. Diferencias: Racket usa `+` en notación prefija con `car`/`cdr`, OCaml usa infija con `a + b`, más intuitiva.",
+        "Similitudes: Ambas suman los valores de una tupla con validación. Diferencias: Racket usa `(define (nombre params) cuerpo)` con paréntesis, OCaml usa `let nombre params = cuerpo` más lineal.",
+        "Similitudes: Ambas verifican la validez de la tupla. Diferencias: Racket usa `(pair? t)` y `(number? ...)` prefija, OCaml usa `(is_int ...)` o `(is_float ...)` infija.",
+        "Similitudes: Ambas suman los elementos si son válidos. Diferencias: Racket usa `(+ (car t) (cdr t))` prefija, OCaml usa `a +. (float_of_int b)` infija con conversión a flotante.",
+        "Similitudes: Ambas manejan errores para entradas inválidas. Diferencias: Racket usa `(error ...)` con paréntesis, OCaml usa `else` y `failwith`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con una tupla (5, 3), dando 8. Diferencias: Racket usa '(5 . 3), OCaml (5, 3); Racket con paréntesis, OCaml sin."
+        "Similitudes: Ambas llaman la función con una tupla idéntica, dando `8`. Diferencias: Racket usa `'(5 . 3)` con notación de par, OCaml usa `(5, 3)` con coma."
       ]
     },
     "ejercicio-2": {
-      "title": "Obtener primer elemento de tupla",
+      "title": "Extracción segura del primer elemento de una tupla",
       "racket": {
         "lines": [
           "(define (first-of-tuple t)",
-          "  (car t)",
+          "  (if (pair? t)",
+          "      (car t)",
+          "      (error \"Input must be a pair\"))",
           ")",
           "(first-of-tuple '(7 . 8))"
         ]
@@ -3002,31 +3165,35 @@
         ]
       },
       "explanations_racket": [
-        "Define una función `first-of-tuple` para obtener el primer elemento de una tupla `t`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como extraer la coordenada x de un punto.",
-        "Usa `car` para retornar el primer elemento de `t`, en notación prefija. La expresión es pura, como leer la latitud de un mapa sin cambiarlo.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `first-of-tuple` con '(7 . 8)', retornando 7, mostrando el acceso a la tupla."
+        "Define una función `first-of-tuple` que toma una tupla `t`. `(define (nombre params) cuerpo)` es como crear una regla para obtener la primera coordenada.",
+        "Verifica si `t` es una tupla válida con `(pair? t)`, como asegurarse de que tienes un par de valores.",
+        "Si es válida, extrae el primer elemento con `(car t)`, como tomar la primera coordenada de un punto.",
+        "Si no es válida, lanza un error con un mensaje, como alertar que los datos no son correctos.",
+        "Cierra la definición de la función con paréntesis.",
+        "Llama a `first-of-tuple` con `(7 . 8)`, dando `7`, como obtener la coordenada x."
       ],
       "explanations_ocaml": [
-        "Define una función `first_of_tuple` que desestructura la tupla `(a, _)` para retornar `a`. En OCaml, el `_` ignora el segundo valor, ideal para acceso selectivo, como obtener la latitud de una coordenada.",
-        "Retorna `a`, el primer elemento, en notación infija. La expresión es pura, como leer un valor sin alterar la estructura.",
-        "Usa `in` para introducir la llamada, una característica de OCaml.",
-        "Llama a `first_of_tuple` con (7, 8), retornando 7, demostrando la función."
+        "Define una función `first_of_tuple` que toma una tupla `(a, _)`. `let nombre params = cuerpo` es como escribir una instrucción para extraer el primer valor. El `_` ignora el segundo valor.",
+        "Devuelve `a`, el primer elemento de la tupla, como tomar la primera coordenada directamente.",
+        "Usa `in` para conectar la definición con la llamada, una regla de OCaml.",
+        "Llama a `first_of_tuple` con `(7, 8)`, dando `7`, mostrando la coordenada extraída."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para obtener el primer elemento de una tupla, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml desestructura directamente.",
-        "Similitudes: Ambas retornan el primer valor, con pureza. Diferencias: Racket usa `car` prefija, OCaml usa desestructura `a`, más explícita.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con tupla (7, 8), dando 7. Diferencias: Racket usa '(7 . 8), OCaml (7, 8)."
+        "Similitudes: Ambas extraen el primer elemento de una tupla. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas acceden al primer elemento. Diferencias: Racket usa `(car t)` con validación `(pair? t)`, OCaml usa `(a, _)` sin validación explícita, confiando en el tipado.",
+        "Similitudes: Ambas son estructurales. Diferencias: Racket usa `(error ...)` para casos inválidos, OCaml no valida explícitamente y usa `in`.",
+        "Similitudes: Ambas llaman la función con una tupla idéntica, dando `7`. Diferencias: Racket usa `'(7 . 8)`, OCaml usa `(7, 8)`."
       ]
     },
     "ejercicio-3": {
-      "title": "Extraer edad de registro",
+      "title": "Extracción de edad de un registro personalizado",
       "racket": {
         "lines": [
           "(struct person (name age))",
           "(define (get-age p)",
-          "  (person-age p)",
+          "  (if (and (person? p) (number? (person-age p)) (> (person-age p) 0))",
+          "      (person-age p)",
+          "      (error \"Invalid person or age\"))",
           ")",
           "(get-age (person \"Ana\" 20))"
         ]
@@ -3035,39 +3202,51 @@
         "lines": [
           "type person = { name: string; age: int }",
           "let get_age p =",
-          "  p.age",
+          "  if p.age > 0 then",
+          "    p.age",
+          "  else",
+          "    failwith \"Age must be positive\"",
           "in",
           "get_age { name = \"Ana\"; age = 20 }"
         ]
       },
       "explanations_racket": [
-        "Define una estructura `person` con campos `name` y `age` usando `struct`. En Racket, `struct` crea un tipo de dato inmutable, ideal para el paradigma funcional, como registrar detalles de una persona.",
-        "Define una función `get-age` para extraer el campo `age` de `p`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como consultar la edad de un registro.",
-        "Usa `person-age` (accesor generado por `struct`) para retornar la edad, una expresión pura.",
-        "Cierra la definición de la función, requerida por Racket.",
-        "Llama a `get-age` con un registro creado por `(person \"Ana\" 20)`, retornando 20, mostrando el acceso al campo."
+        "Crea una estructura `person` con campos `name` y `age`. `(struct nombre (campos))` es como definir una plantilla para datos de personas.",
+        "Define una función `get-age` que toma un registro `p`, como una regla para obtener la edad.",
+        "Verifica si `p` es un registro `person` con `(person? p)`, si `age` es un número con `(number? (person-age p))` y si es positivo con `(> (person-age p) 0)`. Es como confirmar que los datos son válidos.",
+        "Si la validación pasa, devuelve la edad con `(person-age p)`, como extraer la edad de un formulario.",
+        "Si falla, lanza un error con un mensaje, como alertar que el registro es incorrecto.",
+        "Cierra la definición de la función.",
+        "Llama a `get-age` con un registro `(person \"Ana\" 20)`, dando `20`, como obtener la edad de Ana."
       ],
       "explanations_ocaml": [
-        "Define un tipo `person` con campos `name` y `age` usando `type`. En OCaml, los registros son inmutables, ideales para el paradigma funcional, como modelar datos de una persona.",
-        "Define una función `get_age` para extraer `p.age`. La sintaxis `let nombre params = cuerpo` es funcional, como obtener la edad de un registro.",
-        "Retorna `p.age`, el campo edad, en notación infija. La expresión es pura, como leer un dato sin cambiarlo.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `get_age` con `{ name = \"Ana\"; age = 20 }`, retornando 20, demostrando el acceso."
+        "Define un tipo `person` con campos `name` (cadena) y `age` (entero). `type nombre = { campos }` es como crear una plantilla para personas.",
+        "Define una función `get_age` que toma un registro `p`, como una instrucción para extraer la edad.",
+        "Verifica si la edad es positiva con `p.age > 0`, como asegurarse de que la edad es válida.",
+        "Si es válida, devuelve `p.age`, como tomar la edad de un registro.",
+        "Si no es válida, lanza un error con `failwith`, como mostrar un mensaje de error.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `get_age` con `{ name = \"Ana\"; age = 20 }`, dando `20`, mostrando la edad de Ana."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una estructura para una persona con nombre y edad, usando abstracción funcional. Diferencias: Racket usa `struct`, OCaml usa `type` con tipos explícitos, reflejando el tipado estático de OCaml.",
-        "Similitudes: Ambas definen una función para obtener la edad. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas acceden al campo edad. Diferencias: Racket usa `person-age` como función, OCaml usa `p.age` directo, más conciso.",
+        "Similitudes: Ambas definen una estructura para personas y extraen la edad. Diferencias: Racket usa `(struct nombre (campos))`, OCaml usa `type nombre = { campos }`.",
+        "Similitudes: Ambas funciones toman un registro para extraer la edad. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas verifican la validez de la edad. Diferencias: Racket usa `(and (person? p) ...)` prefija, OCaml usa `p.age > 0` infija con menos validaciones explícitas.",
+        "Similitudes: Ambas devuelven la edad si es válida. Diferencias: Racket usa `(person-age p)`, OCaml usa `p.age`.",
+        "Similitudes: Ambas manejan errores. Diferencias: Racket usa `(error ...)`, OCaml usa `else` y `failwith`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con un registro de \"Ana\" y 20, dando 20. Diferencias: Racket usa `(person \"Ana\" 20)`, OCaml usa `{ name = \"Ana\"; age = 20 }`."
+        "Similitudes: Ambas llaman la función con un registro idéntico, dando `20`. Diferencias: Racket usa `(person \"Ana\" 20)`, OCaml usa `{ name = \"Ana\"; age = 20 }`."
       ]
     },
     "ejercicio-4": {
-      "title": "Producto de valores en una tupla triple",
+      "title": "Cálculo del volumen de una caja con tupla triple",
       "racket": {
         "lines": [
           "(define (product-triple t)",
-          "  (* (car t) (* (cadr t) (caddr t)))",
+          "  (if (and (list? t) (= (length t) 3)",
+          "           (andmap number? t) (andmap positive? t))",
+          "      (* (car t) (cadr t) (caddr t))",
+          "      (error \"Input must be a list of three positive numbers\"))",
           ")",
           "(product-triple '(2 3 4))"
         ]
@@ -3075,37 +3254,49 @@
       "ocaml": {
         "lines": [
           "let product_triple (a, b, c) =",
-          "  a * b * c",
+          "  if a > 0 && b > 0 && c > 0 then",
+          "    a * b * c",
+          "  else",
+          "    failwith \"Dimensions must be positive\"",
           "in",
           "product_triple (2, 3, 4)"
         ]
       },
       "explanations_racket": [
-        "Define una función `product-triple` para multiplicar los valores de una tupla triple `t`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como calcular el volumen de una caja con dimensiones en una tupla.",
-        "Multiplica el primer (`car t`), segundo (`cadr t`) y tercero (`caddr t`) usando `*`, en notación prefija. La expresión es pura, como obtener el volumen sin cambiar las dimensiones.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `product-triple` con '(2 3 4)', evaluando 2 * 3 * 4 = 24, mostrando la multiplicación."
+        "Define una función `product-triple` que toma una lista `t` (como dimensiones de una caja). `(define (nombre params) cuerpo)` es como crear una regla para calcular el volumen.",
+        "Verifica si `t` es una lista de 3 elementos con `(list? t)` y `(= (length t) 3)`, y si todos son números positivos con `(andmap number? t)` y `(andmap positive? t)`. Es como confirmar que las dimensiones son válidas.",
+        "Si la validación pasa, multiplica los elementos con `(car t)`, `(cadr t)`, `(caddr t)`, como calcular largo × ancho × alto.",
+        "Si falla, lanza un error con un mensaje, como alertar que las dimensiones no son correctas.",
+        "Cierra la definición de la función.",
+        "Llama a `product-triple` con `(2 3 4)`, dando `24`, como calcular el volumen de la caja."
       ],
       "explanations_ocaml": [
-        "Define una función `product_triple` que desestructura la tupla `(a, b, c)` para multiplicar sus valores, usando `let nombre params = cuerpo`. Es funcional, como calcular el volumen de una caja.",
-        "Multiplica `a`, `b` y `c` con `*`, en notación infija. La expresión es pura, como obtener el volumen sin alterar la tupla.",
-        "Usa `in` para introducir la llamada, una característica de OCaml.",
-        "Llama a `product_triple` con (2, 3, 4), evaluando 2 * 3 * 4 = 24, demostrando la función."
+        "Define una función `product_triple` que toma una tupla `(a, b, c)`. `let nombre params = cuerpo` es como escribir una instrucción para calcular el volumen.",
+        "Verifica si todos los elementos son positivos con `a > 0 && b > 0 && c > 0`, como asegurarse de que las dimensiones son válidas.",
+        "Si son válidos, multiplica `a * b * c`, como calcular el volumen de una caja.",
+        "Si no son válidos, lanza un error con `failwith`, como mostrar un mensaje de error.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `product_triple` con `(2, 3, 4)`, dando `24`, mostrando el volumen."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para multiplicar valores en una tupla triple, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml desestructura directamente en parámetros.",
-        "Similitudes: Ambas calculan el producto de tres valores, con pureza. Diferencias: Racket usa `*` con `car`, `cadr`, `caddr` en notación prefija, OCaml usa `*` infija con `a`, `b`, `c`, más intuitiva.",
+        "Similitudes: Ambas calculan el producto de una tupla triple con validación. Diferencias: Racket usa `(define (nombre params) cuerpo)` y trata la tupla como lista, OCaml usa `let nombre params = cuerpo` con tupla explícita.",
+        "Similitudes: Ambas verifican la validez de los datos. Diferencias: Racket usa `(and (list? t) ...)` prefija, OCaml usa `a > 0 && ...` infija, más directa.",
+        "Similitudes: Ambas multiplican los elementos si son válidos. Diferencias: Racket usa `(car t) (cadr t) (caddr t)` prefija, OCaml usa `a * b * c` infija.",
+        "Similitudes: Ambas manejan errores. Diferencias: Racket usa `(error ...)`, OCaml usa `else` y `failwith`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con tupla (2, 3, 4), dando 24. Diferencias: Racket usa '(2 3 4), OCaml (2, 3, 4)."
+        "Similitudes: Ambas llaman la función con datos idénticos, dando `24`. Diferencias: Racket usa `'(2 3 4)` como lista, OCaml usa `(2, 3, 4)` como tupla."
       ]
     },
     "ejercicio-5": {
-      "title": "Comparar tuplas",
+      "title": "Comparación robusta de tuplas",
       "racket": {
         "lines": [
           "(define (equal-tuples? t1 t2)",
-          "  (and (= (car t1) (car t2))",
-          "       (= (cdr t1) (cdr t2)))",
+          "  (if (and (pair? t1) (pair? t2)",
+          "           (number? (car t1)) (number? (cdr t1))",
+          "           (number? (car t2)) (number? (cdr t2)))",
+          "      (and (= (car t1) (car t2)) (= (cdr t1) (cdr t2)))",
+          "      (error \"Inputs must be pairs of numbers\"))",
           ")",
           "(equal-tuples? '(1 . 2) '(1 . 2))"
         ]
@@ -3113,109 +3304,161 @@
       "ocaml": {
         "lines": [
           "let equal_tuples (a1, b1) (a2, b2) =",
-          "  a1 = a2 && b1 = b2",
+          "  if (is_int a1 && is_int b1 && is_int a2 && is_int b2) ||",
+          "     (is_float a1 && is_float b1 && is_float a2 && is_float b2) then",
+          "    a1 = a2 && b1 = b2",
+          "  else",
+          "    failwith \"Inputs must be pairs of numbers\"",
           "in",
           "equal_tuples (1, 2) (1, 2)"
         ]
       },
       "explanations_racket": [
-        "Define una función `equal-tuples?` para comparar dos tuplas `t1` y `t2`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como verificar si dos coordenadas son iguales.",
-        "Usa `and` para comparar el primer y segundo elemento de cada tupla con `=`, `car` y `cdr`, en notación prefija. La expresión es pura, como confirmar si dos puntos son idénticos.",
-        "Continúa la comparación del segundo elemento, retornando `#t` si ambos son iguales, `#f` si no.",
-        "Cierra la definición de la función, requerida por Racket.",
-        "Llama a `equal-tuples?` con '(1 . 2) y '(1 . 2)', dando `#t`, mostrando la comparación."
+        "Define una función `equal-tuples?` que toma dos tuplas `t1` y `t2`. `(define (nombre params) cuerpo)` es como crear una regla para comparar coordenadas.",
+        "Verifica si ambas entradas son tuplas con `(pair? t1)` y `(pair? t2)`, y si todos los elementos son números con `(number? ...)`. Es como confirmar que ambas son coordenadas válidas.",
+        "Verifica los primeros elementos de ambas tuplas y los segundos, continuando la validación.",
+        "Si la validación pasa, compara los elementos con `(= (car t1) (car t2))` y `(= (cdr t1) (cdr t2))`, como verificar si dos puntos son iguales.",
+        "Si falla, lanza un error con un mensaje, como alertar que las entradas no son válidas.",
+        "Cierra la definición de la función.",
+        "Llama a `equal-tuples?` con `(1 . 2)` y `(1 . 2)`, dando `true`, como confirmar que las coordenadas son idénticas."
       ],
       "explanations_ocaml": [
-        "Define una función `equal_tuples` que desestructura dos tuplas `(a1, b1)` y `(a2, b2)` para compararlas, usando `let nombre params = cuerpo`. Es funcional, como validar si dos registros son iguales.",
-        "Compara `a1 = a2` y `b1 = b2` con `&&`, en notación infija. La expresión es pura, retornando `true` si las tuplas son iguales.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `equal_tuples` con (1, 2) y (1, 2), dando `true`, demostrando la comparación."
+        "Define una función `equal_tuples` que toma dos tuplas `(a1, b1)` y `(a2, b2)`. `let nombre params = cuerpo` es como escribir una instrucción para comparar valores.",
+        "Verifica si todos los elementos son enteros o flotantes con `(is_int ...)` o `(is_float ...)`, como asegurarse de que las coordenadas son numéricas.",
+        "Continúa la validación con `||` para permitir flotantes, completando la condición.",
+        "Si son válidos, compara `a1 = a2` y `b1 = b2`, como verificar si dos puntos coinciden.",
+        "Si no son válidos, lanza un error con `failwith`, como mostrar un mensaje de error.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `equal_tuples` con `(1, 2)` y `(1, 2)`, dando `true`, mostrando que las tuplas son iguales."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para comparar tuplas, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`. OCaml desestructura directamente.",
-        "Similitudes: Ambas comparan los elementos con operadores lógicos, con pureza. Diferencias: Racket usa `and` y `=` en notación prefija con `car`/`cdr`, OCaml usa `&&` y `=` infija con `a1`, `b1`.",
-        "Similitudes: Ambas son estructurales. Diferencias: Racket divide la comparación en dos líneas por formato, OCaml integra en una línea.",
+        "Similitudes: Ambas comparan dos tuplas con validación. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas verifican la validez de las tuplas. Diferencias: Racket usa `(pair? ...)` y `(number? ...)` prefija, OCaml usa `(is_int ...)` o `(is_float ...)` infija.",
+        "Similitudes: Ambas continúan la validación. Diferencias: Racket distribuye la validación en varias líneas, OCaml usa una condición más larga con `||`.",
+        "Similitudes: Ambas comparan elementos si son válidos. Diferencias: Racket usa `(and (= ...))` prefija, OCaml usa `a1 = a2 && b1 = b2` infija.",
+        "Similitudes: Ambas manejan errores. Diferencias: Racket usa `(error ...)`, OCaml usa `else` y `failwith`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con tuplas (1, 2), dando verdadero. Diferencias: Racket usa '(1 . 2), OCaml (1, 2)."
+        "Similitudes: Ambas llaman la función con tuplas idénticas, dando `true`. Diferencias: Racket usa `'(1 . 2)`, OCaml usa `(1, 2)`."
       ]
     },
     "ejercicio-6": {
-      "title": "Extraer nombre de registro",
+      "title": "Extracción avanzada de nombre de un registro",
       "racket": {
         "lines": [
-          "(struct person (name age))",
+          "(struct person (name age city))",
           "(define (get-name p)",
-          "  (person-name p)",
+          "  (if (and (person? p) (string? (person-name p)) (not (string=? (person-name p) \"\")))",
+          "      (person-name p)",
+          "      (error \"Invalid person or empty name\"))",
           ")",
-          "(get-name (person \"Bob\" 25))"
+          "(get-name (person \"Bob\" 25 \"Paris\"))"
         ]
       },
       "ocaml": {
         "lines": [
-          "type person = { name: string; age: int }",
+          "type person = { name: string; age: int; city: string }",
           "let get_name p =",
-          "  p.name",
+          "  if p.name <> \"\" then",
+          "    p.name",
+          "  else",
+          "    failwith \"Name must not be empty\"",
           "in",
-          "get_name { name = \"Bob\"; age = 25 }"
+          "get_name { name = \"Bob\"; age = 25; city = \"Paris\" }"
         ]
       },
       "explanations_racket": [
-        "Define una estructura `person` con campos `name` y `age` usando `struct`. En Racket, `struct` crea un tipo de dato inmutable, ideal para el paradigma funcional, como registrar detalles de una persona en un censo.",
-        "Define una función `get-name` para extraer el campo `name` de `p`. La sintaxis `(define (nombre params) cuerpo)` es funcional, como consultar el nombre de un registro.",
-        "Usa `person-name` (accesor generado por `struct`) para retornar el nombre, una expresión pura.",
-        "Cierre la definición de la función, requerida por Racket.",
-        "Llama a `get-name` con un registro creado por `(person \"Bob\" 25)`, retornando \"Bob\", mostrando el acceso al campo."
+        "Crea una estructura `person` con campos `name`, `age` y `city`. `(struct nombre (campos))` es como definir una plantilla para datos de personas con más detalles.",
+        "Define una función `get-name` que toma un registro `p`, como una regla para extraer el nombre.",
+        "Verifica si `p` es un registro `person`, si `name` es una cadena y no está vacía con `(not (string=? (person-name p) \"\"))`. Es como confirmar que el registro es válido y tiene un nombre.",
+        "Si la validación pasa, devuelve el nombre con `(person-name p)`, como tomar el nombre de un censo.",
+        "Si falla, lanza un error con un mensaje, como alertar que el registro o nombre es incorrecto.",
+        "Cierra la definición de la función.",
+        "Llama a `get-name` con `(person \"Bob\" 25 \"Paris\")`, dando `Bob`, como extraer el nombre del registro."
       ],
       "explanations_ocaml": [
-        "Define un tipo `person` con campos `name` y `age` usando `type`. En OCaml, los registros son inmutables, ideales para el paradigma funcional, como modelar datos de una persona.",
-        "Define una función `get_name` para extraer `p.name`. La sintaxis `let nombre params = cuerpo` es funcional, como obtener el nombre de un registro.",
-        "Retorna `p.name`, el campo nombre, en notación infija. La expresión es pura, como leer un dato sin cambiarlo.",
-        "Usa `in` para introducir la llamada, una convención de OCaml.",
-        "Llama a `get_name` con `{ name = \"Bob\"; age = 25 }`, retornando \"Bob\", demostrando el acceso."
+        "Define un tipo `person` con campos `name`, `age` y `city`. `type nombre = { campos }` es como crear una plantilla para datos de personas.",
+        "Define una función `get_name` que toma un registro `p`, como una instrucción para obtener el nombre.",
+        "Verifica si el nombre no está vacío con `p.name <> \"\"`, como asegurarse de que el registro tiene un nombre válido.",
+        "Si es válido, devuelve `p.name`, como extraer el nombre de un formulario.",
+        "Si no es válido, lanza un error con `failwith`, como mostrar un mensaje de error.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `get_name` con `{ name = \"Bob\"; age = 25; city = \"Paris\" }`, dando `Bob`, mostrando el nombre."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una estructura para una persona con nombre y edad, usando abstracción funcional. Diferencias: Racket usa `struct` con campos nombrados, OCaml usa `type` con tipos explícitos.",
-        "Similitudes: Ambas definen una función para obtener el nombre. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas acceden al campo nombre. Diferencias: Racket usa `person-name` como función, OCaml usa `p.name` directo, más conciso.",
+        "Similitudes: Ambas definen una estructura para personas y extraen el nombre con validación. Diferencias: Racket usa `(struct nombre (campos))`, OCaml usa `type nombre = { campos }`.",
+        "Similitudes: Ambas funciones toman un registro para extraer el nombre. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas verifican la validez del nombre. Diferencias: Racket usa `(and (person? p) ...)` prefija, OCaml usa `p.name <> \"\"` infija con menos validaciones.",
+        "Similitudes: Ambas devuelven el nombre si es válido. Diferencias: Racket usa `(person-name p)`, OCaml usa `p.name`.",
+        "Similitudes: Ambas manejan errores. Diferencias: Racket usa `(error ...)`, OCaml usa `else` y `failwith`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con un registro de \"Bob\" y 25, dando \"Bob\". Diferencias: Racket usa `(person \"Bob\" 25)`, OCaml usa `{ name = \"Bob\"; age = 25 }`."
+        "Similitudes: Ambas llaman la función con un registro idéntico, dando `Bob`. Diferencias: Racket usa `(person \"Bob\" 25 \"Paris\")`, OCaml usa `{ name = \"Bob\"; age = 25; city = \"Paris\" }`."
       ]
     },
     "ejercicio-7": {
-      "title": "Crear tupla con número y su cuadrado",
+      "title": "Construcción y procesamiento de registros anidados",
       "racket": {
         "lines": [
-          "(define (number-square-tuple n)",
-          "  (cons n (* n n))",
+          "(struct student (name age grades))",
+          "(define (student-info name age grades)",
+          "  (if (and (string? name) (not (string=? name \"\"))",
+          "           (number? age) (> age 0)",
+          "           (list? grades) (not (empty? grades)) (andmap positive? grades))",
+          "      (let ((s (student name age grades)))",
+          "        (cons (student-name s)",
+          "              (/ (foldl + 0 grades) (length grades))))",
+          "      (error \"Invalid input: name, age, or grades\"))",
           ")",
-          "(number-square-tuple 6)"
+          "(student-info \"Carlos\" 22 '(90 85))"
         ]
       },
       "ocaml": {
         "lines": [
-          "let number_square_tuple n =",
-          "  (n, n * n)",
+          "type student = { name: string; age: int; grades: int list }",
+          "let student_info name age grades =",
+          "  if name <> \"\" && age > 0 && grades <> [] &&",
+          "     List.for_all (fun x -> x > 0) grades then",
+          "    let s = { name; age; grades } in",
+          "    (s.name, (List.fold_left (+) 0 grades) / (List.length grades))",
+          "  else",
+          "    failwith \"Invalid input: name, age, or grades\"",
           "in",
-          "number_square_tuple 6"
+          "student_info \"Carlos\" 22 [90; 85]"
         ]
       },
       "explanations_racket": [
-        "Define una función `number-square-tuple` para crear una tupla con un número `n` y su cuadrado. La sintaxis `(define (nombre params) cuerpo)` es funcional, como generar pares para un profesor que calcula números y sus cuadrados.",
-        "Usa `cons` para construir la tupla con `n` y `(* n n)`, en notación prefija. La expresión es pura, como crear un registro sin alterar valores.",
-        "Cierra la definición de la función, una convención estructural de Racket.",
-        "Llama a `number-square-tuple` con 6, retornando '(6 . 36), mostrando la construcción de la tupla."
+        "Crea una estructura `student` con campos `name`, `age` y `grades`. `(struct nombre (campos))` es como definir una plantilla para datos de estudiantes.",
+        "Define una función `student-info` que toma `name`, `age` y `grades`, como una regla para crear un registro y calcular un promedio.",
+        "Verifica si `name` es una cadena no vacía, `age` es un número positivo, y `grades` es una lista no vacía de números positivos. Es como confirmar que todos los datos del estudiante son válidos.",
+        "Continúa la validación, asegurando que `age` y `grades` cumplen los requisitos.",
+        "Continúa la validación, comprobando que las notas son positivas con `(andmap positive? grades)`.",
+        "Si la validación pasa, crea un registro `s` con `(student name age grades)` usando `let`, como guardar los datos del estudiante.",
+        "Crea una tupla con `(cons (student-name s) ...)` para el nombre y el promedio de notas, calculado con `(foldl + 0 grades)` y `(length grades)`. Es como devolver el nombre y la nota promedio.",
+        "Si la validación falla, lanza un error con un mensaje, como alertar que los datos no son correctos.",
+        "Cierra la definición de la función.",
+        "Llama a `student-info` con `\"Carlos\"`, `22` y `(90 85)`, dando `(Carlos 87)`, como mostrar el nombre y promedio del estudiante."
       ],
       "explanations_ocaml": [
-        "Define una función `number_square_tuple` para crear una tupla con `n` y su cuadrado, usando `let nombre params = cuerpo`. Es funcional, como generar pares para cálculos matemáticos.",
-        "Crea la tupla `(n, n * n)` en notación infija. La expresión es pura, como formar un par sin efectos secundarios.",
-        "Usa `in` para introducir la llamada, una característica de OCaml.",
-        "Llama a `number_square_tuple` con 6, retornando (6, 36), demostrando la función."
+        "Define un tipo `student` con campos `name`, `age` y `grades`. `type nombre = { campos }` es como crear una plantilla para estudiantes.",
+        "Define una función `student_info` que toma `name`, `age` y `grades`, como una instrucción para crear un registro y calcular el promedio.",
+        "Verifica si `name` no está vacío, `age` es positivo, `grades` no está vacía y todas las notas son positivas con `List.for_all`. Es como asegurarse de que los datos son válidos.",
+        "Continúa la validación, combinando todas las condiciones con `&&`.",
+        "Si la validación pasa, crea un registro `s` con `{ name; age; grades }` usando `let`, como almacenar los datos del estudiante.",
+        "Devuelve una tupla `(s.name, ...)` con el nombre y el promedio, calculado con `List.fold_left (+) 0 grades` y `List.length grades`. Es como mostrar el nombre y la nota promedio.",
+        "Si la validación falla, lanza un error con `failwith`, como mostrar un mensaje de error.",
+        "Usa `in` para conectar la definición con la llamada.",
+        "Llama a `student_info` con `\"Carlos\"`, `22` y `[90; 85]`, dando `(Carlos, 87)`, mostrando el resultado."
       ],
       "comparisons": [
-        "Similitudes: Ambas definen una función para crear una tupla con un número y su cuadrado, usando abstracción funcional. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
-        "Similitudes: Ambas calculan el cuadrado y forman la tupla, con pureza. Diferencias: Racket usa `cons` y `*` prefija, OCaml usa `(,)` y `*` infija, más concisa.",
+        "Similitudes: Ambas definen una estructura para estudiantes y crean una tupla con nombre y promedio. Diferencias: Racket usa `(struct nombre (campos))`, OCaml usa `type nombre = { campos }`.",
+        "Similitudes: Ambas funciones toman nombre, edad y notas. Diferencias: Racket usa `(define (nombre params) cuerpo)`, OCaml usa `let nombre params = cuerpo`.",
+        "Similitudes: Ambas verifican la validez de los datos. Diferencias: Racket usa `(and (string? name) ...)` prefija, OCaml usa `name <> \"\" && ...` infija.",
+        "Similitudes: Ambas continúan la validación. Diferencias: Racket distribuye la validación en varias líneas, OCaml usa una condición compacta.",
+        "Similitudes: Ambas validan las notas. Diferencias: Racket usa `(andmap positive? grades)`, OCaml usa `List.for_all (fun x -> x > 0) grades`.",
+        "Similitudes: Ambas crean un registro si los datos son válidos. Diferencias: Racket usa `(let ((s ...)))`, OCaml usa `let s = ... in`.",
+        "Similitudes: Ambas devuelven una tupla con nombre y promedio. Diferencias: Racket usa `(cons (student-name s) ...)` prefija, OCaml usa `(s.name, ...)` infija con módulos `List`.",
+        "Similitudes: Ambas manejan errores. Diferencias: Racket usa `(error ...)`, OCaml usa `else` y `failwith`.",
         "Similitudes: Ambas son estructurales. Diferencias: Racket cierra con `)`, OCaml usa `in`.",
-        "Similitudes: Ambas llaman la función con 6, dando (6, 36). Diferencias: Racket usa '(6 . 36), OCaml (6, 36)."
+        "Similitudes: Ambas llaman la función con datos idénticos, dando `(Carlos 87)`. Diferencias: Racket usa `'()` para listas y `(cons ...)` para tuplas, OCaml usa `[]` y `(,)`."
       ]
     }
   },

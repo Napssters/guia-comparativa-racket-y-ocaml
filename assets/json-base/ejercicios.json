@@ -505,91 +505,91 @@
   },
   "funciones-orden-superior": {
     "ejercicio-1": {
-      "description": "Las funciones de orden superior transforman listas. Una tienda duplica precios (2 3 4). Define una función usando map para duplicar cada elemento. Evalúa con (2 3 4). Esto introduce cómo pasamos funciones como argumentos.",
+      "description": "Introducción a funciones de orden superior con transformaciones simples. Una tienda aplica un descuento del 15% a una lista de precios de productos: (100 200 300). Define una función que use 'map' para aplicar el descuento multiplicando cada precio por 0.85. Maneja listas vacías devolviendo una lista vacía. Evalúa con (100 200 300). Este ejercicio introduce el paso de funciones como argumentos para transformaciones básicas.",
       "racket": {
-        "code": "(define (double-list lst)\n  (map (lambda (x) (* x 2))\n       lst\n  )\n)\n(double-list '(2 3 4))"
+        "code": "(define (apply-discount lst)\n  (if (empty? lst)\n      '()\n      (map (lambda (x) (* x 0.85)) lst)\n  )\n)\n(apply-discount '(100 200 300))"
       },
       "ocaml": {
-        "code": "let double_list lst =\n  List.map (fun x -> x * 2) lst\nin\ndouble_list [2; 3; 4]"
+        "code": "let apply_discount lst =\n  if lst = [] then\n    []\n  else\n    List.map (fun x -> x *. 0.85) lst\nin\napply_discount [100; 200; 300]"
       },
-      "answer": "(4 6 8)"
+      "answer": "(85.0 170.0 255.0)"
     },
     "ejercicio-2": {
-      "description": "Filtrar con funciones. Un almacén selecciona tallas pares de (1 2 3 4). Define una función usando filter para pares. Evalúa con (1 2 3 4). Esto muestra cómo seleccionamos elementos funcionalmente.",
+      "description": "Filtrado con condiciones compuestas. Un inventario filtra productos con stock mayor a 5 y precio menor a 50: (10 60 30 40 70). Define una función que use 'filter' con un predicado compuesto para seleccionar elementos que cumplan ambas condiciones. Asegura manejo de listas vacías. Evalúa con la lista dada. Este ejercicio avanza en el uso de predicados funcionales para filtrado selectivo.",
       "racket": {
-        "code": "(define (even-numbers lst)\n  (filter (lambda (x) (= (remainder x 2) 0))\n          lst\n  )\n)\n(even-numbers '(1 2 3 4))"
+        "code": "(define (filter-stock lst)\n  (if (empty? lst)\n      '()\n      (filter (lambda (x) (and (> x 5) (< x 50))) lst)\n  )\n)\n(filter-stock '(10 60 30 40 70))"
       },
       "ocaml": {
-        "code": "let even_numbers lst =\n  List.filter (fun x -> x mod 2 = 0) lst\nin\neven_numbers [1; 2; 3; 4]"
+        "code": "let filter_stock lst =\n  if lst = [] then\n    []\n  else\n    List.filter (fun x -> x > 5 && x < 50) lst\nin\nfilter_stock [10; 60; 30; 40; 70]"
       },
-      "answer": "(2 4)"
+      "answer": "(10 30 40)"
     },
     "ejercicio-3": {
-      "description": "Transformaciones con map. Un diseñador calcula áreas de cuadrados con lados (2 3 4). Define una función que eleve al cuadrado cada elemento. Evalúa con (2 3 4). Esto refuerza el uso de map para cálculos masivos.",
+      "description": "Transformación y filtrado combinados. Una empresa calcula costos de producción: (2 3 -4 5 -6). Filtra valores absolutos mayores a 3 y luego eleva al cuadrado los resultados. Usa 'filter' para seleccionar y 'map' para transformar. Maneja listas vacías y valores negativos. Evalúa con la lista dada. Este ejercicio introduce pipelines funcionales con múltiples transformaciones.",
       "racket": {
-        "code": "(define (square-list lst)\n  (map (lambda (x) (* x x))\n       lst\n  )\n)\n(square-list '(2 3 4))"
+        "code": "(define (process-costs lst)\n  (if (empty? lst)\n      '()\n      (let ((filtered (filter (lambda (x) (> (abs x) 3)) lst)))\n        (map (lambda (x) (* (abs x) (abs x))) filtered)\n      )\n  )\n)\n(process-costs '(2 3 -4 5 -6))"
       },
       "ocaml": {
-        "code": "let square_list lst =\n  List.map (fun x -> x * x) lst\nin\nsquare_list [2; 3; 4]"
+        "code": "let process_costs lst =\n  if lst = [] then\n    []\n  else\n    let filtered = List.filter (fun x -> abs x > 3) lst in\n    List.map (fun x -> (abs x) * (abs x)) filtered\nin\nprocess_costs [2; 3; -4; 5; -6]"
       },
-      "answer": "(4 9 16)"
+      "answer": "(16 25 36)"
     },
     "ejercicio-4": {
-      "description": "Filtrado avanzado. Un evento admite edades mayores a 10: (5 12 8 15). Define una función con filter para seleccionarlas. Evalúa con (5 12 8 15). Esto muestra cómo filtramos con condiciones específicas.",
+      "description": "Acumulación con funciones de orden superior. Un sistema registra transacciones: (100 -50 200 -30 150). Calcula la suma de transacciones positivas mayores a 100 usando 'filter' y 'foldl' (o fold_left). Parametriza el umbral y la operación de acumulación. Maneja listas vacías devolviendo 0. Evalúa con la lista dada. Este ejercicio introduce acumuladores funcionales para procesar datos filtrados.",
       "racket": {
-        "code": "(define (greater-than-ten lst)\n  (filter (lambda (x) (> x 10))\n          lst\n  )\n)\n(greater-than-ten '(5 12 8 15))"
+        "code": "(define (sum-transactions threshold lst)\n  (if (empty? lst)\n      0\n      (foldl + 0 (filter (lambda (x) (> x threshold)) lst))\n  )\n)\n(sum-transactions 100 '(100 -50 200 -30 150))"
       },
       "ocaml": {
-        "code": "let greater_than_ten lst =\n  List.filter (fun x -> x > 10) lst\nin\ngreater_than_ten [5; 12; 8; 15]"
+        "code": "let sum_transactions threshold lst =\n  if lst = [] then\n    0\n  else\n    List.fold_left (+) 0 (List.filter (fun x -> x > threshold) lst)\nin\nsum_transactions 100 [100; -50; 200; -30; 150]"
       },
-      "answer": "(12 15)"
+      "answer": "350"
     },
     "ejercicio-5": {
-      "description": "Transformar con condicionales. Un analista corrige errores (-2 3 -4) tomando valores absolutos. Define una función con map y condicional. Evalúa con (-2 3 -4). Esto combina map con lógica interna.",
+      "description": "Currying y funciones devueltas. Un sistema financiero procesa valores: (-200 300 -100 400), aplicando valor absoluto, filtrando mayores a 150, y sumándolos. Define una función de orden superior que tome un umbral y devuelva una función que realice el procesamiento (map para absoluto, filter para umbral, fold para suma). Maneja listas vacías devolviendo 0. Evalúa con umbral 150 y la lista dada. Este ejercicio explora cierres y configuraciones dinámicas.",
       "racket": {
-        "code": "(define (abs-list lst)\n  (map (lambda (x)\n         (if (< x 0)\n             (- x)\n             x\n         ))\n       lst\n  )\n)\n(abs-list '(-2 3 -4))"
+        "code": "(define (make-financial-processor threshold)\n  (lambda (lst)\n    (if (empty? lst)\n        0\n        (foldl + 0\n               (filter (lambda (x) (> x threshold))\n                       (map abs lst)\n               )\n        )\n    )\n  )\n)\n((make-financial-processor 150) '(-200 300 -100 400))"
       },
       "ocaml": {
-        "code": "let abs_list lst =\n  List.map (fun x ->\n              if x < 0 then\n                -x\n              else\n                x\n           ) lst\nin\nabs_list [-2; 3; -4]"
+        "code": "let make_financial_processor threshold =\n  fun lst ->\n    if lst = [] then\n      0\n    else\n      List.fold_left (+) 0\n        (List.filter (fun x -> x > threshold)\n           (List.map abs lst)\n        )\nin\nmake_financial_processor 150 [-200; 300; -100; 400]"
       },
-      "answer": "(2 3 4)"
+      "answer": "700"
     },
     "ejercicio-6": {
-      "description": "Filtrar positivos. Un contable selecciona ganancias positivas de (-1 2 -3 4). Define una función con filter. Evalúa con (-1 2 -3 4). Esto refuerza el filtrado para datos específicos.",
+      "description": "Procesamiento de datos estructurados. Una base de datos almacena registros de ventas como parejas (monto . tipo): ((200 . \"venta\") (-50 . \"devolucion\") (300 . \"venta\") (-20 . \"devolucion\")). Filtra ventas positivas, extrae montos y calcula la suma total. Define una función que acepte un predicado y una función extractora, usando 'filter', 'map' y 'fold'. Maneja listas vacías devolviendo 0. Evalúa con la lista dada. Este ejercicio trabaja con estructuras complejas y abstracciones funcionales.",
       "racket": {
-        "code": "(define (positive-numbers lst)\n  (filter (lambda (x) (> x 0))\n          lst\n  )\n)\n(positive-numbers '(-1 2 -3 4))"
+        "code": "(define (process-sales pred extractor lst)\n  (if (empty? lst)\n      0\n      (foldl + 0\n             (map extractor\n                  (filter pred lst)\n             )\n      )\n  )\n)\n(process-sales\n  (lambda (p) (and (string=? (cdr p) \"venta\") (> (car p) 0)))\n  car\n  '((200 . \"venta\") (-50 . \"devolucion\") (300 . \"venta\") (-20 . \"devolucion\"))\n)"
       },
       "ocaml": {
-        "code": "let positive_numbers lst =\n  List.filter (fun x -> x > 0) lst\nin\npositive_numbers [-1; 2; -3; 4]"
+        "code": "let process_sales pred extractor lst =\n  if lst = [] then\n    0\n  else\n    List.fold_left (+) 0\n      (List.map extractor\n         (List.filter pred lst)\n      )\nin\nprocess_sales\n  (fun (m, t) -> t = \"venta\" && m > 0)\n  fst\n  [(200, \"venta\"); (-50, \"devolucion\"); (300, \"venta\"); (-20, \"devolucion\")]\n"
       },
-      "answer": "(2 4)"
+      "answer": "500"
     },
     "ejercicio-7": {
-      "description": "Actualizar listas. Una escuela incrementa edades (10 11 12) en 1. Define una función con map para sumar 1 a cada elemento. Evalúa con (10 11 12). Esto muestra transformaciones masivas con map.",
+      "description": "Pipelines complejos con datos anidados. Una escuela gestiona calificaciones en listas anidadas: ((70 80 90) (60 85 95) (50 60)). Filtra calificaciones aprobadas (>70) por estudiante, calcula el promedio por estudiante, y selecciona estudiantes con promedio mayor a 80. Usa 'map', 'filter' y 'fold' anidados, manejando listas vacías y sublistas vacías devolviendo resultados apropiados (0 para promedios vacíos, lista vacía para resultado final). Evalúa con la lista dada. Este ejercicio demuestra composición avanzada y manejo de datos multinivel.",
       "racket": {
-        "code": "(define (increment-list lst)\n  (map (lambda (x) (+ x 1))\n       lst\n  )\n)\n(increment-list '(10 11 12))"
+        "code": "(define (process-grades lst)\n  (if (empty? lst)\n      '()\n      (filter (lambda (avg) (> avg 80))\n              (map (lambda (sublst)\n                     (if (empty? sublst)\n                         0\n                         (let ((approved (filter (lambda (g) (> g 70)) sublst)))\n                           (if (empty? approved)\n                               0\n                               (/ (foldl + 0 approved) (length approved))\n                           )\n                         )\n                     )\n                   lst\n              )\n      )\n  )\n)\n(process-grades '((70 80 90) (60 85 95) (50 60)))"
       },
       "ocaml": {
-        "code": "let increment_list lst =\n  List.map (fun x -> x + 1) lst\nin\nincrement_list [10; 11; 12]"
+        "code": "let process_grades lst =\n  if lst = [] then\n    []\n  else\n    List.filter (fun avg -> avg > 80)\n      (List.map (fun sublst ->\n                   if sublst = [] then\n                     0\n                   else\n                     let approved = List.filter (fun g -> g > 70) sublst in\n                     if approved = [] then\n                       0\n                     else\n                       (List.fold_left (+) 0 approved) / (List.length approved)\n                ) lst\n      )\nin\nprocess_grades [[70; 80; 90]; [60; 85; 95]; [50; 60]]"
       },
-      "answer": "(11 12 13)"
+      "answer": "(85 90)"
     }
   },
   "tipos-datos-simples": {
     "ejercicio-1": {
-      "description": "Tuplas para datos estructurados. Una empresa registra horas (5, 3). Define una función para sumar los valores de una tupla. Evalúa con (5, 3). Esto introduce tipos de datos compuestos en funcional.",
+      "description": "Suma de tuplas con validación. Una empresa registra horas trabajadas como una tupla (5, 3). Define una función que sume los valores de una tupla, verificando que ambos sean números. Evalúa con (5, 3). Este ejercicio introduce el manejo de datos estructurados y validación básica en programación funcional.",
       "racket": {
-        "code": "(define (sum-tuple t)\n  (+ (car t) (cdr t))\n)\n(sum-tuple '(5 . 3))"
+        "code": "(define (sum-tuple t)\n  (if (and (pair? t) (number? (car t)) (number? (cdr t)))\n      (+ (car t) (cdr t))\n      (error \"Input must be a pair of numbers\"))\n)\n(sum-tuple '(5 . 3))"
       },
       "ocaml": {
-        "code": "let sum_tuple (a, b) =\n  a + b\nin\nsum_tuple (5, 3)"
+        "code": "let sum_tuple (a, b) =\n  if (is_int a && is_int b) || (is_float a && is_float b) then\n    a +. (float_of_int b)\n  else\n    failwith \"Input must be a pair of numbers\"\nin\nsum_tuple (5, 3)"
       },
       "answer": "8"
     },
     "ejercicio-2": {
-      "description": "Acceder a tuplas. Una coordenada es (7, 8). Define una función para obtener el primer elemento. Evalúa con (7, 8). Esto muestra cómo extraemos datos de estructuras simples.",
+      "description": "Extracción segura de coordenadas. Una coordenada se representa como (7, 8). Define una función que extraiga el primer elemento, verificando que la entrada sea una tupla válida. Evalúa con (7, 8). Este ejercicio refuerza el acceso a datos estructurados con manejo de errores.",
       "racket": {
-        "code": "(define (first-of-tuple t)\n  (car t)\n)\n(first-of-tuple '(7 . 8))"
+        "code": "(define (first-of-tuple t)\n  (if (pair? t)\n      (car t)\n      (error \"Input must be a pair\"))\n)\n(first-of-tuple '(7 . 8))"
       },
       "ocaml": {
         "code": "let first_of_tuple (a, _) =\n  a\nin\nfirst_of_tuple (7, 8)"
@@ -597,54 +597,54 @@
       "answer": "7"
     },
     "ejercicio-3": {
-      "description": "Estructuras personalizadas. Un registro es ('Ana', 20). Define una función para extraer la edad. Evalúa con ('Ana', 20). Esto introduce tipos definidos por el usuario.",
+      "description": "Registros personalizados con validación. Un registro de persona es ('Ana', 20). Define una función que extraiga la edad, asegurando que la entrada sea un registro válido y la edad un número positivo. Evalúa con ('Ana', 20). Este ejercicio introduce estructuras definidas por el usuario con robustez.",
       "racket": {
-        "code": "(struct person (name age))\n(define (get-age p)\n  (person-age p)\n)\n(get-age (person \"Ana\" 20))"
+        "code": "(struct person (name age))\n(define (get-age p)\n  (if (and (person? p) (number? (person-age p)) (> (person-age p) 0))\n      (person-age p)\n      (error \"Invalid person or age\"))\n)\n(get-age (person \"Ana\" 20))"
       },
       "ocaml": {
-        "code": "type person = { name: string; age: int }\nlet get_age p =\n  p.age\nin\nget_age { name = \"Ana\"; age = 20 }"
+        "code": "type person = { name: string; age: int }\nlet get_age p =\n  if p.age > 0 then\n    p.age\n  else\n    failwith \"Age must be positive\"\nin\nget_age { name = \"Ana\"; age = 20 }"
       },
       "answer": "20"
     },
     "ejercicio-4": {
-      "description": "Tuplas triples. Una caja tiene dimensiones (2, 3, 4). Define una función para multiplicar los valores. Evalúa con (2, 3, 4). Esto extiende el uso de tuplas para cálculos complejos.",
+      "description": "Volumen de una caja con tupla triple. Una caja tiene dimensiones (2, 3, 4). Define una función que calcule el volumen multiplicando los valores, verificando que sean números positivos. Evalúa con (2, 3, 4). Este ejercicio extiende el uso de tuplas con cálculos más complejos y validación.",
       "racket": {
-        "code": "(define (product-triple t)\n  (* (car t) (* (cadr t) (caddr t)))\n)\n(product-triple '(2 3 4))"
+        "code": "(define (product-triple t)\n  (if (and (list? t) (= (length t) 3)\n           (andmap number? t) (andmap positive? t))\n      (* (car t) (cadr t) (caddr t))\n      (error \"Input must be a list of three positive numbers\"))\n)\n(product-triple '(2 3 4))"
       },
       "ocaml": {
-        "code": "let product_triple (a, b, c) =\n  a * b * c\nin\nproduct_triple (2, 3, 4)"
+        "code": "let product_triple (a, b, c) =\n  if a > 0 && b > 0 && c > 0 then\n    a * b * c\n  else\n    failwith \"Dimensions must be positive\"\nin\nproduct_triple (2, 3, 4)"
       },
       "answer": "24"
     },
     "ejercicio-5": {
-      "description": "Comparar tuplas. Un sistema verifica si (1,2) es igual a (1,2). Define una función para comparar tuplas. Evalúa con (1,2) y (1,2). Esto muestra cómo manejamos igualdad en estructuras.",
+      "description": "Comparación robusta de tuplas. Un sistema compara coordenadas (1, 2) y (1, 2). Define una función que verifique si dos tuplas son iguales, asegurando que ambas sean tuplas válidas de números. Evalúa con (1, 2) y (1, 2). Este ejercicio introduce comparación de estructuras con validación.",
       "racket": {
-        "code": "(define (equal-tuples? t1 t2)\n  (and (= (car t1) (car t2))\n       (= (cdr t1) (cdr t2)))\n)\n(equal-tuples? '(1 . 2) '(1 . 2))"
+        "code": "(define (equal-tuples? t1 t2)\n  (if (and (pair? t1) (pair? t2)\n           (number? (car t1)) (number? (cdr t1))\n           (number? (car t2)) (number? (cdr t2)))\n      (and (= (car t1) (car t2)) (= (cdr t1) (cdr t2)))\n      (error \"Inputs must be pairs of numbers\"))\n)\n(equal-tuples? '(1 . 2) '(1 . 2))"
       },
       "ocaml": {
-        "code": "let equal_tuples (a1, b1) (a2, b2) =\n  a1 = a2 && b1 = b2\nin\nequal_tuples (1, 2) (1, 2)"
+        "code": "let equal_tuples (a1, b1) (a2, b2) =\n  if (is_int a1 && is_int b1 && is_int a2 && is_int b2) ||\n     (is_float a1 && is_float b1 && is_float a2 && is_float b2) then\n    a1 = a2 && b1 = b2\n  else\n    failwith \"Inputs must be pairs of numbers\"\nin\nequal_tuples (1, 2) (1, 2)"
       },
       "answer": "true"
     },
     "ejercicio-6": {
-      "description": "Extraer de registros. Un censo registra ('Bob', 25). Define una función para obtener el nombre. Evalúa con ('Bob', 25). Esto refuerza el acceso a datos estructurados.",
+      "description": "Extracción avanzada de registros. Un censo registra personas con nombre, edad y ciudad ('Bob', 25, 'Paris'). Define una función que extraiga el nombre, verificando que sea un registro válido y el nombre no esté vacío. Evalúa con ('Bob', 25, 'Paris'). Este ejercicio refuerza el manejo de estructuras complejas con validación estricta.",
       "racket": {
-        "code": "(struct person (name age))\n(define (get-name p)\n  (person-name p)\n)\n(get-name (person \"Bob\" 25))"
+        "code": "(struct person (name age city))\n(define (get-name p)\n  (if (and (person? p) (string? (person-name p)) (not (string=? (person-name p) \"\")))\n      (person-name p)\n      (error \"Invalid person or empty name\"))\n)\n(get-name (person \"Bob\" 25 \"Paris\"))"
       },
       "ocaml": {
-        "code": "type person = { name: string; age: int }\nlet get_name p =\n  p.name\nin\nget_name { name = \"Bob\"; age = 25 }"
+        "code": "type person = { name: string; age: int; city: string }\nlet get_name p =\n  if p.name <> \"\" then\n    p.name\n  else\n    failwith \"Name must not be empty\"\nin\nget_name { name = \"Bob\"; age = 25; city = \"Paris\" }"
       },
       "answer": "Bob"
     },
     "ejercicio-7": {
-      "description": "Crear tuplas. Un profesor genera (6, 36) para un número y su cuadrado. Define una función para crear esta tupla. Evalúa con 6. Esto muestra cómo construimos datos estructurados.",
+      "description": "Construcción y procesamiento de registros anidados. Un sistema registra un estudiante con nombre, edad y notas ('Carlos', 22, (90, 85)). Define una función que cree un registro y devuelva una tupla con el nombre y el promedio de notas, validando que las notas sean números positivos. Evalúa con 'Carlos', 22, (90, 85). Este ejercicio combina creación de estructuras, cálculos y validación avanzada.",
       "racket": {
-        "code": "(define (number-square-tuple n)\n  (cons n (* n n))\n)\n(number-square-tuple 6)"
+        "code": "(struct student (name age grades))\n(define (student-info name age grades)\n  (if (and (string? name) (not (string=? name \"\"))\n           (number? age) (> age 0)\n           (list? grades) (not (empty? grades)) (andmap positive? grades))\n      (let ((s (student name age grades)))\n        (cons (student-name s)\n              (/ (foldl + 0 grades) (length grades))))\n      (error \"Invalid input: name, age, or grades\"))\n)\n(student-info \"Carlos\" 22 '(90 85))"
       },
       "ocaml": {
-        "code": "let number_square_tuple n =\n  (n, n * n)\nin\nnumber_square_tuple 6"
+        "code": "type student = { name: string; age: int; grades: int list }\nlet student_info name age grades =\n  if name <> \"\" && age > 0 && grades <> [] &&\n     List.for_all (fun x -> x > 0) grades then\n    let s = { name; age; grades } in\n    (s.name, (List.fold_left (+) 0 grades) / (List.length grades))\n  else\n    failwith \"Invalid input: name, age, or grades\"\nin\nstudent_info \"Carlos\" 22 [90; 85]"
       },
-      "answer": "(6 36)"
+      "answer": "(Carlos 87)"
     }
   },
   "cadenas-y-caracteres": {
