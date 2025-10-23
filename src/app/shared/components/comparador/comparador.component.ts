@@ -219,18 +219,16 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       let nuevoPaso = this.recursionStepIndex + delta;
       if (nuevoPaso >= 0 && nuevoPaso < maxSteps) {
         this.recursionStepIndex = nuevoPaso;
-        this.highlightLineRacket = recursionStepsRacket[nuevoPaso] ?? 0;
-        this.highlightLineOcaml = recursionStepsOcaml[nuevoPaso] ?? 0;
-        // Output independiente para cada lenguaje
+        // --- Racket ---
+        let idxR = nuevoPaso < recursionStepsRacket.length ? nuevoPaso : recursionStepsRacket.length - 1;
+        this.highlightLineRacket = recursionStepsRacket.length > 0 ? recursionStepsRacket[idxR] : 0;
         const stepAnswerRacket = recInfo.racket && Array.isArray(recInfo.racket['recursion-step-answer']) ? recInfo.racket['recursion-step-answer'] : [];
-        const stepAnswerOcaml = recInfo.ocaml && Array.isArray(recInfo.ocaml['recursion-step-answer']) ? recInfo.ocaml['recursion-step-answer'] : [];
-        // Racket: contar ceros hasta el paso actual
         let zeroCountRacket = 0;
         let lastZeroIndexRacket = -1;
         for (let i = 0; i < recursionStepsRacket.length; i++) {
           if (recursionStepsRacket[i] === 0) lastZeroIndexRacket = i;
         }
-        for (let i = 0; i <= nuevoPaso; i++) {
+        for (let i = 0; i <= Math.min(nuevoPaso, recursionStepsRacket.length - 1); i++) {
           if (recursionStepsRacket[i] === 0) zeroCountRacket++;
         }
         if (nuevoPaso >= lastZeroIndexRacket && lastZeroIndexRacket !== -1) {
@@ -240,13 +238,16 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
         } else {
           this.outputRacket = '';
         }
-        // OCaml: contar ceros hasta el paso actual
+        // --- OCaml ---
+        let idxO = nuevoPaso < recursionStepsOcaml.length ? nuevoPaso : recursionStepsOcaml.length - 1;
+        this.highlightLineOcaml = recursionStepsOcaml.length > 0 ? recursionStepsOcaml[idxO] : 0;
+        const stepAnswerOcaml = recInfo.ocaml && Array.isArray(recInfo.ocaml['recursion-step-answer']) ? recInfo.ocaml['recursion-step-answer'] : [];
         let zeroCountOcaml = 0;
         let lastZeroIndexOcaml = -1;
         for (let i = 0; i < recursionStepsOcaml.length; i++) {
           if (recursionStepsOcaml[i] === 0) lastZeroIndexOcaml = i;
         }
-        for (let i = 0; i <= nuevoPaso; i++) {
+        for (let i = 0; i <= Math.min(nuevoPaso, recursionStepsOcaml.length - 1); i++) {
           if (recursionStepsOcaml[i] === 0) zeroCountOcaml++;
         }
         if (nuevoPaso >= lastZeroIndexOcaml && lastZeroIndexOcaml !== -1) {
