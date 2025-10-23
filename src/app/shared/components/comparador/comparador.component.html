@@ -81,15 +81,8 @@
         </span>
       </div>
       <span class="mx-4 font-bold text-lg text-[#3e5aa9] flex items-center h-12">
-        <ng-container *ngIf="(['recursion','listas'].includes(modulo) && comparacionData && comparacionData[modulo] && comparacionData[modulo][ejercicio])">
-          <ng-container>
-            Racket L.{{ highlightLineRacket + 1 }} |
-            <span class="text-[#ec690d] ml-2">OCaml L.{{ highlightLineOcaml + 1 }}</span>
-          </ng-container>
-        </ng-container>
-        <ng-container *ngIf="!(['recursion','listas'].includes(modulo))">
-          Línea {{ highlightLineRacket + 1 }}
-        </ng-container>
+        Racket L.{{ highlightLineRacket + 1 }} |
+        <span class="text-[#ec690d] ml-2">OCaml L.{{ highlightLineOcaml + 1 }}</span>
       </span>
       <div class="relative group mx-2">
         <button (click)="cambiarLinea(1)"

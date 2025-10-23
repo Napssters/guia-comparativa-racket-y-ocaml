@@ -505,91 +505,91 @@
   },
   "funciones-orden-superior": {
     "ejercicio-1": {
-      "description": "Las funciones de orden superior transforman listas. Una tienda duplica precios (2 3 4). Define una función usando map para duplicar cada elemento. Evalúa con (2 3 4). Esto introduce cómo pasamos funciones como argumentos.",
+      "description": "Introducción a funciones de orden superior con transformaciones simples. Una tienda aplica un descuento del 15% a una lista de precios de productos: (100 200 300). Define una función que use 'map' para aplicar el descuento multiplicando cada precio por 0.85. Maneja listas vacías devolviendo una lista vacía. Evalúa con (100 200 300). Este ejercicio introduce el paso de funciones como argumentos para transformaciones básicas.",
       "racket": {
-        "code": "(define (double-list lst)\n  (map (lambda (x) (* x 2))\n       lst\n  )\n)\n(double-list '(2 3 4))"
+        "code": "(define (apply-discount lst)\n  (if (empty? lst)\n      '()\n      (map (lambda (x) (* x 0.85)) lst)\n  )\n)\n(apply-discount '(100 200 300))"
       },
       "ocaml": {
-        "code": "let double_list lst =\n  List.map (fun x -> x * 2) lst\nin\ndouble_list [2; 3; 4]"
+        "code": "let apply_discount lst =\n  if lst = [] then\n    []\n  else\n    List.map (fun x -> x *. 0.85) lst\nin\napply_discount [100; 200; 300]"
       },
-      "answer": "(4 6 8)"
+      "answer": "(85.0 170.0 255.0)"
     },
     "ejercicio-2": {
-      "description": "Filtrar con funciones. Un almacén selecciona tallas pares de (1 2 3 4). Define una función usando filter para pares. Evalúa con (1 2 3 4). Esto muestra cómo seleccionamos elementos funcionalmente.",
+      "description": "Filtrado con condiciones compuestas. Un inventario filtra productos con stock mayor a 5 y precio menor a 50: (10 60 30 40 70). Define una función que use 'filter' con un predicado compuesto para seleccionar elementos que cumplan ambas condiciones. Asegura manejo de listas vacías. Evalúa con la lista dada. Este ejercicio avanza en el uso de predicados funcionales para filtrado selectivo.",
       "racket": {
-        "code": "(define (even-numbers lst)\n  (filter (lambda (x) (= (remainder x 2) 0))\n          lst\n  )\n)\n(even-numbers '(1 2 3 4))"
+        "code": "(define (filter-stock lst)\n  (if (empty? lst)\n      '()\n      (filter (lambda (x) (and (> x 5) (< x 50))) lst)\n  )\n)\n(filter-stock '(10 60 30 40 70))"
       },
       "ocaml": {
-        "code": "let even_numbers lst =\n  List.filter (fun x -> x mod 2 = 0) lst\nin\neven_numbers [1; 2; 3; 4]"
+        "code": "let filter_stock lst =\n  if lst = [] then\n    []\n  else\n    List.filter (fun x -> x > 5 && x < 50) lst\nin\nfilter_stock [10; 60; 30; 40; 70]"
       },
-      "answer": "(2 4)"
+      "answer": "(10 30 40)"
     },
     "ejercicio-3": {
-      "description": "Transformaciones con map. Un diseñador calcula áreas de cuadrados con lados (2 3 4). Define una función que eleve al cuadrado cada elemento. Evalúa con (2 3 4). Esto refuerza el uso de map para cálculos masivos.",
+      "description": "Transformación y filtrado combinados. Una empresa calcula costos de producción: (2 3 -4 5 -6). Filtra valores absolutos mayores a 3 y luego eleva al cuadrado los resultados. Usa 'filter' para seleccionar y 'map' para transformar. Maneja listas vacías y valores negativos. Evalúa con la lista dada. Este ejercicio introduce pipelines funcionales con múltiples transformaciones.",
       "racket": {
-        "code": "(define (square-list lst)\n  (map (lambda (x) (* x x))\n       lst\n  )\n)\n(square-list '(2 3 4))"
+        "code": "(define (process-costs lst)\n  (if (empty? lst)\n      '()\n      (let ((filtered (filter (lambda (x) (> (abs x) 3)) lst)))\n        (map (lambda (x) (* (abs x) (abs x))) filtered)\n      )\n  )\n)\n(process-costs '(2 3 -4 5 -6))"
       },
       "ocaml": {
-        "code": "let square_list lst =\n  List.map (fun x -> x * x) lst\nin\nsquare_list [2; 3; 4]"
+        "code": "let process_costs lst =\n  if lst = [] then\n    []\n  else\n    let filtered = List.filter (fun x -> abs x > 3) lst in\n    List.map (fun x -> (abs x) * (abs x)) filtered\nin\nprocess_costs [2; 3; -4; 5; -6]"
       },
-      "answer": "(4 9 16)"
+      "answer": "(16 25 36)"
     },
     "ejercicio-4": {
-      "description": "Filtrado avanzado. Un evento admite edades mayores a 10: (5 12 8 15). Define una función con filter para seleccionarlas. Evalúa con (5 12 8 15). Esto muestra cómo filtramos con condiciones específicas.",
+      "description": "Acumulación con funciones de orden superior. Un sistema registra transacciones: (100 -50 200 -30 150). Calcula la suma de transacciones positivas mayores a 100 usando 'filter' y 'foldl' (o fold_left). Parametriza el umbral y la operación de acumulación. Maneja listas vacías devolviendo 0. Evalúa con la lista dada. Este ejercicio introduce acumuladores funcionales para procesar datos filtrados.",
       "racket": {
-        "code": "(define (greater-than-ten lst)\n  (filter (lambda (x) (> x 10))\n          lst\n  )\n)\n(greater-than-ten '(5 12 8 15))"
+        "code": "(define (sum-transactions threshold lst)\n  (if (empty? lst)\n      0\n      (foldl + 0 (filter (lambda (x) (> x threshold)) lst))\n  )\n)\n(sum-transactions 100 '(100 -50 200 -30 150))"
       },
       "ocaml": {
-        "code": "let greater_than_ten lst =\n  List.filter (fun x -> x > 10) lst\nin\ngreater_than_ten [5; 12; 8; 15]"
+        "code": "let sum_transactions threshold lst =\n  if lst = [] then\n    0\n  else\n    List.fold_left (+) 0 (List.filter (fun x -> x > threshold) lst)\nin\nsum_transactions 100 [100; -50; 200; -30; 150]"
       },
-      "answer": "(12 15)"
+      "answer": "350"
     },
     "ejercicio-5": {
-      "description": "Transformar con condicionales. Un analista corrige errores (-2 3 -4) tomando valores absolutos. Define una función con map y condicional. Evalúa con (-2 3 -4). Esto combina map con lógica interna.",
+      "description": "Currying y funciones devueltas. Un sistema financiero procesa valores: (-200 300 -100 400), aplicando valor absoluto, filtrando mayores a 150, y sumándolos. Define una función de orden superior que tome un umbral y devuelva una función que realice el procesamiento (map para absoluto, filter para umbral, fold para suma). Maneja listas vacías devolviendo 0. Evalúa con umbral 150 y la lista dada. Este ejercicio explora cierres y configuraciones dinámicas.",
       "racket": {
-        "code": "(define (abs-list lst)\n  (map (lambda (x)\n         (if (< x 0)\n             (- x)\n             x\n         ))\n       lst\n  )\n)\n(abs-list '(-2 3 -4))"
+        "code": "(define (make-financial-processor threshold)\n  (lambda (lst)\n    (if (empty? lst)\n        0\n        (foldl + 0\n               (filter (lambda (x) (> x threshold))\n                       (map abs lst)\n               )\n        )\n    )\n  )\n)\n((make-financial-processor 150) '(-200 300 -100 400))"
       },
       "ocaml": {
-        "code": "let abs_list lst =\n  List.map (fun x ->\n              if x < 0 then\n                -x\n              else\n                x\n           ) lst\nin\nabs_list [-2; 3; -4]"
+        "code": "let make_financial_processor threshold =\n  fun lst ->\n    if lst = [] then\n      0\n    else\n      List.fold_left (+) 0\n        (List.filter (fun x -> x > threshold)\n           (List.map abs lst)\n        )\nin\nmake_financial_processor 150 [-200; 300; -100; 400]"
       },
-      "answer": "(2 3 4)"
+      "answer": "700"
     },
     "ejercicio-6": {
-      "description": "Filtrar positivos. Un contable selecciona ganancias positivas de (-1 2 -3 4). Define una función con filter. Evalúa con (-1 2 -3 4). Esto refuerza el filtrado para datos específicos.",
+      "description": "Procesamiento de datos estructurados. Una base de datos almacena registros de ventas como parejas (monto . tipo): ((200 . \"venta\") (-50 . \"devolucion\") (300 . \"venta\") (-20 . \"devolucion\")). Filtra ventas positivas, extrae montos y calcula la suma total. Define una función que acepte un predicado y una función extractora, usando 'filter', 'map' y 'fold'. Maneja listas vacías devolviendo 0. Evalúa con la lista dada. Este ejercicio trabaja con estructuras complejas y abstracciones funcionales.",
       "racket": {
-        "code": "(define (positive-numbers lst)\n  (filter (lambda (x) (> x 0))\n          lst\n  )\n)\n(positive-numbers '(-1 2 -3 4))"
+        "code": "(define (process-sales pred extractor lst)\n  (if (empty? lst)\n      0\n      (foldl + 0\n             (map extractor\n                  (filter pred lst)\n             )\n      )\n  )\n)\n(process-sales\n  (lambda (p) (and (string=? (cdr p) \"venta\") (> (car p) 0)))\n  car\n  '((200 . \"venta\") (-50 . \"devolucion\") (300 . \"venta\") (-20 . \"devolucion\"))\n)"
       },
       "ocaml": {
-        "code": "let positive_numbers lst =\n  List.filter (fun x -> x > 0) lst\nin\npositive_numbers [-1; 2; -3; 4]"
+        "code": "let process_sales pred extractor lst =\n  if lst = [] then\n    0\n  else\n    List.fold_left (+) 0\n      (List.map extractor\n         (List.filter pred lst)\n      )\nin\nprocess_sales\n  (fun (m, t) -> t = \"venta\" && m > 0)\n  fst\n  [(200, \"venta\"); (-50, \"devolucion\"); (300, \"venta\"); (-20, \"devolucion\")]\n"
       },
-      "answer": "(2 4)"
+      "answer": "500"
     },
     "ejercicio-7": {
-      "description": "Actualizar listas. Una escuela incrementa edades (10 11 12) en 1. Define una función con map para sumar 1 a cada elemento. Evalúa con (10 11 12). Esto muestra transformaciones masivas con map.",
+      "description": "Pipelines complejos con datos anidados. Una escuela gestiona calificaciones en listas anidadas: ((70 80 90) (60 85 95) (50 60)). Filtra calificaciones aprobadas (>70) por estudiante, calcula el promedio por estudiante, y selecciona estudiantes con promedio mayor a 80. Usa 'map', 'filter' y 'fold' anidados, manejando listas vacías y sublistas vacías devolviendo resultados apropiados (0 para promedios vacíos, lista vacía para resultado final). Evalúa con la lista dada. Este ejercicio demuestra composición avanzada y manejo de datos multinivel.",
       "racket": {
-        "code": "(define (increment-list lst)\n  (map (lambda (x) (+ x 1))\n       lst\n  )\n)\n(increment-list '(10 11 12))"
+        "code": "(define (process-grades lst)\n  (if (empty? lst)\n      '()\n      (filter (lambda (avg) (> avg 80))\n              (map (lambda (sublst)\n                     (if (empty? sublst)\n                         0\n                         (let ((approved (filter (lambda (g) (> g 70)) sublst)))\n                           (if (empty? approved)\n                               0\n                               (/ (foldl + 0 approved) (length approved))\n                           )\n                         )\n                     )\n                   lst\n              )\n      )\n  )\n)\n(process-grades '((70 80 90) (60 85 95) (50 60)))"
       },
       "ocaml": {
-        "code": "let increment_list lst =\n  List.map (fun x -> x + 1) lst\nin\nincrement_list [10; 11; 12]"
+        "code": "let process_grades lst =\n  if lst = [] then\n    []\n  else\n    List.filter (fun avg -> avg > 80)\n      (List.map (fun sublst ->\n                   if sublst = [] then\n                     0\n                   else\n                     let approved = List.filter (fun g -> g > 70) sublst in\n                     if approved = [] then\n                       0\n                     else\n                       (List.fold_left (+) 0 approved) / (List.length approved)\n                ) lst\n      )\nin\nprocess_grades [[70; 80; 90]; [60; 85; 95]; [50; 60]]"
       },
-      "answer": "(11 12 13)"
+      "answer": "(85 90)"
     }
   },
   "tipos-datos-simples": {
     "ejercicio-1": {
-      "description": "Tuplas para datos estructurados. Una empresa registra horas (5, 3). Define una función para sumar los valores de una tupla. Evalúa con (5, 3). Esto introduce tipos de datos compuestos en funcional.",
+      "description": "Suma de tuplas con validación. Una empresa registra horas trabajadas como una tupla (5, 3). Define una función que sume los valores de una tupla, verificando que ambos sean números. Evalúa con (5, 3). Este ejercicio introduce el manejo de datos estructurados y validación básica en programación funcional.",
       "racket": {
-        "code": "(define (sum-tuple t)\n  (+ (car t) (cdr t))\n)\n(sum-tuple '(5 . 3))"
+        "code": "(define (sum-tuple t)\n  (if (and (pair? t) (number? (car t)) (number? (cdr t)))\n      (+ (car t) (cdr t))\n      (error \"Input must be a pair of numbers\"))\n)\n(sum-tuple '(5 . 3))"
       },
       "ocaml": {
-        "code": "let sum_tuple (a, b) =\n  a + b\nin\nsum_tuple (5, 3)"
+        "code": "let sum_tuple (a, b) =\n  if (is_int a && is_int b) || (is_float a && is_float b) then\n    a +. (float_of_int b)\n  else\n    failwith \"Input must be a pair of numbers\"\nin\nsum_tuple (5, 3)"
       },
       "answer": "8"
     },
     "ejercicio-2": {
-      "description": "Acceder a tuplas. Una coordenada es (7, 8). Define una función para obtener el primer elemento. Evalúa con (7, 8). Esto muestra cómo extraemos datos de estructuras simples.",
+      "description": "Extracción segura de coordenadas. Una coordenada se representa como (7, 8). Define una función que extraiga el primer elemento, verificando que la entrada sea una tupla válida. Evalúa con (7, 8). Este ejercicio refuerza el acceso a datos estructurados con manejo de errores.",
       "racket": {
-        "code": "(define (first-of-tuple t)\n  (car t)\n)\n(first-of-tuple '(7 . 8))"
+        "code": "(define (first-of-tuple t)\n  (if (pair? t)\n      (car t)\n      (error \"Input must be a pair\"))\n)\n(first-of-tuple '(7 . 8))"
       },
       "ocaml": {
         "code": "let first_of_tuple (a, _) =\n  a\nin\nfirst_of_tuple (7, 8)"
@@ -597,270 +597,270 @@
       "answer": "7"
     },
     "ejercicio-3": {
-      "description": "Estructuras personalizadas. Un registro es ('Ana', 20). Define una función para extraer la edad. Evalúa con ('Ana', 20). Esto introduce tipos definidos por el usuario.",
+      "description": "Registros personalizados con validación. Un registro de persona es ('Ana', 20). Define una función que extraiga la edad, asegurando que la entrada sea un registro válido y la edad un número positivo. Evalúa con ('Ana', 20). Este ejercicio introduce estructuras definidas por el usuario con robustez.",
       "racket": {
-        "code": "(struct person (name age))\n(define (get-age p)\n  (person-age p)\n)\n(get-age (person \"Ana\" 20))"
+        "code": "(struct person (name age))\n(define (get-age p)\n  (if (and (person? p) (number? (person-age p)) (> (person-age p) 0))\n      (person-age p)\n      (error \"Invalid person or age\"))\n)\n(get-age (person \"Ana\" 20))"
       },
       "ocaml": {
-        "code": "type person = { name: string; age: int }\nlet get_age p =\n  p.age\nin\nget_age { name = \"Ana\"; age = 20 }"
+        "code": "type person = { name: string; age: int }\nlet get_age p =\n  if p.age > 0 then\n    p.age\n  else\n    failwith \"Age must be positive\"\nin\nget_age { name = \"Ana\"; age = 20 }"
       },
       "answer": "20"
     },
     "ejercicio-4": {
-      "description": "Tuplas triples. Una caja tiene dimensiones (2, 3, 4). Define una función para multiplicar los valores. Evalúa con (2, 3, 4). Esto extiende el uso de tuplas para cálculos complejos.",
+      "description": "Volumen de una caja con tupla triple. Una caja tiene dimensiones (2, 3, 4). Define una función que calcule el volumen multiplicando los valores, verificando que sean números positivos. Evalúa con (2, 3, 4). Este ejercicio extiende el uso de tuplas con cálculos más complejos y validación.",
       "racket": {
-        "code": "(define (product-triple t)\n  (* (car t) (* (cadr t) (caddr t)))\n)\n(product-triple '(2 3 4))"
+        "code": "(define (product-triple t)\n  (if (and (list? t) (= (length t) 3)\n           (andmap number? t) (andmap positive? t))\n      (* (car t) (cadr t) (caddr t))\n      (error \"Input must be a list of three positive numbers\"))\n)\n(product-triple '(2 3 4))"
       },
       "ocaml": {
-        "code": "let product_triple (a, b, c) =\n  a * b * c\nin\nproduct_triple (2, 3, 4)"
+        "code": "let product_triple (a, b, c) =\n  if a > 0 && b > 0 && c > 0 then\n    a * b * c\n  else\n    failwith \"Dimensions must be positive\"\nin\nproduct_triple (2, 3, 4)"
       },
       "answer": "24"
     },
     "ejercicio-5": {
-      "description": "Comparar tuplas. Un sistema verifica si (1,2) es igual a (1,2). Define una función para comparar tuplas. Evalúa con (1,2) y (1,2). Esto muestra cómo manejamos igualdad en estructuras.",
+      "description": "Comparación robusta de tuplas. Un sistema compara coordenadas (1, 2) y (1, 2). Define una función que verifique si dos tuplas son iguales, asegurando que ambas sean tuplas válidas de números. Evalúa con (1, 2) y (1, 2). Este ejercicio introduce comparación de estructuras con validación.",
       "racket": {
-        "code": "(define (equal-tuples? t1 t2)\n  (and (= (car t1) (car t2))\n       (= (cdr t1) (cdr t2)))\n)\n(equal-tuples? '(1 . 2) '(1 . 2))"
+        "code": "(define (equal-tuples? t1 t2)\n  (if (and (pair? t1) (pair? t2)\n           (number? (car t1)) (number? (cdr t1))\n           (number? (car t2)) (number? (cdr t2)))\n      (and (= (car t1) (car t2)) (= (cdr t1) (cdr t2)))\n      (error \"Inputs must be pairs of numbers\"))\n)\n(equal-tuples? '(1 . 2) '(1 . 2))"
       },
       "ocaml": {
-        "code": "let equal_tuples (a1, b1) (a2, b2) =\n  a1 = a2 && b1 = b2\nin\nequal_tuples (1, 2) (1, 2)"
+        "code": "let equal_tuples (a1, b1) (a2, b2) =\n  if (is_int a1 && is_int b1 && is_int a2 && is_int b2) ||\n     (is_float a1 && is_float b1 && is_float a2 && is_float b2) then\n    a1 = a2 && b1 = b2\n  else\n    failwith \"Inputs must be pairs of numbers\"\nin\nequal_tuples (1, 2) (1, 2)"
       },
       "answer": "true"
     },
     "ejercicio-6": {
-      "description": "Extraer de registros. Un censo registra ('Bob', 25). Define una función para obtener el nombre. Evalúa con ('Bob', 25). Esto refuerza el acceso a datos estructurados.",
+      "description": "Extracción avanzada de registros. Un censo registra personas con nombre, edad y ciudad ('Bob', 25, 'Paris'). Define una función que extraiga el nombre, verificando que sea un registro válido y el nombre no esté vacío. Evalúa con ('Bob', 25, 'Paris'). Este ejercicio refuerza el manejo de estructuras complejas con validación estricta.",
       "racket": {
-        "code": "(struct person (name age))\n(define (get-name p)\n  (person-name p)\n)\n(get-name (person \"Bob\" 25))"
+        "code": "(struct person (name age city))\n(define (get-name p)\n  (if (and (person? p) (string? (person-name p)) (not (string=? (person-name p) \"\")))\n      (person-name p)\n      (error \"Invalid person or empty name\"))\n)\n(get-name (person \"Bob\" 25 \"Paris\"))"
       },
       "ocaml": {
-        "code": "type person = { name: string; age: int }\nlet get_name p =\n  p.name\nin\nget_name { name = \"Bob\"; age = 25 }"
+        "code": "type person = { name: string; age: int; city: string }\nlet get_name p =\n  if p.name <> \"\" then\n    p.name\n  else\n    failwith \"Name must not be empty\"\nin\nget_name { name = \"Bob\"; age = 25; city = \"Paris\" }"
       },
       "answer": "Bob"
     },
     "ejercicio-7": {
-      "description": "Crear tuplas. Un profesor genera (6, 36) para un número y su cuadrado. Define una función para crear esta tupla. Evalúa con 6. Esto muestra cómo construimos datos estructurados.",
+      "description": "Construcción y procesamiento de registros anidados. Un sistema registra un estudiante con nombre, edad y notas ('Carlos', 22, (90, 85)). Define una función que cree un registro y devuelva una tupla con el nombre y el promedio de notas, validando que las notas sean números positivos. Evalúa con 'Carlos', 22, (90, 85). Este ejercicio combina creación de estructuras, cálculos y validación avanzada.",
       "racket": {
-        "code": "(define (number-square-tuple n)\n  (cons n (* n n))\n)\n(number-square-tuple 6)"
+        "code": "(struct student (name age grades))\n(define (student-info name age grades)\n  (if (and (string? name) (not (string=? name \"\"))\n           (number? age) (> age 0)\n           (list? grades) (not (empty? grades)) (andmap positive? grades))\n      (let ((s (student name age grades)))\n        (cons (student-name s)\n              (/ (foldl + 0 grades) (length grades))))\n      (error \"Invalid input: name, age, or grades\"))\n)\n(student-info \"Carlos\" 22 '(90 85))"
       },
       "ocaml": {
-        "code": "let number_square_tuple n =\n  (n, n * n)\nin\nnumber_square_tuple 6"
+        "code": "type student = { name: string; age: int; grades: int list }\nlet student_info name age grades =\n  if name <> \"\" && age > 0 && grades <> [] &&\n     List.for_all (fun x -> x > 0) grades then\n    let s = { name; age; grades } in\n    (s.name, (List.fold_left (+) 0 grades) / (List.length grades))\n  else\n    failwith \"Invalid input: name, age, or grades\"\nin\nstudent_info \"Carlos\" 22 [90; 85]"
       },
-      "answer": "(6 36)"
+      "answer": "(Carlos 87)"
     }
   },
   "cadenas-y-caracteres": {
     "ejercicio-1": {
-      "description": "Cadenas para texto. Una aplicación valida que 'admin' tenga 5 caracteres. Define una función para contar la longitud. Evalúa con 'admin'. Esto introduce el manejo de cadenas en funcional.",
+      "description": "Longitud de cadenas con validación anidada. Una app de login verifica la longitud de 'admin', pero con chequeos anidados para cadenas vacías, con espacios o unicode (ej. 'admín'). Define una función que cuente la longitud, limpiando primero y manejando errores. Evalúa con 'admin'. Este ejercicio introduce cadenas con robustez básica, como en sistemas de seguridad que evitan inyecciones.",
       "racket": {
-        "code": "(define (string-length str)\n  (string-length str)\n)\n(string-length \"admin\")"
+        "code": "(define (string-length-safe str)\n  (if (string? str)\n      (if (> (string-length str) 0)\n          (if (regexp-match? #rx\"^[a-zA-Z0-9]+$\" str)\n              (string-length (string-trim str))\n              (error \"Invalid characters in string\"))\n          0)\n      (error \"Input must be a string\"))\n)\n(string-length-safe \"admin\")"
       },
       "ocaml": {
-        "code": "let string_length str =\n  String.length str\nin\nstring_length \"admin\""
+        "code": "let string_length_safe str =\n  if str = \"\" then\n    0\n  else if String.length str > 0 then\n    if String.contains str ' ' then\n      String.length (String.trim str)\n    else\n      String.length str\n  else\n    failwith \"Input must be a string\"\nin\nstring_length_safe \"admin\""
       },
       "answer": "5"
     },
     "ejercicio-2": {
-      "description": "Concatenar cadenas. Un sistema genera 'hola mundo' uniendo 'hola' y 'mundo' con un espacio. Define una función para esto. Evalúa con 'hola' y 'mundo'. Esto muestra cómo manipulamos texto.",
+      "description": "Concatenación con limpieza y chequeos anidados. Un chatbot une 'hola ' y ' mundo', limpiando espacios, verificando longitud mínima y si contienen vocales (para evitar spam). Define una función con if anidados. Evalúa con 'hola ' y ' mundo'. Este ejercicio avanza con validaciones anidadas, como en bots que procesan mensajes seguros.",
       "racket": {
-        "code": "(define (concat-strings s1 s2)\n  (string-append s1 \" \" s2)\n)\n(concat-strings \"hola\" \"mundo\")"
+        "code": "(define (concat-strings-safe s1 s2)\n  (if (and (string? s1) (string? s2))\n      (if (and (> (string-length s1) 0) (> (string-length s2) 0))\n          (if (or (string-contains? s1 \"a\") (string-contains? s2 \"e\"))\n              (string-append (string-trim s1) \" \" (string-trim s2))\n              (error \"Strings must contain vowels\"))\n          \"\")\n      (error \"Inputs must be strings\"))\n)\n(concat-strings-safe \"hola \" \" mundo\")"
       },
       "ocaml": {
-        "code": "let concat_strings s1 s2 =\n  s1 ^ \" \" ^ s2\nin\nconcat_strings \"hola\" \"mundo\""
+        "code": "let concat_strings_safe s1 s2 =\n  if s1 = \"\" || s2 = \"\" then\n    \"\"\n  else if String.length s1 > 0 && String.length s2 > 0 then\n    if String.contains s1 'a' || String.contains s2 'e' then\n      String.trim s1 ^ \" \" ^ String.trim s2\n    else\n      failwith \"Strings must contain vowels\"\n  else\n    failwith \"Inputs must be strings\"\nin\nconcat_strings_safe \"hola \" \" mundo\""
       },
       "answer": "hola mundo"
     },
     "ejercicio-3": {
-      "description": "Acceder a caracteres. Un diseñador usa la inicial de 'gato' para un monograma. Define una función para obtener el primer carácter. Evalúa con 'gato'. Esto introduce el manejo de caracteres.",
+      "description": "Extracción de caracteres con anidamiento y defaults. Un diseñador extrae la inicial de 'gato', con chequeos anidados para vacío, longitud y si es letra (no número). Si falla, devuelve '?'. Define una función robusta. Evalúa con 'gato'. Este ejercicio introduce caracteres con lógica anidada, como en generadores de avatares que manejan entradas malas.",
       "racket": {
-        "code": "(define (first-char str)\n  (string-ref str 0)\n)\n(first-char \"gato\")"
+        "code": "(define (first-char-safe str)\n  (if (string? str)\n      (if (> (string-length str) 0)\n          (if (char-alphabetic? (string-ref str 0))\n              (string-ref str 0)\n              #\\?)\n          #\\?)\n      (error \"Input must be a string\"))\n)\n(first-char-safe \"gato\")"
       },
       "ocaml": {
-        "code": "let first_char str =\n  if str = \"\" then\n    None\n  else\n    Some (String.get str 0)\nin\nfirst_char \"gato\""
+        "code": "let first_char_safe str =\n  if String.length str > 0 then\n    if Char.is_alpha (String.get str 0) then\n      String.get str 0\n    else\n      '?' \n  else\n    '?' \nin\nfirst_char_safe \"gato\""
       },
       "answer": "g"
     },
     "ejercicio-4": {
-      "description": "Transformar cadenas. Un cartel usa 'welcome' en mayúsculas. Define una función para convertir a mayúsculas. Evalúa con 'welcome'. Esto muestra cómo transformamos texto funcionalmente.",
+      "description": "Mayúsculas con normalización y chequeos anidados. Un cartel convierte 'welcome' a mayúsculas, con chequeos para acentos, longitud mínima y si contiene letras (no solo números). Define una función con anidamiento. Evalúa con 'welcome'. Este ejercicio añade complejidad con unicode, como en apps globales.",
       "racket": {
-        "code": "(define (to-upper str)\n  (string-upcase str)\n)\n(to-upper \"welcome\")"
+        "code": "(define (to-upper-safe str)\n  (if (string? str)\n      (if (> (string-length str) 5)\n          (if (regexp-match? #rx\"[a-zA-Z]\" str)\n              (string-upcase (string-normalize-nfd str))\n              (error \"String must contain letters\"))\n          (error \"String too short\"))\n      (error \"Input must be a string\"))\n)\n(to-upper-safe \"welcome\")"
       },
       "ocaml": {
-        "code": "let to_upper str =\n  String.uppercase_ascii str\nin\nto_upper \"welcome\""
+        "code": "let to_upper_safe str =\n  if str = \"\" then\n    \"\"\n  else if String.length str > 5 then\n    if String.exists (fun c -> Char.is_alpha c) str then\n      String.uppercase_ascii str\n    else\n      failwith \"String must contain letters\"\n  else\n    failwith \"String too short\"\nin\nto_upper_safe \"welcome\""
       },
       "answer": "WELCOME"
     },
     "ejercicio-5": {
-      "description": "Verificar cadenas. Un formulario comprueba si '' está vacío. Define una función para esto. Evalúa con ''. Esto introduce validaciones de cadenas en funcional.",
+      "description": "Verificación de vacío con trim y anidamiento avanzado. Un formulario chequea '  ', limpiando y verificando si es email válido (con @ y .). Define una función con chequeos anidados para vacío y formato. Evalúa con '  '. Este ejercicio robustece con regex-like, como en validadores de login.",
       "racket": {
-        "code": "(define (empty-string? str)\n  (string=? str \"\")\n)\n(empty-string? \"\")"
+        "code": "(define (empty-string-safe? str)\n  (if (string? str)\n      (let ((trimmed (string-trim str)))\n        (if (string=? trimmed \"\")\n            #t\n            (if (regexp-match? #rx\"@\" trimmed)\n                #f\n                (error \"Invalid format\"))))\n      (error \"Input must be a string\"))\n)\n(empty-string-safe? \"  \")"
       },
       "ocaml": {
-        "code": "let empty_string str =\n  str = \"\"\nin\nempty_string \"\""
+        "code": "let empty_string_safe str =\n  let trimmed = String.trim str in\n  if trimmed = \"\" then\n    true\n  else if String.contains trimmed '@' then\n    false\n  else\n    failwith \"Invalid format\"\nin\nempty_string_safe \"  \""
       },
       "answer": "true"
     },
     "ejercicio-6": {
-      "description": "Extraer subcadenas. Un programador toma 'yth' de 'python' desde la posición 1 con longitud 3. Define una función para esto. Evalúa con 'python', 1, 3. Esto muestra manipulación precisa de cadenas.",
+      "description": "Subcadenas con chequeos anidados y unicode. Extrae 'yth' de 'p🐍thon', con validaciones para límites, unicode y si la subcadena contiene emojis. Define una función con anidamiento y normalización. Evalúa con 'python', 1, 3. Este ejercicio es innovador con emojis, como en apps de chat.",
       "racket": {
-        "code": "(define (substring-from str start len)\n  (substring str start (+ start len))\n)\n(substring-from \"python\" 1 3)"
+        "code": "(define (substring-safe str start len)\n  (if (string? str)\n      (if (>= start 0)\n          (if (<= (+ start len) (string-length str))\n              (let ((sub (substring str start (+ start len))))\n                (if (regexp-match? #rx\"[\\U0001F000-\\U0001FFFF]\" sub)\n                    (string-append sub \" (emoji detected)\")\n                    sub))\n              (error \"Length exceeds bounds\"))\n          (error \"Start must be non-negative\"))\n      (error \"Input must be a string\"))\n)\n(substring-safe \"python\" 1 3)"
       },
       "ocaml": {
-        "code": "let substring_from str start len =\n  String.sub str start len\nin\nsubstring_from \"python\" 1 3"
+        "code": "let substring_safe str start len =\n  if start >= 0 then\n    if (start + len) <= String.length str then\n      let sub = String.sub str start len in\n      if String.contains sub '\\xF0' then\n        sub ^ \" (emoji detected)\"\n      else\n        sub\n    else\n      failwith \"Length exceeds bounds\"\n  else\n    failwith \"Start must be non-negative\"\nin\nsubstring_safe \"python\" 1 3"
       },
       "answer": "yth"
     },
     "ejercicio-7": {
-      "description": "Contar vocales. Un juego cuenta vocales en 'hello'. Define una función para contar a, e, i, o, u. Evalúa con 'hello'. Esto combina listas y cadenas para procesamiento avanzado.",
+      "description": "Conteo de vocales con normalización, recursión y análisis sentimental. Cuenta vocales en 'Héllo Wørld', con recursión para procesar, insensibilidad a mayúsculas/acentos, y un bonus: si hay >5 vocales, agrega 'positivo' (sentimental simple). Define una función compleja. Evalúa con 'hello'. Este ejercicio es nuevo con 'sentimental' básico, como en AI de texto para llamar la atención.",
       "racket": {
-        "code": "(define (count-vowels str)\n  (length\n    (filter (lambda (c)\n              (member c '(#\\a #\\e #\\i #\\o #\\u))\n            )\n            (string->list str))\n  )\n)\n(count-vowels \"hello\")"
+        "code": "(define (count-vowels-safe str)\n  (if (string? str)\n      (letrec ((normalized (string-downcase (string-normalize-nfd str)))\n               (vowels '(#\\a #\\e #\\i #\\o #\\u))\n               (count-rec (lambda (lst acc)\n                            (if (empty? lst)\n                                acc\n                                (if (member (car lst) vowels)\n                                    (count-rec (cdr lst) (+ acc 1))\n                                    (count-rec (cdr lst) acc))))))\n        (let ((count (count-rec (string->list normalized) 0)))\n          (if (> count 5)\n              (string-append (number->string count) \" (positivo)\")\n              count)))\n      (error \"Input must be a string\"))\n)\n(count-vowels-safe \"hello\")"
       },
       "ocaml": {
-        "code": "let count_vowels str =\n  String.fold_left\n    (fun acc c ->\n       if List.mem c ['a'; 'e'; 'i'; 'o'; 'u'] then\n         acc + 1\n       else\n         acc\n    ) 0 str\nin\ncount_vowels \"hello\""
+        "code": "let rec count_vowels_safe str =\n  if str = \"\" then\n    0\n  else\n    let normalized = String.lowercase_ascii str in\n    let vowels = ['a'; 'e'; 'i'; 'o'; 'u'] in\n    let rec count_rec acc s =\n      if String.length s = 0 then\n        acc\n      else\n        let c = String.get s 0 in\n        let new_acc = if List.mem c vowels then acc + 1 else acc in\n        count_rec new_acc (String.sub s 1 (String.length s - 1))\n    in\n    let count = count_rec 0 normalized in\n    if count > 5 then\n      string_of_int count ^ \" (positivo)\"\n    else\n      count\nin\ncount_vowels_safe \"hello\""
       },
       "answer": "2"
     }
   },
   "composicion-de-funciones": {
     "ejercicio-1": {
-      "description": "Componer funciones es poderoso. Un demógrafo procesa una edad 5 sumando 1 y elevando al cuadrado. Define una función que componga estas operaciones. Evalúa con 5. Esto introduce composición para combinar cálculos.",
+      "description": "En un laboratorio de alquimia digital, un inventor prepara un elixir básico: toma un ingrediente como cadena, lo convierte a minúsculas para purificarlo, y luego añade un prefijo 'elixir-' para activarlo. Define dos funciones: una para minúsculas y otra para prefijo. Compónelas para formar el elixir. Evalúa con 'Magia' para crear el primer brebaje, demostrando cómo composiciones transforman elementos simples en pociones poderosas.",
       "racket": {
-        "code": "(define (compose-square-plus-one x)\n  ((compose (lambda (x) (* x x))\n            (lambda (x) (+ x 1))\n   )\n   x\n  )\n)\n(compose-square-plus-one 5)"
+        "code": "(define (a-minusculas s)\n  (string-downcase s))\n\n(define (añadir-prefijo s)\n  (string-append \"elixir-\" s))\n\n(define (compuesta-uno s)\n  (añadir-prefijo (a-minusculas s)))\n\n(compuesta-uno \"Magia\")"
       },
       "ocaml": {
-        "code": "let compose_square_plus_one x =\n  (fun x -> x * x)\n  ((fun x -> x + 1) x)\nin\ncompose_square_plus_one 5"
+        "code": "let a_minusculas s =\n  String.lowercase_ascii s\n;;\n\nlet añadir_prefijo s =\n  \"elixir-\" ^ s\n;;\n\nlet compuesta_uno s =\n  añadir_prefijo (a_minusculas s)\n;;\n\ncompuesta_uno \"Magia\""
       },
-      "answer": "36"
+      "answer": "elixir-magia"
     },
     "ejercicio-2": {
-      "description": "Composición para ajustes. Un salario de 10 dólares se ajusta restando 3 y duplicando. Define una función que componga duplicar después de restar 3. Evalúa con 10. Esto muestra cómo encadenamos transformaciones.",
+      "description": "Un decodificador de runas antiguas procesa inscripciones: primero revierte la cadena para leer el mensaje oculto, luego filtra solo consonantes usando condicional para cada carácter (excluyendo vocales). Define funciones para revertir y filtrar consonantes. Compónelas para revelar la runa. Prueba con 'anigam' para desentrañar el enigma, mostrando composiciones que desvelan secretos lingüísticos con lógica condicional básica.",
       "racket": {
-        "code": "(define (compose-double-minus-three x)\n  ((compose (lambda (x) (* x 2))\n            (lambda (x) (- x 3))\n   )\n   x\n  )\n)\n(compose-double-minus-three 10)"
+        "code": "(define (revertir s)\n  (list->string (reverse (string->list s))))\n\n(define (filtrar-consonantes s)\n  (list->string\n   (filter (lambda (c)\n             (not (member (char-downcase c) '(#\\a #\\e #\\i #\\o #\\u))))\n           (string->list s))))\n\n(define (compuesta-dos s)\n  (filtrar-consonantes (revertir s)))\n\n(compuesta-dos \"anigam\")"
       },
       "ocaml": {
-        "code": "let compose_double_minus_three x =\n  (fun x -> x * 2)\n  ((fun x -> x - 3) x)\nin\ncompose_double_minus_three 10"
+        "code": "let revertir s =\n  let len = String.length s in\n  String.init len (fun i -> s.[len - 1 - i])\n;;\n\nlet filtrar_consonantes s =\n  let buf = Buffer.create (String.length s) in\n  String.iter (fun c ->\n    if not (List.mem (Char.lowercase_ascii c) ['a'; 'e'; 'i'; 'o'; 'u']) then\n      Buffer.add_char buf c\n  ) s;\n  Buffer.contents buf\n;;\n\nlet compuesta_dos s =\n  filtrar_consonantes (revertir s)\n;;\n\ncompuesta_dos \"anigam\""
       },
-      "answer": "14"
+      "answer": "mgn"
     },
     "ejercicio-3": {
-      "description": "Composición múltiple. Un científico procesa 3: duplica, suma 1, eleva al cuadrado. Define una función que componga estas operaciones. Evalúa con 3. Esto extiende la composición a múltiples pasos.",
+      "description": "En una simulación de ecosistema virtual, un biólogo procesa datos de especies: toma una lista de tamaños, mapea multiplicando por 2 para crecimiento, filtra solo mayores que 5 con condicional, y suma los restantes para biomasa total. Define funciones para map multiplicar, filtrar mayores, y fold suma. Compónelas para calcular biomasa. Evalúa con '(2 3 4)' para predecir el equilibrio ecológico, introduciendo manejo de listas en composiciones.",
       "racket": {
-        "code": "(define (compose-three x)\n  ((compose (lambda (x) (* x x))\n            (compose (lambda (x) (+ x 1))\n                     (lambda (x) (* x 2))\n            )\n   )\n   x\n  )\n)\n(compose-three 3)"
+        "code": "(define (multiplicar-por-dos lst)\n  (map (lambda (x) (* x 2)) lst))\n\n(define (filtrar-mayores-cinco lst)\n  (filter (lambda (x) (> x 5)) lst))\n\n(define (sumar-lista lst)\n  (foldl + 0 lst))\n\n(define (compuesta-tres lst)\n  (sumar-lista (filtrar-mayores-cinco (multiplicar-por-dos lst))))\n\n(compuesta-tres '(2 3 4))"
       },
       "ocaml": {
-        "code": "let compose_three x =\n  (fun x -> x * x)\n  ((fun x -> x + 1)\n   ((fun x -> x * 2) x)\n  )\nin\ncompose_three 3"
+        "code": "let multiplicar_por_dos lst =\n  List.map (fun x -> x * 2) lst\n;;\n\nlet filtrar_mayores_cinco lst =\n  List.filter (fun x -> x > 5) lst\n;;\n\nlet sumar_lista lst =\n  List.fold_left (+) 0 lst\n;;\n\nlet compuesta_tres lst =\n  sumar_lista (filtrar_mayores_cinco (multiplicar_por_dos lst))\n;;\n\ncompuesta_tres [2; 3; 4]"
       },
-      "answer": "49"
+      "answer": "8"
     },
     "ejercicio-4": {
-      "description": "Composición con condicionales. Un error de -3 se corrige sumando 5 y tomando el valor absoluto. Define una función que componga estas operaciones. Evalúa con -3. Esto combina lógica y composición.",
+      "description": "Un lingüista en un mundo de idiomas perdidos analiza textos: revierte la cadena, convierte a mayúsculas, filtra caracteres alfabéticos con condicional anidado (si es letra y no vocal si cond extra), y cuenta longitud para complejidad. Define funciones para revertir, mayúsculas, filtrar anidado, y longitud. Compónelas para medir antigüedad. Prueba con 'txet1' para descifrar un fragmento, añadiendo condicionales anidados para variedad.",
       "racket": {
-        "code": "(define (compose-abs-plus-five x)\n  ((compose (lambda (x)\n              (if (< x 0)\n                  (- x)\n                  x\n              ))\n            (lambda (x) (+ x 5))\n   )\n   x\n  )\n)\n(compose-abs-plus-five -3)"
+        "code": "(define (revertir s)\n  (list->string (reverse (string->list s))))\n\n(define (a-mayusculas s)\n  (string-upcase s))\n\n(define (filtrar-alfabeticos-no-vocales s)\n  (list->string\n   (filter (lambda (c)\n             (if (char-alphabetic? c)\n                 (if (member (char-downcase c) '(#\\a #\\e #\\i #\\o #\\u))\n                     #f\n                     #t)\n                 #f))\n           (string->list s))))\n\n(define (contar-longitud s)\n  (string-length s))\n\n(define (compuesta-cuatro s)\n  (contar-longitud (filtrar-alfabeticos-no-vocales (a-mayusculas (revertir s)))))\n\n(compuesta-cuatro \"txet1\")"
       },
       "ocaml": {
-        "code": "let compose_abs_plus_five x =\n  (fun x ->\n     if x < 0 then\n       -x\n     else\n       x\n  )\n  ((fun x -> x + 5) x)\nin\ncompose_abs_plus_five (-3)"
+        "code": "let revertir s =\n  let len = String.length s in\n  String.init len (fun i -> s.[len - 1 - i])\n;;\n\nlet a_mayusculas s =\n  String.uppercase_ascii s\n;;\n\nlet filtrar_alfabeticos_no_vocales s =\n  let buf = Buffer.create (String.length s) in\n  String.iter (fun c ->\n    if Char.is_alpha c then\n      if not (List.mem (Char.lowercase_ascii c) ['a'; 'e'; 'i'; 'o'; 'u']) then\n        Buffer.add_char buf c\n  ) s;\n  Buffer.contents buf\n;;\n\nlet contar_longitud s =\n  String.length s\n;;\n\nlet compuesta_cuatro s =\n  contar_longitud (filtrar_alfabeticos_no_vocales (a_mayusculas (revertir s)))\n;;\n\ncompuesta_cuatro \"txet1\""
       },
       "answer": "2"
     },
     "ejercicio-5": {
-      "description": "Ajustes compuestos. Un bono de 4 dólares se calcula restando 1 y triplicando. Define una función que componga triplicar después de restar 1. Evalúa con 4. Esto refuerza la composición para transformaciones.",
+      "description": "En un taller de invenciones steampunk, un mecánico procesa partes: lista de tuplas (nombre, valor), filtra si valor >3 con cond, mapea agregando 'mk-' a nombre y duplicando valor, fold sumando valores con cond anidado (si par suma doble), y ajusta final si >10 resta 5. Define funciones con cond anidados. Compónelas para ensamblar máquina. Evalúa con '((\"gear\" . 4) (\"bolt\" . 2))' para calcular potencia.",
       "racket": {
-        "code": "(define (compose-triple-minus-one x)\n  ((compose (lambda (x) (* x 3))\n            (lambda (x) (- x 1))\n   )\n   x\n  )\n)\n(compose-triple-minus-one 4)"
+        "code": "(define (filtrar-mayor-tres lst)\n  (filter (lambda (p) (> (cdr p) 3)) lst))\n\n(define (mapear-mk-duplicar lst)\n  (map (lambda (p)\n         (cons (string-append \"mk-\" (car p))\n               (* (cdr p) 2)))\n       lst))\n\n(define (fold-suma-cond-anidada lst)\n  (foldl (lambda (p acc)\n           (let ([val (cdr p)])\n             (if (even? val)\n                 (if (> val 4)\n                     (+ acc (* val 2))\n                     (+ acc val))\n                 (+ acc val))))\n         0 lst))\n\n(define (ajustar-si-mayor-diez n)\n  (if (> n 10)\n      (- n 5)\n      n))\n\n(define (compuesta-cinco lst)\n  (ajustar-si-mayor-diez (fold-suma-cond-anidada (mapear-mk-duplicar (filtrar-mayor-tres lst)))))\n\n(compuesta-cinco '((\"gear\" . 4) (\"bolt\" . 2)))"
       },
       "ocaml": {
-        "code": "let compose_triple_minus_one x =\n  (fun x -> x * 3)\n  ((fun x -> x - 1) x)\nin\ncompose_triple_minus_one 4"
+        "code": "let filtrar_mayor_tres lst =\n  List.filter (fun (_, v) -> v > 3) lst\n;;\n\nlet mapear_mk_duplicar lst =\n  List.map (fun (n, v) -> (\"mk-\" ^ n, v * 2)) lst\n;;\n\nlet fold_suma_cond_anidada lst =\n  List.fold_left (fun acc (_, val_) ->\n    if val_ mod 2 = 0 then\n      if val_ > 4 then\n        acc + (val_ * 2)\n      else\n        acc + val_\n    else\n      acc + val_\n  ) 0 lst\n;;\n\nlet ajustar_si_mayor_diez n =\n  if n > 10 then n - 5 else n\n;;\n\nlet compuesta_cinco lst =\n  ajustar_si_mayor_diez (fold_suma_cond_anidada (mapear_mk_duplicar (filtrar_mayor_tres lst)))\n;;\n\ncompuesta_cinco [(\"gear\", 4); (\"bolt\", 2)]"
       },
-      "answer": "9"
+      "answer": "11"
     },
     "ejercicio-6": {
-      "description": "Composición con lógica. Un matemático verifica si el cuadrado de 3 es par. Define una función que componga paridad después de elevar al cuadrado. Evalúa con 3. Esto muestra composición con resultados booleanos.",
+      "description": "Un cartógrafo de mundos fantásticos mapea territorios: lista de coordenadas (x y), filtra si x+y even con cond, mapea a regiones con cond anidado (si x>0 'este' else 'oeste', y si y>0 'norte' else 'sur'), fold contando 'este' con cond anidado extra (si 'norte' cuenta doble), y clasifica final si total >5 'vasto' else 'pequeño'. Compónelas para dibujar mapa. Evalúa con '((1 . 1) (2 . 2) (3 . 3))'.",
       "racket": {
-        "code": "(define (compose-square-even x)\n  ((compose (lambda (x) (= (remainder x 2) 0))\n            (lambda (x) (* x x))\n   )\n   x\n  )\n)\n(compose-square-even 3)"
+        "code": "(define (filtrar-suma-par lst)\n  (filter (lambda (p) (even? (+ (car p) (cdr p)))) lst))\n\n(define (mapear-regiones lst)\n  (map (lambda (p)\n         (let ([x (car p)] [y (cdr p)])\n           (string-append (if (> x 0) \"este-\" \"oeste-\")\n                          (if (> y 0) \"norte\" \"sur\"))))\n       lst))\n\n(define (fold-contar-este lst)\n  (foldl (lambda (s acc)\n           (if (string-prefix? s \"este\")\n               (if (string-suffix? s \"norte\")\n                   (+ acc 2)\n                   (+ acc 1))\n               acc))\n         0 lst))\n\n(define (clasificar-total n)\n  (if (> n 5)\n      \"vasto\"\n      \"pequeño\"))\n\n(define (compuesta-seis lst)\n  (clasificar-total (fold-contar-este (mapear-regiones (filtrar-suma-par lst)))))\n\n(compuesta-seis '((1 . 1) (2 . 2) (3 . 3)))"
       },
       "ocaml": {
-        "code": "let compose_square_even x =\n  (fun x -> x mod 2 = 0)\n  ((fun x -> x * x) x)\nin\ncompose_square_even 3"
+        "code": "let filtrar_suma_par lst =\n  List.filter (fun (x, y) -> (x + y) mod 2 = 0) lst\n;;\n\nlet mapear_regiones lst =\n  List.map (fun (x, y) ->\n    (if x > 0 then \"este-\" else \"oeste-\") ^ (if y > 0 then \"norte\" else \"sur\")\n  ) lst\n;;\n\nlet fold_contar_este lst =\n  List.fold_left (fun acc s ->\n    if String.starts_with ~prefix:\"este\" s then\n      if String.ends_with ~suffix:\"norte\" s then\n        acc + 2\n      else\n        acc + 1\n    else\n      acc\n  ) 0 lst\n;;\n\nlet clasificar_total n =\n  if n > 5 then \"vasto\" else \"pequeño\"\n;;\n\nlet compuesta_seis lst =\n  clasificar_total (fold_contar_este (mapear_regiones (filtrar_suma_par lst)))\n;;\n\ncompuesta_seis [(1, 1); (2, 2); (3, 3)]"
       },
-      "answer": "true"
+      "answer": "pequeño"
     },
     "ejercicio-7": {
-      "description": "Corrección compuesta. Un error de -4 se corrige tomando el valor absoluto y duplicando. Define una función que componga duplicar después del valor absoluto. Evalúa con -4. Esto combina condicionales y composición.",
+      "description": "En una academia de hechicería cuántica, un mago computa encantamientos: lista de triples (hechizo, potencia, tipo), filtra si potencia >2 y tipo 'fuego' o 'agua' con cond anidado, mapea aumentando potencia si 'fuego' doble else triple con cond, fold calculando energía con cond anidado múltiple (si potencia par suma, si impar multiplica por 1.5, si >10 ajusta), ajusta final si total impar suma 1 else resta 1, y categoriza en niveles con cond anidado (si >20 'epico' else si >10 'avanzado' else 'basico'). Compónelas para invocar. Evalúa con '((\"rayo\" . 3 . \"fuego\") (\"ola\" . 1 . \"agua\") (\"viento\" . 4 . \"aire\"))'.",
       "racket": {
-        "code": "(define (compose-double-abs x)\n  ((compose (lambda (x) (* x 2))\n            (lambda (x)\n              (if (< x 0)\n                  (- x)\n                  x\n              ))\n   )\n   x\n  )\n)\n(compose-double-abs -4)"
+        "code": "(define (filtrar-potencia-tipo lst)\n  (filter (lambda (t)\n            (let ([pot (cadr t)] [tip (caddr t)])\n              (and (> pot 2)\n                   (or (string=? tip \"fuego\")\n                       (string=? tip \"agua\")))))\n          lst))\n\n(define (mapear-aumentar-potencia lst)\n  (map (lambda (t)\n         (let ([hec (car t)] [pot (cadr t)] [tip (caddr t)])\n           (list hec\n                 (if (string=? tip \"fuego\")\n                     (* pot 2)\n                     (* pot 3))\n                 tip)))\n       lst))\n\n(define (fold-energia-cond-mult lst)\n  (foldl (lambda (t acc)\n           (let ([pot (cadr t)])\n             (if (even? pot)\n                 (+ acc pot)\n                 (let ([mult (* pot 1.5)])\n                   (if (> mult 10)\n                       (+ acc (- mult 5))\n                       (+ acc mult))))))\n         0 lst))\n\n(define (ajustar-impar n)\n  (if (odd? n)\n      (+ n 1)\n      (- n 1)))\n\n(define (categorizar-nivel n)\n  (cond [(> n 20) \"epico\"]\n        [(> n 10) \"avanzado\"]\n        [else \"basico\"]))\n\n(define (compuesta-siete lst)\n  (categorizar-nivel (ajustar-impar (fold-energia-cond-mult (mapear-aumentar-potencia (filtrar-potencia-tipo lst))))))\n\n(compuesta-siete '((\"rayo\" 3 \"fuego\") (\"ola\" 1 \"agua\") (\"viento\" 4 \"aire\")))"
       },
       "ocaml": {
-        "code": "let compose_double_abs x =\n  (fun x -> x * 2)\n  ((fun x ->\n      if x < 0 then\n        -x\n      else\n        x\n   ) x)\nin\ncompose_double_abs (-4)"
+        "code": "let filtrar_potencia_tipo lst =\n  List.filter (fun (_, pot, tip) ->\n    pot > 2 && (tip = \"fuego\" || tip = \"agua\")\n  ) lst\n;;\n\nlet mapear_aumentar_potencia lst =\n  List.map (fun (hec, pot, tip) ->\n    (hec, if tip = \"fuego\" then pot * 2 else pot * 3, tip)\n  ) lst\n;;\n\nlet fold_energia_cond_mult lst =\n  List.fold_left (fun acc (_, pot, _) ->\n    if pot mod 2 = 0 then\n      acc + pot\n    else\n      let mult = int_of_float (float_of_int pot *. 1.5) in\n      if mult > 10 then\n        acc + (mult - 5)\n      else\n        acc + mult\n  ) 0 lst\n;;\n\nlet ajustar_impar n =\n  if n mod 2 = 1 then n + 1 else n - 1\n;;\n\nlet categorizar_nivel n =\n  if n > 20 then \"epico\"\n  else if n > 10 then \"avanzado\"\n  else \"basico\"\n;;\n\nlet compuesta_siete lst =\n  categorizar_nivel (ajustar_impar (fold_energia_cond_mult (mapear_aumentar_potencia (filtrar_potencia_tipo lst))))\n;;\n\ncompuesta_siete [(\"rayo\", 3, \"fuego\"); (\"ola\", 1, \"agua\"); (\"viento\", 4, \"aire\")]"
       },
-      "answer": "8"
+      "answer": "basico"
     }
   },
   "procesamiento-listas": {
     "ejercicio-1": {
-      "description": "Procesar listas es clave en funcional. Un comerciante suma ventas (2 3 4). Define una función recursiva para sumar todos los elementos. Evalúa con (2 3 4). Esto combina listas y recursión para cálculos acumulados.",
+      "description": "En un mundo de criaturas míticas, un guardián filtra nombres de bestias con longitud par para invocar aliados (\"dragon\" \"elfo\" \"goblin\"). Define una función con filter para mantener nombres con longitud par. Evalúa con (\"dragon\" \"elfo\" \"goblin\"). Esto introduce filtrado básico de listas de cadenas para seleccionar elementos según propiedades, como en un juego donde solo ciertas criaturas pueden unirse a tu equipo, haciendo el procesamiento de datos más engaging y relatable a escenarios fantásticos.",
       "racket": {
-        "code": "(define (sum-list lst)\n  (if (empty? lst)\n      0\n      (+ (first lst)\n         (sum-list (rest lst)))\n  )\n)\n(sum-list '(2 3 4))"
+        "code": "(define (filtrar-longitud-par lst)\n  (filter (lambda (s) (even? (string-length s))) lst))\n\n(filtrar-longitud-par '(\"dragon\" \"elfo\" \"goblin\"))"
       },
       "ocaml": {
-        "code": "let rec sum_list lst =\n  if lst = [] then\n    0\n  else\n    List.hd lst + sum_list (List.tl lst)\nin\nsum_list [2; 3; 4]"
+        "code": "let filtrar_longitud_par lst =\n  List.filter (fun s -> String.length s mod 2 = 0) lst\nin\nfiltrar_longitud_par [\"dragon\"; \"elfo\"; \"goblin\"]"
       },
-      "answer": "9"
+      "answer": "(\"elfo\" \"goblin\")"
     },
     "ejercicio-2": {
-      "description": "Transformar listas. Un chef triplica ingredientes (1 2 3). Define una función con map para multiplicar por 3. Evalúa con (1 2 3). Esto muestra cómo map aplica transformaciones a listas enteras.",
+      "description": "En una aventura espacial, un piloto transforma códigos de navegación a mayúsculas para activar protocolos de emergencia (\"warp\" \"nebula\" \"star\"). Define una función con map para convertir cada cadena a mayúsculas. Evalúa con (\"warp\" \"nebula\" \"star\"). Esto muestra cómo map aplica transformaciones uniformes a listas de cadenas, como en un juego de ciencia ficción donde actualizas nombres de planetas o naves para sistemas de navegación, agregando un toque inmersivo y didáctico al manejo de texto.",
       "racket": {
-        "code": "(define (triple-list lst)\n  (map (lambda (x) (* x 3))\n       lst\n  )\n)\n(triple-list '(1 2 3))"
+        "code": "(define (mayusculas-lista lst)\n  (map string-upcase lst))\n\n(mayusculas-lista '(\"warp\" \"nebula\" \"star\"))"
       },
       "ocaml": {
-        "code": "let triple_list lst =\n  List.map (fun x -> x * 3) lst\nin\ntriple_list [1; 2; 3]"
+        "code": "let mayusculas_lista lst =\n  List.map String.uppercase_ascii lst\nin\nmayusculas_lista [\"warp\"; \"nebula\"; \"star\"]"
       },
-      "answer": "(3 6 9)"
+      "answer": "(\"WARP\" \"NEBULA\" \"STAR\")"
     },
     "ejercicio-3": {
-      "description": "Filtrar listas. Un sorteo selecciona números impares de (1 2 3 4). Define una función con filter para impares. Evalúa con (1 2 3 4). Esto introduce filtrado para subconjuntos específicos.",
+      "description": "En un laberinto encantado, un explorador filtra y mapea pistas de acertijos para encontrar salidas, filtrando palabras con vocales iniciales y agregando 'clue-' (\"apple\" \"banana\" \"cherry\"). Define funciones separadas para filter (vocal inicial) y map (añadir prefijo), luego compónelas. Evalúa con (\"apple\" \"banana\" \"cherry\"). Esto combina filter y map para procesamiento secuencial de listas de cadenas, como en un juego de puzzles donde manipulas pistas para resolver misterios, fomentando creatividad y lógica no convencional.",
       "racket": {
-        "code": "(define (odd-numbers lst)\n  (filter (lambda (x) (= (remainder x 2) 1))\n          lst\n  )\n)\n(odd-numbers '(1 2 3 4))"
+        "code": "(define (vocal-inicial? s)\n  (member (string-ref (string-downcase s) 0) '(#\\a #\\e #\\i #\\o #\\u)))\n\n(define (filtrar-vocal-inicial lst)\n  (filter vocal-inicial? lst))\n\n(define (añadir-prefijo-clue lst)\n  (map (lambda (s) (string-append \"clue-\" s)) lst))\n\n(define (compuesta-tres lst)\n  (añadir-prefijo-clue (filtrar-vocal-inicial lst)))\n\n(compuesta-tres '(\"apple\" \"banana\" \"cherry\"))"
       },
       "ocaml": {
-        "code": "let odd_numbers lst =\n  List.filter (fun x -> x mod 2 = 1) lst\nin\nodd_numbers [1; 2; 3; 4]"
+        "code": "let vocal_inicial s =\n  List.mem (Char.lowercase_ascii s.[0]) ['a'; 'e'; 'i'; 'o'; 'u']\n;;\n\nlet filtrar_vocal_inicial lst =\n  List.filter vocal_inicial lst\n;;\n\nlet añadir_prefijo_clue lst =\n  List.map (fun s -> \"clue-\" ^ s) lst\n;;\n\nlet compuesta_tres lst =\n  añadir_prefijo_clue (filtrar_vocal_inicial lst)\n;;\n\ncompuesta_tres [\"apple\"; \"banana\"; \"cherry\"]"
       },
-      "answer": "(1 3)"
+      "answer": "(\"clue-apple\" \"clue-cherry\")"
     },
     "ejercicio-4": {
-      "description": "Invertir listas. Un sistema prioriza tareas recientes invirtiendo (1 2 3). Define una función recursiva para invertir. Evalúa con (1 2 3). Esto muestra cómo manipulamos el orden de listas.",
+      "description": "En un reino de sueños lúcidos, un soñador filtra colores vibrantes (\"red\" \"green\" \"blue\" \"yellow\") con longitud impar y luego mapea a códigos hexadecimales usando una función auxiliar, combinando con filter anidado para colores primarios. Define funciones para filter longitud impar, map a hex (con cond para primarios), y compónelas con una función intermedia. Evalúa con (\"red\" \"green\" \"blue\" \"yellow\"). Esto enseña anidamiento de map y filter para manipulación creativa de listas de cadenas, como en un juego de realidad virtual donde transformas colores de sueños en códigos para construir mundos, saliendo de lo convencional con temas oníricos.",
       "racket": {
-        "code": "(define (reverse-list lst)\n  (if (empty? lst)\n      null\n      (append (reverse-list (rest lst))\n              (list (first lst)))\n  )\n)\n(reverse-list '(1 2 3))"
+        "code": "(define (longitud-impar? s)\n  (odd? (string-length s)))\n\n(define (filtrar-longitud-impar lst)\n  (filter longitud-impar? lst))\n\n(define (es-primario? s)\n  (member (string-downcase s) '(\"red\" \"green\" \"blue\")))\n\n(define (filtrar-primarios lst)\n  (filter es-primario? lst))\n\n(define (mapear-hex lst)\n  (map (lambda (s)\n         (cond [(string=? (string-downcase s) \"red\") \"#FF0000\"]\n               [(string=? (string-downcase s) \"green\") \"#00FF00\"]\n               [(string=? (string-downcase s) \"blue\") \"#0000FF\"]\n               [else \"#000000\"]))\n       lst))\n\n(define (compuesta-cuatro lst)\n  (mapear-hex (filtrar-primarios (filtrar-longitud-impar lst))))\n\n(compuesta-cuatro '(\"red\" \"green\" \"blue\" \"yellow\"))"
       },
       "ocaml": {
-        "code": "let rec reverse_list lst =\n  if lst = [] then\n    []\n  else\n    reverse_list (List.tl lst) @ [List.hd lst]\nin\nreverse_list [1; 2; 3]"
+        "code": "let longitud_impar s =\n  String.length s mod 2 = 1\n;;\n\nlet filtrar_longitud_impar lst =\n  List.filter longitud_impar lst\n;;\n\nlet es_primario s =\n  List.mem (String.lowercase_ascii s) [\"red\"; \"green\"; \"blue\"]\n;;\n\nlet filtrar_primarios lst =\n  List.filter es_primario lst\n;;\n\nlet mapear_hex lst =\n  List.map (fun s ->\n    match String.lowercase_ascii s with\n    | \"red\" -> \"#FF0000\"\n    | \"green\" -> \"#00FF00\"\n    | \"blue\" -> \"#0000FF\"\n    | _ -> \"#000000\"\n  ) lst\n;;\n\nlet compuesta_cuatro lst =\n  mapear_hex (filtrar_primarios (filtrar_longitud_impar lst))\n;;\n\ncompuesta_cuatro [\"red\"; \"green\"; \"blue\"; \"yellow\"]"
       },
-      "answer": "(3 2 1)"
+      "answer": "(\"#FF0000\" \"#00FF00\" \"#0000FF\")"
     },
     "ejercicio-5": {
-      "description": "Acumulación con fold. Una tienda suma ventas (10 20 30). Define una función con foldl para sumar. Evalúa con (10 20 30). Esto introduce fold para acumulaciones en listas.",
+      "description": "En un circo de curiosidades victorianas, un ilusionista filtra actos misteriosos con nombres que contienen 'm' y mapea a horarios usando fold para acumular tiempos, con condiciones anidadas para actos largos. Define funciones para filter (contiene 'm'), map a tiempos (con cond para longitud), fold para sumar tiempos, y compónelas. Evalúa con (\"magia\" \"misterio\" \"truco\" \"ilusión\"). Esto integra map, filter y fold para procesamiento avanzado de listas mixtas, como en un juego de gestión de eventos donde manejas actos de circo con tiempos dinámicos, añadiendo un toque histórico y peculiar.",
       "racket": {
-        "code": "(define (sum-fold lst)\n  (foldl + 0 lst)\n)\n(sum-fold '(10 20 30))"
+        "code": "(define (contiene-m? s)\n  (string-contains? (string-downcase s) \"m\"))\n\n(define (filtrar-contiene-m lst)\n  (filter contiene-m? lst))\n\n(define (asignar-tiempo s)\n  (let ([len (string-length s)])\n    (if (> len 5)\n        20\n        10)))\n\n(define (mapear-tiempos lst)\n  (map asignar-tiempo lst))\n\n(define (sumar-tiempos lst)\n  (foldl + 0 lst))\n\n(define (compuesta-cinco lst)\n  (sumar-tiempos (mapear-tiempos (filtrar-contiene-m lst))))\n\n(compuesta-cinco '(\"magia\" \"misterio\" \"truco\" \"ilusión\"))"
       },
       "ocaml": {
-        "code": "let sum_fold lst =\n  List.fold_left (+) 0 lst\nin\nsum_fold [10; 20; 30]"
+        "code": "let contiene_m s =\n  String.contains (String.lowercase_ascii s) 'm'\n;;\n\nlet filtrar_contiene_m lst =\n  List.filter contiene_m lst\n;;\n\nlet asignar_tiempo s =\n  let len = String.length s in\n  if len > 5 then 20 else 10\n;;\n\nlet mapear_tiempos lst =\n  List.map asignar_tiempo lst\n;;\n\nlet sumar_tiempos lst =\n  List.fold_left (+) 0 lst\n;;\n\nlet compuesta_cinco lst =\n  sumar_tiempos (mapear_tiempos (filtrar_contiene_m lst))\n;;\n\ncompuesta_cinco [\"magia\"; \"misterio\"; \"truco\"; \"ilusión\"]"
       },
-      "answer": "60"
+      "answer": "70"
     },
     "ejercicio-6": {
-      "description": "Filtrar booleanos. Un organizador selecciona tareas completadas (true false true). Define una función con filter para valores true. Evalúa con (true false true). Esto muestra filtrado de booleanos.",
+      "description": "En una biblioteca de mitos olvidados, un archivero filtra libros con títulos que comienzan con vocal y mapea a resúmenes usando cond anidadas para géneros, luego filtra resúmenes largos con filter adicional, y usa fold para contar palabras. Define múltiples funciones con map y filter anidados para procesar listas de títulos y géneros. Evalúa con ((\"Odisea\" . \"epica\") (\"Iliada\" . \"epica\") (\"Beowulf\" . \"leyenda\") (\"Gilgamesh\" . \"mito\")). Esto explora manejo avanzado de listas mixtas con temas mitológicos, como en un juego de rol donde gestionas artefactos y relatos, con un enfoque didáctico en narrativas extrañas.",
       "racket": {
-        "code": "(define (true-values lst)\n  (filter (lambda (x) x) lst)\n)\n(true-values '(#t #f #t))"
+        "code": "(define (vocal-inicio? s)\n  (member (char-downcase (string-ref s 0)) '(#\\a #\\e #\\i #\\o #\\u)))\n\n(define (filtrar-vocal-inicio lst)\n  (filter (lambda (p) (vocal-inicio? (car p))) lst))\n\n(define (generar-resumen p)\n  (let ([titulo (car p)] [genero (cdr p)])\n    (if (string=? genero \"epica\")\n        (string-append \"Epica: \" titulo)\n        (if (string=? genero \"leyenda\")\n            (string-append \"Leyenda: \" titulo)\n            (string-append \"Mito: \" titulo)))))\n\n(define (mapear-resumenes lst)\n  (map generar-resumen lst))\n\n(define (resumen-largo? s)\n  (> (string-length s) 10))\n\n(define (filtrar-resumenes-largos lst)\n  (filter resumen-largo? lst))\n\n(define (contar-palabras lst)\n  (foldl (lambda (s acc)\n           (+ acc (length (string-split s))))\n         0 lst))\n\n(define (compuesta-seis lst)\n  (contar-palabras (filtrar-resumenes-largos (mapear-resumenes (filtrar-vocal-inicio lst)))))\n\n(compuesta-seis '((\"Odisea\" . \"epica\") (\"Iliada\" . \"epica\") (\"Beowulf\" . \"leyenda\") (\"Gilgamesh\" . \"mito\")))"
       },
       "ocaml": {
-        "code": "let true_values lst =\n  List.filter (fun x -> x) lst\nin\ntrue_values [true; false; true]"
+        "code": "let vocal_inicio s =\n  List.mem (Char.lowercase_ascii s.[0]) ['a'; 'e'; 'i'; 'o'; 'u']\n;;\n\nlet filtrar_vocal_inicio lst =\n  List.filter (fun (titulo, _) -> vocal_inicio titulo) lst\n;;\n\nlet generar_resumen (titulo, genero) =\n  if genero = \"epica\" then\n    \"Epica: \" ^ titulo\n  else if genero = \"leyenda\" then\n    \"Leyenda: \" ^ titulo\n  else\n    \"Mito: \" ^ titulo\n;;\n\nlet mapear_resumenes lst =\n  List.map generar_resumen lst\n;;\n\nlet resumen_largo s =\n  String.length s > 10\n;;\n\nlet filtrar_resumenes_largos lst =\n  List.filter resumen_largo lst\n;;\n\nlet contar_palabras lst =\n  List.fold_left (fun acc s ->\n    acc + (List.length (String.split_on_char ' ' s))\n  ) 0 lst\n;;\n\nlet compuesta_seis lst =\n  contar_palabras (filtrar_resumenes_largos (mapear_resumenes (filtrar_vocal_inicio lst)))\n;;\n\ncompuesta_seis [(\"Odisea\", \"epica\"); (\"Iliada\", \"epica\"); (\"Beowulf\", \"leyenda\"); (\"Gilgamesh\", \"mito\")]"
       },
-      "answer": "(true true)"
+      "answer": "8"
     },
     "ejercicio-7": {
-      "description": "Transformaciones masivas. Un analista multiplica precios (2 3 4) por 10. Define una función con map para multiplicar por 10. Evalúa con (2 3 4). Esto refuerza map para ajustes en listas.",
+      "description": "En una orquesta de sombras sobrenaturales, un director filtra instrumentos malditos con nombres terminando en vocal, mapea a frecuencias espectrales usando cond anidadas para tipos de instrumento, filtra frecuencias pares, mapea a notas musicales, y usa fold con cond anidadas para componer una melodía codificada como cadena acumulada. Define múltiples funciones con map y filter para procesar listas mixtas de instrumentos y tipos, agregando un giro macabro. Evalúa con ((\"violin\" . \"cuerda\") (\"flauta\" . \"viento\") (\"tambor\" . \"percusión\") (\"arpa\" . \"cuerda\") (\"oboe\" . \"viento\")). Esto culmina en un ejercicio robusto con temas oscuros y didácticos, como en un juego de horror donde construyes sinfonías malditas a partir de listas, saliendo de lo convencional con narrativas escalofriantes.",
       "racket": {
-        "code": "(define (times-ten lst)\n  (map (lambda (x) (* x 10))\n       lst\n  )\n)\n(times-ten '(2 3 4))"
+        "code": "(define (termina-vocal? s)\n  (let ([ultima (string-ref (string-downcase s) (- (string-length s) 1))])\n    (member ultima '(#\\a #\\e #\\i #\\o #\\u))))\n\n(define (filtrar-termina-vocal lst)\n  (filter (lambda (p) (termina-vocal? (car p))) lst))\n\n(define (asignar-frecuencia p)\n  (let ([instrumento (car p)] [tipo (cdr p)])\n    (cond [(string=? tipo \"cuerda\") (* (string-length instrumento) 10)]\n          [(string=? tipo \"viento\") (* (string-length instrumento) 15)]\n          [else (* (string-length instrumento) 20)])))\n\n(define (mapear-frecuencias lst)\n  (map asignar-frecuencia lst))\n\n(define (frecuencia-par? n)\n  (even? n))\n\n(define (filtrar-frecuencias-pares lst)\n  (filter frecuencia-par? lst))\n\n(define (mapear-notas lst)\n  (map (lambda (f)\n         (cond [(> f 100) \"DO\"]\n               [(> f 50) \"RE\"]\n               [else \"MI\"]))\n       lst))\n\n(define (componer-melodia lst)\n  (foldl (lambda (nota acc)\n           (let ([len (string-length nota)])\n             (if (> len 2)\n                 (string-append acc nota \"-\")\n                 (if (< len 2)\n                     (string-append acc nota \"!\")\n                     (string-append acc nota))))\n         \"\" lst))\n\n(define (compuesta-siete lst)\n  (componer-melodia (mapear-notas (filtrar-frecuencias-pares (mapear-frecuencias (filtrar-termina-vocal lst))))))\n\n(compuesta-siete '(\"violin\" . \"cuerda\") (\"flauta\" . \"viento\") (\"tambor\" . \"percusión\") (\"arpa\" . \"cuerda\") (\"oboe\" . \"viento\")))"
       },
       "ocaml": {
-        "code": "let times_ten lst =\n  List.map (fun x -> x * 10) lst\nin\ntimes_ten [2; 3; 4]"
+        "code": "let termina_vocal s =\n  let ultima = Char.lowercase_ascii s.[String.length s - 1] in\n  List.mem ultima ['a'; 'e'; 'i'; 'o'; 'u']\n;;\n\nlet filtrar_termina_vocal lst =\n  List.filter (fun (instrumento, _) -> termina_vocal instrumento) lst\n;;\n\nlet asignar_frecuencia (instrumento, tipo) =\n  match tipo with\n  | \"cuerda\" -> (String.length instrumento) * 10\n  | \"viento\" -> (String.length instrumento) * 15\n  | _ -> (String.length instrumento) * 20\n;;\n\nlet mapear_frecuencias lst =\n  List.map asignar_frecuencia lst\n;;\n\nlet frecuencia_par n =\n  n mod 2 = 0\n;;\n\nlet filtrar_frecuencias_pares lst =\n  List.filter frecuencia_par lst\n;;\n\nlet mapear_notas lst =\n  List.map (fun f ->\n    if f > 100 then \"DO\"\n    else if f > 50 then \"RE\"\n    else \"MI\"\n  ) lst\n;;\n\nlet componer_melodia lst =\n  List.fold_left (fun acc nota ->\n    let len = String.length nota in\n    if len > 2 then\n      acc ^ nota ^ \"-\"\n    else if len < 2 then\n      acc ^ nota ^ \"!\"\n    else\n      acc ^ nota\n  ) \"\" lst\n;;\n\nlet compuesta_siete lst =\n  componer_melodia (mapear_notas (filtrar_frecuencias_pares (mapear_frecuencias (filtrar_termina_vocal lst))))\n;;\n\ncompuesta_siete [(\"violin\", \"cuerda\"); (\"flauta\", \"viento\"); (\"tambor\", \"percusión\"); (\"arpa\", \"cuerda\"); (\"oboe\", \"viento\")]"
       },
-      "answer": "(20 30 40)"
+      "answer": "RE-DO-REMI"
     }
   }
 }

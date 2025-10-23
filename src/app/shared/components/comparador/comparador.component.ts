@@ -28,7 +28,11 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       const maxSteps = Math.max(stepsR, stepsO);
       return this.recursionStepIndex >= maxSteps - 1;
     }
-    return this.highlightLineRacket >= this.maxLineRacket - 1;
+    // Para módulos normales, usar el máximo entre ambas listas
+    const maxLines = Math.max(this.maxLineRacket, this.maxLineOcaml);
+    // Bloquear solo cuando ambos están en la última línea de la lista más larga
+    return (this.highlightLineRacket >= this.maxLineRacket - 1 ? maxLines - 1 : this.highlightLineRacket) >= maxLines - 1
+      && (this.highlightLineOcaml >= this.maxLineOcaml - 1 ? maxLines - 1 : this.highlightLineOcaml) >= maxLines - 1;
   }
   recursionStepIndex = 0;
   // Output independiente para listas y recursión
@@ -262,15 +266,17 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
         this.showCardsLeft = !this.showCardsLeft;
       }
     } else {
-      let nueva = this.highlightLineRacket + delta;
-      if (nueva >= 0 && nueva < this.maxLineRacket) {
-        this.highlightLineRacket = nueva;
-        this.highlightLineOcaml = Math.min(nueva, this.maxLineOcaml - 1);
+      let nueva = Math.max(this.highlightLineRacket, this.highlightLineOcaml) + delta;
+      const maxLines = Math.max(this.maxLineRacket, this.maxLineOcaml);
+      if (nueva >= 0 && nueva < maxLines) {
+        // Avanzar ambos editores hasta el máximo
+        this.highlightLineRacket = nueva < this.maxLineRacket ? nueva : this.maxLineRacket - 1;
+        this.highlightLineOcaml = nueva < this.maxLineOcaml ? nueva : this.maxLineOcaml - 1;
         // Mostrar output en cada paso para los módulos requeridos
         if (["paradigma-funcional", "expresiones"].includes(this.modulo)) {
           this.mostrarOutput = true;
         } else {
-          this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1);
+          this.mostrarOutput = (this.highlightLineRacket === this.maxLineRacket - 1 && this.highlightLineOcaml === this.maxLineOcaml - 1);
         }
         this.actualizarExplicaciones();
         this.showCardsLeft = !this.showCardsLeft;
