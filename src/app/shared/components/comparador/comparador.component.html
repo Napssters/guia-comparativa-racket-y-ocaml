@@ -55,12 +55,12 @@
       <div class="flex-1">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <app-code-editor #racketEditor [label]="'Racket'" [language]="'scheme'" [code]="racketLines"
-            [answer]="['paradigma-funcional','expresiones'].includes(modulo) ? getAnswerParcial() : answer"
-            [disabled]="true" [highlightLine]="highlightLineRacket" [showRunButton]="false" [showOutput]="mostrarOutput"
+            [answer]="dynamicStepAnswer ? dynamicStepAnswer : (['paradigma-funcional','expresiones'].includes(modulo) ? getAnswerParcial() : answer)"
+            [disabled]="true" [highlightLine]="highlightLineRacket" [showRunButton]="false" [showOutput]="mostrarOutput || !!dynamicStepAnswer"
             [enableHighlight]="true"></app-code-editor>
           <app-code-editor #ocamlEditor [label]="'OCaml'" [language]="'ocaml'" [code]="ocamlLines"
-            [answer]="['paradigma-funcional','expresiones'].includes(modulo) ? getAnswerParcial() : answer"
-            [showRunButton]="false" [disabled]="true" [highlightLine]="highlightLineOcaml" [showOutput]="mostrarOutput"
+            [answer]="dynamicStepAnswer ? dynamicStepAnswer : (['paradigma-funcional','expresiones'].includes(modulo) ? getAnswerParcial() : answer)"
+            [showRunButton]="false" [disabled]="true" [highlightLine]="highlightLineOcaml" [showOutput]="mostrarOutput || !!dynamicStepAnswer"
             [enableHighlight]="true"></app-code-editor>
         </div>
       </div>

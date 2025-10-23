@@ -31,6 +31,10 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
     return this.highlightLineRacket >= this.maxLineRacket - 1;
   }
   recursionStepIndex = 0;
+  // Índice para recorrer los valores de "recursion-step-answer" cuando aparecen ceros en los pasos
+  recursionStepAnswerIndex = 0;
+  // Valor dinámico que se enviará al editor cuando corresponda
+  dynamicStepAnswer: string = '';
   showCardsLeft = true;
   answerSegmentado: string[] = [];
   // Referencias a los editores de código
@@ -89,6 +93,20 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
         this.recursionStepIndex = 0;
         this.highlightLineRacket = (recCheck.racket && Array.isArray(recCheck.racket.recursion)) ? (recCheck.racket.recursion[0] || 0) : 0;
         this.highlightLineOcaml = (recCheck.ocaml && Array.isArray(recCheck.ocaml.recursion)) ? (recCheck.ocaml.recursion[0] || 0) : 0;
+        // Inicializar puntero de respuestas por pasos si existe la clave
+        this.recursionStepAnswerIndex = 0;
+        const recursionStepsRacket = recCheck.racket && Array.isArray(recCheck.racket.recursion) ? recCheck.racket.recursion : [];
+        const recursionStepsOcaml = recCheck.ocaml && Array.isArray(recCheck.ocaml.recursion) ? recCheck.ocaml.recursion : [];
+        const stepAnswerArr = this.getStepAnswerArray(recCheck);
+        const valorR = recursionStepsRacket[0];
+        const valorO = recursionStepsOcaml[0];
+        if (Array.isArray(stepAnswerArr) && stepAnswerArr.length > 0 && ((valorR === 0) || (valorO === 0))) {
+          this.dynamicStepAnswer = String(stepAnswerArr[0] ?? '');
+          this.mostrarOutput = true;
+        } else {
+          this.dynamicStepAnswer = '';
+          this.mostrarOutput = false;
+        }
       } else {
         this.highlightLineRacket = 0;
         this.highlightLineOcaml = 0;
@@ -190,8 +208,38 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
         } else {
           this.highlightLineOcaml = recursionStepsOcaml.length > 0 ? recursionStepsOcaml[recursionStepsOcaml.length - 1] : 0;
         }
-        // Output si es el último paso del mayor de los arrays
-        this.mostrarOutput = (nuevoPaso === maxSteps - 1);
+        // Manejo de recursion-step-answer: si en el paso actual alguna línea es 0, mostrar el siguiente valor y activar output
+        const stepAnswerArr = this.getStepAnswerArray(recInfo);
+        const valorR = recursionStepsRacket[nuevoPaso];
+        const valorO = recursionStepsOcaml[nuevoPaso];
+        if (Array.isArray(stepAnswerArr) && stepAnswerArr.length > 0) {
+          // Calcular cuántos ceros hay hasta el paso actual para saber el índice correcto
+          let zeroCount = 0;
+          for (let i = 0; i <= nuevoPaso; i++) {
+            const vR = recursionStepsRacket[i];
+            const vO = recursionStepsOcaml[i];
+            if ((vR === 0) || (vO === 0)) zeroCount++;
+          }
+          const valorR = recursionStepsRacket[nuevoPaso];
+          const valorO = recursionStepsOcaml[nuevoPaso];
+          // Output siempre visible en recursion/listas
+          this.mostrarOutput = true;
+          // Si recursion es 0, actualizar el valor; si no, mantener el último
+          if ((valorR === 0) || (valorO === 0)) {
+            this.dynamicStepAnswer = String(stepAnswerArr[zeroCount - 1] ?? '');
+              console.log('Output actualizado:', this.dynamicStepAnswer);
+          } // Si no hay ceros aún, mostrar vacío
+          else if (zeroCount === 0) {
+            this.dynamicStepAnswer = '';
+              console.log('Output actualizado:', this.dynamicStepAnswer);
+          }
+          // Si no es cero, mantener el último valor mostrado
+          // (no se actualiza dynamicStepAnswer)
+        } else {
+          this.dynamicStepAnswer = '';
+          this.mostrarOutput = (nuevoPaso === maxSteps - 1);
+            console.log('Output actualizado:', this.dynamicStepAnswer);
+        }
         this.actualizarExplicaciones();
         this.showCardsLeft = !this.showCardsLeft;
       }
@@ -256,6 +304,13 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
     if ((exercise.racket && Array.isArray(exercise.racket.recursion)) || (exercise.ocaml && Array.isArray(exercise.ocaml.recursion))) {
       return exercise;
     }
+    return null;
+  }
+
+  // Devuelve el array de respuestas por paso si existe (recursion-step-answer)
+  getStepAnswerArray(exercise: any): any[] | null {
+    if (!exercise) return null;
+    if (Array.isArray(exercise['recursion-step-answer'])) return exercise['recursion-step-answer'];
     return null;
   }
 }
