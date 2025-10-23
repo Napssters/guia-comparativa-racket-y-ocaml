@@ -23,6 +23,7 @@ export class CodeEditorComponent implements AfterViewInit {
   @Input() showRunButton: boolean = true;
   @Input() highlightLine: number = 0;
   @Input() showOutput: boolean = false;
+  @Input() showOutputBox: boolean = true;
   @Input() enableHighlight: boolean = false;
   @ViewChild('editor') editorRef!: ElementRef;
   private editor: any;
