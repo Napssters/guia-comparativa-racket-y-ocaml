@@ -99,12 +99,32 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
         const stepAnswerOcaml = recCheck.ocaml && Array.isArray(recCheck.ocaml['recursion-step-answer']) ? recCheck.ocaml['recursion-step-answer'] : [];
         // Racket output
         let zeroCountRacket = 0;
-        if (recursionStepsRacket[0] === 0) zeroCountRacket = 1;
-        this.outputRacket = zeroCountRacket ? String(stepAnswerRacket[zeroCountRacket - 1] ?? '') : '';
+        let lastZeroIndexRacket = -1;
+        for (let i = 0; i < recursionStepsRacket.length; i++) {
+          if (recursionStepsRacket[i] === 0) lastZeroIndexRacket = i;
+        }
+        if (recursionStepsRacket.length > 0 && recursionStepsRacket[0] === 0) zeroCountRacket = 1;
+        if (recursionStepsRacket.length > 0 && recursionStepsRacket[0] === 0 && 0 === lastZeroIndexRacket) {
+          this.outputRacket = this.answer;
+        } else if (recursionStepsRacket.length > 0 && recursionStepsRacket[0] === 0 && 0 !== lastZeroIndexRacket) {
+          this.outputRacket = String(stepAnswerRacket[zeroCountRacket - 1] ?? '');
+        } else {
+          this.outputRacket = '';
+        }
         // OCaml output
         let zeroCountOcaml = 0;
-        if (recursionStepsOcaml[0] === 0) zeroCountOcaml = 1;
-        this.outputOcaml = zeroCountOcaml ? String(stepAnswerOcaml[zeroCountOcaml - 1] ?? '') : '';
+        let lastZeroIndexOcaml = -1;
+        for (let i = 0; i < recursionStepsOcaml.length; i++) {
+          if (recursionStepsOcaml[i] === 0) lastZeroIndexOcaml = i;
+        }
+        if (recursionStepsOcaml.length > 0 && recursionStepsOcaml[0] === 0) zeroCountOcaml = 1;
+        if (recursionStepsOcaml.length > 0 && recursionStepsOcaml[0] === 0 && 0 === lastZeroIndexOcaml) {
+          this.outputOcaml = this.answer;
+        } else if (recursionStepsOcaml.length > 0 && recursionStepsOcaml[0] === 0 && 0 !== lastZeroIndexOcaml) {
+          this.outputOcaml = String(stepAnswerOcaml[zeroCountOcaml - 1] ?? '');
+        } else {
+          this.outputOcaml = '';
+        }
         this.mostrarOutput = true;
       } else {
         this.highlightLineRacket = 0;
@@ -206,16 +226,36 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
         const stepAnswerOcaml = recInfo.ocaml && Array.isArray(recInfo.ocaml['recursion-step-answer']) ? recInfo.ocaml['recursion-step-answer'] : [];
         // Racket: contar ceros hasta el paso actual
         let zeroCountRacket = 0;
+        let lastZeroIndexRacket = -1;
+        for (let i = 0; i < recursionStepsRacket.length; i++) {
+          if (recursionStepsRacket[i] === 0) lastZeroIndexRacket = i;
+        }
         for (let i = 0; i <= nuevoPaso; i++) {
           if (recursionStepsRacket[i] === 0) zeroCountRacket++;
         }
-        this.outputRacket = zeroCountRacket ? String(stepAnswerRacket[zeroCountRacket - 1] ?? '') : '';
+        if (nuevoPaso >= lastZeroIndexRacket && lastZeroIndexRacket !== -1) {
+          this.outputRacket = this.answer;
+        } else if (zeroCountRacket) {
+          this.outputRacket = String(stepAnswerRacket[zeroCountRacket - 1] ?? '');
+        } else {
+          this.outputRacket = '';
+        }
         // OCaml: contar ceros hasta el paso actual
         let zeroCountOcaml = 0;
+        let lastZeroIndexOcaml = -1;
+        for (let i = 0; i < recursionStepsOcaml.length; i++) {
+          if (recursionStepsOcaml[i] === 0) lastZeroIndexOcaml = i;
+        }
         for (let i = 0; i <= nuevoPaso; i++) {
           if (recursionStepsOcaml[i] === 0) zeroCountOcaml++;
         }
-        this.outputOcaml = zeroCountOcaml ? String(stepAnswerOcaml[zeroCountOcaml - 1] ?? '') : '';
+        if (nuevoPaso >= lastZeroIndexOcaml && lastZeroIndexOcaml !== -1) {
+          this.outputOcaml = this.answer;
+        } else if (zeroCountOcaml) {
+          this.outputOcaml = String(stepAnswerOcaml[zeroCountOcaml - 1] ?? '');
+        } else {
+          this.outputOcaml = '';
+        }
         this.mostrarOutput = true;
         this.actualizarExplicaciones();
         this.showCardsLeft = !this.showCardsLeft;
