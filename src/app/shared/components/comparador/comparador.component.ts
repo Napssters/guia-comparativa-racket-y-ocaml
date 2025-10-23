@@ -31,10 +31,9 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
     return this.highlightLineRacket >= this.maxLineRacket - 1;
   }
   recursionStepIndex = 0;
-  // Índice para recorrer los valores de "recursion-step-answer" cuando aparecen ceros en los pasos
-  recursionStepAnswerIndex = 0;
-  // Valor dinámico que se enviará al editor cuando corresponda
-  dynamicStepAnswer: string = '';
+  // Output independiente para listas y recursión
+  outputRacket: string = '';
+  outputOcaml: string = '';
   showCardsLeft = true;
   answerSegmentado: string[] = [];
   // Referencias a los editores de código
@@ -87,29 +86,32 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       this.ocamlLines = (info.ocaml && info.ocaml.lines) ? info.ocaml.lines.join('\n') : '';
       this.maxLineRacket = (info.racket && info.racket.lines) ? info.racket.lines.length : 1;
       this.maxLineOcaml = (info.ocaml && info.ocaml.lines) ? info.ocaml.lines.length : 1;
-      // Inicializar índices si el ejercicio define arrays de pasos (recursion), aplicable a otros módulos como 'listas'
+      // Inicializar índices y output para listas y recursión
       const recCheck = this.getRecursionInfo();
       if (recCheck) {
         this.recursionStepIndex = 0;
         this.highlightLineRacket = (recCheck.racket && Array.isArray(recCheck.racket.recursion)) ? (recCheck.racket.recursion[0] || 0) : 0;
         this.highlightLineOcaml = (recCheck.ocaml && Array.isArray(recCheck.ocaml.recursion)) ? (recCheck.ocaml.recursion[0] || 0) : 0;
-        // Inicializar puntero de respuestas por pasos si existe la clave
-        this.recursionStepAnswerIndex = 0;
+        // Output inicial independiente para cada lenguaje
         const recursionStepsRacket = recCheck.racket && Array.isArray(recCheck.racket.recursion) ? recCheck.racket.recursion : [];
         const recursionStepsOcaml = recCheck.ocaml && Array.isArray(recCheck.ocaml.recursion) ? recCheck.ocaml.recursion : [];
-        const stepAnswerArr = this.getStepAnswerArray(recCheck);
-        const valorR = recursionStepsRacket[0];
-        const valorO = recursionStepsOcaml[0];
-        if (Array.isArray(stepAnswerArr) && stepAnswerArr.length > 0 && ((valorR === 0) || (valorO === 0))) {
-          this.dynamicStepAnswer = String(stepAnswerArr[0] ?? '');
-          this.mostrarOutput = true;
-        } else {
-          this.dynamicStepAnswer = '';
-          this.mostrarOutput = false;
-        }
+        const stepAnswerRacket = recCheck.racket && Array.isArray(recCheck.racket['recursion-step-answer']) ? recCheck.racket['recursion-step-answer'] : [];
+        const stepAnswerOcaml = recCheck.ocaml && Array.isArray(recCheck.ocaml['recursion-step-answer']) ? recCheck.ocaml['recursion-step-answer'] : [];
+        // Racket output
+        let zeroCountRacket = 0;
+        if (recursionStepsRacket[0] === 0) zeroCountRacket = 1;
+        this.outputRacket = zeroCountRacket ? String(stepAnswerRacket[zeroCountRacket - 1] ?? '') : '';
+        // OCaml output
+        let zeroCountOcaml = 0;
+        if (recursionStepsOcaml[0] === 0) zeroCountOcaml = 1;
+        this.outputOcaml = zeroCountOcaml ? String(stepAnswerOcaml[zeroCountOcaml - 1] ?? '') : '';
+        this.mostrarOutput = true;
       } else {
         this.highlightLineRacket = 0;
         this.highlightLineOcaml = 0;
+        this.outputRacket = '';
+        this.outputOcaml = '';
+        this.mostrarOutput = false;
       }
       // Segmentar answer solo para los módulos requeridos
       if (["paradigma-funcional", "expresiones"].includes(this.modulo) && this.answer) {
@@ -197,49 +199,24 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
       let nuevoPaso = this.recursionStepIndex + delta;
       if (nuevoPaso >= 0 && nuevoPaso < maxSteps) {
         this.recursionStepIndex = nuevoPaso;
-        // Si no hay índice para Racket en ese paso, usar el último conocido o 0
-        if (recursionStepsRacket[nuevoPaso] !== undefined) {
-          this.highlightLineRacket = recursionStepsRacket[nuevoPaso];
-        } else {
-          this.highlightLineRacket = recursionStepsRacket.length > 0 ? recursionStepsRacket[recursionStepsRacket.length - 1] : 0;
+        this.highlightLineRacket = recursionStepsRacket[nuevoPaso] ?? 0;
+        this.highlightLineOcaml = recursionStepsOcaml[nuevoPaso] ?? 0;
+        // Output independiente para cada lenguaje
+        const stepAnswerRacket = recInfo.racket && Array.isArray(recInfo.racket['recursion-step-answer']) ? recInfo.racket['recursion-step-answer'] : [];
+        const stepAnswerOcaml = recInfo.ocaml && Array.isArray(recInfo.ocaml['recursion-step-answer']) ? recInfo.ocaml['recursion-step-answer'] : [];
+        // Racket: contar ceros hasta el paso actual
+        let zeroCountRacket = 0;
+        for (let i = 0; i <= nuevoPaso; i++) {
+          if (recursionStepsRacket[i] === 0) zeroCountRacket++;
         }
-        if (recursionStepsOcaml[nuevoPaso] !== undefined) {
-          this.highlightLineOcaml = recursionStepsOcaml[nuevoPaso];
-        } else {
-          this.highlightLineOcaml = recursionStepsOcaml.length > 0 ? recursionStepsOcaml[recursionStepsOcaml.length - 1] : 0;
+        this.outputRacket = zeroCountRacket ? String(stepAnswerRacket[zeroCountRacket - 1] ?? '') : '';
+        // OCaml: contar ceros hasta el paso actual
+        let zeroCountOcaml = 0;
+        for (let i = 0; i <= nuevoPaso; i++) {
+          if (recursionStepsOcaml[i] === 0) zeroCountOcaml++;
         }
-        // Manejo de recursion-step-answer: si en el paso actual alguna línea es 0, mostrar el siguiente valor y activar output
-        const stepAnswerArr = this.getStepAnswerArray(recInfo);
-        const valorR = recursionStepsRacket[nuevoPaso];
-        const valorO = recursionStepsOcaml[nuevoPaso];
-        if (Array.isArray(stepAnswerArr) && stepAnswerArr.length > 0) {
-          // Calcular cuántos ceros hay hasta el paso actual para saber el índice correcto
-          let zeroCount = 0;
-          for (let i = 0; i <= nuevoPaso; i++) {
-            const vR = recursionStepsRacket[i];
-            const vO = recursionStepsOcaml[i];
-            if ((vR === 0) || (vO === 0)) zeroCount++;
-          }
-          const valorR = recursionStepsRacket[nuevoPaso];
-          const valorO = recursionStepsOcaml[nuevoPaso];
-          // Output siempre visible en recursion/listas
-          this.mostrarOutput = true;
-          // Si recursion es 0, actualizar el valor; si no, mantener el último
-          if ((valorR === 0) || (valorO === 0)) {
-            this.dynamicStepAnswer = String(stepAnswerArr[zeroCount - 1] ?? '');
-              console.log('Output actualizado:', this.dynamicStepAnswer);
-          } // Si no hay ceros aún, mostrar vacío
-          else if (zeroCount === 0) {
-            this.dynamicStepAnswer = '';
-              console.log('Output actualizado:', this.dynamicStepAnswer);
-          }
-          // Si no es cero, mantener el último valor mostrado
-          // (no se actualiza dynamicStepAnswer)
-        } else {
-          this.dynamicStepAnswer = '';
-          this.mostrarOutput = (nuevoPaso === maxSteps - 1);
-            console.log('Output actualizado:', this.dynamicStepAnswer);
-        }
+        this.outputOcaml = zeroCountOcaml ? String(stepAnswerOcaml[zeroCountOcaml - 1] ?? '') : '';
+        this.mostrarOutput = true;
         this.actualizarExplicaciones();
         this.showCardsLeft = !this.showCardsLeft;
       }
@@ -310,7 +287,14 @@ export class ComparadorComponent implements OnInit, AfterViewInit {
   // Devuelve el array de respuestas por paso si existe (recursion-step-answer)
   getStepAnswerArray(exercise: any): any[] | null {
     if (!exercise) return null;
-    if (Array.isArray(exercise['recursion-step-answer'])) return exercise['recursion-step-answer'];
+    // Buscar en racket
+    if (exercise.racket && Array.isArray(exercise.racket['recursion-step-answer'])) {
+      return exercise.racket['recursion-step-answer'];
+    }
+    // Buscar en ocaml
+    if (exercise.ocaml && Array.isArray(exercise.ocaml['recursion-step-answer'])) {
+      return exercise.ocaml['recursion-step-answer'];
+    }
     return null;
   }
 }

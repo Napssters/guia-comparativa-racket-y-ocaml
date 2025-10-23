@@ -55,12 +55,12 @@
       <div class="flex-1">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <app-code-editor #racketEditor [label]="'Racket'" [language]="'scheme'" [code]="racketLines"
-            [answer]="dynamicStepAnswer ? dynamicStepAnswer : (['paradigma-funcional','expresiones'].includes(modulo) ? getAnswerParcial() : answer)"
-            [disabled]="true" [highlightLine]="highlightLineRacket" [showRunButton]="false" [showOutput]="mostrarOutput || !!dynamicStepAnswer"
+            [answer]="(['listas','recursion'].includes(modulo) ? outputRacket : (['paradigma-funcional','expresiones'].includes(modulo) ? getAnswerParcial() : answer))"
+            [disabled]="true" [highlightLine]="highlightLineRacket" [showRunButton]="false" [showOutput]="(['listas','recursion'].includes(modulo) ? !!outputRacket : (mostrarOutput || !!outputRacket))"
             [enableHighlight]="true"></app-code-editor>
           <app-code-editor #ocamlEditor [label]="'OCaml'" [language]="'ocaml'" [code]="ocamlLines"
-            [answer]="dynamicStepAnswer ? dynamicStepAnswer : (['paradigma-funcional','expresiones'].includes(modulo) ? getAnswerParcial() : answer)"
-            [showRunButton]="false" [disabled]="true" [highlightLine]="highlightLineOcaml" [showOutput]="mostrarOutput || !!dynamicStepAnswer"
+            [answer]="(['listas','recursion'].includes(modulo) ? outputOcaml : (['paradigma-funcional','expresiones'].includes(modulo) ? getAnswerParcial() : answer))"
+            [showRunButton]="false" [disabled]="true" [highlightLine]="highlightLineOcaml" [showOutput]="(['listas','recursion'].includes(modulo) ? !!outputOcaml : (mostrarOutput || !!outputOcaml))"
             [enableHighlight]="true"></app-code-editor>
         </div>
       </div>
@@ -81,13 +81,13 @@
         </span>
       </div>
       <span class="mx-4 font-bold text-lg text-[#3e5aa9] flex items-center h-12">
-        <ng-container *ngIf="modulo === 'recursion' && comparacionData && comparacionData['recursion'] && comparacionData['recursion'][ejercicio]">
+        <ng-container *ngIf="(['recursion','listas'].includes(modulo) && comparacionData && comparacionData[modulo] && comparacionData[modulo][ejercicio])">
           <ng-container>
             Racket L.{{ highlightLineRacket + 1 }} |
             <span class="text-[#ec690d] ml-2">OCaml L.{{ highlightLineOcaml + 1 }}</span>
           </ng-container>
         </ng-container>
-        <ng-container *ngIf="modulo !== 'recursion'">
+        <ng-container *ngIf="!(['recursion','listas'].includes(modulo))">
           Línea {{ highlightLineRacket + 1 }}
         </ng-container>
       </span>
