@@ -1,16 +1,51 @@
 <div class="flex flex-col items-center justify-center min-h-[60vh] py-8 px-4">
-		<h2 class="text-3xl font-bold text-center mb-4 text-[#3e5aa9]">{{ titulo }}</h2>
-		<div class="max-w-3xl mx-auto mb-8">
-					<p class="text-base text-gray-700 text-justify">
-						Esta sección te permite interactuar con un editor de código diseñado para facilitar el aprendizaje y la práctica de conceptos funcionales en Racket y OCaml. Puedes escribir tus propias soluciones, analizar sintaxis y comparar estructuras entre ambos lenguajes. Utiliza este espacio para explorar, experimentar y reforzar tus conocimientos, con la opción de visualizar el código en el formato de tu lenguaje preferido.
-					</p>
-		</div>
-	<div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-4xl">
-			<app-code-editor [showRunButton]="false" [showOutput]="false" [showOutputBox]="false" [disabled]="false" [language]="lenguaje" />
-			<div class="flex justify-end mb-4">
-				<button class="bg-[#3e5aa9] hover:bg-[#ec690d] text-white font-bold py-3 px-6 rounded-full shadow-lg transition">
-					Convertir a {{ lenguaje === 'scheme' ? 'OCaml' : 'Racket' }}
-				</button>
-			</div>
-	</div>
+  <h2 class="text-3xl font-bold text-center mb-4 text-[#3e5aa9]">{{ titulo }}</h2>
+  <div class="max-w-3xl mx-auto mb-8">
+    <p class="text-base text-gray-700 text-justify">
+      Esta sección te permite interactuar con un editor de código diseñado para facilitar el aprendizaje y la práctica
+      de conceptos funcionales en Racket y OCaml. Puedes escribir tus propias soluciones, analizar sintaxis y comparar
+      estructuras entre ambos lenguajes. Utiliza este espacio para explorar, experimentar y reforzar tus conocimientos,
+      con la opción de visualizar el código en el formato de tu lenguaje preferido.
+    </p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-[30%_70%] gap-8 w-full max-w-6xl">
+    <div class="flex flex-col gap-6">
+      <ng-container *ngFor="let key of Object.keys(practicas[lenguaje]); let i = index">
+        <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-[#3e5aa9] relative">
+          <h3 class="text-xl font-bold text-[#3e5aa9] mb-2">{{ practicas[lenguaje][key].titulo }}</h3>
+          <p class="text-gray-700 text-justify m-0">
+            {{ practicas[lenguaje][key].descripcion }}
+          </p>
+          <div *ngIf="openToastIndex === i" class="absolute left-0 mt-2 z-50">
+            <div class="bg-white rounded-lg shadow-xl p-6 min-w-[320px] max-w-lg border border-[#ec690d]" style="box-shadow: 0 2px 16px rgba(62,90,169,0.15);">
+              <div class="text-lg font-bold text-[#3e5aa9] mb-2">Código ejemplo</div>
+              <pre class="bg-gray-100 rounded p-2 mb-4 text-sm font-mono whitespace-pre">{{ practicas[lenguaje][key].codigo_ejemplo }}</pre>
+              <button class="absolute top-4 right-4 text-[#ec690d] font-bold text-2xl w-8 h-8 flex items-center justify-center rounded-full transition-colors focus:outline-none hover:bg-[#3e5aa9] hover:text-white" (click)="closeToast()">&times;</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 mt-2 justify-between">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold bg-[#3e5aa9] text-white rounded px-2 py-1 text-xs transition-colors hover:bg-[#ec690d]">Respuesta:</span>
+              <span class="bg-[#3e5aa9] text-white rounded px-2 py-1 text-xs transition-colors hover:bg-[#ec690d]">{{ practicas[lenguaje][key].respuesta }}</span>
+            </div>
+            <button class="bg-[#3e5aa9] hover:bg-[#ec690d] text-white font-semibold px-3 py-1 rounded-full text-xs transition" (click)="openToast(i)">Código ejemplo</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="flex flex-col h-full w-full">
+      <div class="bg-white rounded-xl shadow-lg p-8 flex-1 flex flex-col justify-between w-full h-full">
+        <div class="flex-1 flex flex-col">
+          <app-code-editor [showRunButton]="false" [showOutput]="false" [showOutputBox]="false" [disabled]="false"
+            [language]="lenguaje === 'racket' ? 'scheme' : lenguaje" class="flex-1 min-h-[400px]" />
+        </div>
+        <div class="flex justify-end mt-4">
+          <button
+            class="bg-[#3e5aa9] hover:bg-[#ec690d] text-white font-bold py-3 px-6 rounded-full shadow-lg transition">
+            Convertir a {{ lenguaje === 'racket' ? 'OCaml' : 'Racket' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
