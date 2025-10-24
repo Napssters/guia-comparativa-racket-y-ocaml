@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PracticasPorLenguaje } from './practica.model';
 import { CodeEditorComponent } from '../code-editor/code-editor.component';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
@@ -10,9 +12,12 @@ import { ActivatedRoute, UrlSegment } from '@angular/router';
   templateUrl: './code-switcher.component.html',
   styleUrls: ['./code-switcher.component.css'],
   standalone: true,
-  imports: [CommonModule, CodeEditorComponent, HttpClientModule]
+  imports: [CommonModule, CodeEditorComponent, HttpClientModule, FormsModule, RouterModule]
 })
 export class CodeSwitcherComponent implements OnInit {
+  @ViewChild(CodeEditorComponent) codeEditor!: CodeEditorComponent;
+  code: string = '';
+  selectedPracticaKey: string = '';
   openToastIndex: number|null = null;
   titulo = '';
   lenguaje = 'ocaml';
@@ -35,6 +40,9 @@ export class CodeSwitcherComponent implements OnInit {
     });
   }
 
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   openToast(index: number) {
     this.openToastIndex = index;
@@ -54,6 +62,18 @@ export class CodeSwitcherComponent implements OnInit {
   loadPracticas() {
     this.http.get('assets/json-base/practica.json').subscribe(data => {
       this.practicas = data;
+      const keys = Object.keys(this.practicas[this.lenguaje]);
+      if (keys.length > 0) {
+        this.selectedPracticaKey = keys[0];
+        this.code = '';
+      }
     });
+  }
+
+  onPracticaChange() {
+    this.code = '';
+    if (this.codeEditor) {
+      this.codeEditor.clearEditor();
+    }
   }
 }

@@ -1,42 +1,42 @@
 {
   "racket": {
     "practica-1": {
-      "titulo": "Itinerario de Viaje de Lupe",
-      "descripcion": "Lupe planea un tour por Italia con una lista de ciudades: '(Roma Milano Venecia Florencia)' y costos asociados en euros: '(150 200 180 120)'. Escribe una función en Racket llamada 'costo-total-viaje' que tome estas dos listas y calcule la suma total de los costos. Usa recursión: verifica si las listas están vacías con 'null?', accede al primer costo con 'car', y recursa con 'cdr'. Usa la operación '+' para sumar y maneja el caso base retornando 0 si ambas listas están vacías. Prueba con las listas dadas para obtener el gasto total.",
+      "titulo": "Itinerario de Viaje de Lupe por Italia",
+      "descripcion": "Lupe planea un tour por Italia con una lista de ciudades: '(Roma Milano Venecia Florencia)' y costos asociados en euros: '(150 200 180 120)'. Escribe una función en Racket llamada 'costo-total-viaje' que tome estas dos listas y calcule la suma total de los costos. Usa recursión: verifica si las listas están vacías con 'null?', accede al primer costo con 'car', y recursa con 'cdr'. Usa '+' para la suma y maneja el caso base retornando 0 si ambas listas están vacías. Prueba con las listas dadas para obtener el gasto total.",
       "respuesta": "650",
-      "codigo_ejemplo": "(define (longitud-lista lst)\n  (if (null? lst)\n      0\n      (+ 1 (longitud-lista (cdr lst)))\n  )\n)"
+      "codigo_ejemplo": "(define (costo-total-viaje ciudades costos)\n  (if (or (null? ciudades) (null? costos))\n      0\n      (+ (car costos) \n         (costo-total-viaje (cdr ciudades) (cdr costos))\n      )\n  )\n)\n\n; Llamado a la función con los valores reales\n(costo-total-viaje\n  '(Roma Milano Venecia Florencia)\n  '(150 200 180 120)\n)"
     },
     "practica-2": {
       "titulo": "Lista de Invitados a la Boda de Lupe y Juan",
       "descripcion": "Lupe se casó con Juan en Roma y tienen una lista de invitados: '(Ana Pedro Maria Carlos Sofia)' con valores de regalos en euros: '(50 100 75 120 80)'. Crea una función 'invitados-con-regalos-caros' que devuelva una lista de los nombres de los invitados cuyos regalos cuesten más de 80 euros. Usa recursión: verifica con '>' si el valor (car) es mayor a 80, usa 'cons' para construir la lista resultante, y recursa con 'cdr'. Usa 'if' y 'define'. Prueba con las listas dadas.",
-      "respuesta": "(Pedro Carlos)",
-      "codigo_ejemplo": "(define (filtrar-positivos nums)\n  (if (null? nums)\n      '()\n      (if (>= (car nums) 0)\n          (cons (car nums) (filtrar-positivos (cdr nums)))\n          (filtrar-positivos (cdr nums))\n      )\n   )\n)"
+      "respuesta": "(Pedro Carlos Sofia)",
+      "codigo_ejemplo": "(define (invitados-con-regalos-caros invitados valores)\n  (if (or (null? invitados) (null? valores))\n      '()\n      (if (> (car valores) 80)\n          (cons (car invitados) \n                (invitados-con-regalos-caros \n                          (cdr invitados) (cdr valores))\n          )\n          (invitados-con-regalos-caros \n                (cdr invitados) (cdr valores))\n      )\n  )\n)\n\n; Llamado a la función con los valores reales\n(invitados-con-regalos-caros\n  '(Ana Pedro Maria Carlos Sofia)\n  '(50 100 75 120 80)\n)"
     },
     "practica-3": {
-      "titulo": "Gastos Mensuales de la Pareja",
-      "descripcion": "Lupe y Juan registran sus gastos mensuales: '(alquiler comida transporte entretenimiento)' con valores '(800 300 150 200)'. Implementa una función 'gasto-promedio' que calcule el promedio de los gastos. Usa una función auxiliar recursiva para sumar los valores, y divídela por la longitud de la lista (usa 'length'). Maneja listas vacías retornando 0. Usa '+', '/', y 'define'. Prueba con la lista de gastos.",
+      "titulo": "Gastos Mensuales de la Pareja en Europa",
+      "descripcion": "Lupe y Juan registran sus gastos mensuales en Europa: '(alquiler comida transporte entretenimiento)' con valores '(800 300 150 200)'. Implementa una función 'gasto-promedio' que calcule el promedio de los gastos. Usa una función auxiliar recursiva para sumar los valores, y divídela por la longitud de la lista (usa 'length'). Maneja listas vacías retornando 0. Usa '+', '/', y 'define'. Prueba con la lista de gastos.",
       "respuesta": "362.5",
-      "codigo_ejemplo": "(define (suma-pares lst)\n  (if (null? lst)\n      0\n      (if (even? (car lst))\n          (+ (car lst) (suma-pares (cdr lst)))\n          (suma-pares (cdr lst))\n      )\n   )\n)"
+      "codigo_ejemplo": "(define (suma-gastos lst)\n  (if (null? lst)\n      0\n      (+ (car lst) \n         (suma-gastos (cdr lst))\n      )\n  )\n)\n\n(define (gasto-promedio gastos)\n  (if (null? gastos)\n      0\n      (/ (suma-gastos gastos) (length gastos))\n  )\n)\n\n; Llamado a la función con los valores reales\n(gasto-promedio\n  '(800 300 150 200)\n)"
     }
   },
   "ocaml": {
     "practica-1": {
-      "titulo": "Itinerario de Viaje de Lupe",
-      "descripcion": "Lupe planea un tour por Italia con ciudades: [\"Roma\"; \"Milano\"; \"Venecia\"; \"Florencia\"] y costos: [150; 200; 180; 120]. Escribe una función 'costo_total_viaje' que sume los costos usando pattern matching: para [], [] retorna 0; para h1 :: t1, h2 :: t2 suma h2 + recursión. Usa 'let rec' y la operación '+' para sumar. Prueba con las listas dadas.",
-      "respuesta": "650",
-      "codigo_ejemplo": "let rec longitud_lista = function\n  | [] -> 0\n  | _ :: t -> 1 + longitud_lista t;;"
+      "titulo": "Inventario de Libros de Lupe",
+      "descripcion": "Lupe tiene una colección de libros con sus precios en euros: [\"CienAñosDeSoledad\", 25; \"ElQuijote\", 30; \"LaOdisea\", 20; \"DonJuan\", 15]. Escribe una función 'precio_total_libros' que sume el precio de todos los libros usando pattern matching. Para una lista vacía retorna 0; para un elemento (nombre, precio)::t, suma precio + recursión. Usa 'let rec' y prueba con la lista dada.",
+      "respuesta": "90",
+      "codigo_ejemplo": "let rec precio_total_libros libros =\n  match libros with\n  | [] -> 0\n  | (_, precio) :: t ->\n      precio +\n      precio_total_libros t\n;;\n\n(* Llamado a la función con los valores reales *)\nprecio_total_libros\n  [\"CienAñosDeSoledad\", 25;\n   \"ElQuijote\", 30;\n   \"LaOdisea\", 20;\n   \"DonJuan\", 15];;"
     },
     "practica-2": {
-      "titulo": "Lista de Invitados a la Boda de Lupe y Juan",
-      "descripcion": "Lupe y Juan tienen invitados: [\"Ana\"; \"Pedro\"; \"Maria\"; \"Carlos\"; \"Sofia\"] con valores de regalos: [50; 100; 75; 120; 80]. Crea una función 'invitados_con_regalos_caros' que filtre los nombres de invitados con regalos >80 usando pattern matching: para [], [] retorna []; para h1 :: t1, h2 :: t2 si h2 >80 agrega h1, else recursa. Usa 'let rec'. Prueba con las listas.",
-      "respuesta": "[\"Pedro\"; \"Carlos\"]",
-      "codigo_ejemplo": "let rec filtrar_positivos = function\n  | [] -> []\n  | h :: t -> if h >= 0 then h :: filtrar_positivos t else filtrar_positivos t;;"
+      "titulo": "Filtrado de Películas Favoritas de Lupe",
+      "descripcion": "Lupe tiene una lista de películas con sus calificaciones: [\"Titanic\", 9; \"Avatar\", 7; \"Inception\", 10; \"Matrix\", 8]. Crea una función 'peliculas_destacadas' que devuelva los nombres de las películas con calificación mayor a 8. Usa pattern matching: para [], retorna []; para (nombre, nota)::t, si nota > 8 agrega nombre, else recursa. Usa 'let rec' y prueba con la lista.",
+      "respuesta": "[\"Titanic\"; \"Inception\"]",
+      "codigo_ejemplo": "let rec peliculas_destacadas peliculas =\n  match peliculas with\n  | [] -> []\n  | (nombre, nota) :: t ->\n      if nota > 8 then\n        nombre :: \n        peliculas_destacadas t\n      else\n        peliculas_destacadas t\n;;\n\n(* Llamado a la función con los valores reales *)\npeliculas_destacadas\n  [\"Titanic\", 9;\n   \"Avatar\", 7;\n   \"Inception\", 10;\n   \"Matrix\", 8];;"
     },
     "practica-3": {
-      "titulo": "Gastos Mensuales de la Pareja",
-      "descripcion": "Lupe y Juan tienen gastos mensuales: [800; 300; 150; 200]. Implementa una función 'gasto_promedio' que sume los valores con una auxiliar 'suma_gastos' (usando pattern matching: [] -> 0, h :: t -> h + recursión) y divida por List.length. Usa 'let rec', '+', y '/.' para aritmética. Prueba con la lista de gastos.",
-      "respuesta": "362.5",
-      "codigo_ejemplo": "let rec suma_pares = function\n  | [] -> 0\n  | h :: t -> if h mod 2 = 0 then h + suma_pares t else suma_pares t;;"
+      "titulo": "Cálculo de Descuentos en Compras de Lupe",
+      "descripcion": "Lupe hizo compras con los siguientes montos: [120; 80; 200; 50]. Implementa una función 'aplicar_descuento' que calcule el total después de aplicar un 10% de descuento a cada compra. Usa una función auxiliar 'suma_con_descuento' que sume los valores con descuento (usando pattern matching: [] -> 0.0, h::t -> (h *. 0.9) + recursión). Usa 'let rec' y prueba con la lista de compras.",
+      "respuesta": "405.0",
+      "codigo_ejemplo": "let rec suma_con_descuento compras =\n  match compras with\n  | [] -> 0.0\n  | h :: t ->\n      (float_of_int h *. 0.9) +\n      suma_con_descuento t\n;;\n\n(* Llamado a la función con los valores reales *)\nsuma_con_descuento\n  [120;\n   80;\n   200;\n   50];;"
     }
   }
 }

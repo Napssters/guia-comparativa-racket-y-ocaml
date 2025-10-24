@@ -15,6 +15,9 @@ declare const ace: any;
   imports: [NgClass, CommonModule]
 })
 export class CodeEditorComponent implements AfterViewInit {
+
+  toastMessage = '';
+  toastType: 'success' | 'error' | '' = '';
   @Input() code: string = '';
   @Input() language: string = 'text';
   @Input() label: string = '';
@@ -25,11 +28,44 @@ export class CodeEditorComponent implements AfterViewInit {
   @Input() showOutput: boolean = false;
   @Input() showOutputBox: boolean = true;
   @Input() enableHighlight: boolean = false;
+  @Input() isTool: boolean = false;
+  @Input() codeAnswer: string = '';
   @ViewChild('editor') editorRef!: ElementRef;
   private editor: any;
   private highlightMarkerId: number | null = null;
 
   output: string = '';
+
+  showToast(msg: string, type: 'success' | 'error') {
+    this.toastMessage = msg;
+    this.toastType = type;
+    setTimeout(() => {
+      this.toastMessage = '';
+      this.toastType = '';
+    }, 2500);
+  }
+
+  codeValidator() {
+    if (this.editor && this.codeAnswer) {
+      const editorCode = this.editor.getValue().replace(/\s+/g, '').trim();
+      const answerCode = this.codeAnswer.replace(/\s+/g, '').trim();
+      if (editorCode === answerCode) {
+        this.output = this.answer;
+        this.showToast('¡Respuesta exitosa! El código es correcto.', 'success');
+      } else {
+        this.output = "";
+  this.showToast('¡Sigue intentando!\nRevisa tu código, seguro lo lograrás.', 'error');
+      }
+    }
+  }
+
+  public clearEditor() {
+    if (this.editor) {
+      this.editor.setValue('', -1);
+    }
+    this.code = '';
+    this.output = '';
+  }
 
   ngAfterViewInit() {
     this.editor = ace.edit(this.editorRef.nativeElement);
@@ -73,7 +109,11 @@ export class CodeEditorComponent implements AfterViewInit {
   }
 
   ejecutar() {
-    this.output = this.answer;
+    if (this.isTool) {
+      this.codeValidator();
+    } else {
+      this.output = this.answer;
+    }
   }
 
   ngOnChanges() {
