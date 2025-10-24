@@ -1,1 +1,16 @@
-<app-code-editor [showRunButton]="false" [showOutput]="false" [showOutputBox]="false" />
+<div class="flex flex-col items-center justify-center min-h-[60vh] py-8 px-4">
+		<h2 class="text-3xl font-bold text-center mb-4 text-[#3e5aa9]">{{ titulo }}</h2>
+		<div class="max-w-3xl mx-auto mb-8">
+					<p class="text-base text-gray-700 text-justify">
+						Esta sección te permite interactuar con un editor de código diseñado para facilitar el aprendizaje y la práctica de conceptos funcionales en Racket y OCaml. Puedes escribir tus propias soluciones, analizar sintaxis y comparar estructuras entre ambos lenguajes. Utiliza este espacio para explorar, experimentar y reforzar tus conocimientos, con la opción de visualizar el código en el formato de tu lenguaje preferido.
+					</p>
+		</div>
+	<div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-4xl">
+			<app-code-editor [showRunButton]="false" [showOutput]="false" [showOutputBox]="false" [disabled]="false" [language]="lenguaje" />
+			<div class="flex justify-end mb-4">
+				<button class="bg-[#3e5aa9] hover:bg-[#ec690d] text-white font-bold py-3 px-6 rounded-full shadow-lg transition">
+					Convertir a {{ lenguaje === 'scheme' ? 'OCaml' : 'Racket' }}
+				</button>
+			</div>
+	</div>
+</div>
