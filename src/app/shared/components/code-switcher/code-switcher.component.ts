@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PracticasPorLenguaje } from './practica.model';
 import { CodeEditorComponent } from '../code-editor/code-editor.component';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 
@@ -21,6 +20,7 @@ export class CodeSwitcherComponent implements OnInit {
   openToastIndex: number|null = null;
   titulo = '';
   lenguaje = 'ocaml';
+  currentRoute = '';
   practicas: any = { racket: {}, ocaml: {} };
   Object = Object;
 
@@ -30,14 +30,24 @@ export class CodeSwitcherComponent implements OnInit {
     this.route.url.subscribe((segments: UrlSegment[]) => {
       if (segments.length > 0) {
         const raw = segments[0].path;
+        
+        this.resetPracticas()
+        this.currentRoute = raw;
         this.titulo = raw
           .split('-')
           .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
           .join(' ');
-        this.lenguaje = raw === 'practica-racket' ? 'racket' : 'ocaml';
-        this.loadPracticas();
+        this.loadPracticas(raw);
       }
     });
+  }
+
+  isPracticaRoute(): boolean {
+    return this.currentRoute === 'practica-racket' || this.currentRoute === 'practica-ocaml';
+  }
+
+  shouldShowComponent(): boolean {
+    return this.currentRoute !== 'paradigma-funcional';
   }
 
   scrollToTop() {
@@ -59,19 +69,36 @@ export class CodeSwitcherComponent implements OnInit {
     }
   }
 
-  loadPracticas() {
-    this.http.get('assets/json-base/practica.json').subscribe(data => {
-      this.practicas = data;
-      const keys = Object.keys(this.practicas[this.lenguaje]);
-      if (keys.length > 0) {
-        this.selectedPracticaKey = keys[0];
-        this.code = '';
+  loadPracticas(url: string) {
+    this.http.get('assets/json-base/practica.json').subscribe((data: any) => {
+      const seccion = data[url];
+      
+      if (seccion) {
+        const lenguajesDisponibles = Object.keys(seccion);
+        this.lenguaje = lenguajesDisponibles[0];
+        
+        if (seccion[this.lenguaje]) {
+          this.practicas = seccion;
+          const keys = Object.keys(seccion[this.lenguaje]);
+          if (keys.length > 0) {
+            this.selectedPracticaKey = keys[0];
+          }
+        }
       }
     });
   }
 
   onPracticaChange() {
+    if (this.codeEditor) {
+      this.codeEditor.clearEditor();
+    }
+  }
+
+  resetPracticas() {
+    this.practicas = {};
+    this.selectedPracticaKey = '';
     this.code = '';
+    this.lenguaje = '';
     if (this.codeEditor) {
       this.codeEditor.clearEditor();
     }

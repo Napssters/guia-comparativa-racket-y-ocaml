@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center justify-center min-h-[60vh] py-8 px-4">
+<div class="flex flex-col items-center justify-center min-h-[60vh] py-8 px-4" *ngIf="shouldShowComponent()">
   <h2 class="text-3xl font-bold text-center mb-4 text-[#3e5aa9]">{{ titulo }}</h2>
   <div class="max-w-3xl mx-auto mb-8">
     <p class="text-base text-gray-700 text-justify">
@@ -10,7 +10,7 @@
   </div>
   <div class="grid grid-cols-1 md:grid-cols-[30%_70%] gap-8 w-full max-w-6xl">
     <div class="flex flex-col gap-6">
-  <ng-container *ngFor="let key of Object.keys(practicas[lenguaje]); let i = index">
+  <ng-container *ngFor="let key of lenguaje && practicas[lenguaje] ? Object.keys(practicas[lenguaje]) : []; let i = index">
         <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-[#3e5aa9] relative">
           <input type="radio" name="practica-select" [value]="key" [(ngModel)]="selectedPracticaKey"
             (change)="onPracticaChange()"
@@ -57,7 +57,7 @@
             [codeAnswer]="practicas[lenguaje][selectedPracticaKey]?.codigo_ejemplo"
             [code]="code" class="flex-1 min-h-[400px]" />
         </div>
-        <div class="flex justify-end mt-4">
+        <div class="flex justify-end mt-4" *ngIf="isPracticaRoute()">
           <a class="bg-[#3e5aa9] hover:bg-[#ec690d] text-white font-bold py-3 px-6 rounded-full shadow-lg transition"
             [routerLink]="[lenguaje === 'racket' ? '/practica-ocaml' : '/practica-racket']" (click)="scrollToTop()">
             Practica {{ lenguaje === 'racket' ? 'OCaml' : 'Racket' }}

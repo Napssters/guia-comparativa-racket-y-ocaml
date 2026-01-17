@@ -1,42 +1,288 @@
 {
-  "racket": {
-    "practica-1": {
-      "titulo": "Itinerario de Viaje de Lupe por Italia",
-      "descripcion": "Lupe planea un tour por Italia con una lista de ciudades: '(Roma Milano Venecia Florencia)' y costos asociados en euros: '(150 200 180 120)'. Escribe una función en Racket llamada 'costo-total-viaje' que tome estas dos listas y calcule la suma total de los costos. Usa recursión: verifica si las listas están vacías con 'null?', accede al primer costo con 'car', y recursa con 'cdr'. Usa '+' para la suma y maneja el caso base retornando 0 si ambas listas están vacías. Prueba con las listas dadas para obtener el gasto total.",
-      "respuesta": "650",
-      "codigo_ejemplo": "(define (costo-total-viaje ciudades costos)\n  (if (or (null? ciudades) (null? costos))\n      0\n      (+ (car costos) \n         (costo-total-viaje (cdr ciudades) (cdr costos))\n      )\n  )\n)\n\n; Llamado a la función con los valores reales\n(costo-total-viaje\n  '(Roma Milano Venecia Florencia)\n  '(150 200 180 120)\n)"
-    },
-    "practica-2": {
-      "titulo": "Lista de Invitados a la Boda de Lupe y Juan",
-      "descripcion": "Lupe se casó con Juan en Roma y tienen una lista de invitados: '(Ana Pedro Maria Carlos Sofia)' con valores de regalos en euros: '(50 100 75 120 80)'. Crea una función 'invitados-con-regalos-caros' que devuelva una lista de los nombres de los invitados cuyos regalos cuesten más de 80 euros. Usa recursión: verifica con '>' si el valor (car) es mayor a 80, usa 'cons' para construir la lista resultante, y recursa con 'cdr'. Usa 'if' y 'define'. Prueba con las listas dadas.",
-      "respuesta": "(Pedro Carlos Sofia)",
-      "codigo_ejemplo": "(define (invitados-con-regalos-caros invitados valores)\n  (if (or (null? invitados) (null? valores))\n      '()\n      (if (> (car valores) 80)\n          (cons (car invitados) \n                (invitados-con-regalos-caros \n                          (cdr invitados) (cdr valores))\n          )\n          (invitados-con-regalos-caros \n                (cdr invitados) (cdr valores))\n      )\n  )\n)\n\n; Llamado a la función con los valores reales\n(invitados-con-regalos-caros\n  '(Ana Pedro Maria Carlos Sofia)\n  '(50 100 75 120 80)\n)"
-    },
-    "practica-3": {
-      "titulo": "Gastos Mensuales de la Pareja en Europa",
-      "descripcion": "Lupe y Juan registran sus gastos mensuales en Europa: '(alquiler comida transporte entretenimiento)' con valores '(800 300 150 200)'. Implementa una función 'gasto-promedio' que calcule el promedio de los gastos. Usa una función auxiliar recursiva para sumar los valores, y divídela por la longitud de la lista (usa 'length'). Maneja listas vacías retornando 0. Usa '+', '/', y 'define'. Prueba con la lista de gastos.",
-      "respuesta": "362.5",
-      "codigo_ejemplo": "(define (suma-gastos lst)\n  (if (null? lst)\n      0\n      (+ (car lst) \n         (suma-gastos (cdr lst))\n      )\n  )\n)\n\n(define (gasto-promedio gastos)\n  (if (null? gastos)\n      0\n      (/ (suma-gastos gastos) (length gastos))\n  )\n)\n\n; Llamado a la función con los valores reales\n(gasto-promedio\n  '(800 300 150 200)\n)"
+  "practica-racket": {
+    "racket": {
+      "practica-1": {
+        "titulo": "Itinerario de Viaje de Lupe por Italia",
+        "descripcion": "Lupe planea un tour por Italia con una lista de ciudades: '(Roma Milano Venecia Florencia)' y costos asociados en euros: '(150 200 180 120)'. Escribe una función en Racket llamada 'costo-total-viaje' que tome estas dos listas y calcule la suma total de los costos. Usa recursión: verifica si las listas están vacías con 'null?', accede al primer costo con 'car', y recursa con 'cdr'. Usa '+' para la suma y maneja el caso base retornando 0 si ambas listas están vacías. Prueba con las listas dadas para obtener el gasto total.",
+        "respuesta": "650",
+        "codigo_ejemplo": "(define (costo-total-viaje ciudades costos)\n  (if (or (null? ciudades) (null? costos))\n      0\n      (+ (car costos) \n         (costo-total-viaje (cdr ciudades) (cdr costos))\n      )\n  )\n)\n\n; Llamado a la función con los valores reales\n(costo-total-viaje\n  '(Roma Milano Venecia Florencia)\n  '(150 200 180 120)\n)"
+      },
+      "practica-2": {
+        "titulo": "Lista de Invitados a la Boda de Lupe y Juan",
+        "descripcion": "Lupe se casó con Juan en Roma y tienen una lista de invitados: '(Ana Pedro Maria Carlos Sofia)' con valores de regalos en euros: '(50 100 75 120 80)'. Crea una función 'invitados-con-regalos-caros' que devuelva una lista de los nombres de los invitados cuyos regalos cuesten más de 80 euros. Usa recursión: verifica con '>' si el valor (car) es mayor a 80, usa 'cons' para construir la lista resultante, y recursa con 'cdr'. Usa 'if' y 'define'. Prueba con las listas dadas.",
+        "respuesta": "(Pedro Carlos Sofia)",
+        "codigo_ejemplo": "(define (invitados-con-regalos-caros invitados valores)\n  (if (or (null? invitados) (null? valores))\n      '()\n      (if (> (car valores) 80)\n          (cons (car invitados) \n                (invitados-con-regalos-caros \n                          (cdr invitados) (cdr valores))\n          )\n          (invitados-con-regalos-caros \n                (cdr invitados) (cdr valores))\n      )\n  )\n)\n\n; Llamado a la función con los valores reales\n(invitados-con-regalos-caros\n  '(Ana Pedro Maria Carlos Sofia)\n  '(50 100 75 120 80)\n)"
+      },
+      "practica-3": {
+        "titulo": "Gastos Mensuales de la Pareja en Europa",
+        "descripcion": "Lupe y Juan registran sus gastos mensuales en Europa: '(alquiler comida transporte entretenimiento)' con valores '(800 300 150 200)'. Implementa una función 'gasto-promedio' que calcule el promedio de los gastos. Usa una función auxiliar recursiva para sumar los valores, y divídela por la longitud de la lista (usa 'length'). Maneja listas vacías retornando 0. Usa '+', '/', y 'define'. Prueba con la lista de gastos.",
+        "respuesta": "362.5",
+        "codigo_ejemplo": "(define (suma-gastos lst)\n  (if (null? lst)\n      0\n      (+ (car lst) \n         (suma-gastos (cdr lst))\n      )\n  )\n)\n\n(define (gasto-promedio gastos)\n  (if (null? gastos)\n      0\n      (/ (suma-gastos gastos) (length gastos))\n  )\n)\n\n; Llamado a la función con los valores reales\n(gasto-promedio\n  '(800 300 150 200)\n)"
+      }
     }
   },
-  "ocaml": {
-    "practica-1": {
-      "titulo": "Inventario de Libros de Lupe",
-      "descripcion": "Lupe tiene una colección de libros con sus precios en euros: [\"CienAñosDeSoledad\", 25; \"ElQuijote\", 30; \"LaOdisea\", 20; \"DonJuan\", 15]. Escribe una función 'precio_total_libros' que sume el precio de todos los libros usando pattern matching. Para una lista vacía retorna 0; para un elemento (nombre, precio)::t, suma precio + recursión. Usa 'let rec' y prueba con la lista dada.",
-      "respuesta": "90",
-      "codigo_ejemplo": "let rec precio_total_libros libros =\n  match libros with\n  | [] -> 0\n  | (_, precio) :: t ->\n      precio +\n      precio_total_libros t\n;;\n\n(* Llamado a la función con los valores reales *)\nprecio_total_libros\n  [\"CienAñosDeSoledad\", 25;\n   \"ElQuijote\", 30;\n   \"LaOdisea\", 20;\n   \"DonJuan\", 15];;"
-    },
-    "practica-2": {
-      "titulo": "Filtrado de Películas Favoritas de Lupe",
-      "descripcion": "Lupe tiene una lista de películas con sus calificaciones: [\"Titanic\", 9; \"Avatar\", 7; \"Inception\", 10; \"Matrix\", 8]. Crea una función 'peliculas_destacadas' que devuelva los nombres de las películas con calificación mayor a 8. Usa pattern matching: para [], retorna []; para (nombre, nota)::t, si nota > 8 agrega nombre, else recursa. Usa 'let rec' y prueba con la lista.",
-      "respuesta": "[\"Titanic\"; \"Inception\"]",
-      "codigo_ejemplo": "let rec peliculas_destacadas peliculas =\n  match peliculas with\n  | [] -> []\n  | (nombre, nota) :: t ->\n      if nota > 8 then\n        nombre :: \n        peliculas_destacadas t\n      else\n        peliculas_destacadas t\n;;\n\n(* Llamado a la función con los valores reales *)\npeliculas_destacadas\n  [\"Titanic\", 9;\n   \"Avatar\", 7;\n   \"Inception\", 10;\n   \"Matrix\", 8];;"
-    },
-    "practica-3": {
-      "titulo": "Cálculo de Descuentos en Compras de Lupe",
-      "descripcion": "Lupe hizo compras con los siguientes montos: [120; 80; 200; 50]. Implementa una función 'aplicar_descuento' que calcule el total después de aplicar un 10% de descuento a cada compra. Usa una función auxiliar 'suma_con_descuento' que sume los valores con descuento (usando pattern matching: [] -> 0.0, h::t -> (h *. 0.9) + recursión). Usa 'let rec' y prueba con la lista de compras.",
-      "respuesta": "405.0",
-      "codigo_ejemplo": "let rec suma_con_descuento compras =\n  match compras with\n  | [] -> 0.0\n  | h :: t ->\n      (float_of_int h *. 0.9) +\n      suma_con_descuento t\n;;\n\n(* Llamado a la función con los valores reales *)\nsuma_con_descuento\n  [120;\n   80;\n   200;\n   50];;"
+  "practica-ocaml": {
+    "ocaml": {
+      "practica-1": {
+        "titulo": "Inventario de Libros de Lupe",
+        "descripcion": "Lupe tiene una colección de libros con sus precios en euros: [\"CienAñosDeSoledad\", 25; \"ElQuijote\", 30; \"LaOdisea\", 20; \"DonJuan\", 15]. Escribe una función 'precio_total_libros' que sume el precio de todos los libros usando pattern matching. Para una lista vacía retorna 0; para un elemento (nombre, precio)::t, suma precio + recursión. Usa 'let rec' y prueba con la lista dada.",
+        "respuesta": "90",
+        "codigo_ejemplo": "let rec precio_total_libros libros =\n  match libros with\n  | [] -> 0\n  | (_, precio) :: t ->\n      precio +\n      precio_total_libros t\n;;\n\n(* Llamado a la función con los valores reales *)\nprecio_total_libros\n  [\"CienAñosDeSoledad\", 25;\n   \"ElQuijote\", 30;\n   \"LaOdisea\", 20;\n   \"DonJuan\", 15];;"
+      },
+      "practica-2": {
+        "titulo": "Filtrado de Películas Favoritas de Lupe",
+        "descripcion": "Lupe tiene una lista de películas con sus calificaciones: [\"Titanic\", 9; \"Avatar\", 7; \"Inception\", 10; \"Matrix\", 8]. Crea una función 'peliculas_destacadas' que devuelva los nombres de las películas con calificación mayor a 8. Usa pattern matching: para [], retorna []; para (nombre, nota)::t, si nota > 8 agrega nombre, else recursa. Usa 'let rec' y prueba con la lista.",
+        "respuesta": "[\"Titanic\"; \"Inception\"]",
+        "codigo_ejemplo": "let rec peliculas_destacadas peliculas =\n  match peliculas with\n  | [] -> []\n  | (nombre, nota) :: t ->\n      if nota > 8 then\n        nombre :: \n        peliculas_destacadas t\n      else\n        peliculas_destacadas t\n;;\n\n(* Llamado a la función con los valores reales *)\npeliculas_destacadas\n  [\"Titanic\", 9;\n   \"Avatar\", 7;\n   \"Inception\", 10;\n   \"Matrix\", 8];;"
+      },
+      "practica-3": {
+        "titulo": "Cálculo de Descuentos en Compras de Lupe",
+        "descripcion": "Lupe hizo compras con los siguientes montos: [120; 80; 200; 50]. Implementa una función 'aplicar_descuento' que calcule el total después de aplicar un 10% de descuento a cada compra. Usa una función auxiliar 'suma_con_descuento' que sume los valores con descuento (usando pattern matching: [] -> 0.0, h::t -> (h *. 0.9) + recursión). Usa 'let rec' y prueba con la lista de compras.",
+        "respuesta": "405.0",
+        "codigo_ejemplo": "let rec suma_con_descuento compras =\n  match compras with\n  | [] -> 0.0\n  | h :: t ->\n      (float_of_int h *. 0.9) +\n      suma_con_descuento t\n;;\n\n(* Llamado a la función con los valores reales *)\nsuma_con_descuento\n  [120;\n   80;\n   200;\n   50];;"
+      }
+    }
+  },
+  "expresiones": {
+    "racket": {
+      "practica-1": {
+        "titulo": "Optimización de Rutas de Drones de Entrega",
+        "descripcion": "Una empresa de logística opera drones que entregan paquetes. Un dron vuela desde (0,0) a tres puntos: (30,40), (80,60) y (50,120) metros. Calcula la distancia total usando la fórmula euclidiana sqrt(x² + y²) para cada punto, suma las tres distancias y multiplica por 0.15 para obtener el consumo de batería. Usa 'sqrt', '+', '*'. Evalúa: (sqrt(30² + 40²) + sqrt(80² + 60²) + sqrt(50² + 120²)) * 0.15.",
+        "respuesta": "40.5",
+        "codigo_ejemplo": "(* (+ (sqrt (+ (* 30 30) (* 40 40)))\n      (sqrt (+ (* 80 80) (* 60 60)))\n      (sqrt (+ (* 50 50) (* 120 120))))\n   0.15)"
+      },
+      "practica-2": {
+        "titulo": "Conversión de Magnitudes en Laboratorio Químico",
+        "descripcion": "Un técnico registra tres temperaturas en Fahrenheit: 86°F, 95°F y 104°F. Conviértelas a Celsius usando (F - 32) * 5/9, suma las tres conversiones y calcula el promedio dividiéndolo entre 3. Usa '-', '*', '/', '+'. Evalúa: (((86 - 32) * 5 / 9) + ((95 - 32) * 5 / 9) + ((104 - 32) * 5 / 9)) / 3.",
+        "respuesta": "35",
+        "codigo_ejemplo": "(/ (+ (/ (* (- 86 32) 5) 9)\n      (/ (* (- 95 32) 5) 9)\n      (/ (* (- 104 32) 5) 9))\n   3)"
+      },
+      "practica-3": {
+        "titulo": "Medición de Intensidad Sísmica Ajustada",
+        "descripcion": "Un sismólogo analiza tres estaciones: A registró magnitud 4.2 a 25 km, B registró 3.8 a 40 km, y C registró 5.1 a 15 km del epicentro. Calcula la intensidad ajustada con 10^(magnitud) / sqrt(distancia) para cada estación y suma los resultados. Usa 'expt', 'sqrt', '/', '+'. Evalúa: (10^4.2 / sqrt(25)) + (10^3.8 / sqrt(40)) + (10^5.1 / sqrt(15)).",
+        "respuesta": "35890.61",
+        "codigo_ejemplo": "(+ (/ (expt 10 4.2) (sqrt 25))\n   (/ (expt 10 3.8) (sqrt 40))\n   (/ (expt 10 5.1) (sqrt 15)))"
+      }
+    }
+  },
+  "funciones": {
+    "ocaml": {
+      "practica-1": {
+        "titulo": "Consumo Eléctrico de Electrodomésticos",
+        "descripcion": "Un técnico calcula el consumo mensual en kWh de un electrodoméstico. Define una función que multiplique potencia (vatios) por horas de uso diario, divida entre 1000 para convertir a kW, y multiplique por 30 días. Evalúa con 1500 vatios y 4 horas diarias.",
+        "respuesta": "180.0",
+        "codigo_ejemplo": "let consumo_mensual potencia horas_dia =\n  let kw = potencia /. 1000.0 in\n  let consumo_diario = kw *. horas_dia in\n  let consumo_mes = consumo_diario *. 30.0 in\n  consumo_mes\nin\nconsumo_mensual 1500.0 4.0"
+      },
+      "practica-2": {
+        "titulo": "Conversión de Temperatura con Factor de Humedad",
+        "descripcion": "Un meteorólogo convierte temperatura de Celsius a Fahrenheit y ajusta por humedad. Define una función que tome Celsius y humedad, convierta a Fahrenheit (C * 9/5 + 32), y sume un factor de humedad/10. Evalúa con 25°C y 80% de humedad.",
+        "respuesta": "85.0",
+        "codigo_ejemplo": "let temperatura_ajustada celsius humedad =\n  let fahrenheit = (celsius *. 9.0 /. 5.0) +. 32.0 in\n  let factor_humedad = humedad /. 10.0 in\n  let temperatura_final = fahrenheit +. factor_humedad in\n  temperatura_final\nin\ntemperatura_ajustada 25.0 80.0"
+      },
+      "practica-3": {
+        "titulo": "Precio de Membresía con Bonificación Familiar",
+        "descripcion": "Un gimnasio calcula el precio anual de membresía para una familia. Define una función que tome precio base, número de miembros y meses. Calcula el total (base * miembros * meses), aplica 15% descuento si miembros > 3, y suma bono de 50 por 12 meses. Evalúa con 40, 4 miembros, 12 meses.",
+        "respuesta": "1682.0",
+        "codigo_ejemplo": "let precio_membresia base miembros meses =\n  let total_base = base *. miembros *. meses in\n  let descuento = total_base *. 0.15 in\n  let total_descuento = total_base -. descuento in\n  let bono = 50.0 in\n  let precio_final = total_descuento +. bono in\n  precio_final\nin\nprecio_membresia 40.0 4.0 12.0"
+      }
+    }
+  },
+  "funciones-multiples": {
+    "racket": {
+      "practica-1": {
+        "titulo": "Descuento por Volumen en Compra de Materiales",
+        "descripcion": "Una ferretería vende tornillos a 2 dólares la caja y tuercas a 3 dólares la caja. Define una función que calcule el costo total considerando un descuento del 10% si la cantidad total supera 20 cajas. Evalúa con 15 cajas de tornillos y 8 cajas de tuercas.",
+        "respuesta": "61.2",
+        "codigo_ejemplo": "(define (costo-total-con-descuento tornillos tuercas)\n  (let ((precio-tornillos 2)\n        (precio-tuercas 3))\n    (let ((total-cajas (+ tornillos tuercas))\n          (costo-bruto (+ (* tornillos precio-tornillos)\n                          (* tuercas precio-tuercas))))\n      (if (> total-cajas 20)\n          (* costo-bruto 0.9)\n          costo-bruto))))\n\n(costo-total-con-descuento 15 8)"
+      },
+      "practica-2": {
+        "titulo": "Verificación de Triángulo Válido",
+        "descripcion": "Un geometra verifica si tres medidas forman un triángulo válido. Define una función que tome tres lados y verifique la condición: la suma de dos lados debe ser mayor que el tercero para cada combinación. Evalúa con lados 5, 7 y 9.",
+        "respuesta": "#t",
+        "codigo_ejemplo": "(define (triangulo-valido? a b c)\n  (let ((suma-ab (+ a b))\n        (suma-ac (+ a c))\n        (suma-bc (+ b c)))\n    (let ((cond1 (> suma-ab c))\n          (cond2 (> suma-ac b))\n          (cond3 (> suma-bc a)))\n      (and cond1 cond2 cond3))))\n\n(triangulo-valido? 5 7 9)"
+      },
+      "practica-3": {
+        "titulo": "Costo de Envío Internacional con Tarifas Variables",
+        "descripcion": "Una empresa de logística calcula el costo de envío según peso (kg), distancia (km), zona aduanera (1-3) y tipo express. El costo base es peso * distancia * 0.05, más zona * 10, y si es express suma 25% adicional. Evalúa con 50 kg, 1200 km, zona 2, express verdadero.",
+        "respuesta": "3770.0",
+        "codigo_ejemplo": "(define (costo-envio peso distancia zona express?)\n  (let ((tarifa-base 0.05)\n        (cargo-zona (* zona 10)))\n    (let ((costo-transporte (* peso distancia tarifa-base))\n          (costo-sin-express (+ (* peso distancia tarifa-base) cargo-zona)))\n      (if express?\n          (let ((adicional (* costo-sin-express 0.25)))\n            (+ costo-sin-express adicional))\n          costo-sin-express))))\n\n(costo-envio 50 1200 2 #t)"
+      }
+    }
+  },
+  "condicionales": {
+    "ocaml": {
+      "practica-1": {
+        "titulo": "Clasificación de Temperatura Ambiental",
+        "descripcion": "Un sistema de climatización clasifica la temperatura ambiente. Define una función que tome temperatura en Celsius y retorne \"frio\" si es menor a 15, \"templado\" si está entre 15 y 25, y \"calor\" si supera 25. Evalúa con 28 grados.",
+        "respuesta": "calor",
+        "codigo_ejemplo": "let clasificar_temperatura temp =\n  let umbral_frio = 15.0 in\n  let umbral_calor = 25.0 in\n  if temp < umbral_frio then\n    \"frio\"\n  else if temp <= umbral_calor then\n    \"templado\"\n  else\n    \"calor\"\nin\nclasificar_temperatura 28.0"
+      },
+      "practica-2": {
+        "titulo": "Cálculo de Prima por Antigüedad Laboral",
+        "descripcion": "Una empresa calcula la prima anual según antigüedad. Define una función que tome salario base y años de servicio. Si tiene menos de 5 años, prima es 5% del salario; entre 5 y 10 años, 10%; más de 10 años, 15%. Evalúa con salario 3000 y 8 años.",
+        "respuesta": "300.0",
+        "codigo_ejemplo": "let calcular_prima salario_base anios =\n  let umbral_junior = 5 in\n  let umbral_senior = 10 in\n  let porcentaje = \n    if anios < umbral_junior then\n      0.05\n    else if anios <= umbral_senior then\n      0.10\n    else\n      0.15\n  in\n  let prima = salario_base *. porcentaje in\n  prima\nin\ncalcular_prima 3000.0 8"
+      },
+      "practica-3": {
+        "titulo": "Descuento Escalonado por Monto de Compra",
+        "descripcion": "Una tienda aplica descuentos según el monto. Define una función que tome monto total y calcule el precio final. Si es menor a 100, sin descuento; entre 100 y 500, 10% descuento; más de 500, 20% descuento. Evalúa con 350 dólares.",
+        "respuesta": "315.0",
+        "codigo_ejemplo": "let precio_con_descuento monto =\n  let umbral_bajo = 100.0 in\n  let umbral_alto = 500.0 in\n  let precio_final =\n    if monto < umbral_bajo then\n      monto\n    else if monto <= umbral_alto then\n      let descuento = monto *. 0.10 in\n      monto -. descuento\n    else\n      let descuento = monto *. 0.20 in\n      monto -. descuento\n  in\n  precio_final\nin\nprecio_con_descuento 350.0"
+      }
+    }
+  },
+  "recursion": {
+    "racket": {
+      "practica-1": {
+        "titulo": "Conteo de Palabras en Lista de Títulos",
+        "descripcion": "Una biblioteca registra títulos de libros como lista: '(\"El Quijote\" \"Cien Años\" \"La Odisea\" \"Don Juan\" \"El Aleph\"). Define una función recursiva que cuente cuántos títulos hay en la lista. Caso base: lista vacía retorna 0. Caso recursivo: suma 1 más la recursión sobre el resto. Evalúa con la lista dada.",
+        "respuesta": "5",
+        "codigo_ejemplo": "(define (contar-titulos lst)\n  (if (null? lst)\n      0\n      (+ 1 (contar-titulos (cdr lst)))))\n\n(contar-titulos\n  '(\"El Quijote\" \"Cien Años\" \"La Odisea\"\n  \"Don Juan\" \"El Aleph\"))"
+      },
+      "practica-2": {
+        "titulo": "Multiplicación de Elementos en Lista de Factores",
+        "descripcion": "Un ingeniero calcula el producto de factores de escalado: '(2 3 4). Define una función recursiva que multiplique todos los elementos. Caso base: lista vacía retorna 1. Caso recursivo: multiplica el primer elemento por la recursión sobre el resto. Evalúa con lista '(2 3 4).",
+        "respuesta": "24",
+        "codigo_ejemplo": "(define (producto-factores lst)\n  (if (null? lst)\n      1\n      (* (car lst) (producto-factores (cdr lst)))))\n\n(producto-factores '(2 3 4))"
+      },
+      "practica-3": {
+        "titulo": "Filtrado de Números Pares en Lista de Mediciones",
+        "descripcion": "Un laboratorio tiene mediciones: '(12 15 18 21 24 27). Define una función recursiva que devuelva solo números pares. Caso base: lista vacía retorna '(). Caso recursivo: si elemento es par (remainder = 0), agrégalo con cons; sino, recursa directamente. Evalúa con lista dada.",
+        "respuesta": "(12 18 24)",
+        "codigo_ejemplo": "(define (filtrar-pares lst)\n  (if (null? lst)\n      '()\n      (if (= (remainder (car lst) 2) 0)\n          (cons (car lst) (filtrar-pares (cdr lst)))\n          (filtrar-pares (cdr lst)))))\n\n(filtrar-pares '(12 15 18 21 24 27))"
+      }
+    }
+  },
+  "listas": {
+    "ocaml": {
+      "practica-1": {
+        "titulo": "Inventario de Múltiples Almacenes",
+        "descripcion": "Una cadena de tiendas tiene productos en tres almacenes con cantidades: [45; 32; 28], [60; 15; 40] y [25; 50; 35]. Calcula el total de productos sumando las longitudes de las tres listas. Usa List.length para obtener el tamaño de cada lista y luego suma los resultados. Evalúa: List.length [45; 32; 28] + List.length [60; 15; 40] + List.length [25; 50; 35].",
+        "respuesta": "9",
+        "codigo_ejemplo": "let total_productos almacen1 almacen2 almacen3 =\n  let cant1 = List.length almacen1 in\n  let cant2 = List.length almacen2 in\n  let cant3 = List.length almacen3 in\n  cant1 + cant2 + cant3\nin\ntotal_productos [45; 32; 28] [60; 15; 40] [25; 50; 35]"
+      },
+      "practica-2": {
+        "titulo": "Análisis del Segundo Sensor en Sistema de Monitoreo",
+        "descripcion": "Un sistema de monitoreo ambiental registra temperaturas de sensores: [22.5; 24.8; 19.3; 26.1; 21.7]. Extrae la temperatura del segundo sensor usando List.hd y List.tl. Primero elimina el primer elemento con List.tl, luego obtén el primero de esa lista con List.hd. Evalúa: List.hd (List.tl [22.5; 24.8; 19.3; 26.1; 21.7]).",
+        "respuesta": "24.8",
+        "codigo_ejemplo": "let segundo_sensor lecturas =\n  let sin_primero = List.tl lecturas in\n  let segundo = List.hd sin_primero in\n  segundo\nin\nsegundo_sensor [22.5; 24.8; 19.3; 26.1; 21.7]"
+      },
+      "practica-3": {
+        "titulo": "Comparación de Inventarios en Sucursales",
+        "descripcion": "Dos sucursales reportan productos: sucursal A tiene [12; 45; 33; 28; 19] y sucursal B tiene [30; 22; 41; 15; 38]. Verifica si ambas tienen la misma cantidad de productos comparando sus longitudes. Usa List.length en ambas listas y compara con =. Evalúa: List.length [12; 45; 33; 28; 19] = List.length [30; 22; 41; 15; 38].",
+        "respuesta": "true",
+        "codigo_ejemplo": "let misma_cantidad sucursalA sucursalB =\n  let cantA = List.length sucursalA in\n  let cantB = List.length sucursalB in\n  cantA = cantB\nin\nmisma_cantidad [12; 45; 33; 28; 19] [30; 22; 41; 15; 38]"
+      }
+    }
+  },
+  "funciones-orden-superior": {
+    "racket": {
+      "practica-1": {
+        "titulo": "Sistema de Bonificación por Rendimiento",
+        "descripcion": "Una empresa evalúa el rendimiento de empleados: '(75 85 92 68 88 95). Calcula bonificaciones multiplicando cada puntaje por 1.2 para quienes tienen más de 80 puntos. Usa 'filter' para seleccionar puntajes mayores a 80, luego 'map' con lambda para aplicar el multiplicador 1.2. Usa 'define' y evalúa con la lista dada. Maneja listas vacías retornando '().",
+        "respuesta": "(102.0 110.4 105.6 114.0)",
+        "codigo_ejemplo": "(define (calcular-bonificaciones puntajes)\n  (if (empty? puntajes)\n      '()\n      (map (lambda (p) (* p 1.2))\n           (filter (lambda (x) (> x 80)) puntajes))))\n\n(calcular-bonificaciones '(75 85 92 68 88 95))"
+      },
+      "practica-2": {
+        "titulo": "Análisis de Temperaturas Extremas",
+        "descripcion": "Un sistema meteorológico registra temperaturas: '(15 28 32 19 35 40 22). Filtra temperaturas extremas (menores a 20 o mayores a 30) y cuenta cuántas hay. Usa 'filter' con un predicado lambda que evalúe (or (< x 20) (> x 30)), luego 'length' para contar. Usa 'define' y evalúa con la lista. Maneja listas vacías retornando 0.",
+        "respuesta": "5",
+        "codigo_ejemplo": "(define (contar-extremas temperaturas)\n  (if (empty? temperaturas)\n      0\n      (length (filter (lambda (t) (or (< t 20) (> t 30)))\n                      temperaturas))))\n\n(contar-extremas '(15 28 32 19 35 40 22))"
+      },
+      "practica-3": {
+        "titulo": "Procesamiento de Ventas Mensuales",
+        "descripcion": "Una tienda tiene ventas mensuales: '(1200 850 1500 2000 900 1800). Calcula el total de ventas superiores a 1000. Usa 'filter' para seleccionar valores mayores a 1000, luego 'foldl' con operador '+' y valor inicial 0 para sumar. Usa 'define' y evalúa con la lista dada. Maneja listas vacías retornando 0.",
+        "respuesta": "6500",
+        "codigo_ejemplo": "(define (total-ventas-altas ventas)\n  (if (empty? ventas)\n      0\n      (foldl + 0\n             (filter (lambda (v) (> v 1000)) ventas))))\n\n(total-ventas-altas '(1200 850 1500 2000 900 1800))"
+      }
+    }
+  },
+  "tipos-datos-simples": {
+    "ocaml": {
+      "practica-1": {
+        "titulo": "Sistema de Coordenadas Geográficas",
+        "descripcion": "Un sistema GPS registra ubicaciones como tuplas (latitud, longitud): (40.7128, -74.0060) representa Nueva York. Calcula la distancia euclidiana desde el origen (0.0, 0.0). Define una función que extraiga ambos componentes de la tupla, eleve cada uno al cuadrado, sume y aplique raíz cuadrada. Usa pattern matching (lat, lon), sqrt, **. Evalúa con la tupla dada.",
+        "respuesta": "82.7857",
+        "codigo_ejemplo": "let distancia_desde_origen coord =\n  let (lat, lon) = coord in\n  let cuadrado_lat = lat ** 2.0 in\n  let cuadrado_lon = lon ** 2.0 in\n  sqrt (cuadrado_lat +. cuadrado_lon)\nin\ndistancia_desde_origen (40.7128, -74.0060)"
+      },
+      "practica-2": {
+        "titulo": "Registro de Productos en Inventario",
+        "descripcion": "Una tienda usa registros para productos: { nombre = \"Laptop\"; precio = 1200; stock = 15 }. Calcula el valor total del inventario multiplicando precio por stock. Define un tipo 'producto' con campos nombre (string), precio (int) y stock (int). Crea una función que acceda a precio y stock con p.precio y p.stock, y los multiplique. Usa 'type' y evalúa con el producto dado.",
+        "respuesta": "18000",
+        "codigo_ejemplo": "type producto = { nombre: string; precio: int; stock: int }\n\nlet valor_inventario p =\n  let valor_unitario = p.precio in\n  let cantidad = p.stock in\n  valor_unitario * cantidad\nin\nvalor_inventario { nombre = \"Laptop\"; precio = 1200; stock = 15 }"
+      },
+      "practica-3": {
+        "titulo": "Análisis de Datos de Sensores",
+        "descripcion": "Un sensor ambiental registra datos: { temperatura = 22.5; humedad = 65.0; presion = 1013.25 }. Calcula un índice de confort: (temperatura * 0.6) + (humedad * 0.3) + (presion / 100.0). Define un tipo 'sensor' con campos temperatura, humedad y presion (float). Crea una función que acceda a los campos y aplique la fórmula. Usa 'type', 'let', y evalúa con los datos dados.",
+        "respuesta": "43.1325",
+        "codigo_ejemplo": "type sensor = { temperatura: float; humedad: float; presion: float }\n\nlet indice_confort s =\n  let factor_temp = s.temperatura *. 0.6 in\n  let factor_hum = s.humedad *. 0.3 in\n  let factor_pres = s.presion /. 100.0 in\n  factor_temp +. factor_hum +. factor_pres\nin\nindice_confort { temperatura = 22.5; humedad = 65.0; presion = 1013.25 }"
+      }
+    }
+  },
+  "cadenas-y-caracteres": {
+    "racket": {
+      "practica-1": {
+        "titulo": "Validación de Códigos de Producto",
+        "descripcion": "Una tienda valida códigos de producto con formato específico. Toma un código \"PROD-2024-XYZ\" y verifica su longitud mínima de 10 caracteres. Define una función que use 'string-length' para medir la cadena y compare si es mayor o igual a 10. Usa 'if', '>=' y 'define'. Evalúa con el código dado. Maneja cadenas vacías retornando false.",
+        "respuesta": "#t",
+        "codigo_ejemplo": "(define (codigo-valido? codigo)\n  (if (string? codigo)\n      (if (>= (string-length codigo) 10)\n          #t\n          #f)\n      #f))\n\n(codigo-valido? \"PROD-2024-XYZ\")"
+      },
+      "practica-2": {
+        "titulo": "Generación de Etiquetas de Usuario",
+        "descripcion": "Una aplicación genera etiquetas combinando nombre \"usuario\" y año \"2024\" con un separador \"-\". Define una función que use 'string-append' para unir las tres partes (nombre, guión, año) en una sola cadena. Usa 'define' y evalúa con los valores dados. La función debe retornar la cadena completa.",
+        "respuesta": "usuario-2024",
+        "codigo_ejemplo": "(define (generar-etiqueta nombre anio)\n  (let ((separador \"-\"))\n    (string-append nombre separador anio)))\n\n(generar-etiqueta \"usuario\" \"2024\")"
+      },
+      "practica-3": {
+        "titulo": "Extracción de Iniciales de Nombres",
+        "descripcion": "Un sistema de badges extrae la primera letra de un nombre \"Maria\" para crear un avatar. Define una función que use 'string-ref' con índice 0 para obtener el primer carácter. Verifica que la cadena no esté vacía con 'string-length' antes de extraer. Usa 'if', 'define' y evalúa con el nombre dado.",
+        "respuesta": "#\\M",
+        "codigo_ejemplo": "(define (obtener-inicial nombre)\n  (if (> (string-length nombre) 0)\n      (string-ref nombre 0)\n      #\\?))\n\n(obtener-inicial \"Maria\")"
+      }
+    }
+  },
+  "composicion-de-funciones": {
+    "ocaml": {
+      "practica-1": {
+        "titulo": "Pipeline de Procesamiento de Texto",
+        "descripcion": "Un sistema de etiquetado procesa nombres de archivos: \"REPORTE\" debe convertirse a minúsculas, agregar extensión \".txt\" y un prefijo \"doc-\". Define tres funciones: to_lowercase (String.lowercase_ascii), add_extension (concatenar con ^), add_prefix (agregar prefijo). Compón las tres aplicando el resultado de una como entrada de la siguiente. Usa 'let...in' y evalúa con \"REPORTE\".",
+        "respuesta": "doc-reporte.txt",
+        "codigo_ejemplo": "let to_lowercase s =\n  String.lowercase_ascii s\nin\nlet add_extension s =\n  s ^ \".txt\"\nin\nlet add_prefix s =\n  \"doc-\" ^ s\nin\nlet procesar_nombre nombre =\n  let minusculas = to_lowercase nombre in\n  let con_extension = add_extension minusculas in\n  let con_prefijo = add_prefix con_extension in\n  con_prefijo\nin\nprocesar_nombre \"REPORTE\""
+      },
+      "practica-2": {
+        "titulo": "Transformación de Datos Numéricos",
+        "descripcion": "Un analizador procesa valores: toma 15, multiplica por 3, suma 10 y divide entre 2. Define funciones para cada operación: multiplicar_por_tres, sumar_diez, dividir_entre_dos. Compón las tres funciones aplicando cada resultado al siguiente paso. Usa 'let...in' para encadenar y evalúa con 15. El resultado debe ser entero.",
+        "respuesta": "27",
+        "codigo_ejemplo": "let multiplicar_por_tres n =\n  n * 3\nin\nlet sumar_diez n =\n  n + 10\nin\nlet dividir_entre_dos n =\n  n / 2\nin\nlet procesar_valor valor =\n  let multiplicado = multiplicar_por_tres valor in\n  let sumado = sumar_diez multiplicado in\n  let dividido = dividir_entre_dos sumado in\n  dividido\nin\nprocesar_valor 15"
+      },
+      "practica-3": {
+        "titulo": "Sistema de Validación y Formato",
+        "descripcion": "Un validador procesa códigos: toma \"abc123\", extrae longitud (String.length), verifica si es mayor a 5, y retorna \"valido\" o \"invalido\" según el resultado. Define tres funciones: obtener_longitud, es_mayor_cinco (retorna bool), formato_resultado (convierte bool a string). Compón las funciones encadenando cada paso. Usa 'let...in', 'if...then...else' y evalúa con \"abc123\".",
+        "respuesta": "valido",
+        "codigo_ejemplo": "let obtener_longitud s =\n  String.length s\nin\nlet es_mayor_cinco n =\n  if n > 5 then true else false\nin\nlet formato_resultado b =\n  if b then \"valido\" else \"invalido\"\nin\nlet validar_codigo codigo =\n  let longitud = obtener_longitud codigo in\n  let valido = es_mayor_cinco longitud in\n  let resultado = formato_resultado valido in\n  resultado\nin\nvalidar_codigo \"abc123\""
+      }
+    }
+  },
+  "procesamiento-listas": {
+    "racket": {
+      "practica-1": {
+        "titulo": "Filtrado de Sensores Activos por Identificador",
+        "descripcion": "Un sistema de monitoreo tiene sensores con identificadores: '(\"sensor-A12\" \"temp-B8\" \"sensor-C10\" \"hum-D6\"). Filtra los que empiezan con \"sensor-\" para obtener solo sensores principales. Define una función que use 'filter' con 'string-prefix?' para verificar el prefijo. Usa 'lambda' para crear el predicado. Evalúa con la lista dada. El resultado incluye los tres sensores que comienzan con \"sensor-\".",
+        "respuesta": "(\"sensor-A12\" \"sensor-C10\")",
+        "codigo_ejemplo": "(define (filtrar-sensores-principales lista)\n  (if (empty? lista)\n      '()\n      (filter (lambda (id)\n                (string-prefix? id \"sensor-\"))\n              lista)))\n\n(filtrar-sensores-principales\n  '(\"sensor-A12\" \"temp-B8\" \"sensor-C10\" \"hum-D6\"))"
+      },
+      "practica-2": {
+        "titulo": "Conversión de Etiquetas a Formato Estándar",
+        "descripcion": "Un sistema de inventario tiene etiquetas en minúsculas: '(\"producto\" \"almacen\" \"categoria\" \"stock\"). Convierte todas a mayúsculas para estandarizar. Define una función que use 'map' con 'string-upcase' para transformar cada cadena. Usa 'lambda' si es necesario. Evalúa con la lista dada. El resultado contiene todas las etiquetas en mayúsculas.",
+        "respuesta": "(\"PRODUCTO\" \"ALMACEN\" \"CATEGORIA\" \"STOCK\")",
+        "codigo_ejemplo": "(define (convertir-mayusculas lista)\n  (if (empty? lista)\n      '()\n      (map string-upcase lista)))\n\n(convertir-mayusculas\n  '(\"producto\" \"almacen\" \"categoria\" \"stock\"))"
+      },
+      "practica-3": {
+        "titulo": "Pipeline de Procesamiento de Códigos de Usuario",
+        "descripcion": "Un sistema procesa códigos de usuario: '(\"admin\" \"user\" \"guest\" \"operator\" \"viewer\"). Primero filtra los que tienen longitud mayor a 4, luego agrega el prefijo \"code-\" a cada uno. Define dos funciones: una para filtrar con 'filter' y 'string-length', otra para agregar prefijo con 'map' y 'string-append'. Compón ambas funciones. Evalúa con la lista dada. El resultado muestra solo los códigos largos con el prefijo agregado.",
+        "respuesta": "(\"code-admin\" \"code-guest\" \"code-operator\" \"code-viewer\")",
+        "codigo_ejemplo": "(define (filtrar-largos lista)\n  (filter (lambda (s)\n            (> (string-length s) 4))\n          lista))\n\n(define (agregar-prefijo lista)\n  (map (lambda (s)\n         (string-append \"code-\" s))\n       lista))\n\n(define (procesar-codigos lista)\n  (agregar-prefijo (filtrar-largos lista)))\n\n(procesar-codigos\n  '(\"admin\" \"user\" \"guest\" \"operator\" \"viewer\"))"
+      }
     }
   }
 }
